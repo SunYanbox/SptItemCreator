@@ -1,0 +1,100 @@
+{
+  "$type": "medical",
+  "enable": false,
+  "baseInfo": {
+    "id": "6900c8e93ea877662a000013",
+    "type": "medical",
+    "name": "注射器模板",
+    "description": null,
+    "author": "Suntion",
+    "license": "MIT",
+    "order": 0,
+    "parentId": "5448f3a64bdc2d60728b456a",
+    "handbookParentId": "5b47574386f77428ca22b33a",
+    "cloneId": "5c0e530286f7747fa1419862",
+
+    "traderId": "54cb57776803fa99248b456e",
+    "price": 15000,
+    "prefab": null,
+    "usePrefab": null,
+    "CanSellOnRagfair": true
+  },
+  "attributeInfo": {
+    "weight": 0.3,
+    "width": 3,
+    "height": 3,
+    "rarityPvE": "Superrare",
+    "discardLimit": null,
+    "itemSound": null,
+    "stackMaxSize": 5,
+    "examinedByDefault": true,
+    "examineTime": 2,
+    "lootExperience": 50,
+    "examineExperience": 500
+  },
+  "buffsInfo": {
+    "stimulatorBuffs": "BuffsStimulatorTpl",
+    "buffs": [
+      {
+        "AbsoluteValue": true,
+        "BuffType": "HealthRate",
+        "Chance": 1,
+        "Delay": 1,
+        "Duration": 300,
+        "SkillName": "",
+        "Value": 1
+      },
+      {
+        "AbsoluteValue": true,
+        "BuffType": "SkillRate",
+        "Chance": 1,
+        "Delay": 1,
+        "Duration": 300,
+        "SkillName": "Metabolism",
+        "Value": 20
+      },
+      {
+        "AbsoluteValue": true,
+        "BuffType": "SkillRate",
+        "Chance": 1,
+        "Delay": 1,
+        "Duration": 300,
+        "SkillName": "Health",
+        "Value": 20
+      },
+      {
+        "AbsoluteValue": true,
+        "BuffType": "SkillRate",
+        "Chance": 1,
+        "Delay": 1,
+        "Duration": 300,
+        "SkillName": "Vitality",
+        "Value": 20
+      },
+      {
+        "AbsoluteValue": true,
+        "BuffType": "HandsTremor",
+        "Chance": 1,
+        "Delay": 270,
+        "Duration": 30,
+        "SkillName": "",
+        "Value": 0
+      }
+    ]
+  },
+  "medicalInfo": {
+    "maxHpResource": null,
+    "hpResourceRate": null,
+    "medUseTime": null,
+    "medEffectType": null,
+    "effects_health": [],
+    "effects_damage": {
+      "1": {
+        "delay": 0,
+        "duration": 0,
+        "fadeOut": 0
+      }
+    },
+    "bodyPartPriority": []
+  }
+}

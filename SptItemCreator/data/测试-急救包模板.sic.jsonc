@@ -1,0 +1,58 @@
+{
+  "$type": "medical",
+  "enable": false,
+  "baseInfo": {
+    "id": "6900c8e93ea877662a000011",
+    "type": "medical",
+    "name": "急救包模板",
+    "description": null,
+    "author": "Suntion",
+    "license": "MIT",
+    "order": 0,
+    "parentId": "5448f39d4bdc2d0a728b4568",
+    "handbookParentId": "5b47574386f77428ca22b338",
+    "cloneId": "544fb45d4bdc2dee738b4568",
+
+    "traderId": "54cb57776803fa99248b456e",
+    "price": 3000,
+    "prefab": null,
+    "usePrefab": null,
+    "CanSellOnRagfair": true
+  },
+  "attributeInfo": {
+    "weight": 0.3,
+    "width": 3,
+    "height": 3,
+    "rarityPvE": "Common",
+    "discardLimit": null,
+    "itemSound": null,
+    "stackMaxSize": 3,
+    "examinedByDefault": true,
+    "examineTime": 2,
+    "lootExperience": 50,
+    "examineExperience": 500
+  },
+  "buffsInfo": null,
+  "medicalInfo": {
+    "maxHpResource": null,
+    "hpResourceRate": null,
+    "medUseTime": null,
+    "medEffectType": null,
+    "effects_health": [],
+    "effects_damage": {
+      "0": {
+        "delay": 0,
+        "duration": 0,
+        "fadeOut": 0,
+        "cost": 65
+      },
+      "1": {
+        "delay": 0,
+        "duration": 0,
+        "fadeOut": 0,
+        "cost": 20
+      }
+    },
+    "bodyPartPriority": []
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$type": "medical",
+  "enable": false,
+  "baseInfo": {
+    "id": "6900c8e93ea877662a000012",
+    "type": "medical",
+    "name": "创伤处理模板",
+    "description": null,
+    "author": "Suntion",
+    "license": "MIT",
+    "order": 0,
+    "parentId": "5448f3ac4bdc2dce718b4569",
+    "handbookParentId": "5b47574386f77428ca22b339",
+    "cloneId": "544fb25a4bdc2dfb738b4567",
+
+    "traderId": "54cb57776803fa99248b456e",
+    "price": 5000,
+    "prefab": null,
+    "usePrefab": null,
+    "CanSellOnRagfair": true
+  },
+  "attributeInfo": {
+    "weight": 0.3,
+    "width": 3,
+    "height": 3,
+    "rarityPvE": "Common",
+    "discardLimit": null,
+    "itemSound": null,
+    "stackMaxSize": 3,
+    "examinedByDefault": true,
+    "examineTime": 2,
+    "lootExperience": 50,
+    "examineExperience": 500
+  },
+  "buffsInfo": null,
+  "medicalInfo": {
+    "maxHpResource": null,
+    "hpResourceRate": null,
+    "medUseTime": null,
+    "medEffectType": null,
+    "effects_health": [],
+    "effects_damage": {
+      "1": {
+        "delay": 0,
+        "duration": 0,
+        "fadeOut": 0
+      }
+    },
+    "bodyPartPriority": []
+  }
+}

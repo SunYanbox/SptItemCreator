@@ -1,0 +1,55 @@
+{
+  "$type": "medical",
+  "enable": false,
+  "baseInfo": {
+    "id": "6900c8e93ea877662a000010",
+    "type": "medical",
+    "name": "药品模板",
+    "description": null,
+    "author": "Suntion",
+    "license": "MIT",
+    "order": 0,
+    "parentId": "5448f3a14bdc2d27728b4569",
+    "handbookParentId": "5b47574386f77428ca22b337",
+    "cloneId": "544fb37f4bdc2dee738b4567",
+
+    "traderId": "54cb57776803fa99248b456e",
+    "price": 3000,
+    "prefab": null,
+    "usePrefab": null,
+    "CanSellOnRagfair": true
+  },
+  "attributeInfo": {
+    "weight": 0.3,
+    "width": 3,
+    "height": 3,
+    "rarityPvE": "Rare",
+    "discardLimit": null,
+    "itemSound": null,
+    "stackMaxSize": 3,
+    "examinedByDefault": true,
+    "examineTime": 2,
+    "lootExperience": 50,
+    "examineExperience": 500
+  },
+  "buffsInfo": null,
+  "medicalInfo": {
+    "maxHpResource": null,
+    "hpResourceRate": null,
+    "medUseTime": 4,
+    "medEffectType": "duringUse",
+    "effects_health": {
+      "2": {
+        "value": -8
+      }
+    },
+    "effects_damage": {
+      "7": {
+        "delay": 0,
+        "duration": 160,
+        "fadeOut": 7
+      }
+    },
+    "bodyPartPriority": null
+  }
+}

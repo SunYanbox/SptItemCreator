@@ -1,0 +1,45 @@
+{
+  "$type": "drinkOrFood",
+  "enable": false,
+  "baseInfo": {
+    "id": "6900c8e93ea877662a000000",
+    "type": "drinkOrFood",
+    "name": "食物模板",
+    "description": null,
+    "author": "Suntion",
+    "license": "MIT",
+    "order": 0,
+    "parentId": "5448e8d04bdc2ddf718b4569",
+    "handbookParentId": "5b47574386f77428ca22b336",
+    "cloneId": "5448ff904bdc2d6f028b456e",
+    
+    "traderId": "54cb57776803fa99248b456e",
+    "price": 5000,
+    "prefab": null,
+    "usePrefab": null,
+    "CanSellOnRagfair": true
+  },
+  "attributeInfo": {
+    "weight": 0.3,
+    "width": 3,
+    "height": 3,
+    "rarityPvE": "Common",
+    "discardLimit": null,
+    "itemSound": "food_snack",
+    "stackMaxSize": null,
+    "examinedByDefault": true,
+    "examineTime": 2,
+    "lootExperience": 50,
+    "examineExperience": 500
+  },
+  "buffsInfo": {
+    "stimulatorBuffs": "",
+    "buffs": null
+  },
+  "drinkFoodInfo": {
+    "foodUseTime": 5,
+    "hydration": 33,
+    "energy": 33,
+    "maxResource": 20
+  }
+}

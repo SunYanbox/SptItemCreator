@@ -1,0 +1,194 @@
+using System.Text.Json.Serialization;
+using SptItemCreator.abstracts;
+using SPTarkov.Server.Core.Models.Eft.Common.Tables;
+
+namespace SptItemCreator.infoClasses;
+
+/// <summary>
+/// 新物品基础信息记录类
+/// 包含物品的基本属性和元数据
+/// </summary>
+/// <remarks>
+/// 属性列表:
+/// - Id: 物品ID (必需) 
+/// - Type: 模板类型，适合SptItemCreator模组的数据类型 (可选) 
+/// - Name: 物品名称 (可选) 
+/// - Description: 物品描述 (可选) 
+/// - Author: 作者名称 (可选) 
+/// - License: 创建物品的协议 (可选) 
+/// - Order: 影响新物品的创建顺序，数值越大加载越慢 (可选) 
+/// - ParentId: 物品创建的ParentId (必需) 
+/// - CloneId: 复制物品创建的原型Id (可选) 
+/// - HandbookParentId: 复制物品创建的HandbookParentId (可选) 
+/// - TraderId: 默认售卖该物品的商人Id (可选) 
+/// - Price: 价格 (默认值: 1)
+/// - Prefab: 物品模型 (可选)
+/// - UsePrefab: 使用时的物品模型 (可选)
+/// - CanSellOnRagfair: 是否允许在跳蚤市场售卖 (默认值: true)
+/// 
+/// - IsHadInit: 是否已进行过初始化与参数验证 (内部使用)
+/// </remarks>
+///
+public record BaseInfo: AbstractInfo
+{
+    [JsonIgnore] public new static bool ShouldUpdateDatabaseService => false;
+    /// <summary>
+    /// 物品ID
+    /// </summary>
+    [JsonPropertyName("id")]
+    public string? Id { get; set; }
+    
+    /// <summary>
+    /// 模板类型(此处为适合SptItemCreator模组的数据类型)  [可缺省]
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string? Type { get; set; }
+
+    /// <summary>
+    /// 物品名称  [可缺省]
+    /// </summary>
+    [JsonPropertyName("name")]
+    public string? Name { get; set; }
+
+    /// <summary>
+    /// 物品描述  [可缺省]
+    /// </summary>
+    [JsonPropertyName("description")]
+    public string? Description { get; set; }
+    
+    /// <summary>
+    /// 作者名称  [可缺省]
+    /// </summary>
+    [JsonPropertyName("author")]
+    public string? Author { get; set; }
+    
+    /// <summary>
+    /// 创建的这个物品的协议  [可缺省]
+    /// </summary>
+    [JsonPropertyName("license")]
+    public string? License { get; set; }
+    
+    /// <summary>
+    /// 影响新物品的创建顺序, 数值越大加载越慢  [可缺省]
+    /// </summary>
+    [JsonPropertyName("order")]
+    public int? Order { get; set; }
+    
+    /// <summary>
+    /// 物品创建的ParentId
+    /// </summary>
+    [JsonPropertyName("parentId")]
+    public string? ParentId { get; set; }
+    
+    /// <summary>
+    /// 复制物品创建的原型Id  [可缺省]
+    /// </summary>
+    [JsonPropertyName("cloneId")]
+    public string? CloneId { get; set; }
+    
+    /// <summary>
+    /// 复制物品创建的HandbookParentId  [可缺省]
+    /// </summary>
+    [JsonPropertyName("handbookParentId")]
+    public string? HandbookParentId { get; set; }
+    
+    /// <summary>
+    /// 默认售卖该物品的商人Id  [可缺省]
+    /// </summary>
+    [JsonPropertyName("traderId")]
+    public string? TraderId { get; set; }
+
+    /// <summary>
+    /// 价格
+    /// </summary>
+    [JsonPropertyName("price")]
+    public double Price { get; set; } = 0;
+    
+    /// <summary>
+    /// 物品模型
+    /// </summary>
+    [JsonPropertyName("prefab")]
+    public Prefab? Prefab { get; set; }
+    
+    /// <summary>
+    /// 使用物品模型
+    /// </summary>
+    [JsonPropertyName("usePrefab")]
+    public Prefab? UsePrefab { get; set; }
+    
+    /// <summary>
+    /// 是否允许在跳蚤市场售卖 默认为true
+    /// </summary>
+    [JsonPropertyName("CanSellOnRagfair")]
+    public bool CanSellOnRagfair { get; set; } = true;
+
+    /// <summary>
+    /// 是否已进行过初始化与参数验证
+    /// </summary>
+    [JsonIgnore] public bool IsHadInit { get; set; } = false;
+    [JsonIgnore] public string? ItemPath { get; set; }
+
+    public override void UpdateProperties(TemplateItemProperties properties)
+    {
+        if (!string.IsNullOrEmpty(Name)) properties.Name = Name;
+        if (!string.IsNullOrEmpty(Name)) properties.ShortName = Name;
+        if (!string.IsNullOrEmpty(Description)) properties.Description = Description;
+        properties.CanSellOnRagfair = CanSellOnRagfair;
+        try
+        {
+            if (Prefab != null)
+            {
+                if (string.IsNullOrEmpty(Prefab.Path))
+                {
+                    LocalLog?.LocalLogMsg(LocalLogType.Warn, $"物品{Name}的Prefab.Path为空, 请检查{ItemPath}");
+                }
+                properties.Prefab = Prefab;
+            }
+            if (UsePrefab != null)
+            {
+                if (string.IsNullOrEmpty(UsePrefab.Path))
+                {
+                    LocalLog?.LocalLogMsg(LocalLogType.Warn, $"物品{Name}的UsePrefab.Path为空, 请检查{ItemPath}");
+                }
+                properties.UsePrefab = UsePrefab;
+            }
+        }
+        catch (Exception e)
+        {
+            LocalLog?.LocalLogMsg(LocalLogType.Error, $"物品{Name}的Prefab或UsePrefab语法错误, 无法解析 - {ItemPath} - {e.Message}");
+        }
+    }
+}
+
+
+/*
+  "5b47574386f77428ca22b2ed": "能源物品",
+  "5b47574386f77428ca22b2ee": "建筑材料",
+  "5b47574386f77428ca22b2ef": "电子产品",
+  "5b47574386f77428ca22b2f0": "日常用品",
+  "5b47574386f77428ca22b2f1": "贵重物品",
+  "5b47574386f77428ca22b2f2": "易燃物品",
+  "5b47574386f77428ca22b2f3": "医疗用品",
+  "5b47574386f77428ca22b2f4": "其他",
+  "5b47574386f77428ca22b2f6": "工具",
+  "5b47574386f77428ca22b32f": "面部装备",
+  "5b47574386f77428ca22b330": "头部装备",
+  "5b47574386f77428ca22b331": "眼部装备",
+  "5b47574386f77428ca22b335": "饮品",
+  "5b47574386f77428ca22b336": "食物",
+  "5b47574386f77428ca22b337": "药品",
+  "5b47574386f77428ca22b338": "急救包",
+  "5b47574386f77428ca22b339": "创伤处理",
+  "5b47574386f77428ca22b33a": "注射器",
+  "5b47574386f77428ca22b33b": "子弹",
+  "5b47574386f77428ca22b33c": "弹药包",
+  "5b47574386f77428ca22b33e": "交换用物品",
+  "5b47574386f77428ca22b33f": "装备",
+  "5b47574386f77428ca22b340": "给养",
+  "5b47574386f77428ca22b341": "情报物品",
+  "5b47574386f77428ca22b342": "钥匙",
+  "5b47574386f77428ca22b343": "地图",
+  "5b47574386f77428ca22b344": "医疗物品",
+  "5b47574386f77428ca22b345": "特殊装备",
+  "5b47574386f77428ca22b346": "弹药",
+ */
