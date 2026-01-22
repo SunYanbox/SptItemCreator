@@ -4,6 +4,7 @@ obj/
 riderModule.iml
 /_ReSharper.Caches/
 
+**/*.user
 *.csproj.user
 launchSettings.json
 doc/
@@ -11,3 +12,5 @@ doc/
 *.bat
 .idea/
 IgnoreCache/
+
+SptItemCreator.sln.DotSettings.user
