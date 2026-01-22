@@ -1,17 +1,20 @@
+本模组开发目的是通过封装物品创建接口，简化物品创建流程，同时提供详细的文档，说明不同属性与字段的作用
+
 ## 支持
-1. 自定义模型(暂未测试)
-将你的自定义模型放置于bundles文件夹下, 参考你克隆的物品的模型路径写prefab和usePrefab
+
+1. 自定义模型
+    将你的自定义模型放置于bundles文件夹下, 参考模型相对于bundles文件夹的相对路径写prefab和usePrefab，随后在bundles.json文件中添加对应模型路径信息
 2. 要求
 - 新物品文件命名以`.sic`, `.sic.json`或`.sic.jsonc`结尾, 内容符合jsonc格式即可
 
 - 新物品文件必须有以下字段, 推荐基于根据data文件夹下的模板进行修改:
   ```jsonc
   {
-  "$type": "medical", // 必须有
+  "$type": "common", // 必须有
   "enable": false, // 修改后, 确定要添加后再改为true
   "baseInfo": {
     "id": "6900c8e93ea877662a000012", // 必须有, 且唯一
-    "type": "medical" // 必须有
+    "type": "common" // 必须有
   }
   ```
   
@@ -51,7 +54,7 @@
     "author": "Suntion",
     // 版权协议, 默认为MIT
     "license": "MIT",
-    // 加载顺序，数值越大加载越晚
+    // 在本模组创建新物品时的加载顺序，数值越大加载越晚
     "order": 0,
     // 父级物品ID，用于继承基础属性(和cloneId物品的`_parent`一致)
     "parentId": "5448e8d04bdc2ddf718b4569",
@@ -59,7 +62,6 @@
     "handbookParentId": "5b47574386f77428ca22b336",
     // 复制的原型物品ID，基于该物品创建新物品(必须和handbookParentId同时赋值)
     "cloneId": "5448ff904bdc2d6f028b456e",
-
     // 默认售卖该物品的商人ID(默认null)
     "traderId": "54cb57776803fa99248b456e",
     // 物品基础价格(默认1)
@@ -72,6 +74,30 @@
     "CanSellOnRagfair": true
 }
 ```
+
+#### 添加模型方式
+
+例如在bundles文件夹下放了一个名为`ammo_5x45_superSSA.bundle`的模型文件
+
+那么，你需要在模组文件夹的bundles.json的`manifest`字段里添加以下内容：
+```json
+{
+  "key": "ammo_5x45_superSSA.bundle",
+  "dependencyKeys": []
+}
+```
+> 然后，在你物品的sic.jsonc文件内，baseInfo的prefab字段需要填写以下内容：
+```json
+"prefab": {
+  "path": "ammo_5x45_superSSA.bundle",
+  "rcid": ""
+}
+```
+
+如果在bundles中使用文件夹进行分类，路径与key需要是完整的相对于bundles文件夹的相对路径(省略./的)
+
+例如：相对于bundles文件夹的相对路径为`AmmoClasses/ammo_5x45_superSSA.bundle`，
+那么不论是baseInfo、bundles.json亦或是overrideProperties属性中，都需要使用**AmmoClasses/ammo_5x45_superSSA.bundle**作为路径或者key
 
 ### attributeInfo
 
@@ -227,150 +253,8 @@
 }
 ```
 
-## 一些常量
+## WiKi
 
-### handbookParentId 可选Id与对应类型
-
-```jsoncc
-{
-  "5b47574386f77428ca22b2ed": "能源物品",
-  "5b47574386f77428ca22b2ee": "建筑材料",
-  "5b47574386f77428ca22b2ef": "电子产品",
-  "5b47574386f77428ca22b2f0": "日常用品",
-  "5b47574386f77428ca22b2f1": "贵重物品",
-  "5b47574386f77428ca22b2f2": "易燃物品",
-  "5b47574386f77428ca22b2f3": "医疗用品",
-  "5b47574386f77428ca22b2f4": "其他",
-  "5b47574386f77428ca22b2f6": "工具",
-  "5b47574386f77428ca22b32f": "面部装备",
-  "5b47574386f77428ca22b330": "头部装备",
-  "5b47574386f77428ca22b331": "眼部装备",
-  "5b47574386f77428ca22b335": "饮品",
-  "5b47574386f77428ca22b336": "食物",
-  "5b47574386f77428ca22b337": "药品",
-  "5b47574386f77428ca22b338": "急救包",
-  "5b47574386f77428ca22b339": "创伤处理",
-  "5b47574386f77428ca22b33a": "注射器",
-  "5b47574386f77428ca22b33b": "子弹",
-  "5b47574386f77428ca22b33c": "弹药包",
-  "5b47574386f77428ca22b33e": "交换用物品",
-  "5b47574386f77428ca22b33f": "装备",
-  "5b47574386f77428ca22b340": "给养",
-  "5b47574386f77428ca22b341": "情报物品",
-  "5b47574386f77428ca22b342": "钥匙",
-  "5b47574386f77428ca22b343": "地图",
-  "5b47574386f77428ca22b344": "医疗物品",
-  "5b47574386f77428ca22b345": "特殊装备",
-  "5b47574386f77428ca22b346": "弹药"
-}
-```
-
-### 稀有度 rarityPvE
-
-```jsonc
-{
-    "普通": "Common",
-    "稀有": "Rare",
-    "超级稀有": "Superrare",
-    "不存在": "Not_exist"
-}
-```
-
-### itemSound 可以赋值的值
-
-还有可以赋值为`通用声音`或`generic`
-
-```c#
-public static readonly Dictionary<string, string> DrinkSounds = new Dictionary<string, string>
-{
-    { "瓶子声音", "food_bottle" },
-    { "果汁纸盒声音", "food_juice_carton" },
-    { "苏打罐声音", "food_soda_can" }
-};
-
-// 食物ItemSound字典
-public static readonly Dictionary<string, string> FoodSounds = new Dictionary<string, string>
-{
-    { "零食声音", "food_snack" },
-    { "罐头声音", "food_tin_can" },
-    { "果汁纸盒声音", "food_juice_carton" }
-};
-
-// 药品声音
-public static readonly Dictionary<string, string> MedsSounds = new Dictionary<string, string>
-{
-    { "医疗注射器", "med_stimulator" },
-    { "医疗绷带", "med_bandage" },
-    { "医疗药片", "med_pills" },
-    { "医疗急救包", "med_medkit" },
-};
-
-public static readonly Dictionary<string, string> AmmoSounds = new Dictionary<string, string>
-{
-    {"单发子弹音效", "ammo_singleround"},
-    {"霰弹枪音效", "ammo_shotgun"},
-    {"榴弹发射器音效", "ammo_launcher"}
-};
-```
-
-### effects_health的键(只能用后面的整数)
-
-```C#
-public enum HealthFactor
-{
-  None = 0,
-  Health = 1,
-  Hydration = 2,
-  Energy = 3,
-  Radiation = 4,
-  Temperature = 5,
-  Poisoning = 6,
-  Effect = 100, // 0x00000064
-}
-```
-
-### effects_damage的键(只能用后面的整数)
-
-```c#
-public enum DamageEffectType
-{
-  HeavyBleeding, // 0
-  LightBleeding, // 1
-  Fracture, // 2
-  Contusion, // 按上面的规律递增
-  Intoxication,
-  LethalIntoxication,
-  RadExposure,
-  Pain,
-  DestroyedPart,
-}
-```
-
-### 子弹相关常量
-
-#### ammoType可用的值
-
-- `bullet`
-- `buckshot`
-- `grenade`
-
-#### tracerColor可用的值
-
-- `red`
-- `tracerRed`
-- `yellow`
-- `tracerYellow`
-- `green`
-- `tracerGreen`
-
-#### caliber可用的值
-
-- `Caliber556x45NATO`
-- `Caliber12g`
-- `Caliber762x54R`
-- `Caliber762x39`
-- `Caliber40mmRU`
-- `Caliber9x19PARA`
-- `Caliber545x39`
-- `Caliber762x25TT`
-- `Caliber9x18PM`
+- [Wiki-主页](Wiki/主页.md)
+- [WiKi-常用常量](Wiki/常用常量)
+- [WiKi-子弹相关常量](Wiki/常用常量/子弹相关常量)
