@@ -1,6 +1,6 @@
 ## 商人Id
 
-```json
+```C#
 namespace SPTarkov.Server.Core.Models.Enums;
 
 public static class Traders
