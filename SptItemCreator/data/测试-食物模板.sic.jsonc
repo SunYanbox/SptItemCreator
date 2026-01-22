@@ -6,18 +6,30 @@
     "type": "drinkOrFood",
     "name": "食物模板",
     "description": null,
+    "locales": {
+      "ch": {
+        "name": "食物模板",
+        "shortName": "食物模板(短)",
+        "description": "一个食物模板"
+      },
+      "en": {
+        "name": "Food Template",
+        "shortName": "Food Template(Short)",
+        "description": "A food template"
+      }
+    },
     "author": "Suntion",
     "license": "MIT",
     "order": 0,
     "parentId": "5448e8d04bdc2ddf718b4569",
     "handbookParentId": "5b47574386f77428ca22b336",
     "cloneId": "5448ff904bdc2d6f028b456e",
-    
     "traderId": "54cb57776803fa99248b456e",
-    "price": 5000,
+    "fleaPrice": 5000,
+    "handbookPrice": 5000,
     "prefab": null,
     "usePrefab": null,
-    "CanSellOnRagfair": true
+    "canSellOnRagfair": true
   },
   "attributeInfo": {
     "weight": 0.3,

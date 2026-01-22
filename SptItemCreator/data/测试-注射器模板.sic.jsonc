@@ -6,18 +6,30 @@
     "type": "medical",
     "name": "注射器模板",
     "description": null,
+    "locales": {
+      "ch": {
+        "name": "注射器模板",
+        "shortName": "注射器",
+        "description": "一个注射器模板"
+      },
+      "en": {
+        "name": "Simulator Template",
+        "shortName": "Simulator",
+        "description": "A simulator template"
+      }
+    },
     "author": "Suntion",
     "license": "MIT",
     "order": 0,
     "parentId": "5448f3a64bdc2d60728b456a",
     "handbookParentId": "5b47574386f77428ca22b33a",
     "cloneId": "5c0e530286f7747fa1419862",
-
     "traderId": "54cb57776803fa99248b456e",
-    "price": 15000,
+    "fleaPrice": 15000,
+    "handbookPrice": 15000,
     "prefab": null,
     "usePrefab": null,
-    "CanSellOnRagfair": true
+    "canSellOnRagfair": true
   },
   "attributeInfo": {
     "weight": 0.3,

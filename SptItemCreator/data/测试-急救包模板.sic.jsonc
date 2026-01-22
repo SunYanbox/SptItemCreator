@@ -6,18 +6,30 @@
     "type": "medical",
     "name": "急救包模板",
     "description": null,
+    "locales": {
+      "ch": {
+        "name": "急救包模板",
+        "shortName": "急救包",
+        "description": "一个急救包模板"
+      },
+      "en": {
+        "name": "First Aid Kit Template",
+        "shortName": "First Aid Kit",
+        "description": "A first aid kit template"
+      }
+    },
     "author": "Suntion",
     "license": "MIT",
     "order": 0,
     "parentId": "5448f39d4bdc2d0a728b4568",
     "handbookParentId": "5b47574386f77428ca22b338",
     "cloneId": "544fb45d4bdc2dee738b4568",
-
     "traderId": "54cb57776803fa99248b456e",
-    "price": 3000,
+    "fleaPrice": 3000,
+    "handbookPrice": 3000,
     "prefab": null,
     "usePrefab": null,
-    "CanSellOnRagfair": true
+    "canSellOnRagfair": true
   },
   "attributeInfo": {
     "weight": 0.3,

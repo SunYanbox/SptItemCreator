@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using JetBrains.Annotations;
 using SptItemCreator.abstracts;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
+using SPTarkov.Server.Core.Models.Spt.Mod;
 
 namespace SptItemCreator.infoClasses;
 
@@ -14,7 +15,8 @@ namespace SptItemCreator.infoClasses;
 /// - Id: 物品ID (必需) 
 /// - Type: 模板类型，适合SptItemCreator模组的数据类型 (可选) 
 /// - Name: 物品名称 (可选) 
-/// - Description: 物品描述 (可选) 
+/// - Description: 物品描述 (可选)
+/// - Locales: 本地化数据库 (可选)
 /// - Author: 作者名称 (可选) 
 /// - License: 创建物品的协议 (可选) 
 /// - Order: 影响新物品的创建顺序，数值越大加载越慢 (可选) 
@@ -22,7 +24,8 @@ namespace SptItemCreator.infoClasses;
 /// - CloneId: 复制物品创建的原型Id (可选) 
 /// - HandbookParentId: 复制物品创建的HandbookParentId (可选) 
 /// - TraderId: 默认售卖该物品的商人Id (可选) 
-/// - Price: 价格 (默认值: 1)
+/// - FleaPrice: 价格 (默认值: 1)
+/// - HandbookPrice: 价格 (默认值: 1)
 /// - Prefab: 物品模型 (可选)
 /// - UsePrefab: 使用时的物品模型 (可选)
 /// - CanSellOnRagfair: 是否允许在跳蚤市场售卖 (默认值: true)
@@ -56,6 +59,12 @@ public record BaseInfo: AbstractInfo
     /// </summary>
     [JsonPropertyName("description")]
     public string? Description { get; set; }
+    
+    /// <summary>
+    /// 本地化数据库 [可缺省]
+    /// </summary>
+    [JsonPropertyName("locales")]
+    public Dictionary<string, LocaleDetails>? Locales { get; set; }
     
     /// <summary>
     /// 作者名称  [可缺省]
@@ -100,10 +109,16 @@ public record BaseInfo: AbstractInfo
     public string? TraderId { get; set; }
 
     /// <summary>
-    /// 价格
+    /// 跳蚤市场价格
     /// </summary>
-    [JsonPropertyName("price")]
-    public double Price { get; set; }
+    [JsonPropertyName("fleaPrice")]
+    public double FleaPrice { get; set; }
+    
+    /// <summary>
+    /// 手册价格
+    /// </summary>
+    [JsonPropertyName("handbookPrice")]
+    public double HandbookPrice { get; set; }
     
     /// <summary>
     /// 物品模型
@@ -120,7 +135,7 @@ public record BaseInfo: AbstractInfo
     /// <summary>
     /// 是否允许在跳蚤市场售卖 默认为true
     /// </summary>
-    [JsonPropertyName("CanSellOnRagfair")]
+    [JsonPropertyName("canSellOnRagfair")]
     public bool CanSellOnRagfair { get; set; } = true;
 
     /// <summary>

@@ -6,18 +6,30 @@
     "type": "medical",
     "name": "药品模板",
     "description": null,
+    "locales": {
+      "ch": {
+        "name": "药品模板",
+        "shortName": "药品",
+        "description": "一个药品模板"
+      },
+      "en": {
+        "name": "Medicine Template",
+        "shortName": "Medicine",
+        "description": "A medicine template"
+      }
+    },
     "author": "Suntion",
     "license": "MIT",
     "order": 0,
     "parentId": "5448f3a14bdc2d27728b4569",
     "handbookParentId": "5b47574386f77428ca22b337",
     "cloneId": "544fb37f4bdc2dee738b4567",
-
     "traderId": "54cb57776803fa99248b456e",
-    "price": 3000,
+    "fleaPrice": 3000,
+    "handbookPrice": 3000,
     "prefab": null,
     "usePrefab": null,
-    "CanSellOnRagfair": true
+    "canSellOnRagfair": true
   },
   "attributeInfo": {
     "weight": 0.3,

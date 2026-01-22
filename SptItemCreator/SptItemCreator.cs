@@ -157,7 +157,7 @@ public class SptItemCreator(
                     StackObjectsCount = 9999999
                 }
             };
-            AddItemToAssort(assort, item, newItemCommon.BaseInfo.Price, 1);
+            AddItemToAssort(assort, item, newItemCommon.BaseInfo.HandbookPrice, 1);
             localLog.LocalLogMsg(LocalLogType.Info, $"添加物品给商人售卖: \n\t> trader: {trader.Base.Surname}\n\t> id: {newItemCommon.BaseInfo.Id}\n\t> name: {newItemCommon.BaseInfo.Name}");
         }
         else

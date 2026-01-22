@@ -6,18 +6,30 @@
     "type": "medical",
     "name": "创伤处理模板",
     "description": null,
+    "locales": {
+      "ch": {
+        "name": "创伤处理模板",
+        "shortName": "创伤处理",
+        "description": "用于处理创伤的模板"
+      },
+      "en": {
+        "name": "Trauma Treatment Template",
+        "shortName": "Trauma Treatment",
+        "description": "A template for trauma treatment"
+      }
+    },
     "author": "Suntion",
     "license": "MIT",
     "order": 0,
     "parentId": "5448f3ac4bdc2dce718b4569",
     "handbookParentId": "5b47574386f77428ca22b339",
     "cloneId": "544fb25a4bdc2dfb738b4567",
-
     "traderId": "54cb57776803fa99248b456e",
-    "price": 5000,
+    "fleaPrice": 5000,
+    "handbookPrice": 5000,
     "prefab": null,
     "usePrefab": null,
-    "CanSellOnRagfair": true
+    "canSellOnRagfair": true
   },
   "attributeInfo": {
     "weight": 0.3,

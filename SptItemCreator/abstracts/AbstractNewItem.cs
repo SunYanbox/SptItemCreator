@@ -120,6 +120,27 @@ public abstract class AbstractNewItem
                 Properties = PropertyOverride,
                 Prototype = BaseInfo.CloneId,
                 Type = "Item"
+            },
+            Locales = BaseInfo.Locales ?? new Dictionary<string, LocaleDetails>
+            {
+                {
+                    "ch",
+                    new LocaleDetails
+                    {
+                        Name = BaseInfo.Name,
+                        ShortName = BaseInfo.Name,
+                        Description = BaseInfo.Description
+                    }
+                },
+                {
+                    "en",
+                    new LocaleDetails
+                    {
+                        Name = BaseInfo.Name,
+                        ShortName = BaseInfo.Name,
+                        Description = BaseInfo.Description
+                    }
+                }
             }
         };
     }
@@ -132,19 +153,30 @@ public abstract class AbstractNewItem
     public NewItemFromCloneDetails? CreateItemFromClone()
     {
         if (Verify() && BaseInfo is { Id: not null, ParentId: not null, CloneId: not null, HandbookParentId: not null })
+        {
             return new NewItemFromCloneDetails
             {
                 ItemTplToClone = BaseInfo.CloneId!,
                 // ParentId refers to the Node item the gun will be under, you can check it in https://db.sp-tarkov.com/search
                 ParentId = BaseInfo.ParentId,
                 NewId = BaseInfo.Id,
-                FleaPriceRoubles = BaseInfo.Price,
-                HandbookPriceRoubles = 0.85 * BaseInfo.Price,
+                FleaPriceRoubles = BaseInfo.FleaPrice,
+                HandbookPriceRoubles = BaseInfo.HandbookPrice,
                 HandbookParentId = BaseInfo.HandbookParentId,
-                Locales = new Dictionary<string, LocaleDetails>
+                Locales = BaseInfo.Locales ?? new Dictionary<string, LocaleDetails>
                 {
                     {
-                        "ch", new LocaleDetails
+                        "ch",
+                        new LocaleDetails
+                        {
+                            Name = BaseInfo.Name,
+                            ShortName = BaseInfo.Name,
+                            Description = BaseInfo.Description
+                        }
+                    },
+                    {
+                        "en",
+                        new LocaleDetails
                         {
                             Name = BaseInfo.Name,
                             ShortName = BaseInfo.Name,
@@ -154,6 +186,7 @@ public abstract class AbstractNewItem
                 },
                 OverrideProperties = PropertyOverride,
             };
+        }
         if (LocalLog == null) return null;
         var msg = "";
         if (!Verify()) msg += $"{this}.Verify 克隆创建模式 验证失败:";
@@ -257,7 +290,7 @@ public abstract class AbstractNewItem
         BaseInfo.Description ??= "";
         BaseInfo.Order ??= 0;
         
-        // 只在 Description 不包含基本信息时才追加
+        // 只在 Description 不包含基本信息时才追加; 提供Locales后，实际客户端显示的描述中不会有这些额外信息
         if (!BaseInfo.Description.Contains(BaseInfo.Name) || 
             !BaseInfo.Description.Contains("作者:") || 
             !BaseInfo.Description.Contains("协议:"))
@@ -265,7 +298,8 @@ public abstract class AbstractNewItem
             BaseInfo.Description += $"\n\n{BaseInfo.Name}\n作者: @{BaseInfo.Author}\n协议: {BaseInfo.License}";
         }
         
-        BaseInfo.Price = Math.Max(BaseInfo.Price, 1); // 避免价格为0导致物品无效
+        BaseInfo.FleaPrice = Math.Max(BaseInfo.FleaPrice, 1); // 避免价格为0导致物品无效
+        BaseInfo.HandbookPrice = Math.Max(BaseInfo.HandbookPrice, 1); // 避免价格为0导致物品无效
     }
 
     /// <summary>
