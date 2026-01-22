@@ -1,0 +1,423 @@
+[
+  {
+    "_id": "55d7217a4bdc2d86028b456d",
+    "_name": "Default Inventory",
+    "_parent": "55d720f24bdc2d88028b456d",
+    "_type": "Item",
+    "_props": {
+      "Name": "Стандартный инвентарь",
+      "ShortName": "",
+      "Description": "",
+      "Weight": 0,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": false,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [],
+      "Slots": [
+        {
+          "_name": "FirstPrimaryWeapon",
+          "_id": "55d729c64bdc2d89028b4570",
+          "_parent": "55d7217a4bdc2d86028b456d",
+          "_props": {
+            "filters": [
+              {
+                "locked": false,
+                "Filter": [
+                  "5447b5fc4bdc2d87278b4567",
+                  "5447b5f14bdc2d61278b4567",
+                  "5e81ebcd8e146c7080625e15",
+                  "5447bed64bdc2d97278b4568",
+                  "5447b6194bdc2d67278b4567",
+                  "60db29ce99594040e04c4a27",
+                  "6259b864ebedf17603599e88",
+                  "61f7c9e189e6fb1a5e3ea78d",
+                  "576165642459773c7a400233",
+                  "54491c4f4bdc2db1078b4568",
+                  "56dee2bdd2720bc8328b4567",
+                  "5580223e4bdc2d1c128b457f",
+                  "606dae0ab0e443224b421bb7",
+                  "5e870397991fd70db46995c8",
+                  "5a7828548dc32e5a9c28b516",
+                  "5e848cc2988a8701445df1e8",
+                  "5a38e6bac4a2826c6e06d79b",
+                  "5447b5e04bdc2d62278b4567",
+                  "5447b6254bdc2dc3278b4568",
+                  "5447bee84bdc2dc3278b4569",
+                  "6275303a9f372d6ea97f9ec7",
+                  "66ffa9b66e19cc902401c5e8",
+                  "67124dcfa3541f2a1f0e788b",
+                  "674fe9a75e51f1c47c04ec23",
+                  "67446d4f04141c10630604e7"
+                ]
+              }
+            ]
+          },
+          "_required": false,
+          "_mergeSlotWithChildren": false,
+          "_proto": "55d721144bdc2d89028b456f"
+        },
+        {
+          "_name": "SecondPrimaryWeapon",
+          "_id": "55d729d14bdc2d86028b456e",
+          "_parent": "55d7217a4bdc2d86028b456d",
+          "_props": {
+            "filters": [
+              {
+                "locked": false,
+                "Filter": [
+                  "5447b5fc4bdc2d87278b4567",
+                  "5447b5f14bdc2d61278b4567",
+                  "5e81ebcd8e146c7080625e15",
+                  "5447bed64bdc2d97278b4568",
+                  "5447b6194bdc2d67278b4567",
+                  "6259b864ebedf17603599e88",
+                  "61f7c9e189e6fb1a5e3ea78d",
+                  "576165642459773c7a400233",
+                  "54491c4f4bdc2db1078b4568",
+                  "56dee2bdd2720bc8328b4567",
+                  "5580223e4bdc2d1c128b457f",
+                  "606dae0ab0e443224b421bb7",
+                  "5e870397991fd70db46995c8",
+                  "5a7828548dc32e5a9c28b516",
+                  "5e848cc2988a8701445df1e8",
+                  "5a38e6bac4a2826c6e06d79b",
+                  "5447b5e04bdc2d62278b4567",
+                  "5447b6254bdc2dc3278b4568",
+                  "5447bee84bdc2dc3278b4569",
+                  "60db29ce99594040e04c4a27",
+                  "6275303a9f372d6ea97f9ec7",
+                  "66ffa9b66e19cc902401c5e8",
+                  "67124dcfa3541f2a1f0e788b",
+                  "674fe9a75e51f1c47c04ec23",
+                  "67446d4f04141c10630604e7"
+                ]
+              }
+            ]
+          },
+          "_required": false,
+          "_mergeSlotWithChildren": false,
+          "_proto": "55d721144bdc2d89028b456f"
+        },
+        {
+          "_name": "Holster",
+          "_id": "55d729d84bdc2de3098b456b",
+          "_parent": "55d7217a4bdc2d86028b456d",
+          "_props": {
+            "filters": [
+              {
+                "locked": false,
+                "Filter": [
+                  "620109578d82e67e7911abf2",
+                  "5447b5cf4bdc2d65278b4567",
+                  "624c2e8614da335f1e034d8c",
+                  "61a4c8884f95bc3b2c5dc96f",
+                  "633ec7c2a6918cb895019c6c",
+                  "64748cb8de82c85eaf0a273a"
+                ]
+              }
+            ]
+          },
+          "_required": false,
+          "_mergeSlotWithChildren": false,
+          "_proto": "55d721144bdc2d89028b456f"
+        },
+        {
+          "_name": "Scabbard",
+          "_id": "55d729e34bdc2d1b198b456d",
+          "_parent": "55d7217a4bdc2d86028b456d",
+          "_props": {
+            "filters": [
+              {
+                "locked": false,
+                "Filter": [
+                  "5447e1d04bdc2dff2f8b4567"
+                ]
+              }
+            ]
+          },
+          "_required": false,
+          "_mergeSlotWithChildren": false,
+          "_proto": "55d721144bdc2d89028b456f"
+        },
+        {
+          "_name": "FaceCover",
+          "_id": "55d729e84bdc2d8a028b4569",
+          "_parent": "55d7217a4bdc2d86028b456d",
+          "_props": {
+            "filters": [
+              {
+                "locked": false,
+                "Filter": [
+                  "5a341c4686f77469e155819e"
+                ]
+              }
+            ]
+          },
+          "_required": false,
+          "_mergeSlotWithChildren": true,
+          "_proto": "55d721144bdc2d89028b456f"
+        },
+        {
+          "_name": "Headwear",
+          "_id": "55d729ef4bdc2d3a168b456c",
+          "_parent": "55d7217a4bdc2d86028b456d",
+          "_props": {
+            "filters": [
+              {
+                "locked": false,
+                "Filter": [
+                  "5a341c4086f77401f2541505"
+                ]
+              }
+            ]
+          },
+          "_required": false,
+          "_mergeSlotWithChildren": true,
+          "_proto": "55d721144bdc2d89028b456f"
+        },
+        {
+          "_name": "TacticalVest",
+          "_id": "55d729f74bdc2d87028b456e",
+          "_parent": "55d7217a4bdc2d86028b456d",
+          "_props": {
+            "filters": [
+              {
+                "locked": false,
+                "Filter": [
+                  "5448e5284bdc2dcb718b4567"
+                ]
+              }
+            ]
+          },
+          "_required": false,
+          "_mergeSlotWithChildren": false,
+          "_proto": "55d721144bdc2d89028b456f"
+        },
+        {
+          "_name": "SecuredContainer",
+          "_id": "55d72a054bdc2d88028b456e",
+          "_parent": "55d7217a4bdc2d86028b456d",
+          "_props": {
+            "filters": [
+              {
+                "locked": false,
+                "Filter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ]
+          },
+          "_required": false,
+          "_mergeSlotWithChildren": false,
+          "_proto": "55d721144bdc2d89028b456f"
+        },
+        {
+          "_name": "Backpack",
+          "_id": "55d72a104bdc2d89028b4571",
+          "_parent": "55d7217a4bdc2d86028b456d",
+          "_props": {
+            "filters": [
+              {
+                "locked": false,
+                "Filter": [
+                  "5448e53e4bdc2d60728b4567"
+                ]
+              }
+            ]
+          },
+          "_required": false,
+          "_mergeSlotWithChildren": false,
+          "_proto": "55d721144bdc2d89028b456f"
+        },
+        {
+          "_name": "ArmorVest",
+          "_id": "55d72a194bdc2d86028b456f",
+          "_parent": "55d7217a4bdc2d86028b456d",
+          "_props": {
+            "filters": [
+              {
+                "locked": false,
+                "Filter": [
+                  "5448e54d4bdc2dcc718b4568"
+                ]
+              }
+            ]
+          },
+          "_required": false,
+          "_mergeSlotWithChildren": false,
+          "_proto": "55d721144bdc2d89028b456f"
+        },
+        {
+          "_name": "Pockets",
+          "_id": "55d72a274bdc2de3098b456c",
+          "_parent": "55d7217a4bdc2d86028b456d",
+          "_props": {
+            "filters": [
+              {
+                "locked": true,
+                "Filter": [
+                  "557596e64bdc2dc2118b4571"
+                ]
+              }
+            ]
+          },
+          "_required": false,
+          "_mergeSlotWithChildren": false,
+          "_proto": "55d721144bdc2d89028b456f"
+        },
+        {
+          "_name": "Earpiece",
+          "_id": "5665b7164bdc2d144c8b4570",
+          "_parent": "55d7217a4bdc2d86028b456d",
+          "_props": {
+            "filters": [
+              {
+                "locked": false,
+                "Filter": [
+                  "5645bcc04bdc2d363b8b4572",
+                  "5aa2ba71e5b5b000137b758f",
+                  "5b432b965acfc47a8774094e",
+                  "6033fa48ffd42c541047f728",
+                  "5c165d832e2216398b5a7e36",
+                  "5e4d34ca86f774264f758330",
+                  "5f60cd6cf2bcbb675b00dac6",
+                  "628e4e576d783146b124c64d",
+                  "66b5f693acff495a294927e3",
+                  "66b5f6985891c84aab75ca76",
+                  "66b5f68de98be930d701c00e"
+                ]
+              }
+            ]
+          },
+          "_required": false,
+          "_mergeSlotWithChildren": true,
+          "_proto": "55d721144bdc2d89028b456f"
+        },
+        {
+          "_name": "Dogtag",
+          "_id": "59f0be1e86f77453be490939",
+          "_parent": "55d7217a4bdc2d86028b456d",
+          "_props": {
+            "filters": [
+              {
+                "locked": false,
+                "Filter": [
+                  "59f32bb586f774757e1e8442",
+                  "59f32c3b86f77472a31742f0",
+                  "675dc9d37ae1a8792107ca96",
+                  "675dcb0545b1a2d108011b2b",
+                  "684180bc51bf8645f7067bc8",
+                  "684181208d035f60230f63f9",
+                  "6764207f2fa5e32733055c4a",
+                  "6764202ae307804338014c1a",
+                  "68418091b5b0c9e4c60f0e7a",
+                  "684180ee9b6d80d840042e8a",
+                  "6662ea05f6259762c56f3189",
+                  "6662e9f37fa79a6d83730fa0",
+                  "6662e9cda7e0b43baa3d5f76",
+                  "6662e9aca7e0b43baa3d5f74"
+                ]
+              }
+            ]
+          },
+          "_required": false,
+          "_mergeSlotWithChildren": false,
+          "_proto": "55d721144bdc2d89028b456f"
+        },
+        {
+          "_name": "Eyewear",
+          "_id": "5a0ad9313f1241000e072755",
+          "_parent": "55d7217a4bdc2d86028b456d",
+          "_props": {
+            "filters": [
+              {
+                "locked": false,
+                "Filter": [
+                  "5448e5724bdc2ddf718b4568"
+                ]
+              }
+            ]
+          },
+          "_required": false,
+          "_mergeSlotWithChildren": true,
+          "_proto": "55d721144bdc2d89028b456f"
+        },
+        {
+          "_name": "ArmBand",
+          "_id": "5b3f583786f77411d552fb2b",
+          "_parent": "55d7217a4bdc2d86028b456d",
+          "_props": {
+            "filters": [
+              {
+                "locked": false,
+                "Filter": [
+                  "5b3f15d486f77432d0509248"
+                ]
+              }
+            ]
+          },
+          "_required": false,
+          "_mergeSlotWithChildren": true,
+          "_proto": "55d721144bdc2d89028b456f"
+        }
+      ],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    }
+  }
+]

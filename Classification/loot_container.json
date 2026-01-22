@@ -1,0 +1,5682 @@
+[
+  {
+    "_id": "566966cd4bdc2d0c4c8b4578",
+    "_name": "StupidBox",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Ящик с хламом",
+      "ShortName": "Ящик с хламом",
+      "Description": "Ящик с хламом",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "566983034bdc2d814c8b4572",
+          "_parent": "566966cd4bdc2d0c4c8b4578",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 4,
+            "cellsV": 4,
+            "minCount": 1,
+            "maxCount": 4,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "woodbox_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    }
+  },
+  {
+    "_id": "578f8778245977358849a9b5",
+    "_name": "Jacket",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Куртка",
+      "ShortName": "Куртка",
+      "Description": "Куртка",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "578f887c2459773546601e30",
+          "_parent": "578f8778245977358849a9b5",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 2,
+            "cellsV": 2,
+            "minCount": 1,
+            "maxCount": 1,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "jacket_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "566966cd4bdc2d0c4c8b4578"
+  },
+  {
+    "_id": "578f8782245977354405a1e3",
+    "_name": "Safe",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Сейф",
+      "ShortName": "Сейф",
+      "Description": "Сейф",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "578f889524597735675ff17e",
+          "_parent": "578f8782245977354405a1e3",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 3,
+            "cellsV": 3,
+            "minCount": 1,
+            "maxCount": 5,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "safe_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f8778245977358849a9b5"
+  },
+  {
+    "_id": "578f879c24597735401e6bc6",
+    "_name": "CashRegister",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Кассовый аппарат",
+      "ShortName": "Касса",
+      "Description": "Кассовый  аппарат",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "578f88f32459773546601e31",
+          "_parent": "578f879c24597735401e6bc6",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 2,
+            "cellsV": 1,
+            "minCount": 1,
+            "maxCount": 2,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "cashregister_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f8782245977354405a1e3"
+  },
+  {
+    "_id": "578f87a3245977356274f2cb",
+    "_name": "SportBag",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Спортивная сумка",
+      "ShortName": "Спортивная сумка",
+      "Description": "Спортивная сумка",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "578f88a4245977354729d381",
+          "_parent": "578f87a3245977356274f2cb",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 4,
+            "cellsV": 3,
+            "minCount": 1,
+            "maxCount": 3,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "sportbag_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f879c24597735401e6bc6"
+  },
+  {
+    "_id": "578f87ad245977356274f2cc",
+    "_name": "WeaponCrate",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Деревянный ящик",
+      "ShortName": "Деревянный ящик",
+      "Description": "Деревянный ящик",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "578f8949245977358849a9b6",
+          "_parent": "578f87ad245977356274f2cc",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 5,
+            "cellsV": 2,
+            "minCount": 1,
+            "maxCount": 3,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "woodbox_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f87a3245977356274f2cb"
+  },
+  {
+    "_id": "578f87b7245977356274f2cd",
+    "_name": "Drawer",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Выдвижной ящик",
+      "ShortName": "Выдвижной ящик",
+      "Description": "Выдвижной ящик",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "578f892924597735675ff17f",
+          "_parent": "578f87b7245977356274f2cd",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 2,
+            "cellsV": 2,
+            "minCount": 1,
+            "maxCount": 1,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "drawer_metal_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f87ad245977356274f2cc"
+  },
+  {
+    "_id": "5909d24f86f77466f56e6855",
+    "_name": "MedBag",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Медсумка СМУ06",
+      "ShortName": "Медсумка СМУ06",
+      "Description": "Медсумка СМУ06",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "5909d24f86f77466f56e6856",
+          "_parent": "5909d24f86f77466f56e6855",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 4,
+            "cellsV": 3,
+            "minCount": 1,
+            "maxCount": 3,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "sportbag_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f879c24597735401e6bc6"
+  },
+  {
+    "_id": "5909d36d86f774660f0bb900",
+    "_name": "GrenadeBox",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Гранатный ящик",
+      "ShortName": "Гранатный ящик",
+      "Description": "Гранатный ящик",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "5909d36d86f774660f0bb901",
+          "_parent": "5909d36d86f774660f0bb900",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 3,
+            "cellsV": 2,
+            "minCount": 1,
+            "maxCount": 3,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "drawer_wood_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f87a3245977356274f2cb"
+  },
+  {
+    "_id": "5909d45286f77465a8136dc6",
+    "_name": "AmmoBox",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Патронный ящик",
+      "ShortName": "Патронный ящик",
+      "Description": "Патронный ящик",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "5909d45286f77465a8136dc7",
+          "_parent": "5909d45286f77465a8136dc6",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 3,
+            "cellsV": 3,
+            "minCount": 1,
+            "maxCount": 4,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "woodbox_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f87a3245977356274f2cb"
+  },
+  {
+    "_id": "5909d4c186f7746ad34e805a",
+    "_name": "MedBox",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Медукладка",
+      "ShortName": "Медукладка",
+      "Description": "Медукладка",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "5909d4c186f7746ad34e805b",
+          "_parent": "5909d4c186f7746ad34e805a",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 4,
+            "cellsV": 4,
+            "minCount": 1,
+            "maxCount": 3,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "drawer_metal_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f879c24597735401e6bc6"
+  },
+  {
+    "_id": "5909d50c86f774659e6aaebe",
+    "_name": "ToolBox",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Ящик с инструментами",
+      "ShortName": "Ящик с инструментами",
+      "Description": "Ящик с инструментами",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "5909d50c86f774659e6aaebf",
+          "_parent": "5909d50c86f774659e6aaebe",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 4,
+            "cellsV": 3,
+            "minCount": 1,
+            "maxCount": 3,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "industrialbox_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f879c24597735401e6bc6"
+  },
+  {
+    "_id": "5909d5ef86f77467974efbd8",
+    "_name": "terraWBoxLong",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Оружейный ящик",
+      "ShortName": "Оружейный ящик",
+      "Description": "Оружейный ящик",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "5909d5ef86f77467974efbd9",
+          "_parent": "5909d5ef86f77467974efbd8",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 5,
+            "cellsV": 2,
+            "minCount": 1,
+            "maxCount": 5,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "drawer_metal_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f87a3245977356274f2cb"
+  },
+  {
+    "_id": "5909d76c86f77471e53d2adf",
+    "_name": "terraWBoxLongBig",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Оружейный ящик",
+      "ShortName": "Оружейный ящик",
+      "Description": "Оружейный ящик",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "5909d76c86f77471e53d2ae0",
+          "_parent": "5909d76c86f77471e53d2adf",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 6,
+            "cellsV": 3,
+            "minCount": 1,
+            "maxCount": 6,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "drawer_metal_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f87a3245977356274f2cb"
+  },
+  {
+    "_id": "5909d7cf86f77470ee57d75a",
+    "_name": "terraWBoxSquare",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Оружейный ящик",
+      "ShortName": "Оружейный ящик",
+      "Description": "Оружейный ящик",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "5909d7cf86f77470ee57d75b",
+          "_parent": "5909d7cf86f77470ee57d75a",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 4,
+            "cellsV": 4,
+            "minCount": 1,
+            "maxCount": 9,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "drawer_metal_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f87a3245977356274f2cb"
+  },
+  {
+    "_id": "5909d89086f77472591234a0",
+    "_name": "terraWBoxSquareBig",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Оружейный ящик",
+      "ShortName": "Оружейный ящик",
+      "Description": "Оружейный ящик",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "5909d89086f77472591234a1",
+          "_parent": "5909d89086f77472591234a0",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 5,
+            "cellsV": 5,
+            "minCount": 1,
+            "maxCount": 6,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "drawer_metal_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f87a3245977356274f2cb"
+  },
+  {
+    "_id": "5909e4b686f7747f5b744fa4",
+    "_name": "scavDead",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Труп Дикого",
+      "ShortName": "Труп Дикого",
+      "Description": "Труп Дикого",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "5909e4b686f7747f5b744fa5",
+          "_parent": "5909e4b686f7747f5b744fa4",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 4,
+            "cellsV": 4,
+            "minCount": 1,
+            "maxCount": 5,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "looting_body_extended",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f879c24597735401e6bc6"
+  },
+  {
+    "_id": "59139c2186f77411564f8e42",
+    "_name": "PCblock",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "ПК",
+      "ShortName": "ПК",
+      "Description": "ПК",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "59139c2186f77411564f8e43",
+          "_parent": "59139c2186f77411564f8e42",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 4,
+            "cellsV": 4,
+            "minCount": 1,
+            "maxCount": 2,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "techno_box_looting_01",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f879c24597735401e6bc6"
+  },
+  {
+    "_id": "5914944186f774189e5e76c2",
+    "_name": "jacket_key204",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Куртка",
+      "ShortName": "Куртка",
+      "Description": "Куртка",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "5914944186f774189e5e76c3",
+          "_parent": "5914944186f774189e5e76c2",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 2,
+            "cellsV": 2,
+            "minCount": 1,
+            "maxCount": 1,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "jacket_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "566966cd4bdc2d0c4c8b4578"
+  },
+  {
+    "_id": "5937ef2b86f77408a47244b3",
+    "_name": "jacket_yellow_quest",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Куртка",
+      "ShortName": "Куртка",
+      "Description": "Куртка",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "5937ef2b86f77408a47244b4",
+          "_parent": "5937ef2b86f77408a47244b3",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 2,
+            "cellsV": 2,
+            "minCount": 1,
+            "maxCount": 1,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "jacket_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "566966cd4bdc2d0c4c8b4578"
+  },
+  {
+    "_id": "59387ac686f77401442ddd61",
+    "_name": "jacket_key114_feld",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Куртка",
+      "ShortName": "Куртка",
+      "Description": "Куртка",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "59387ac686f77401442ddd62",
+          "_parent": "59387ac686f77401442ddd61",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 2,
+            "cellsV": 2,
+            "minCount": 1,
+            "maxCount": 1,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "jacket_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "566966cd4bdc2d0c4c8b4578"
+  },
+  {
+    "_id": "5ad74cf586f774391278f6f0",
+    "_name": "CashRegisterBig",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Кассовый аппарат TAR2-2",
+      "ShortName": "Касса TAR2-2",
+      "Description": "Кассовый  аппарат TAR2-2",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "5ad74cf586f774391278f6f2",
+          "_parent": "5ad74cf586f774391278f6f0",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 2,
+            "cellsV": 2,
+            "minCount": 1,
+            "maxCount": 4,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "cashregister_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f8782245977354405a1e3"
+  },
+  {
+    "_id": "5c052cea86f7746b2101e8d8",
+    "_name": "suitcase_plastic_lootable",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Пластиковый чемодан",
+      "ShortName": "Пластиковый чемодан",
+      "Description": "Пластиковый чемодан",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "assets/content/prefabs/levelobjects/indoor/suitcase_plastic_lootable.bundle",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "5c052cea86f7746b2101e8da",
+          "_parent": "5c052cea86f7746b2101e8d8",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 3,
+            "cellsV": 3,
+            "minCount": 1,
+            "maxCount": 4,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "sportbag_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f879c24597735401e6bc6"
+  },
+  {
+    "_id": "5d07b91b86f7745a077a9432",
+    "_name": "boss_container",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Сейф",
+      "ShortName": "Сейф",
+      "Description": "Сейф",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "5d07b91b86f7745a077a9434",
+          "_parent": "5d07b91b86f7745a077a9432",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 5,
+            "cellsV": 5,
+            "minCount": 6,
+            "maxCount": 18,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "drawer_metal_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f8778245977358849a9b5"
+  },
+  {
+    "_id": "5d6d2b5486f774785c2ba8ea",
+    "_name": "wood_cache",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "wood_cache",
+      "ShortName": "wood_cache",
+      "Description": "wood_cache",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "5d6d2b5486f774785c2ba8ec",
+          "_parent": "5d6d2b5486f774785c2ba8ea",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 4,
+            "cellsV": 4,
+            "minCount": 1,
+            "maxCount": 6,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "drawer_metal_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f879c24597735401e6bc6"
+  },
+  {
+    "_id": "5d6d2bb386f774785b07a77a",
+    "_name": "barrel_cache",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "barrel_cache",
+      "ShortName": "barrel_cache",
+      "Description": "barrel_cache",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "5d6d2bb386f774785b07a77c",
+          "_parent": "5d6d2bb386f774785b07a77a",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 3,
+            "cellsV": 4,
+            "minCount": 1,
+            "maxCount": 5,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "woodbox_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f879c24597735401e6bc6"
+  },
+  {
+    "_id": "5d6fd13186f77424ad2a8c69",
+    "_name": "Food&Stuff",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Ящик с инструментами",
+      "ShortName": "Ящик с инструментами",
+      "Description": "Ящик с инструментами",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "5d6fd13186f77424ad2a8c6b",
+          "_parent": "5d6fd13186f77424ad2a8c69",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 5,
+            "cellsV": 5,
+            "minCount": 2,
+            "maxCount": 8,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "woodbox_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f879c24597735401e6bc6"
+  },
+  {
+    "_id": "5d6fd45b86f774317075ed43",
+    "_name": "tools&other",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Ящик с инструментами",
+      "ShortName": "Ящик с инструментами",
+      "Description": "Ящик с инструментами",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "5d6fd45b86f774317075ed45",
+          "_parent": "5d6fd45b86f774317075ed43",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 5,
+            "cellsV": 5,
+            "minCount": 1,
+            "maxCount": 6,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "industrialbox_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f879c24597735401e6bc6"
+  },
+  {
+    "_id": "5d6fe50986f77449d97f7463",
+    "_name": "meds&other",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Ящик с инструментами",
+      "ShortName": "Ящик с инструментами",
+      "Description": "Ящик с инструментами",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "5d6fe50986f77449d97f7465",
+          "_parent": "5d6fe50986f77449d97f7463",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 5,
+            "cellsV": 5,
+            "minCount": 1,
+            "maxCount": 6,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "woodbox_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f879c24597735401e6bc6"
+  },
+  {
+    "_id": "61a89e5445a2672acf66c877",
+    "_name": "box_preset1",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "boxpreset1",
+      "ShortName": "boxpreset1",
+      "Description": "boxpreset1",
+      "Weight": 500,
+      "BackgroundColor": "blue",
+      "Width": 6,
+      "Height": 8,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "61a89e5445a2672acf66c879",
+          "_parent": "61a89e5445a2672acf66c877",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 10,
+            "cellsV": 12,
+            "minCount": 18,
+            "maxCount": 43,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "drawer_metal_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f87a3245977356274f2cb"
+  },
+  {
+    "_id": "61a89e812cc17d60cc5f9879",
+    "_name": "box_preset2",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "box_preset2",
+      "ShortName": "box_preset2",
+      "Description": "box_preset2",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "61a89e812cc17d60cc5f987b",
+          "_parent": "61a89e812cc17d60cc5f9879",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 5,
+            "cellsV": 5,
+            "minCount": 0,
+            "maxCount": 8,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "drawer_metal_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f87a3245977356274f2cb"
+  },
+  {
+    "_id": "61aa1e6984ea0800645777f9",
+    "_name": "terraWBoxLongBig_adv",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Оружейный ящик",
+      "ShortName": "Оружейный ящик",
+      "Description": "Оружейный ящик",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "61aa1e6984ea0800645777fb",
+          "_parent": "61aa1e6984ea0800645777f9",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 6,
+            "cellsV": 3,
+            "minCount": 3,
+            "maxCount": 9,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "drawer_metal_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f87a3245977356274f2cb"
+  },
+  {
+    "_id": "61aa1e9a32a4743c3453d2cf",
+    "_name": "SportBag_adv",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Спортивная сумка",
+      "ShortName": "Спортивная сумка",
+      "Description": "Спортивная сумка",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "61aa1e9a32a4743c3453d2d1",
+          "_parent": "61aa1e9a32a4743c3453d2cf",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 4,
+            "cellsV": 3,
+            "minCount": 1,
+            "maxCount": 4,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "sportbag_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f879c24597735401e6bc6"
+  },
+  {
+    "_id": "61aa1ead84ea0800645777fd",
+    "_name": "MedBag_adv",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Медсумка СМУ06",
+      "ShortName": "Медсумка СМУ06",
+      "Description": "Медсумка СМУ06",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "61aa1ead84ea0800645777ff",
+          "_parent": "61aa1ead84ea0800645777fd",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 4,
+            "cellsV": 3,
+            "minCount": 1,
+            "maxCount": 5,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "sportbag_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f879c24597735401e6bc6"
+  },
+  {
+    "_id": "6223349b3136504a544d1608",
+    "_name": "air_drop_common",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "boxpreset1",
+      "ShortName": "boxpreset1",
+      "Description": "boxpreset1",
+      "Weight": 500,
+      "BackgroundColor": "blue",
+      "Width": 6,
+      "Height": 8,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "6223349b3136504a544d160a",
+          "_parent": "6223349b3136504a544d1608",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 10,
+            "cellsV": 12,
+            "minCount": 18,
+            "maxCount": 43,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "drawer_metal_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f87a3245977356274f2cb"
+  },
+  {
+    "_id": "622334c873090231d904a9fc",
+    "_name": "air_drop_medical",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "boxpreset1",
+      "ShortName": "boxpreset1",
+      "Description": "boxpreset1",
+      "Weight": 500,
+      "BackgroundColor": "blue",
+      "Width": 6,
+      "Height": 8,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "622334c873090231d904a9fe",
+          "_parent": "622334c873090231d904a9fc",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 10,
+            "cellsV": 12,
+            "minCount": 20,
+            "maxCount": 55,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "drawer_metal_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f87a3245977356274f2cb"
+  },
+  {
+    "_id": "622334fa3136504a544d160c",
+    "_name": "air_drop_supply",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "boxpreset1",
+      "ShortName": "boxpreset1",
+      "Description": "boxpreset1",
+      "Weight": 500,
+      "BackgroundColor": "blue",
+      "Width": 6,
+      "Height": 8,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "622334fa3136504a544d160e",
+          "_parent": "622334fa3136504a544d160c",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 10,
+            "cellsV": 12,
+            "minCount": 20,
+            "maxCount": 43,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "drawer_metal_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f87a3245977356274f2cb"
+  },
+  {
+    "_id": "6223351bb5d97a7b2c635ca7",
+    "_name": "air_drop_weapon",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "boxpreset1",
+      "ShortName": "boxpreset1",
+      "Description": "boxpreset1",
+      "Weight": 500,
+      "BackgroundColor": "blue",
+      "Width": 6,
+      "Height": 8,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "6223351bb5d97a7b2c635ca9",
+          "_parent": "6223351bb5d97a7b2c635ca7",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 10,
+            "cellsV": 12,
+            "minCount": 26,
+            "maxCount": 50,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "drawer_metal_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f87a3245977356274f2cb"
+  },
+  {
+    "_id": "64d116f41a9c6143a956127d",
+    "_name": "CashRegisterBank",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Кассовый аппарат TAR2-2",
+      "ShortName": "Касса TAR2-2",
+      "Description": "Кассовый  аппарат TAR2-2",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "64d116f41a9c6143a956127e",
+          "_parent": "64d116f41a9c6143a956127d",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 3,
+            "cellsV": 3,
+            "minCount": 4,
+            "maxCount": 9,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "cashregister_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f8782245977354405a1e3"
+  },
+  {
+    "_id": "64d11702dd0cd96ab82c3280",
+    "_name": "SafeBank",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Сейф",
+      "ShortName": "Сейф",
+      "Description": "Сейф",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "64d11702dd0cd96ab82c3281",
+          "_parent": "64d11702dd0cd96ab82c3280",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 4,
+            "cellsV": 4,
+            "minCount": 8,
+            "maxCount": 16,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "safe_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f8778245977358849a9b5"
+  },
+  {
+    "_id": "6582e6bb0c3b9823fe6d1840",
+    "_name": "scavDead_flaregun",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Труп Дикого",
+      "ShortName": "Труп Дикого",
+      "Description": "Труп Дикого",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "6582e6bb0c3b9823fe6d1841",
+          "_parent": "6582e6bb0c3b9823fe6d1840",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 4,
+            "cellsV": 4,
+            "minCount": 1,
+            "maxCount": 2,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "looting_body_extended",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f879c24597735401e6bc6"
+  },
+  {
+    "_id": "6582e6c6edf14c4c6023adf2",
+    "_name": "scavDead_laborant",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Труп Дикого",
+      "ShortName": "Труп Дикого",
+      "Description": "Труп Дикого",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "6582e6c6edf14c4c6023adf3",
+          "_parent": "6582e6c6edf14c4c6023adf2",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 4,
+            "cellsV": 4,
+            "minCount": 1,
+            "maxCount": 1,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "looting_body_extended",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f879c24597735401e6bc6"
+  },
+  {
+    "_id": "6582e6d7b14c3f72eb071420",
+    "_name": "PMC_dead",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Труп Дикого",
+      "ShortName": "Труп Дикого",
+      "Description": "Труп Дикого",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "6582e6d7b14c3f72eb071421",
+          "_parent": "6582e6d7b14c3f72eb071420",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 4,
+            "cellsV": 4,
+            "minCount": 1,
+            "maxCount": 5,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "looting_body_extended",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f879c24597735401e6bc6"
+  },
+  {
+    "_id": "658420d8085fea07e674cdb6",
+    "_name": "dead_civilian",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Труп Дикого",
+      "ShortName": "Труп Дикого",
+      "Description": "Труп Дикого",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "658420d8085fea07e674cdb7",
+          "_parent": "658420d8085fea07e674cdb6",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 4,
+            "cellsV": 4,
+            "minCount": 1,
+            "maxCount": 5,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "looting_body_extended",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f879c24597735401e6bc6"
+  },
+  {
+    "_id": "66acff0a1d8e1083b303f5af",
+    "_name": "SafeBank_terra",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "Сейф",
+      "ShortName": "Сейф",
+      "Description": "Сейф",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "66acff0a1d8e1083b303f5b1",
+          "_parent": "66acff0a1d8e1083b303f5af",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 3,
+            "cellsV": 3,
+            "minCount": 2,
+            "maxCount": 5,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "safe_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f8778245977358849a9b5"
+  },
+  {
+    "_id": "66da1b49099cf6adcc07a36b",
+    "_name": "air_drop_supply_event1",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "boxpreset1",
+      "ShortName": "boxpreset1",
+      "Description": "boxpreset1",
+      "Weight": 500,
+      "BackgroundColor": "blue",
+      "Width": 6,
+      "Height": 8,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "66da1b49099cf6adcc07a36d",
+          "_parent": "66da1b49099cf6adcc07a36b",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 10,
+            "cellsV": 12,
+            "minCount": 3,
+            "maxCount": 6,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "drawer_metal_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f87a3245977356274f2cb"
+  },
+  {
+    "_id": "66da1b546916142b3b022777",
+    "_name": "air_drop_prapor_quest",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "boxpreset1",
+      "ShortName": "boxpreset1",
+      "Description": "boxpreset1",
+      "Weight": 500,
+      "BackgroundColor": "blue",
+      "Width": 6,
+      "Height": 8,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "66da1b546916142b3b022779",
+          "_parent": "66da1b546916142b3b022777",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "5d0378d486f77420421a5ff4",
+                  "5d03784a86f774203e7e0c4d",
+                  "5d0377ce86f774186372f689",
+                  "5d0375ff86f774186372f685",
+                  "5c052f6886f7746b1e3db148",
+                  "5d0376a486f7747d8050965c",
+                  "5c05308086f7746b2101e90b",
+                  "5734781f24597737e04bf32a",
+                  "57347c2e24597744902c94a1",
+                  "57347ca924597744596b4e71",
+                  "57347baf24597738002c6178",
+                  "590a386e86f77429692b27ab",
+                  "5734779624597737e04bf329",
+                  "573477e124597737dd42e191",
+                  "59e36c6f86f774176c10a2a7",
+                  "5c06779c86f77426e00dd782",
+                  "6389c70ca33d8c4cdf4932c6"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 10,
+            "cellsV": 12,
+            "minCount": 4,
+            "maxCount": 6,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "drawer_metal_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f87a3245977356274f2cb"
+  },
+  {
+    "_id": "67614e3a6a90e4f10b0b140d",
+    "_name": "air_drop_event_new_year",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "air_drop_event_new_year",
+      "ShortName": "air_drop_event_new_year",
+      "Description": "air_drop_event_new_year",
+      "Weight": 500,
+      "BackgroundColor": "blue",
+      "Width": 6,
+      "Height": 8,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "67614e3a6a90e4f10b0b140f",
+          "_parent": "67614e3a6a90e4f10b0b140d",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 10,
+            "cellsV": 12,
+            "minCount": 10,
+            "maxCount": 35,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "drawer_metal_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f87a3245977356274f2cb"
+  },
+  {
+    "_id": "67adf4a95247ac91530fcec7",
+    "_name": "loot_container_labyrinth_jacket",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "loot_container_labyrinth_jacket",
+      "ShortName": "loot_container_labyrinth_jacket",
+      "Description": "loot_container_labyrinth_jacket",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "67adf4a95247ac91530fcec9",
+          "_parent": "67adf4a95247ac91530fcec7",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 2,
+            "cellsV": 2,
+            "minCount": 1,
+            "maxCount": 1,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "jacket_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "566966cd4bdc2d0c4c8b4578"
+  },
+  {
+    "_id": "67adf4b81c58bd68b2002fec",
+    "_name": "loot_container_labyrinth_crate_ammo",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "loot_container_labyrinth_crate_ammo",
+      "ShortName": "loot_container_labyrinth_crate_ammo",
+      "Description": "loot_container_labyrinth_crate_ammo",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "67adf4b81c58bd68b2002fee",
+          "_parent": "67adf4b81c58bd68b2002fec",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 3,
+            "cellsV": 3,
+            "minCount": 1,
+            "maxCount": 4,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "woodbox_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f87a3245977356274f2cb"
+  },
+  {
+    "_id": "67adf4db515e3dd542077a1d",
+    "_name": "loot_container_labyrinth_crate_weapon",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "loot_container_labyrinth_crate_weapon",
+      "ShortName": "loot_container_labyrinth_crate_weapon",
+      "Description": "loot_container_labyrinth_crate_weapon",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "67adf4db515e3dd542077a1f",
+          "_parent": "67adf4db515e3dd542077a1d",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 5,
+            "cellsV": 2,
+            "minCount": 1,
+            "maxCount": 3,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "woodbox_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f87a3245977356274f2cb"
+  },
+  {
+    "_id": "67adf4eb110ba15da90c6413",
+    "_name": "loot_container_labyrinth_crate_grenade",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "loot_container_labyrinth_crate_grenade",
+      "ShortName": "loot_container_labyrinth_crate_grenade",
+      "Description": "loot_container_labyrinth_crate_grenade",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "67adf4eb110ba15da90c6415",
+          "_parent": "67adf4eb110ba15da90c6413",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 3,
+            "cellsV": 2,
+            "minCount": 1,
+            "maxCount": 3,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "drawer_wood_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f87a3245977356274f2cb"
+  },
+  {
+    "_id": "67adf54d1c58bd68b2002ff0",
+    "_name": "loot_container_labyrinth_toolbox",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "loot_container_labyrinth_toolbox",
+      "ShortName": "loot_container_labyrinth_toolbox",
+      "Description": "loot_container_labyrinth_toolbox",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "67adf54d1c58bd68b2002ff2",
+          "_parent": "67adf54d1c58bd68b2002ff0",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 4,
+            "cellsV": 3,
+            "minCount": 1,
+            "maxCount": 3,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "industrialbox_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f879c24597735401e6bc6"
+  },
+  {
+    "_id": "67adf5752fc5ee84020a9940",
+    "_name": "loot_container_labyrinth_corpse_scav",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "loot_container_labyrinth_corpse_scav",
+      "ShortName": "loot_container_labyrinth_corpse_scav",
+      "Description": "loot_container_labyrinth_corpse_scav",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "67adf5752fc5ee84020a9942",
+          "_parent": "67adf5752fc5ee84020a9940",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 4,
+            "cellsV": 4,
+            "minCount": 1,
+            "maxCount": 5,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "looting_body_extended",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f879c24597735401e6bc6"
+  },
+  {
+    "_id": "67adf5f7adc1f43b0702b826",
+    "_name": "loot_container_labyrinth_crate_tools",
+    "_parent": "566965d44bdc2d814c8b4571",
+    "_type": "Item",
+    "_props": {
+      "Name": "loot_container_labyrinth_crate_tools",
+      "ShortName": "loot_container_labyrinth_crate_tools",
+      "Description": "loot_container_labyrinth_crate_tools",
+      "Weight": 1,
+      "BackgroundColor": "blue",
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": false,
+      "ExaminedByDefault": false,
+      "ExamineTime": 1,
+      "IsUndiscardable": false,
+      "IsUnsaleable": false,
+      "IsUnbuyable": false,
+      "IsUngivable": false,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": false,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": true,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": false,
+      "UnlootableFromSlot": "FirstPrimaryWeapon",
+      "UnlootableFromSide": [],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Not_exist",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [
+        {
+          "_name": "main",
+          "_id": "67adf5f7adc1f43b0702b828",
+          "_parent": "67adf5f7adc1f43b0702b826",
+          "_props": {
+            "filters": [
+              {
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ],
+                "ExcludedFilter": [
+                  "5448bf274bdc2dfc2f8b456a"
+                ]
+              }
+            ],
+            "cellsH": 5,
+            "cellsV": 5,
+            "minCount": 1,
+            "maxCount": 6,
+            "maxWeight": 0,
+            "isSortingTable": false
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [],
+      "SearchSound": "industrialbox_looting",
+      "BlocksArmorVest": false,
+      "SpawnFilter": [],
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    },
+    "_proto": "578f879c24597735401e6bc6"
+  }
+]

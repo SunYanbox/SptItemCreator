@@ -1,0 +1,166 @@
+[
+  {
+    "_id": "5448bf274bdc2dfc2f8b456a",
+    "_name": "MobContainer",
+    "_parent": "566168634bdc2d144c8b456c",
+    "_type": "Node",
+    "_props": {
+      "GridLayoutName": "",
+      "containType": [],
+      "sizeWidth": 0,
+      "sizeHeight": 0,
+      "isSecured": false,
+      "spawnTypes": "",
+      "lootFilter": [],
+      "spawnRarity": "",
+      "minCountSpawn": 0,
+      "maxCountSpawn": 0,
+      "openedByKeyID": [],
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    }
+  },
+  {
+    "_id": "5448e5284bdc2dcb718b4567",
+    "_name": "Vest",
+    "_parent": "566168634bdc2d144c8b456c",
+    "_type": "Node",
+    "_props": {
+      "MetascoreGroup": "Utility",
+      "speedPenaltyPercent": 0,
+      "RigLayoutName": "",
+      "armorZone": [],
+      "armorClass": 0,
+      "mousePenalty": 0,
+      "weaponErgonomicPenalty": 0,
+      "BluntThroughput": 0,
+      "ArmorMaterial": "UHMWPE",
+      "ArmorType": "None",
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    }
+  },
+  {
+    "_id": "5448e53e4bdc2d60728b4567",
+    "_name": "Backpack",
+    "_parent": "566168634bdc2d144c8b456c",
+    "_type": "Node",
+    "_props": {
+      "speedPenaltyPercent": 0,
+      "GridLayoutName": "",
+      "mousePenalty": 0,
+      "weaponErgonomicPenalty": 0,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false,
+      "LeanWeaponAgainstBody": false
+    }
+  },
+  {
+    "_id": "557596e64bdc2dc2118b4571",
+    "_name": "Pockets",
+    "_parent": "566168634bdc2d144c8b456c",
+    "_type": "Node",
+    "_props": {
+      "Name": "Item",
+      "ShortName": "Item",
+      "Description": "Item",
+      "Weight": 0,
+      "BackgroundColor": "blue",
+      "Width": 20,
+      "Height": 20,
+      "StackMaxSize": 1,
+      "ItemSound": "generic",
+      "LeftHandItem": false,
+      "Prefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "",
+        "rcid": ""
+      },
+      "StackObjectsCount": 1,
+      "NotShownInSlot": true,
+      "ExaminedByDefault": true,
+      "ExamineTime": 1,
+      "IsUndiscardable": true,
+      "IsUnsaleable": true,
+      "IsUnbuyable": true,
+      "IsUngivable": true,
+      "IsUnremovable": false,
+      "IsLockedafterEquip": true,
+      "IsSecretExitRequirement": false,
+      "IsSpecialSlotOnly": false,
+      "QuestItem": false,
+      "QuestStashMaxCount": 0,
+      "LootExperience": 20,
+      "ExamineExperience": 10,
+      "HideEntrails": true,
+      "InsuranceDisabled": false,
+      "RepairCost": 0,
+      "RepairSpeed": 0,
+      "ExtraSizeLeft": 0,
+      "ExtraSizeRight": 0,
+      "ExtraSizeUp": 0,
+      "ExtraSizeDown": 0,
+      "ExtraSizeForceAdd": false,
+      "MergesWithChildren": false,
+      "CanSellOnRagfair": false,
+      "CanRequireOnRagfair": false,
+      "ConflictingItems": [],
+      "Unlootable": true,
+      "UnlootableFromSlot": "Pockets",
+      "UnlootableFromSide": [
+        "Bear",
+        "Usec",
+        "Savage"
+      ],
+      "AnimationVariantsNumber": 0,
+      "DiscardingBlock": false,
+      "DropSoundType": "None",
+      "RagFairCommissionModifier": 1,
+      "RarityPvE": "Common",
+      "IsAlwaysAvailableForInsurance": false,
+      "DiscardLimit": -1,
+      "Grids": [],
+      "Slots": [],
+      "CanPutIntoDuringTheRaid": true,
+      "CantRemoveFromSlotsDuringRaid": [
+        "Pockets"
+      ],
+      "SearchSound": "cashregister_looting",
+      "BlocksArmorVest": false,
+      "ForbidMissingVitalParts": false,
+      "ForbidNonEmptyContainers": false,
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    }
+  },
+  {
+    "_id": "566965d44bdc2d814c8b4571",
+    "_name": "LootContainer",
+    "_parent": "566168634bdc2d144c8b456c",
+    "_type": "Node",
+    "_props": {
+      "SpawnFilter": [],
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    }
+  },
+  {
+    "_id": "62f109593b54472778797866",
+    "_name": "RandomLootContainer",
+    "_parent": "566168634bdc2d144c8b456c",
+    "_type": "Node",
+    "_props": {
+      "effects_health": [],
+      "effects_damage": [],
+      "PlayFuzeSound": false
+    }
+  }
+]
