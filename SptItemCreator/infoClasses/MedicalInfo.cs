@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 using SptItemCreator.abstracts;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Enums;
@@ -8,7 +9,7 @@ namespace SptItemCreator.infoClasses;
 
 public record MedicalInfo : AbstractInfo
 {
-    [JsonIgnore] public new static bool ShouldUpdateDatabaseService => false;
+    [JsonIgnore] [UsedImplicitly]  public new static bool ShouldUpdateDatabaseService => false;
     [JsonPropertyName("maxHpResource")]
     public virtual int? MaxHpResource { get; set; }
     [JsonPropertyName("hpResourceRate")]

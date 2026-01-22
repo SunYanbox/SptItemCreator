@@ -10,7 +10,6 @@ namespace SptItemCreator.NewItemClasses;
 /// </summary>
 public class NewItemDrinkOrFood: NewItemCommon
 {
-    
     [JsonPropertyName("drinkFoodInfo")]
     public DrinkFoodInfo? DrinkFoodInfo { get; set; }
     

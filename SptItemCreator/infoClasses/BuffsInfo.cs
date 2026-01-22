@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 using SptItemCreator.abstracts;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
@@ -9,7 +10,7 @@ namespace SptItemCreator.infoClasses;
 
 public record BuffsInfo : AbstractInfo
 {
-    [JsonIgnore] public new static bool ShouldUpdateDatabaseService => true;
+    [JsonIgnore] [UsedImplicitly] public new static bool ShouldUpdateDatabaseService => true;
     
     [JsonPropertyName("stimulatorBuffs")]
     public string? StimulatorBuffs { get; set; }
@@ -27,8 +28,7 @@ public record BuffsInfo : AbstractInfo
         var buffs = databaseService.GetTables().Globals.Configuration.Health.Effects.Stimulator.Buffs;
         if (StimulatorBuffs != null && Buffs != null)
         {
-            if (buffs.ContainsKey(StimulatorBuffs)) return;
-            buffs[StimulatorBuffs] = Buffs;
+            if (!buffs.TryAdd(StimulatorBuffs, Buffs)) return;
         }
         if (StimulatorBuffs != null && Buffs == null && !buffs.ContainsKey(StimulatorBuffs)) LocalLog?.LocalLogMsg(
             LocalLogType.Warn, $"检测到效果字段赋值了`stimulatorBuffs`, 但没有提供`buffs`, 并且没有已被注册的`stimulatorBuffs`({StimulatorBuffs}), 请检查你的新物品文件");

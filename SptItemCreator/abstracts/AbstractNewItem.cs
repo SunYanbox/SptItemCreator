@@ -35,6 +35,7 @@ namespace SptItemCreator.abstracts;
 [JsonDerivedType(typeof(NewItemCommon), typeDiscriminator: "common")]
 [JsonDerivedType(typeof(NewItemDrinkOrFood), typeDiscriminator: "drinkOrFood")]
 [JsonDerivedType(typeof(NewItemMedical), typeDiscriminator: "medical")]
+[JsonDerivedType(typeof(NewItemAmmo), typeDiscriminator: "ammo")]
 public abstract class AbstractNewItem
 {
     /// <summary>
@@ -98,16 +99,14 @@ public abstract class AbstractNewItem
     {
         if (!Verify() || BaseInfo?.Id == null || BaseInfo?.ParentId == null || BaseInfo?.CloneId != null)
         {
-            if (LocalLog != null)
-            {
-                string msg = "";
-                if (!Verify()) msg += $"{this}.Verify 详情创建模式 验证失败:";
-                if (BaseInfo?.Id == null) msg += $"\n\tbaseInfo.id 意外为null";
-                if (BaseInfo?.ParentId == null) msg += $"\n\tbaseInfo.parent 意外为null";
-                if (BaseInfo?.CloneId != null) msg += $"\n\tbaseInfo.cloneId 意外被赋值";
-                if (BaseInfo?.HandbookParentId != null) msg += $"\n\tbaseInfo.handbookParentId 意外被赋值";
-                if (!string.IsNullOrEmpty(msg)) LocalLog?.LocalLogMsg(LocalLogType.Error, msg);
-            }
+            if (LocalLog == null) return null;
+            var msg = "";
+            if (!Verify()) msg += $"{this}.Verify 详情创建模式 验证失败:";
+            if (BaseInfo?.Id == null) msg += "\n\tbaseInfo.id 意外为null";
+            if (BaseInfo?.ParentId == null) msg += "\n\tbaseInfo.parent 意外为null";
+            if (BaseInfo?.CloneId != null) msg += "\n\tbaseInfo.cloneId 意外被赋值";
+            if (BaseInfo?.HandbookParentId != null) msg += "\n\tbaseInfo.handbookParentId 意外被赋值";
+            if (!string.IsNullOrEmpty(msg)) LocalLog?.LocalLogMsg(LocalLogType.Error, msg);
             return null;
         }
         if (BaseInfo == null) return null;
@@ -132,42 +131,38 @@ public abstract class AbstractNewItem
     /// <returns></returns>
     public NewItemFromCloneDetails? CreateItemFromClone()
     {
-        if (!Verify() || BaseInfo?.Id == null || BaseInfo?.ParentId == null || BaseInfo?.CloneId == null || BaseInfo.HandbookParentId == null)
-        {
-            if (LocalLog != null)
+        if (Verify() && BaseInfo is { Id: not null, ParentId: not null, CloneId: not null, HandbookParentId: not null })
+            return new NewItemFromCloneDetails
             {
-                string msg = "";
-                if (!Verify()) msg += $"{this}.Verify 克隆创建模式 验证失败:";
-                if (BaseInfo?.Id == null) msg += $"\n\tbaseInfo.id 意外为null";
-                if (BaseInfo?.ParentId == null) msg += $"\n\tbaseInfo.parent 意外为null";
-                if (BaseInfo?.CloneId == null) msg += $"\n\tbaseInfo.cloneId 意外为null";
-                if (BaseInfo?.HandbookParentId == null) msg += $"\n\tbaseInfo.handbookParentId 意外为null";
-                if (!string.IsNullOrEmpty(msg)) LocalLog?.LocalLogMsg(LocalLogType.Error, msg);
-            }
-            return null;
-        }
-        return new NewItemFromCloneDetails
-        {
-            ItemTplToClone = BaseInfo.CloneId,
-            // ParentId refers to the Node item the gun will be under, you can check it in https://db.sp-tarkov.com/search
-            ParentId = BaseInfo.ParentId,
-            NewId = BaseInfo.Id,
-            FleaPriceRoubles = BaseInfo.Price,
-            HandbookPriceRoubles = 0.85 * BaseInfo.Price,
-            HandbookParentId = BaseInfo.HandbookParentId,
-            Locales = new Dictionary<string, LocaleDetails>
-            {
+                ItemTplToClone = BaseInfo.CloneId!,
+                // ParentId refers to the Node item the gun will be under, you can check it in https://db.sp-tarkov.com/search
+                ParentId = BaseInfo.ParentId,
+                NewId = BaseInfo.Id,
+                FleaPriceRoubles = BaseInfo.Price,
+                HandbookPriceRoubles = 0.85 * BaseInfo.Price,
+                HandbookParentId = BaseInfo.HandbookParentId,
+                Locales = new Dictionary<string, LocaleDetails>
                 {
-                    "ch", new LocaleDetails
                     {
-                        Name = BaseInfo.Name,
-                        ShortName = BaseInfo.Name,
-                        Description = BaseInfo.Description
+                        "ch", new LocaleDetails
+                        {
+                            Name = BaseInfo.Name,
+                            ShortName = BaseInfo.Name,
+                            Description = BaseInfo.Description
+                        }
                     }
-                }
-            },
-            OverrideProperties = PropertyOverride,
-        };
+                },
+                OverrideProperties = PropertyOverride,
+            };
+        if (LocalLog == null) return null;
+        var msg = "";
+        if (!Verify()) msg += $"{this}.Verify 克隆创建模式 验证失败:";
+        if (BaseInfo?.Id == null) msg += "\n\tbaseInfo.id 意外为null";
+        if (BaseInfo?.ParentId == null) msg += "\n\tbaseInfo.parent 意外为null";
+        if (BaseInfo?.CloneId == null && BaseInfo?.HandbookParentId == null) 
+            msg += "\n\tbaseInfo.cloneId为null时baseInfo.handbookParentId意外为null";
+        if (!string.IsNullOrEmpty(msg)) LocalLog.LocalLogMsg(LocalLogType.Error, msg);
+        return null;
     }
 
     /// <summary>
@@ -179,11 +174,9 @@ public abstract class AbstractNewItem
     private void AutoPropertyApply()
     {
         if (PropertyOverride == null) PropertyOverride = new TemplateItemProperties();
-        if (BaseInfo != null)
-        {
-            BaseInfo.Update(PropertyOverride, DatabaseService);
-            DoPropertyApplication(PropertyOverride, DatabaseService);
-        }
+        if (BaseInfo == null) return;
+        BaseInfo.Update(PropertyOverride, DatabaseService);
+        DoPropertyApplication(PropertyOverride, DatabaseService);
     }
     
     /// <summary>
@@ -273,11 +266,6 @@ public abstract class AbstractNewItem
         }
         
         BaseInfo.Price = Math.Max(BaseInfo.Price, 1); // 避免价格为0导致物品无效
-        
-        // 清理克隆相关字段（如果不是克隆物品）
-        if (BaseInfo.CloneId != null && BaseInfo.HandbookParentId != null) return;
-        BaseInfo.CloneId = null;
-        BaseInfo.HandbookParentId = null;
     }
 
     /// <summary>
@@ -285,7 +273,7 @@ public abstract class AbstractNewItem
     /// </summary>
     private void ValidateBaseInfoFields(Dictionary<string, string> results)
     {
-        bool isCloneItem = BaseInfo.CloneId != null;
+        bool isCloneItem = BaseInfo!.CloneId != null;
         string prefix = isCloneItem ? 
             $"基于克隆创建新物品\"{ItemPath}\"时验证失败:" : 
             $"基于详情创建新物品\"{ItemPath}\"时验证失败:";
@@ -319,7 +307,7 @@ public abstract class AbstractNewItem
     private void ValidateCommonFields(Dictionary<string, string> results, List<string> errorMessages)
     {
         // 验证 Id 字段
-        if (BaseInfo.Id == null)
+        if (BaseInfo!.Id == null)
         {
             errorMessages.Add("缺少id字段");
             results["Id"] = "Id字段不能为null";
@@ -348,17 +336,9 @@ public abstract class AbstractNewItem
     /// </summary>
     private void ValidateCloneItemFields(Dictionary<string, string> results, List<string> errorMessages)
     {
-        if (BaseInfo.CloneId == null)
-        {
-            errorMessages.Add("缺少cloneId字段");
-            results["CloneId"] = "克隆物品必须包含CloneId字段";
-        }
-        
-        if (BaseInfo.HandbookParentId == null)
-        {
-            errorMessages.Add("缺少handbookParentId字段");
-            results["HandbookParentId"] = "克隆物品必须包含HandbookParentId字段";
-        }
+        if (BaseInfo!.CloneId != null) return;
+        errorMessages.Add("缺少cloneId字段");
+        results["CloneId"] = "克隆物品必须包含CloneId字段";
     }
 
     /// <summary>
@@ -366,17 +346,15 @@ public abstract class AbstractNewItem
     /// </summary>
     private void ValidateNewItemFields(Dictionary<string, string> results, List<string> errorMessages)
     {
-        if (BaseInfo.CloneId != null)
+        if (BaseInfo!.CloneId != null)
         {
             errorMessages.Add("创建新物品时意外添加了cloneId字段");
             results["CloneId"] = "新物品不应包含CloneId字段";
         }
-        
-        if (BaseInfo.HandbookParentId != null)
-        {
-            errorMessages.Add("创建新物品时意外添加了handbookParentId字段");
-            results["HandbookParentId"] = "新物品不应包含HandbookParentId字段";
-        }
+
+        if (BaseInfo.HandbookParentId != null) return;
+        errorMessages.Add("创建新物品时未添加handbookParentId字段, 可能导致物品无法正确分类");
+        results["HandbookParentId"] = "新物品没有正确包含HandbookParentId字段, 可能导致物品无法正确分类";
     }
 
     /// <summary>

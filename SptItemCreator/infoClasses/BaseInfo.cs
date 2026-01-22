@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 using SptItemCreator.abstracts;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 
@@ -31,7 +32,7 @@ namespace SptItemCreator.infoClasses;
 ///
 public record BaseInfo: AbstractInfo
 {
-    [JsonIgnore] public new static bool ShouldUpdateDatabaseService => false;
+    [JsonIgnore] [UsedImplicitly] public new static bool ShouldUpdateDatabaseService => false;
     /// <summary>
     /// 物品ID
     /// </summary>
@@ -102,7 +103,7 @@ public record BaseInfo: AbstractInfo
     /// 价格
     /// </summary>
     [JsonPropertyName("price")]
-    public double Price { get; set; } = 0;
+    public double Price { get; set; }
     
     /// <summary>
     /// 物品模型
@@ -125,7 +126,7 @@ public record BaseInfo: AbstractInfo
     /// <summary>
     /// 是否已进行过初始化与参数验证
     /// </summary>
-    [JsonIgnore] public bool IsHadInit { get; set; } = false;
+    [JsonIgnore] public bool IsHadInit { get; set; }
     [JsonIgnore] public string? ItemPath { get; set; }
 
     public override void UpdateProperties(TemplateItemProperties properties)
