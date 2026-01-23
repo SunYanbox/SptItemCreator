@@ -106,7 +106,7 @@ public abstract class AbstractNewItem
             if (BaseInfo?.ParentId == null) msg += "\n\tbaseInfo.parent 意外为null";
             if (BaseInfo?.CloneId != null) msg += "\n\tbaseInfo.cloneId 意外被赋值";
             if (BaseInfo?.HandbookParentId != null) msg += "\n\tbaseInfo.handbookParentId 意外被赋值";
-            if (!string.IsNullOrEmpty(msg)) LocalLog?.LocalLogMsg(LocalLogType.Error, msg);
+            if (!string.IsNullOrEmpty(msg)) LocalLog.LocalLogMsg(LocalLogType.Error, msg);
             return null;
         }
         if (BaseInfo == null) return null;
@@ -199,7 +199,7 @@ public abstract class AbstractNewItem
     }
 
     /// <summary>
-    /// 根据已有信息覆盖PropertyApply属性, 子类重载以扩展覆盖的内容
+    /// 根据已有信息覆盖PropertyApply属性, 子类重载DoPropertyApplication以扩展覆盖的内容
     ///
     /// 只有验证通过的BaseInfo才会被用来覆盖PropertyApply的信息
     /// 基类默认覆盖的内容: 名称, 描述
@@ -270,11 +270,9 @@ public abstract class AbstractNewItem
         {
             return true;
         }
-        else
-        {
-            LogValidationErrors(results);
-            return false;
-        }
+
+        LogValidationErrors(results);
+        return false;
     }
 
     /// <summary>

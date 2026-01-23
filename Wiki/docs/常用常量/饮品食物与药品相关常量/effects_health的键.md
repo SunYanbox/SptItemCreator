@@ -1,4 +1,6 @@
-## effects_health的键(只能用后面的整数)
+## effects_health的键
+
+> 既可以用前面的名称，也可以用对应的整数
 
 这个属性(`effects_health`)用于饮品或者食物
 
@@ -41,6 +43,15 @@ public enum HealthFactor
         "value": 10
     },
     "2": {
+        "value": -5
+    }
+}
+// 物品Crackers的effects_health，扣除5水分，恢复10能量
+"effects_health": {
+    "Energy": {
+        "value": 10
+    },
+    "Hydration": {
         "value": -5
     }
 }

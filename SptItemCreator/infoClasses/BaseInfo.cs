@@ -30,7 +30,9 @@ namespace SptItemCreator.infoClasses;
 /// - Prefab: 物品模型 (可选)
 /// - UsePrefab: 使用时的物品模型 (可选)
 /// - CanSellOnRagfair: 是否允许在跳蚤市场售卖 (默认值: true)
-/// 
+/// - AllowAll: 一键允许所有容器放置本物品
+/// - CanFilter: 指定哪些容器可放置本物品(优先级大于allowAll)
+/// - CantFilter: 指定哪些容器不可放置本物品(优先级大于allowAll)
 /// - IsHadInit: 是否已进行过初始化与参数验证 (内部使用)
 /// </remarks>
 ///

@@ -1,4 +1,6 @@
-## effects_damage的键(只能用后面的整数)
+## effects_damage的键
+
+> 既可以用前面的名称，也可以用对应的整数
 
 这个属性(`effects_damage`)常用于饮品和药品
 
@@ -42,6 +44,19 @@ public enum DamageEffectType
         "fadeOut": 0
     },
     "7": {
+        "delay": 0,
+        "duration": 300,
+        "fadeOut": 5
+    }
+}
+// 物品morphine的effects_health，提供5min的止痛并移除挫伤
+"effects_damage": {
+    "Fracture": {
+        "delay": 0,
+        "duration": 0,
+        "fadeOut": 0
+    },
+    "Pain": {
         "delay": 0,
         "duration": 300,
         "fadeOut": 5
