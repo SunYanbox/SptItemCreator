@@ -1,0 +1,13 @@
+site_name: SIC Wiki
+  
+site_author: Suntion
+copyright: MIT
+
+
+theme:
+  name: mkdocs
+  custom_dir: custom_theme/
+  user_color_mode_toggle: true
+  locale: zh_CN
+
+use_directory_urls: false
