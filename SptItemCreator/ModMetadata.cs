@@ -8,13 +8,13 @@ public record ModMetadata : AbstractModMetadata
     public override string Name { get; init; } = "SptItemCreator";
     public override string Author { get; init; } = "Suntion";
     public override List<string>? Contributors { get; init; } = [];
-    public override SemanticVersioning.Version Version { get; init; } = new("0.0.1");
+    public override SemanticVersioning.Version Version { get; init; } = new("0.0.2");
     public override SemanticVersioning.Range SptVersion { get; init; } = new("~4.0.8");
     
     
     public override List<string>? Incompatibilities { get; init; }
     public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
-    public override string? Url { get; init; }
+    public override string? Url { get; init; } = "https://github.com/SunYanbox/SptItemCreator";
     public override bool? IsBundleMod { get; init; } = true;
     public override string? License { get; init; } = "CC-BY-SA";
 }

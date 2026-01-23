@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using JetBrains.Annotations;
 using SptItemCreator.abstracts;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
@@ -10,8 +9,6 @@ namespace SptItemCreator.infoClasses;
 
 public record BuffsInfo : AbstractInfo
 {
-    [JsonIgnore] [UsedImplicitly] public new static bool ShouldUpdateDatabaseService => true;
-    
     [JsonPropertyName("stimulatorBuffs")]
     public string? StimulatorBuffs { get; set; }
     [JsonPropertyName("buffs")]

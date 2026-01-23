@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Services;
 
@@ -10,11 +11,7 @@ namespace SptItemCreator.abstracts;
 public abstract record AbstractInfo
 {
     [JsonIgnore] public static LocalLog? LocalLog;
-    /// <summary>
-    /// 需要更新Buffs时重写这个属性
-    /// > [JsonIgnore] public new static bool ShouldUpdateDatabaseService => true;
-    /// </summary>
-    [JsonIgnore] public static bool ShouldUpdateDatabaseService => false;
+    [JsonIgnore] public static ItemHelper? ItemHelper;
     
     /// <summary>
     /// 封装更新TemplateItemProperties的逻辑
@@ -41,7 +38,7 @@ public abstract record AbstractInfo
     public void Update(TemplateItemProperties properties, DatabaseService? databaseService = null)
     {
         UpdateProperties(properties);
-        if (ShouldUpdateDatabaseService && databaseService != null)
+        if (databaseService != null)
             UpdateDatabaseService(databaseService);
     }
 }

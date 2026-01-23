@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using JetBrains.Annotations;
 using SptItemCreator.abstracts;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Enums;
@@ -9,7 +8,6 @@ namespace SptItemCreator.infoClasses;
 
 public record DrinkFoodInfo: AbstractInfo
 {
-    [JsonIgnore] [UsedImplicitly]  public new static bool ShouldUpdateDatabaseService => false;
     [JsonPropertyName("foodUseTime")]
     public double? FoodUseTime { get; set; }
     [JsonPropertyName("hydration")]

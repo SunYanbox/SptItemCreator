@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using JetBrains.Annotations;
 using SptItemCreator.abstracts;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 
@@ -7,8 +6,6 @@ namespace SptItemCreator.infoClasses;
 
 public record AmmoInfo : AbstractInfo
 {
-    [JsonIgnore] [UsedImplicitly] public new static bool ShouldUpdateDatabaseService => false;
-    
     [JsonPropertyName("ammoType")]
     public virtual string? AmmoType { get; set; }
     

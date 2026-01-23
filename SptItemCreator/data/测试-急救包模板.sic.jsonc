@@ -29,7 +29,10 @@
     "handbookPrice": 3000,
     "prefab": null,
     "usePrefab": null,
-    "canSellOnRagfair": true
+    "canSellOnRagfair": true,
+    "allowAll": false,
+    "canFilter": [],
+    "cantFilter": []
   },
   "attributeInfo": {
     "weight": 0.3,

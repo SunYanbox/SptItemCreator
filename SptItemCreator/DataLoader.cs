@@ -3,6 +3,7 @@ using SptItemCreator.abstracts;
 using SptItemCreator.NewItemClasses;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
+using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
@@ -15,6 +16,7 @@ public class DataLoader(
         LocalLog localLog,
         ISptLogger<DataLoader> logger,
         JsonUtil jsonUtil,
+        ItemHelper itemHelper,
         DatabaseServer dbServer,
         DatabaseService databaseService
     ): IOnLoad
@@ -41,6 +43,7 @@ public class DataLoader(
     public Task OnLoad()
     {
         AbstractInfo.LocalLog ??= localLog;
+        AbstractInfo.ItemHelper ??= itemHelper;
         AbstractNewItem.LocalLog ??= localLog;
         AbstractNewItem.DatabaseService ??= databaseService;
         _jsonUtil  ??= jsonUtil;

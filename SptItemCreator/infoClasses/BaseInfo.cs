@@ -1,8 +1,9 @@
 using System.Text.Json.Serialization;
-using JetBrains.Annotations;
+using SPTarkov.Server.Core.Models.Common;
 using SptItemCreator.abstracts;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Mod;
+using SPTarkov.Server.Core.Services;
 
 namespace SptItemCreator.infoClasses;
 
@@ -33,9 +34,9 @@ namespace SptItemCreator.infoClasses;
 /// - IsHadInit: 是否已进行过初始化与参数验证 (内部使用)
 /// </remarks>
 ///
-public record BaseInfo: AbstractInfo
+public sealed record BaseInfo: AbstractInfo
 {
-    [JsonIgnore] [UsedImplicitly] public new static bool ShouldUpdateDatabaseService => false;
+    [JsonIgnore] private static Dictionary<MongoId, TemplateItem>? _itemTemplate;
     /// <summary>
     /// 物品ID
     /// </summary>
@@ -137,6 +138,24 @@ public record BaseInfo: AbstractInfo
     /// </summary>
     [JsonPropertyName("canSellOnRagfair")]
     public bool CanSellOnRagfair { get; set; } = true;
+    
+    /// <summary>
+    /// 一键允许所有容器放置本物品
+    /// </summary>
+    [JsonPropertyName("allowAll")]
+    public bool? AllowAll { get; set; }
+    
+    /// <summary>
+    /// 指定哪些容器可放置本物品(优先级大于allowAll)
+    /// </summary>
+    [JsonPropertyName("canFilter")]
+    public HashSet<MongoId>? CanFilter { get; set; }
+
+    /// <summary>
+    /// 指定哪些容器不可放置本物品(优先级大于allowAll)
+    /// </summary>
+    [JsonPropertyName("cantFilter")]
+    public HashSet<MongoId>? CantFilter { get; set; }
 
     /// <summary>
     /// 是否已进行过初始化与参数验证
@@ -172,6 +191,91 @@ public record BaseInfo: AbstractInfo
         catch (Exception e)
         {
             LocalLog?.LocalLogMsg(LocalLogType.Error, $"物品{Name}的Prefab或UsePrefab语法错误, 无法解析 - {ItemPath} - {e.Message}");
+        }
+    }
+    
+    public override void UpdateDatabaseService(DatabaseService databaseService)
+    {
+        if (Id is null) return;
+        _itemTemplate ??= databaseService.GetTables().Templates.Items;
+        // 一键允许所有容器放置本物品
+        if (AllowAll ?? false)
+        {
+            List<HashSet<MongoId>> gridFilters = [];
+            List<HashSet<MongoId>> excludedFilters = [];
+
+            foreach ((MongoId _, TemplateItem container) in _itemTemplate.Where(x =>
+                         x.Value.Properties?.Grids != null
+                         && ItemHelper!.IsOfBaseclasses(x.Value.Id,
+                             [BaseClasses.SIMPLE_CONTAINER, BaseClasses.MOB_CONTAINER])))
+            {
+                if (container.Properties == null) continue;
+                if (container.Properties?.Grids == null) continue;
+                foreach (Grid grid in container.Properties.Grids)
+                {
+                    if (grid.Properties == null) continue;
+                    if (grid.Properties?.Filters == null) continue;
+                    foreach (GridFilter gridFilter in grid.Properties.Filters)
+                    {
+                        if (gridFilter.Filter != null) gridFilters.Add(gridFilter.Filter);
+                        if (gridFilter.ExcludedFilter != null) excludedFilters.Add(gridFilter.ExcludedFilter);
+                    }
+                }
+            }
+
+            // 允许容器放这个物品
+            foreach (HashSet<MongoId> gridFilter in gridFilters)
+            {
+                gridFilter.Add(Id);
+            }
+
+            // 去掉限制
+            foreach (HashSet<MongoId> excludedFilter in excludedFilters)
+            {
+                excludedFilter.Remove(Id);
+                if (ParentId != null)
+                {
+                    excludedFilter.Remove(ParentId);
+                }
+            }
+        }
+        // 指定哪些容器可放置本物品
+        foreach (TemplateItem container in from containerId in CanFilter ?? [] 
+                 where !(CantFilter?.Contains(containerId) ?? false) 
+                 where !ItemHelper!.IsOfBaseclasses(containerId, [BaseClasses.SIMPLE_CONTAINER, BaseClasses.MOB_CONTAINER]) 
+                 select _itemTemplate[containerId])
+        {
+            if (container.Properties is not { Grids: not null }) continue;
+            foreach (Grid grid in container.Properties.Grids)
+            {
+                if (grid.Properties == null) continue;
+                if (grid.Properties?.Filters == null) continue;
+                foreach (GridFilter gridFilter in grid.Properties.Filters)
+                {
+                    gridFilter.Filter?.Add(Id);
+                    gridFilter.ExcludedFilter?.Remove(Id);
+                    if (ParentId is not null)
+                        gridFilter.ExcludedFilter?.Remove(ParentId);
+                }
+            }
+        }
+        // 指定哪些容器不可放置本物品
+        foreach (TemplateItem container in from containerId in CantFilter ?? [] 
+                 where !(CanFilter?.Contains(containerId) ?? false) 
+                 where !ItemHelper!.IsOfBaseclasses(containerId, [BaseClasses.SIMPLE_CONTAINER, BaseClasses.MOB_CONTAINER]) 
+                 select _itemTemplate[containerId])
+        {
+            if (container.Properties is not { Grids: not null }) continue;
+            foreach (Grid grid in container.Properties.Grids)
+            {
+                if (grid.Properties == null) continue;
+                if (grid.Properties?.Filters == null) continue;
+                foreach (GridFilter gridFilter in grid.Properties.Filters)
+                {
+                    gridFilter.Filter?.Remove(Id);
+                    gridFilter.ExcludedFilter?.Add(Id);
+                }
+            }
         }
     }
 }
