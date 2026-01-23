@@ -4,6 +4,9 @@
 
 ## WiKi
 
-- [Wiki-主页](Wiki/主页.md)
-- [WiKi-常用常量](Wiki/常用常量)
-- [WiKi-子弹相关常量](Wiki/常用常量/子弹相关常量)
+- [Wiki-主页](Wiki/docs/README.md)
+- [WiKi-创建物品教程](Wiki/docs/创建物品教程)
+- [WiKi-常用常量](Wiki/docs/常用常量)
+- [WiKi-子弹相关常量](Wiki/docs/常用常量/子弹相关常量)
+- [WiKi-常用MongoId常量](Wiki/docs/常用常量/常用MongoId常量)
+- [WiKi-饮品食物与药品相关常量](Wiki/docs/常用常量/饮品食物与药品相关常量)
