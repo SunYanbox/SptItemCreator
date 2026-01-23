@@ -22,12 +22,25 @@ public record BuffsInfo : AbstractInfo
     
     public override void UpdateDatabaseService(DatabaseService databaseService)
     {
-        var buffs = databaseService.GetTables().Globals.Configuration.Health.Effects.Stimulator.Buffs;
-        if (StimulatorBuffs != null && Buffs != null)
+        Dictionary<string, IEnumerable<Buff>> buffs = databaseService.GetTables().Globals.Configuration.Health.Effects.Stimulator.Buffs;
+        bool stimulatorBuffsIsNull = string.IsNullOrEmpty(StimulatorBuffs);
+        if (stimulatorBuffsIsNull && Buffs is null)
         {
-            if (!buffs.TryAdd(StimulatorBuffs, Buffs)) return;
+            return;
         }
-        if (StimulatorBuffs != null && Buffs == null && !buffs.ContainsKey(StimulatorBuffs)) LocalLog?.LocalLogMsg(
-            LocalLogType.Warn, $"检测到效果字段赋值了`stimulatorBuffs`, 但没有提供`buffs`, 并且没有已被注册的`stimulatorBuffs`({StimulatorBuffs}), 请检查你的新物品文件");
+        if (!stimulatorBuffsIsNull && Buffs != null)
+        {
+            if (!buffs.TryAdd(StimulatorBuffs!, Buffs))
+            {
+                LocalLog?.LocalLogMsg(LocalLogType.Info, $"已成功创建新效果{StimulatorBuffs}(共{Buffs.Count}条)\n\tPath={ItemPath}");
+                return;
+            }
+        }
+        if (!stimulatorBuffsIsNull && Buffs == null && !buffs.ContainsKey(StimulatorBuffs!))
+        {
+            string warn =
+                $"检测到效果字段赋值了`stimulatorBuffs`, 但没有提供`buffs`, 并且没有已被注册的`stimulatorBuffs`({StimulatorBuffs}), 请检查你的新物品文件";
+            throw new Exception(warn);
+        }
     }
 }

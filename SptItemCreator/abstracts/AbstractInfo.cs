@@ -12,6 +12,7 @@ public abstract record AbstractInfo
 {
     [JsonIgnore] public static LocalLog? LocalLog;
     [JsonIgnore] public static ItemHelper? ItemHelper;
+    [JsonIgnore] public string ItemPath { get; set; } = string.Empty;
     
     /// <summary>
     /// 封装更新TemplateItemProperties的逻辑
@@ -39,6 +40,16 @@ public abstract record AbstractInfo
     {
         UpdateProperties(properties);
         if (databaseService != null)
-            UpdateDatabaseService(databaseService);
+        {
+            try
+            {
+                UpdateDatabaseService(databaseService);
+            }
+            catch (Exception e)
+            {
+                LocalLog?.LocalLogMsg(LocalLogType.Warn, 
+                    $"ItemPath: {ItemPath}, \n\tMessage: {e.Message}, \n\tStackTrace: {e.StackTrace}, \n\tSource:{e.Source}");
+            }
+        }
     }
 }

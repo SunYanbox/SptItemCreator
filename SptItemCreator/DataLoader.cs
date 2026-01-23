@@ -4,8 +4,6 @@ using SptItemCreator.NewItemClasses;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers;
-using SPTarkov.Server.Core.Models.Utils;
-using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils;
 
@@ -14,10 +12,8 @@ namespace SptItemCreator;
 [Injectable(InjectionType = InjectionType.Singleton, TypePriority = OnLoadOrder.PostDBModLoader + 1)]
 public class DataLoader(
         LocalLog localLog,
-        ISptLogger<DataLoader> logger,
         JsonUtil jsonUtil,
         ItemHelper itemHelper,
-        DatabaseServer dbServer,
         DatabaseService databaseService
     ): IOnLoad
 {
@@ -68,16 +64,36 @@ public class DataLoader(
                 if (newItemBase == null) throw new Exception("反序列化的结果为null");
                 if (newItemBase.BaseInfo == null) throw new Exception("反序列化后获取不到baseInfo字段");
                 newItemBase.BaseInfo.ItemPath = file;
+                if (newItemBase.BuffsInfo is not null) newItemBase.BuffsInfo.ItemPath = file;
+                if (newItemBase.AttributeInfo is not null) newItemBase.AttributeInfo.ItemPath = file;
                 newItemBase.ItemPath = file;
                 newItemBase.Verify();
                 localLog.LocalLogMsg(LocalLogType.Debug, $"已加载新物品 Id{newItemBase.BaseInfo.Id}({newItemBase.BaseInfo.Name}, @{newItemBase.BaseInfo.Author}) \t {newItemBase.BaseInfo.License} \n\t > Path = {file}");
                 // 类型转换
                 switch (newItemBase.BaseInfo.Type)
                 {
-                    case SicType.Common: NewItemCommon.Add(file, newItemBase as NewItemCommon); break;
-                    case SicType.DrinkOrFood: NewItemDrinkOrDrugs.Add(file, newItemBase as NewItemDrinkOrFood); break;
-                    case SicType.Medical: NewItemMedical.Add(file, newItemBase as NewItemMedical); break;
-                    case SicType.Ammo: NewItemAmmo.Add(file, newItemBase as NewItemAmmo); break;
+                    case SicType.Common: NewItemCommon.Add(file, newItemBase); break;
+                    case SicType.DrinkOrFood:
+                    {
+                        var newItemDrinkOrFood = (newItemBase as NewItemDrinkOrFood)!;
+                        if (newItemDrinkOrFood.DrinkFoodInfo is not null) newItemDrinkOrFood.DrinkFoodInfo.ItemPath = file;
+                        NewItemDrinkOrDrugs.Add(file, newItemDrinkOrFood);
+                        break;
+                    }
+                    case SicType.Medical:
+                    {
+                        var newItemMedical = (newItemBase as NewItemMedical)!;
+                        if (newItemMedical.MedicalInfo is not null) newItemMedical.MedicalInfo.ItemPath = file;
+                        NewItemMedical.Add(file, newItemMedical);
+                        break;
+                    }
+                    case SicType.Ammo:
+                    {
+                        var newItemAmmo = (newItemBase as NewItemAmmo)!;
+                        if (newItemAmmo.AmmoInfo is not null) newItemAmmo.AmmoInfo.ItemPath = file;
+                        NewItemAmmo.Add(file, newItemAmmo);
+                        break;
+                    }
                     default: 
                         localLog.LocalLogMsg(LocalLogType.Error, $"在分类新物品数据\"{file}\"类型时出现问题: `baseInfo.type` (当前为: {newItemBase.BaseInfo.Type}) 不存在或不合法 \n\t > Path = {file}");
                         break;
@@ -98,7 +114,7 @@ public class DataLoader(
     private static NewItemCommon? DeserializeBasedOnType(string json)
     {
         using JsonDocument doc = JsonDocument.Parse(json);
-        string typeIdentifier = doc.RootElement.GetProperty("$type").GetString();
+        string typeIdentifier = doc.RootElement.GetProperty("$type").GetString()!;
         if (_jsonUtil != null)
             return typeIdentifier switch
             {

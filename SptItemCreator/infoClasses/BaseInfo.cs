@@ -161,7 +161,6 @@ public sealed record BaseInfo: AbstractInfo
     /// 是否已进行过初始化与参数验证
     /// </summary>
     [JsonIgnore] public bool IsHadInit { get; set; }
-    [JsonIgnore] public string? ItemPath { get; set; }
 
     public override void UpdateProperties(TemplateItemProperties properties)
     {
@@ -198,44 +197,43 @@ public sealed record BaseInfo: AbstractInfo
     {
         if (Id is null) return;
         _itemTemplate ??= databaseService.GetTables().Templates.Items;
+        HashSet<MongoId> containerOutput = [];
         // 一键允许所有容器放置本物品
         if (AllowAll ?? false)
         {
-            List<HashSet<MongoId>> gridFilters = [];
-            List<HashSet<MongoId>> excludedFilters = [];
-
-            foreach ((MongoId _, TemplateItem container) in _itemTemplate.Where(x =>
+            LocalLog?.LocalLogMsg(LocalLogType.Info, $"新物品{Name}已启用`AllowAll`字段");
+            foreach ((MongoId containerTpl, TemplateItem container) in _itemTemplate.Where(x =>
                          x.Value.Properties?.Grids != null
                          && ItemHelper!.IsOfBaseclasses(x.Value.Id,
                              [BaseClasses.SIMPLE_CONTAINER, BaseClasses.MOB_CONTAINER])))
             {
-                if (container.Properties == null) continue;
-                if (container.Properties?.Grids == null) continue;
+                string name = ItemHelper!.GetItemName(containerTpl);
+                if (container.Properties is not { Grids: not null })
+                {
+                    if (containerOutput.Add(containerTpl))
+                    {
+                        LocalLog?.LocalLogMsg(LocalLogType.Warn, $"容器{name}({containerTpl})没有非空的Grids属性");
+                    }
+                    continue;
+                }
                 foreach (Grid grid in container.Properties.Grids)
                 {
-                    if (grid.Properties == null) continue;
-                    if (grid.Properties?.Filters == null) continue;
+                    if (grid.Properties is not { Filters: not null })
+                    {
+                        if (containerOutput.Add(containerTpl))
+                        {
+                            LocalLog?.LocalLogMsg(LocalLogType.Warn, $"容器{name}({containerTpl})的网格{grid.Name}({grid.Id})没有非空Filters属性");
+                        }
+                        continue;
+                    }
                     foreach (GridFilter gridFilter in grid.Properties.Filters)
                     {
-                        if (gridFilter.Filter != null) gridFilters.Add(gridFilter.Filter);
-                        if (gridFilter.ExcludedFilter != null) excludedFilters.Add(gridFilter.ExcludedFilter);
+                        // 允许容器放这个物品
+                        gridFilter.Filter?.Add(Id);
+                        // 去掉限制
+                        gridFilter.ExcludedFilter?.Remove(Id);
+                        if (ParentId != null) gridFilter.ExcludedFilter?.Remove(ParentId);
                     }
-                }
-            }
-
-            // 允许容器放这个物品
-            foreach (HashSet<MongoId> gridFilter in gridFilters)
-            {
-                gridFilter.Add(Id);
-            }
-
-            // 去掉限制
-            foreach (HashSet<MongoId> excludedFilter in excludedFilters)
-            {
-                excludedFilter.Remove(Id);
-                if (ParentId != null)
-                {
-                    excludedFilter.Remove(ParentId);
                 }
             }
         }

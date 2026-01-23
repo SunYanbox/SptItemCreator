@@ -48,7 +48,7 @@
     "examineExperience": 500
   },
   "buffsInfo": {
-    "stimulatorBuffs": "",
+    "stimulatorBuffs": null,
     "buffs": null
   },
   "drinkFoodInfo": {
