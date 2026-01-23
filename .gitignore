@@ -13,4 +13,6 @@ doc/
 .idea/
 IgnoreCache/
 
+site/
+
 SptItemCreator.sln.DotSettings.user
