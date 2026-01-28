@@ -1,5 +1,7 @@
 ## ammoType可用的值
 
+> 需要像示例一样使用下方三个字符串之一
+
 - `bullet`
 - `buckshot`
 - `grenade`

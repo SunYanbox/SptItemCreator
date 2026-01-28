@@ -1,5 +1,7 @@
 ## tracerColor(曳光弹颜色)可用的值
 
+> 需要像示例一样使用下方的字符串之一
+
 - `red`
 - `tracerRed`
 - `yellow`

@@ -1,5 +1,7 @@
 ## 货币 Tpl Id
 
+> 使用MongoId字符串
+
 ```C#
 public record Money()
 {

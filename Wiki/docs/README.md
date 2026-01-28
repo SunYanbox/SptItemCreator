@@ -47,11 +47,11 @@
 
 ## 参考文献
 
-绝大多数代码，数据与译文节选自:
+本Wiki中提到的部分代码，数据与译文节选自:
 
 >  [server-csharp/Libraries/SPTarkov.Server.Assets/SPT_Data/database](https://github.com/sp-tarkov/server-csharp/tree/main/Libraries/SPTarkov.Server.Assets/SPT_Data/database)
 
-绝大多数常量节选自:
+本Wiki中提到的部分常量节选自:
 
 > [server-csharp/Libraries/SPTarkov.Server.Core](https://github.com/sp-tarkov/server-csharp/tree/main/Libraries/SPTarkov.Server.Core)
 

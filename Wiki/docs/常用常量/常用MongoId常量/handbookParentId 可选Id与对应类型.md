@@ -1,5 +1,7 @@
 ## handbookParentId 可选Id与对应类型
 
+> 需要使用类型对应的前面的MongoId字符串
+
 ```jsonc
 {
   "5b47574386f77428ca22b2ed": "能源物品",

@@ -1,5 +1,7 @@
 ## caliber(口径)可用的值
 
+> 需要像示例一样使用下方的字符串之一
+
 - `9mm_PM`
 - `Caliber9x18PM`
 - `Caliber9x19PARA`

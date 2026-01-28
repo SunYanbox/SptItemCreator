@@ -1,5 +1,7 @@
 ## 商人Id
 
+> 使用MongoId字符串
+
 ```C#
 namespace SPTarkov.Server.Core.Models.Enums;
 
