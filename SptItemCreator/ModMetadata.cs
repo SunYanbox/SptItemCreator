@@ -4,7 +4,7 @@ namespace SptItemCreator;
 
 public record ModMetadata : AbstractModMetadata
 {
-    public override string ModGuid { get; init; } = "com.suntion.SptItemCreator";
+    public override string ModGuid { get; init; } = "com.suntion.sptitemcreator";
     public override string Name { get; init; } = "SptItemCreator";
     public override string Author { get; init; } = "Suntion";
     public override List<string>? Contributors { get; init; } = [];
