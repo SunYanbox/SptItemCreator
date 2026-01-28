@@ -1,0 +1,187 @@
+{
+  "$type": "medical",
+  "enable": true,
+  "baseInfo": {
+    "id": "5f9d9b8e6f8b4a1e3c7d5a2b",
+    "type": "medical",
+    "name": "猛攻药剂",
+    "description": null,
+    "locales": {
+      "ch": {
+        "name": "猛攻药剂",
+        "shortName": "猛攻剂",
+        "description": "一种全面的战斗强化合剂。它通过复合配方同时激发使用者的身体潜能与恢复系统。主要效果包括：大幅提升生命值回复速度、增强多项核心生理技能、增加耐力上限与恢复率、减轻负重影响、提供强力止痛，并持续补充水分与能量。此外，它还能在一定时间内小幅降低使用者受到的伤害。其强大的协同作用旨在让使用者能够在高强度战斗中持续作战。"
+      },
+      "en": {
+        "name": "Assault Booster Elixir",
+        "shortName": "Assault Elixir",
+        "description": "A comprehensive combat enhancement compound. It simultaneously activates the user's physical potential and recovery systems through a complex formula. Primary effects include: significantly increased health regeneration rate, enhancement of multiple core physiological skills, increased stamina cap and recovery rate, reduced encumbrance penalty, powerful pain suppression, and sustained hydration and energy replenishment. Additionally, it provides a slight reduction in damage taken by the user for a limited time. Its powerful synergistic effects are designed to enable the user to sustain combat effectiveness in high-intensity engagements."
+      }
+    },
+    "author": "Suntion",
+    "license": "MIT",
+    "order": 0,
+    "parentId": "5448f3a64bdc2d60728b456a",
+    "handbookParentId": "5b47574386f77428ca22b33a",
+    "cloneId": "5c0e530286f7747fa1419862",
+    "traderId": "54cb57776803fa99248b456e",
+    "fleaPrice": 28e4,
+    "handbookPrice": 26e4,
+    "prefab": null,
+    "usePrefab": null,
+    "canSellOnRagfair": true,
+    "allowAll": false,
+    "canFilter": null,
+    "cantFilter": null
+  },
+  "attributeInfo": {
+    "weight": 0.4,
+    "width": 1,
+    "height": 1,
+    "rarityPvE": "Rare",
+    "discardLimit": null,
+    "itemSound": null,
+    "stackMaxSize": null,
+    "examinedByDefault": true,
+    "examineTime": 2,
+    "lootExperience": 500,
+    "examineExperience": 50
+  },
+  "buffsInfo": {
+    "stimulatorBuffs": "BuffsSuntionSuperFighta2b",
+    "buffs": [
+    {
+      "AbsoluteValue": true,
+      "BuffType": "HealthRate",
+      "Chance": 1,
+      "Delay": 1,
+      "Duration": 900,
+      "SkillName": "",
+      "Value": 25
+    },
+    {
+      "AbsoluteValue": true,
+      "BuffType": "SkillRate",
+      "Chance": 1,
+      "Delay": 1,
+      "Duration": 900,
+      "SkillName": "Strength",
+      "Value": 10
+    },
+    {
+      "AbsoluteValue": false,
+      "BuffType": "WeightLimit",
+      "Chance": 1,
+      "Delay": 1,
+      "Duration": 900,
+      "SkillName": "",
+      "Value": 3.6
+    },
+    {
+      "AbsoluteValue": true,
+      "BuffType": "SkillRate",
+      "Chance": 1,
+      "Delay": 1,
+      "Duration": 900,
+      "SkillName": "Metabolism",
+      "Value": 30
+    },
+    {
+      "AbsoluteValue": true,
+      "BuffType": "SkillRate",
+      "Chance": 1,
+      "Delay": 1,
+      "Duration": 900,
+      "SkillName": "Health",
+      "Value": 30
+    },
+    {
+      "AbsoluteValue": true,
+      "BuffType": "SkillRate",
+      "Chance": 1,
+      "Delay": 1,
+      "Duration": 900,
+      "SkillName": "Vitality",
+      "Value": 30
+    },
+    {
+      "AbsoluteValue": true,
+      "BuffType": "SkillRate",
+      "Chance": 1,
+      "Delay": 1,
+      "Duration": 900,
+      "SkillName": "Endurance",
+      "Value": 30
+    },
+    {
+      "AbsoluteValue": true,
+      "BuffType": "SkillRate",
+      "Chance": 1,
+      "Delay": 1,
+      "Duration": 900,
+      "SkillName": "StressResistance",
+      "Value": 30
+    },
+    {
+      "AbsoluteValue": true,
+      "BuffType": "MaxStamina",
+      "Chance": 1,
+      "Delay": 1,
+      "Duration": 900,
+      "SkillName": "",
+      "Value": 45
+    },
+    {
+      "AbsoluteValue": true,
+      "BuffType": "StaminaRate",
+      "Chance": 1,
+      "Delay": 1,
+      "Duration": 900,
+      "SkillName": "",
+      "Value": 1.5
+    },
+    {
+      "AbsoluteValue": false,
+      "BuffType": "DamageModifier",
+      "Chance": 1,
+      "Delay": 1,
+      "Duration": 900,
+      "SkillName": "",
+      "Value": -0.15
+    },
+    {
+      "AbsoluteValue": true,
+      "BuffType": "HydrationRate",
+      "Chance": 1,
+      "Delay": 1,
+      "Duration": 900,
+      "SkillName": "",
+      "Value": 1
+    },
+    {
+      "AbsoluteValue": true,
+      "BuffType": "EnergyRate",
+      "Chance": 1,
+      "Delay": 1,
+      "Duration": 900,
+      "SkillName": "",
+      "Value": 1
+    }
+  ]
+  },
+  "medicalInfo": {
+    "maxHpResource": 10,
+    "hpResourceRate": null,
+    "medUseTime": 2,
+    "medEffectType": "duringUse",
+    "effects_health": [],
+    "effects_damage": {
+      "Pain": {
+        "delay": 1,
+        "duration": 900,
+        "fadeOut": 15
+      }
+    },
+    "bodyPartPriority": []
+  }
+}

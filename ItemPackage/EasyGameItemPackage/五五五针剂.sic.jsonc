@@ -1,0 +1,86 @@
+{
+  "$type": "medical",
+  "enable": true,
+  "baseInfo": {
+    "id": "5f9d9b8e6f8b4a1e3c7d5a30",
+    "type": "medical",
+    "name": "五五五药剂",
+    "description": null,
+    "locales": {
+      "ch": {
+        "name": "五五五药剂",
+        "shortName": "555药剂",
+        "description": "一种神秘的实验性药剂，编号“555”。据称它能通过复杂的周期性剂量设计，在极长的时间跨度内持续增强使用者的多项核心生理与心理能力。效果随时间呈几何级数增长，最终达到理论上的“超凡”状态。其配方来源与长期安全性均为未知。"
+      },
+      "en": {
+        "name": "Formula 555",
+        "shortName": "555 Formula",
+        "description": "A mysterious experimental chemical agent, designated \"Formula 555\". It is purported to continuously enhance multiple core physical and psychological attributes of the user over an extremely prolonged duration through a complex cyclical dosing design. The effects increase geometrically over time, culminating in a theorized \"transcendent\" state. The origin of its formula and its long-term safety profile remain unknown."
+      }
+    },
+    "author": "Suntion",
+    "license": "MIT",
+    "order": 0,
+    "parentId": "5448f3a64bdc2d60728b456a",
+    "handbookParentId": "5b47574386f77428ca22b33a",
+    "cloneId": "5c0e533786f7747fa23f4d47",
+    "traderId": "54cb57776803fa99248b456e",
+    "fleaPrice": 335503.36,
+    "handbookPrice": 335503.36,
+    "prefab": null,
+    "usePrefab": null,
+    "canSellOnRagfair": true,
+    "allowAll": false,
+    "canFilter": [],
+    "cantFilter": []
+  },
+  "attributeInfo": {
+    "weight": 1,
+    "width": 1,
+    "height": 1,
+    "rarityPvE": "Rare",
+    "discardLimit": null,
+    "itemSound": null,
+    "stackMaxSize": null,
+    "examinedByDefault": true,
+    "examineTime": 2,
+    "lootExperience": 500,
+    "examineExperience": null
+  },
+  "buffsInfo": {
+    "stimulatorBuffs": "BuffsSuntionCycleOfReincarnation",
+    "buffs": [
+    {"AbsoluteValue":true,"BuffType":"SkillRate","Chance":1,"Delay":0,"Duration":90,"SkillName":"Strength","Value":4},
+    {"AbsoluteValue":true,"BuffType":"SkillRate","Chance":1,"Delay":90,"Duration":90,"SkillName":"Strength","Value":8},
+    {"AbsoluteValue":true,"BuffType":"SkillRate","Chance":1,"Delay":180,"Duration":180,"SkillName":"Strength","Value":16},
+    {"AbsoluteValue":true,"BuffType":"SkillRate","Chance":1,"Delay":360,"Duration":360,"SkillName":"Strength","Value":32},
+    {"AbsoluteValue":true,"BuffType":"SkillRate","Chance":1,"Delay":720,"Duration":33550336,"SkillName":"Strength","Value":64},
+    
+    {"AbsoluteValue":true,"BuffType":"SkillRate","Chance":1,"Delay":0,"Duration":90,"SkillName":"Perception","Value":4},
+    {"AbsoluteValue":true,"BuffType":"SkillRate","Chance":1,"Delay":90,"Duration":90,"SkillName":"Perception","Value":8},
+    {"AbsoluteValue":true,"BuffType":"SkillRate","Chance":1,"Delay":180,"Duration":180,"SkillName":"Perception","Value":16},
+    {"AbsoluteValue":true,"BuffType":"SkillRate","Chance":1,"Delay":360,"Duration":360,"SkillName":"Perception","Value":32},
+    {"AbsoluteValue":true,"BuffType":"SkillRate","Chance":1,"Delay":720,"Duration":33550336,"SkillName":"Perception","Value":64},
+    
+    {"AbsoluteValue":true,"BuffType":"SkillRate","Chance":1,"Delay":0,"Duration":90,"SkillName":"Endurance","Value":4},
+    {"AbsoluteValue":true,"BuffType":"SkillRate","Chance":1,"Delay":90,"Duration":90,"SkillName":"Endurance","Value":8},
+    {"AbsoluteValue":true,"BuffType":"SkillRate","Chance":1,"Delay":180,"Duration":180,"SkillName":"Endurance","Value":16},
+    {"AbsoluteValue":true,"BuffType":"SkillRate","Chance":1,"Delay":360,"Duration":360,"SkillName":"Endurance","Value":32},
+    {"AbsoluteValue":true,"BuffType":"SkillRate","Chance":1,"Delay":720,"Duration":33550336,"SkillName":"Endurance","Value":64},
+    
+    {"AbsoluteValue":true,"BuffType":"SkillRate","Chance":1,"Delay":0,"Duration":90,"SkillName":"Attention","Value":4},
+    {"AbsoluteValue":true,"BuffType":"SkillRate","Chance":1,"Delay":90,"Duration":90,"SkillName":"Attention","Value":8},
+    {"AbsoluteValue":true,"BuffType":"SkillRate","Chance":1,"Delay":180,"Duration":180,"SkillName":"Attention","Value":16},
+    {"AbsoluteValue":true,"BuffType":"SkillRate","Chance":1,"Delay":360,"Duration":360,"SkillName":"Attention","Value":32},
+    {"AbsoluteValue":true,"BuffType":"SkillRate","Chance":1,"Delay":720,"Duration":33550336,"SkillName":"Attention","Value":64}]
+  },
+  "medicalInfo": {
+    "maxHpResource": 10,
+    "hpResourceRate": null,
+    "medUseTime": 2,
+    "medEffectType": "duringUse",
+    "effects_health": null,
+    "effects_damage": null,
+    "bodyPartPriority": null
+  }
+}

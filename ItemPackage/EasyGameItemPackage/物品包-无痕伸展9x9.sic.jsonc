@@ -1,0 +1,77 @@
+{
+  "$type": "common",
+  "enable": true,
+  "baseInfo": {
+    "id": "5f9d9b8e6f8b4a1e30000001",
+    "type": "common",
+    "name": "物品包-无痕伸展9x9",
+    "description": null,
+    "locales": {
+      "ch": {
+        "name": "无痕伸展物品包 (9x9)",
+        "shortName": "无痕包",
+        "description": "采用了特殊空间折叠技术的高级物品包。其内部容积远超外部尺寸，提供9x9的储物空间，同时整体重量为负，能显著减轻携带者的负重。专为需要携带大量物资但又不便显眼的场合设计。"
+      },
+      "en": {
+        "name": "Undetectable Extension Pouch (9x9)",
+        "shortName": "UE Pouch",
+        "description": "An advanced item pouch utilizing specialized space-folding technology. Its internal storage capacity far exceeds its external dimensions, providing a 9x9 grid space. Remarkably, it possesses negative weight, significantly reducing the carrier's overall burden. Designed for situations requiring the transport of substantial supplies while maintaining a low profile."
+      }
+    },
+    "author": "Suntion",
+    "license": "MIT",
+    "order": 0,
+    "parentId": "5795f317245977243854e041",
+    "handbookParentId": "5b5f6fa186f77409407a7eb7",
+    "cloneId": "5c093e3486f77430cb02e593",
+    "traderId": "5a7c2eca46aef81a7ca2145d",
+    "fleaPrice": 706666,
+    "handbookPrice": 666666,
+    "prefab": null,
+    "usePrefab": null,
+    "canSellOnRagfair": true,
+    "allowAll": true,
+    "canFilter": null,
+    "cantFilter": null
+  },
+  "attributeInfo": {
+    "weight": -5,
+    "width": 1,
+    "height": 1,
+    "rarityPvE": "Common",
+    "discardLimit": null,
+    "itemSound": null,
+    "stackMaxSize": 1,
+    "examinedByDefault": false,
+    "examineTime": 5,
+    "lootExperience": 500,
+    "examineExperience": 1000
+  },
+  "propertyOverride": {
+    "CanPutIntoDuringTheRaid": true,
+    "Grids": [
+        {
+          "_id": "5f9d9b8e6f8b4a1e30000002",
+          "_name": "main",
+          "_parent": "5f9d9b8e6f8b4a1e30000001",
+          "_props": {
+            "cellsH": 9,
+            "cellsV": 9,
+            "filters": [
+              {
+                "ExcludedFilter": [],
+                "Filter": [
+                  "54009119af1c881c07000029"
+                ]
+              }
+            ],
+            "isSortingTable": false,
+            "maxCount": 0,
+            "maxWeight": 0,
+            "minCount": 0
+          },
+          "_proto": "55d329c24bdc2d892f8b4567"
+        }
+      ]
+  }
+}

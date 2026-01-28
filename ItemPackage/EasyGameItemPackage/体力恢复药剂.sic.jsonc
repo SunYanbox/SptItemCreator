@@ -1,0 +1,82 @@
+{
+  "$type": "medical",
+  "enable": true,
+  "baseInfo": {
+    "id": "6900c8e93ea877662a000013",
+    "type": "medical",
+    "name": "体力恢复药剂",
+    "description": null,
+    "locales": {
+      "ch": {
+        "name": "体力恢复药剂",
+        "shortName": "体力药剂",
+        "description": "一种专门用于快速恢复体力的实验性药剂。它能够在极短时间内有效提升使用者的耐力恢复速率，帮助你更快地从疲劳中恢复过来。该药剂经过优化设计，能显著减少体力透支后的恢复时间。使用后可能伴随轻微的副作用，建议在安全环境下使用。"
+      },
+      "en": {
+        "name": "Stamina Recovery Elixir",
+        "shortName": "Stamina Elixir",
+        "description": "An experimental elixir specifically formulated for rapid stamina recovery. It effectively increases the user's stamina regeneration rate in a very short time, helping you recover from exhaustion more quickly. This elixir is optimized to significantly reduce recovery time after physical exertion. Mild side effects may occur after use; it is recommended to use in a safe environment."
+      }
+    },
+    "author": "Suntion",
+    "license": "MIT",
+    "order": 0,
+    "parentId": "5448f3a64bdc2d60728b456a",
+    "handbookParentId": "5b47574386f77428ca22b33a",
+    "cloneId": "5c0e531d86f7747fa23f4d42",
+    "traderId": "54cb57776803fa99248b456e",
+    "fleaPrice": 19e4,
+    "handbookPrice": 17e4,
+    "prefab": null,
+    "usePrefab": null,
+    "canSellOnRagfair": true,
+    "allowAll": false,
+    "canFilter": [],
+    "cantFilter": []
+  },
+  "attributeInfo": {
+    "weight": 0.4,
+    "width": 1,
+    "height": 1,
+    "rarityPvE": "Rare",
+    "discardLimit": null,
+    "itemSound": null,
+    "stackMaxSize": null,
+    "examinedByDefault": true,
+    "examineTime": 2,
+    "lootExperience": 500,
+    "examineExperience": 50
+  },
+  "buffsInfo": {
+    "stimulatorBuffs": "BuffsSuntionElixirOfStrength",
+    "buffs": [
+      {
+        "AbsoluteValue": true,
+        "BuffType": "StaminaRate",
+        "Chance": 1,
+        "Delay": 1,
+        "Duration": 10,
+        "SkillName": "",
+        "Value": 12
+      },
+      {
+        "AbsoluteValue": true,
+        "BuffType": "HandsTremor",
+        "Chance": 1,
+        "Delay": 0,
+        "Duration": 5,
+        "SkillName": "",
+        "Value": 0
+      }
+    ]
+  },
+  "medicalInfo": {
+    "maxHpResource": 10,
+    "hpResourceRate": null,
+    "medUseTime": null,
+    "medEffectType": "duringUse",
+    "effects_health": null,
+    "effects_damage": null,
+    "bodyPartPriority": null
+  }
+}
