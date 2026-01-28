@@ -6,4 +6,8 @@ public static class SicType
     public const string DrinkOrFood = "drinkOrFood";
     public const string Medical = "medical";
     public const string Ammo = "ammo";
+    
+    public static readonly string[] AllSicType = [
+        Common, DrinkOrFood, Medical, Ammo
+    ];
 }

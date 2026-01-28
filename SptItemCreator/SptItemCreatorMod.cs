@@ -1,13 +1,13 @@
 ﻿using SptItemCreator.NewItemClasses;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
-using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Mod;
+using SPTarkov.Server.Core.Models.Utils;
+using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Services.Mod;
-using SPTarkov.Server.Core.Utils;
 using SptItemCreator.Abstracts;
 
 namespace SptItemCreator;
@@ -15,18 +15,13 @@ namespace SptItemCreator;
 /// <summary>
 /// 在SPT数据库加载后第一时间加载
 /// </summary>
-/// <param name="localLog"></param>
-/// <param name="modHelper"></param>
-/// <param name="itemHelper"></param>
-/// <param name="databaseService"></param>
 [Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
-public class SptItemCreator(
+public class SptItemCreatorMod(
     LocalLog localLog,
-    ModHelper modHelper,
-    JsonUtil jsonUtil,
+    HttpServer httpServer,
     DataLoader dataLoader,
-    ItemHelper itemHelper,
     DatabaseService databaseService,
+    ISptLogger<SptItemCreatorMod> logger,
     CustomItemService customItemService): IOnLoad
 {
     public void CreateTask<T>(Dictionary<string, T> data, string taskName) where T: NewItemCommon
@@ -47,12 +42,12 @@ public class SptItemCreator(
         AbstractNewItem.DatabaseService ??= databaseService;
         
         localLog.LocalLogMsg(LocalLogType.Info, $"开始创建新物品任务...");
-        CreateTask<NewItemCommon>(dataLoader.NewItemCommon, "通用物品");
-        CreateTask<NewItemDrinkOrFood>(dataLoader.NewItemDrinkOrDrugs, "食物/饮品");
-        CreateTask<NewItemMedical>(dataLoader.NewItemMedical, "药品");
-        CreateTask<NewItemAmmo>(dataLoader.NewItemAmmo, "弹药");
+        CreateTask(dataLoader.NewItemCommon, "通用物品");
+        CreateTask(dataLoader.NewItemDrinkOrDrugs, "食物/饮品");
+        CreateTask(dataLoader.NewItemMedical, "药品");
+        CreateTask(dataLoader.NewItemAmmo, "弹药");
         
-
+        logger.Info($"{DateTime.Now.ToLongDateString()} {DateTime.Now.ToLongTimeString()} WeiUI run at {httpServer.ListeningUrl()}/SIC");
         return Task.CompletedTask;
         // 调试用, 整理所有类型的物品数据
         // localLog.LocalLogMsg(LocalLogType.Warn, "如果你发现服务端卡死, 这是由于调试用任务未被正确关闭, 请将包含该提示的日志告知作者");
@@ -170,16 +165,15 @@ public class SptItemCreator(
     {
         assort.Items.Add(item);
         assort.LoyalLevelItems[item.Id] = loyalLevel;
-        assort.BarterScheme[item.Id] = new List<List<BarterScheme>>
-        {
-            new List<BarterScheme>
-            {
-                new BarterScheme
+        assort.BarterScheme[item.Id] =
+        [
+            [
+                new BarterScheme()
                 {
                     Count = price,
                     Template = "5449016a4bdc2d6f028b456f" // 卢布
                 }
-            }
-        };
+            ]
+        ];
     }
 }

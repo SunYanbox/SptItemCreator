@@ -1,8 +1,12 @@
+using SPTarkov.DI.Annotations;
+using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Spt.Mod;
+using SPTarkov.Server.Web;
 
 namespace SptItemCreator;
 
-public record ModMetadata : AbstractModMetadata
+[Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
+public record ModMetadata : AbstractModMetadata, IModWebMetadata
 {
     public override string ModGuid { get; init; } = "com.suntion.sptitemcreator";
     public override string Name { get; init; } = "SptItemCreator";
@@ -14,7 +18,7 @@ public record ModMetadata : AbstractModMetadata
     
     public override List<string>? Incompatibilities { get; init; }
     public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
-    public override string? Url { get; init; } = "https://github.com/SunYanbox/SptItemCreator";
+    public override string? Url { get; init; } = "https://forge.sp-tarkov.com/mod/2565/spt-item-creator";
     public override bool? IsBundleMod { get; init; } = true;
     public override string License { get; init; } = "CC-BY-SA";
 }

@@ -1,0 +1,114 @@
+@using SPTarkov.Server.Core.Models.Common
+@using SPTarkov.Server.Core.Models.Spt.Mod
+<MudCard Outlined="true" Class="overflow-y-auto pa-4 ma-2">
+    <MudCardHeader>BaseInfo</MudCardHeader>
+    
+    @* Id, 名字, 描述 *@
+    <MudStack Row="true" AlignItems="AlignItems.Center">
+        <MudTooltip Text="BaseInfo.Id">
+            <MudTextField Typo="Typo.body1" @bind-Value="BaseInfo.Id" Label="Id*" 
+                          Variant="Variant.Filled" Clearable="true"/>
+        </MudTooltip>
+        
+        <MudTooltip Text="BaseInfo.Name">
+            <MudTextField Typo="Typo.body1" @bind-Value="BaseInfo.Name" Label="名字" 
+                          Variant="Variant.Filled" Clearable="true"/>
+        </MudTooltip>
+    
+        <MudTooltip Text="BaseInfo.Description">
+            <MudTextField Typo="Typo.body1" @bind-Value="BaseInfo.Description" Label="描述" 
+                          Variant="Variant.Filled" Clearable="true"/>
+        </MudTooltip>
+    </MudStack>
+    
+    <MudTooltip Text="BaseInfo.Type">
+        <MudSelect T="string" @bind-Value="BaseInfo.Type" Typo="Typo.body1" Style="width: auto" Label="SicType*">
+            @foreach (string sicType in SicType.AllSicType)
+            {
+                <MudSelectItem Value="@sicType">@sicType</MudSelectItem>
+            }
+        </MudSelect>
+    </MudTooltip>
+    
+    <MudTooltip Text="BaseInfo.Locales">
+        <MudPaper MaxHeight="350px" Class="overflow-y-auto pa-4 ma-2">
+            <MudStack Row="true" AlignItems="AlignItems.Center">
+                <MudText>本地化数据</MudText>
+                <MudTooltip Text="必须为0或2字符，例如ch, en等">
+                    <MudTextField Typo="Typo.body2" @bind-Value="NewLocaleName" Label="新语言名称"
+                                  Variant="Variant.Filled" Clearable="true"/>
+                </MudTooltip>
+                <MudButton OnClick="@(() => OnCreateLocaleCallback())">创建本地化数据</MudButton>
+            </MudStack>
+            @if (BaseInfo.Locales is not null)
+            {
+                foreach ((string locale, LocaleDetails localeDetail) in BaseInfo.Locales)
+                {
+                    <MudStack Row="true" AlignItems="AlignItems.Center">
+                        <MudText Typo="Typo.body2">@locale</MudText>
+                        <MudTooltip Text="LocaleDetails.Name">
+                            <MudTextField Typo="Typo.body2" @bind-Value="localeDetail.Name" Label="名字"
+                                          Variant="Variant.Filled" Clearable="true"/>
+                        </MudTooltip>
+                        <MudTooltip Text="LocaleDetails.ShortName">
+                            <MudTextField Typo="Typo.body2" @bind-Value="localeDetail.ShortName" Label="简称"
+                                          Variant="Variant.Filled" Clearable="true"/>
+                        </MudTooltip>
+                        <MudTooltip Text="LocaleDetails.Description">
+                            <MudTextField Typo="Typo.body2" @bind-Value="localeDetail.Description" Label="描述"
+                                          Variant="Variant.Filled" Clearable="true"/>
+                        </MudTooltip>
+                        <MudButton OnClick="@(() => OnDeleteLocaleCallback(locale))">删除此语言</MudButton>
+                    </MudStack>
+                }
+            }
+        </MudPaper>
+    </MudTooltip>
+
+    <MudButton OnClick="@(() => OnCheckCallback())">检查数据</MudButton>
+</MudCard>
+
+@code {
+    [Parameter]
+    public required BaseInfo BaseInfo { get; set; }
+    private string? NewLocaleName { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        BaseInfo.Type ??= SicType.Common;
+    }
+
+    private void OnCheckCallback()
+    {
+        if (BaseInfo.Id?.Length != 24)
+        {
+            BaseInfo.Id = new MongoId();
+        }
+        BaseInfo.Type ??= SicType.Common;
+        if (BaseInfo.Name?.Length == 0)
+        {
+            BaseInfo.Name = null;
+        }
+        if (BaseInfo.Description?.Length == 0)
+        {
+            BaseInfo.Description = null;
+        }
+        
+    }
+
+    private void OnCreateLocaleCallback()
+    {
+        if (NewLocaleName?.Length == 2)
+        {
+            BaseInfo.Locales ??= new Dictionary<string, LocaleDetails>();
+            BaseInfo.Locales.TryAdd(NewLocaleName, new LocaleDetails());
+        }
+        NewLocaleName = null;
+    }
+
+    private void OnDeleteLocaleCallback(string locale)
+    {
+        BaseInfo.Locales?.Remove(locale);
+    }
+}
