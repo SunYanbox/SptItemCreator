@@ -1,10 +1,10 @@
 using System.Text.Json.Serialization;
-using SptItemCreator.abstracts;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Utils.Json.Converters;
+using SptItemCreator.Abstracts;
 
-namespace SptItemCreator.infoClasses;
+namespace SptItemCreator.InfoClasses;
 
 public record MedicalInfo : AbstractInfo
 {

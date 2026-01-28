@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using SptItemCreator.infoClasses;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Services;
+using SptItemCreator.InfoClasses;
 
 namespace SptItemCreator.NewItemClasses;
 

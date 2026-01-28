@@ -1,11 +1,12 @@
 using System.Text.Json;
-using SptItemCreator.abstracts;
 using SptItemCreator.NewItemClasses;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils;
+using SptItemCreator.Abstracts;
+using SptItemCreator.Enums;
 
 namespace SptItemCreator;
 

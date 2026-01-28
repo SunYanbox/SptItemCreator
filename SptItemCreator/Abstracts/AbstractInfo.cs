@@ -3,7 +3,7 @@ using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Services;
 
-namespace SptItemCreator.abstracts;
+namespace SptItemCreator.Abstracts;
 
 /// <summary>
 /// 抽象信息基类

@@ -1,8 +1,9 @@
 using System.Text.Json.Serialization;
-using SptItemCreator.abstracts;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
+using SptItemCreator.Abstracts;
+using SptItemCreator.Enums;
 
-namespace SptItemCreator.infoClasses;
+namespace SptItemCreator.InfoClasses;
 
 public record AttributeInfo: AbstractInfo
 {

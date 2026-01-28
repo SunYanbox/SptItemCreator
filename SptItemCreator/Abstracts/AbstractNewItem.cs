@@ -1,12 +1,12 @@
 using System.Text.Json.Serialization;
-using SptItemCreator.infoClasses;
-using SptItemCreator.NewItemClasses;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Services;
+using SptItemCreator.InfoClasses;
+using SptItemCreator.NewItemClasses;
 
-namespace SptItemCreator.abstracts;
+namespace SptItemCreator.Abstracts;
 
 /// <summary>
 /// 抽象新物品基类 

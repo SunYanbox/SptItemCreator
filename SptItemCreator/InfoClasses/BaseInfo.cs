@@ -1,11 +1,11 @@
 using System.Text.Json.Serialization;
 using SPTarkov.Server.Core.Models.Common;
-using SptItemCreator.abstracts;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Services;
+using SptItemCreator.Abstracts;
 
-namespace SptItemCreator.infoClasses;
+namespace SptItemCreator.InfoClasses;
 
 /// <summary>
 /// 新物品基础信息记录类

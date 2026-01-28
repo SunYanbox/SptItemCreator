@@ -222,7 +222,7 @@ public class LocalLog(ModHelper modHelper, ISptLogger<LocalLog> logger): IOnLoad
         return builder.ToString();
     }
 
-    private static void AppendEscapedValue(StringBuilder builder, object value)
+    private static void AppendEscapedValue(StringBuilder builder, object? value)
     {
         if (value == null)
         {
