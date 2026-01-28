@@ -2,6 +2,7 @@ site_name: SIC Wiki
   
 site_author: Suntion
 copyright: MIT
+site_dir: site/SptItemCreatorWiki
 
 
 theme:
