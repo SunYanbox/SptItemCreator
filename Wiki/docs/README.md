@@ -37,6 +37,7 @@
   - 货币 Tpl Id
   - 商人Id
   - handbookParentId 可选Id与对应类型
+  - ParentId常量
 #### 子弹相关常量
   - tracerColor(曳光弹颜色)可用的值
   - caliber(口径)可用的值
