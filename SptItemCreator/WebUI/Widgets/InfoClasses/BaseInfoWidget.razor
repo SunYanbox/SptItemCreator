@@ -36,7 +36,7 @@
     
     @* SicType *@
     <MudTooltip Text="BaseInfo.Type">
-        <MudSelect T="string" @bind-Value="BaseInfo.Type" Typo="Typo.body1" Style="width: auto" Label="SicType*">
+        <MudSelect T="string" Disabled="@Freeze" @bind-Value="BaseInfo.Type" Typo="Typo.body1" Style="width: auto" Label="SicType*">
             @foreach (string sicType in SicType.AllSicType)
             {
                 <MudSelectItem Value="@sicType">@sicType</MudSelectItem>
@@ -230,8 +230,10 @@
 </MudCard>
 
 @code {
-    [Parameter]
-    public required BaseInfo BaseInfo { get; set; }
+    /// <summary> 外部BaseInfo实例 </summary>
+    [Parameter] public required BaseInfo BaseInfo { get; set; }
+    /// <summary> 是否冻结SicType的修改 </summary>
+    [Parameter] public bool Freeze { get; set; }
     private static string? ModBundlesPath { get; set; }
     private string? NewLocaleName { get; set; }
     private string? CanFilterContainerId { get; set; }
