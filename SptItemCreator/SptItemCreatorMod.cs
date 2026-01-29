@@ -49,39 +49,6 @@ public class SptItemCreatorMod(
         
         logger.Info($"{DateTime.Now.ToLongDateString()} {DateTime.Now.ToLongTimeString()} WeiUI run at {httpServer.ListeningUrl()}/SIC");
         return Task.CompletedTask;
-        // 调试用, 整理所有类型的物品数据
-        // localLog.LocalLogMsg(LocalLogType.Warn, "如果你发现服务端卡死, 这是由于调试用任务未被正确关闭, 请将包含该提示的日志告知作者");
-        // var pathToMod = modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
-        // var classificationPath = Path.Combine(pathToMod, "Classification");
-        // Directory.CreateDirectory(classificationPath);
-        // foreach (var (name, mongoId) in ItemType.TypesDict)
-        // {
-        //     try
-        //     {
-        //         List<MongoId> tpls = itemHelper.GetItemTplsOfBaseType(mongoId.ToString()).ToList();
-        //         List<TemplateItem> items = new List<TemplateItem>();
-        //         foreach (var tpl in tpls)
-        //         {
-        //             var (tag, item) = itemHelper.GetItem(tpl);
-        //             if (tag)
-        //             {
-        //                 items.Add(item);
-        //             }
-        //
-        //             var content = jsonUtil.Serialize(items, true);
-        //             if (!string.IsNullOrEmpty(content))
-        //             {
-        //                 File.WriteAllText(Path.Combine(classificationPath, $"{name}.json"), content);
-        //             }
-        //         }
-        //     }
-        //     catch (Exception e)
-        //     {
-        //         localLog.LocalLogMsg(LocalLogType.Error, $"整理{name}类型的物品时出现错误: {e.Message}");
-        //         throw;
-        //     }
-        // }
-        // return Task.CompletedTask;
     }
 
     public void CreateNewItemTask(NewItemCommon? newItemBase)
