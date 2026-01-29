@@ -1,4 +1,6 @@
-﻿using SptItemCreator.NewItemClasses;
+﻿using System.Globalization;
+using MudBlazor.Services;
+using SptItemCreator.NewItemClasses;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Common;
@@ -20,6 +22,7 @@ public class SptItemCreatorMod(
     LocalLog localLog,
     HttpServer httpServer,
     DataLoader dataLoader,
+    WebApplicationBuilder builder,
     DatabaseService databaseService,
     ISptLogger<SptItemCreatorMod> logger,
     CustomItemService customItemService): IOnLoad
@@ -37,6 +40,7 @@ public class SptItemCreatorMod(
     
     public Task OnLoad()
     {
+        builder.Services.AddMudServices();
         AbstractInfo.LocalLog ??= localLog;
         AbstractNewItem.LocalLog ??= localLog;
         AbstractNewItem.DatabaseService ??= databaseService;

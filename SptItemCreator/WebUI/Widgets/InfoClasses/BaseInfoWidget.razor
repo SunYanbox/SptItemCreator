@@ -1,32 +1,30 @@
 @using SPTarkov.Server.Core.Models.Common
 @using SPTarkov.Server.Core.Models.Spt.Mod
+
+@inject ISnackbar Snackbar
+
 <MudCard Outlined="true" Class="overflow-y-auto pa-4 ma-2">
     <MudCardHeader>BaseInfo</MudCardHeader>
     
-    @* Id, 名字, 描述, 作者, 协议 *@
+    @* Id | ParentId | CloneId | HandbookParentId *@
     <MudStack Row="true" AlignItems="AlignItems.Center">
         <MudTooltip Text="BaseInfo.Id">
             <MudTextField Typo="Typo.body1" @bind-Value="BaseInfo.Id" Label="Id*" HelperText="物品的唯一MongoId类型Id"
                           Variant="Variant.Filled" Clearable="true"/>
         </MudTooltip>
         
-        <MudTooltip Text="BaseInfo.Name">
-            <MudTextField Typo="Typo.body1" @bind-Value="BaseInfo.Name" Label="名字" HelperText="没有提供locales时的物品名称, 默认为@(Default.BaseInfoName)"
-                          Variant="Variant.Filled" Clearable="true"/>
-        </MudTooltip>
-    
-        <MudTooltip Text="BaseInfo.Description">
-            <MudTextField Typo="Typo.body1" @bind-Value="BaseInfo.Description" Label="描述" HelperText="没有提供locales时的物品描述, 默认为'@(Default.BaseInfoDescription)'"
+        <MudTooltip Text="BaseInfo.ParentId">
+            <MudTextField Typo="Typo.body1" @bind-Value="BaseInfo.ParentId" Label="ParentId*" HelperText="物品的唯一MongoId类型ParentId"
                           Variant="Variant.Filled" Clearable="true"/>
         </MudTooltip>
         
-        <MudTooltip Text="BaseInfo.Author">
-            <MudTextField Typo="Typo.body1" @bind-Value="BaseInfo.Author" Label="作者" HelperText="默认为@(Default.BaseInfoAuthor)"
+        <MudTooltip Text="BaseInfo.CloneId">
+            <MudTextField Typo="Typo.body1" @bind-Value="BaseInfo.CloneId" Label="CloneId" HelperText="物品克隆的物品的Id"
                           Variant="Variant.Filled" Clearable="true"/>
         </MudTooltip>
         
-        <MudTooltip Text="BaseInfo.License">
-            <MudTextField Typo="Typo.body1" @bind-Value="BaseInfo.Author" Label="协议" HelperText="默认为@(Default.BaseInfoLicense)"
+        <MudTooltip Text="BaseInfo.HandbookParentId">
+            <MudTextField Typo="Typo.body1" @bind-Value="BaseInfo.HandbookParentId" Label="HandbookParentId" HelperText="物品手册类型Id"
                           Variant="Variant.Filled" Clearable="true"/>
         </MudTooltip>
     </MudStack>
@@ -40,6 +38,66 @@
             }
         </MudSelect>
     </MudTooltip>
+    
+    @* 名字, 描述, 作者, 协议, 加载顺序 *@
+    <MudStack Row="true" AlignItems="AlignItems.Center">
+        <MudTooltip Text="BaseInfo.Name">
+            <MudTextField Typo="Typo.body1" @bind-Value="BaseInfo.Name" Label="名字" HelperText="@($"没有提供locales时的物品名称, 默认为{Default.BaseInfoName}")"
+                          Variant="Variant.Filled" Clearable="true"/>
+        </MudTooltip>
+
+        <MudTooltip Text="BaseInfo.Description">
+            <MudTextField Typo="Typo.body1" @bind-Value="BaseInfo.Description" Label="描述" HelperText="@($"没有提供locales时的物品描述, 默认为'{Default.BaseInfoDescription}'")"
+                          Variant="Variant.Filled" Clearable="true"/>
+        </MudTooltip>
+
+        <MudTooltip Text="BaseInfo.Author">
+            <MudTextField Typo="Typo.body1" @bind-Value="BaseInfo.Author" Label="作者" HelperText="@($"默认为{Default.BaseInfoAuthor}")"
+                          Variant="Variant.Filled" Clearable="true"/>
+        </MudTooltip>
+
+        <MudTooltip Text="BaseInfo.License">
+            <MudTextField Typo="Typo.body1" @bind-Value="BaseInfo.Author" Label="协议" HelperText="@($"默认为{Default.BaseInfoLicense}")"
+                          Variant="Variant.Filled" Clearable="true"/>
+        </MudTooltip>
+
+        <MudTooltip Text="BaseInfo.Order">
+            <MudNumericField @bind-Value="BaseInfo.Order" Label="加载顺序"
+                             HelperText="影响新物品的创建顺序, 数值越大加载越慢"
+                             Variant="Variant.Filled" Min="0" Max="@int.MaxValue"/>
+        </MudTooltip>
+    </MudStack>
+    
+    <MudStack Row="true" AlignItems="AlignItems.Center">
+        <MudTooltip Text="BaseInfo.TraderId">
+            <MudTextField Typo="Typo.body1" @bind-Value="BaseInfo.TraderId" Label="TraderId" HelperText="售卖该物品的商人Id"
+                          Variant="Variant.Filled" Clearable="true"/>
+        </MudTooltip>
+        
+        <MudTooltip Text="BaseInfo.FleaPrice">
+            <MudNumericField @bind-Value="BaseInfo.FleaPrice" Label="跳蚤市场价格"
+                             Variant="Variant.Filled" Min="1" Max="@double.MaxValue"/>
+        </MudTooltip>
+        
+        <MudTooltip Text="BaseInfo.HandbookPrice">
+            <MudNumericField @bind-Value="BaseInfo.HandbookPrice" Label="手册价格"
+                             Variant="Variant.Filled" Min="1" Max="@double.MaxValue"/>
+        </MudTooltip>
+    </MudStack>
+    
+    <MudStack Row="true" AlignItems="AlignItems.Center">
+        <MudTooltip Text="BaseInfo.CanSellOnRagfair">
+            <MudSwitch @bind-Value="BaseInfo.CanSellOnRagfair">是否允许在跳蚤市场售卖</MudSwitch>
+        </MudTooltip>
+        
+        <MudTooltip Text="BaseInfo.AllowAll">
+            <MudSwitch @bind-Value="BaseInfo.AllowAll">一键允许所有容器放置本物品</MudSwitch>
+        </MudTooltip>
+    </MudStack>
+    
+    @* TODO: Prefab, UsePrefab *@
+    
+    @* TODO: CanFilter, CantFilter *@
     
     @* 本地化数据 *@
     <MudTooltip Text="BaseInfo.Locales">
@@ -92,9 +150,31 @@
 
     private void OnCheckCallback()
     {
+        List<string> warning = [];
         if (BaseInfo.Id?.Length != 24)
         {
             BaseInfo.Id = new MongoId();
+        }
+        if (BaseInfo.ParentId?.Length != 24)
+        {
+            BaseInfo.ParentId = null;
+        }
+        if (BaseInfo.CloneId?.Length != 24)
+        {
+            BaseInfo.CloneId = null;
+        }
+        if (BaseInfo.HandbookParentId?.Length != 24)
+        {
+            BaseInfo.HandbookParentId = null;
+        }
+        if (BaseInfo.TraderId?.Length != 24)
+        {
+            BaseInfo.TraderId = null;
+        }
+
+        if (BaseInfo.ParentId is null)
+        {
+            warning.Add("ParentId没有设置非空且24个字符长度的MongoId!");
         }
         BaseInfo.Type ??= SicType.Common;
         if (BaseInfo.Name?.Length == 0)
@@ -105,7 +185,15 @@
         {
             BaseInfo.Description = null;
         }
+
+        if (BaseInfo.FleaPrice < 1) BaseInfo.FleaPrice = 1;
+        if (BaseInfo.HandbookPrice < 1) BaseInfo.HandbookPrice = 1;
         
+
+        if (warning.Count > 0)
+        {
+            Snackbar.Add("警告: " + string.Join(", ", warning));
+        }
     }
 
     private void OnCreateLocaleCallback()
