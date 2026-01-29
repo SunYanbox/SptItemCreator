@@ -6,12 +6,12 @@ using SptItemCreator.Abstracts;
 
 namespace SptItemCreator.InfoClasses;
 
-public record MedicalInfo : AbstractInfo
+public sealed record MedicalInfo : AbstractInfo
 {
     [JsonPropertyName("maxHpResource")]
-    public virtual int? MaxHpResource { get; set; }
+    public int? MaxHpResource { get; set; }
     [JsonPropertyName("hpResourceRate")]
-    public virtual double? HpResourceRate { get; set; }
+    public double? HpResourceRate { get; set; }
     [JsonPropertyName("medUseTime")]
     public double? MedUseTime { get; set; }
     [JsonPropertyName("medEffectType")]
@@ -27,7 +27,7 @@ public record MedicalInfo : AbstractInfo
     public Dictionary<DamageEffectType, EffectsDamageProperties>? EffectsDamage { get; set; }
     /// <summary>E.g. "Stomach" or "RightLeg"</summary>
     [JsonPropertyName("bodyPartPriority")]
-    public virtual List<string>? BodyPartPriority { get; set; }
+    public List<string>? BodyPartPriority { get; set; }
     
     public override void UpdateProperties(TemplateItemProperties properties)
     {

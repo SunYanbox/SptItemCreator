@@ -1,0 +1,211 @@
+@using SPTarkov.Server.Core.Models.Eft.Common.Tables
+@using SPTarkov.Server.Core.Models.Enums
+@using SPTarkov.Server.Core.Utils.Cloners
+@inject ICloner Cloner
+
+<MudCard Outlined="true" Class="overflow-y-auto pa-4 ma-2">
+    <MudCardHeader><MudText Typo="Typo.h4">MedicalInfo</MudText></MudCardHeader>
+    
+    <MudStack Row="true" AlignItems="AlignItems.Center">
+
+        <MudTooltip Text="MedicalInfo.MaxHpResource">
+            <MudNumericField @bind-Value="MedicalInfo.MaxHpResource" Label="最大急救包耐久/使用次数"
+                             HelperText="整数, 针剂一般为0；急救包一般400+；手术包一般3~15" Variant="Variant.Filled" 
+                             Min="0" Max="@int.MaxValue" Clearable="true"/>
+            
+            <MudNumericField @bind-Value="MedicalInfo.HpResourceRate" Label="生命值资源恢复速率"
+                             HelperText="双精度浮点数类型, 常见50，60，70，85，175；Sanitar的该值为1" Variant="Variant.Filled" 
+                             Min="0" Max="@int.MaxValue" Clearable="true"/>
+            
+            <MudTooltip Text="MedicalInfo.MedUseTime">
+                <MudNumericField @bind-Value="MedicalInfo.MedUseTime" Label="药品使用时间"
+                                 HelperText="双精度浮点数类型, 单位: 秒" Variant="Variant.Filled" Min="0" Max="@double.MaxValue" Clearable="true"/>
+            </MudTooltip>
+            
+            <MudTooltip Text="MedicalInfo.MedEffectType">
+                <MudSelect T="string" @bind-Value="MedicalInfo.MedEffectType" Variant="Variant.Filled" Clearable="true" 
+                           Label="药品生效类型" HelperText="药品生效类型">
+                    @foreach (string effectType in new [] { "afterUse", "duringUse" } )
+                    {
+                        <MudSelectItem Value="@effectType">@effectType</MudSelectItem>
+                    }
+                </MudSelect>
+            </MudTooltip>
+            
+            @* EffectsHealth, EffectsDamage *@
+            <MudStack Row="true" AlignItems="AlignItems.Center">
+                <MudTooltip Text="MedicalInfo.EffectsHealth">
+                    <MudCard Style="max-height: 300px" Class="overflow-y-auto pa-4 ma-2">
+                        <MudCardHeader>生命值恢复效果配置</MudCardHeader>
+                        <MudCardContent>
+                            <MudText>目前没有需要给这个赋值的情况</MudText>
+                        </MudCardContent>
+                    </MudCard>
+                </MudTooltip>
+                <MudTooltip Text="MedicalInfo.EffectsDamage">
+                    <MudCard Style="max-height: 300px" Class="overflow-y-auto pa-4 ma-2">
+                        <MudCardHeader>伤害治疗效果配置</MudCardHeader>
+                        <MudCardContent>
+                            <MudStack Row="true" AlignItems="AlignItems.Center">
+                                <MudSelect T="DamageEffectType?" @bind-Value="DamageEffectType" Variant="Variant.Filled" Label="DamageEffectType">
+                                    @foreach (DamageEffectType damageEffectType in DamageEffectTypeAll
+                                                  .Where(x => !(MedicalInfo.EffectsDamage?.ContainsKey(x) ?? false)))
+                                    {
+                                        <MudSelectItem T="DamageEffectType?" Value="@damageEffectType">@damageEffectType</MudSelectItem>
+                                    }
+                                </MudSelect>
+                                <MudButton OnClick="@(() => OnCreateDamageEffectType())">创建伤害治疗效果配置</MudButton>
+                                <MudButton OnClick="@(() => MedicalInfo.EffectsDamage?.Clear())">清空伤害治疗效果配置</MudButton>
+                            </MudStack>
+                            @if (MedicalInfo.EffectsDamage is not null)
+                            {
+                                foreach ((DamageEffectType damageEffectType, EffectsDamageProperties properties) in MedicalInfo.EffectsDamage)
+                                {
+                                    <MudStack Row="true" AlignItems="AlignItems.Center">
+                                        <MudText>@damageEffectType</MudText>
+                                        <MudTooltip Text="EffectsDamageProperties.Value">
+                                            <MudNumericField @bind-Value="properties.Value" Label=""
+                                                             HelperText="双精度浮点数, 一般只用于能量(Energy)或水分(Hydration)" Variant="Variant.Filled" Min="@double.MinValue" Max="@double.MaxValue" Clearable="true"/>
+                                        </MudTooltip>
+                                        <MudTooltip Text="EffectsDamageProperties.Delay">
+                                            <MudNumericField @bind-Value="properties.Delay" Label="延迟"
+                                                             HelperText="双精度浮点数, 单位: 秒" Variant="Variant.Filled" Min="@double.MinValue" Max="@double.MaxValue" Clearable="true"/>
+                                        </MudTooltip>
+                                        <MudTooltip Text="EffectsDamageProperties.Duration">
+                                            <MudNumericField @bind-Value="properties.Duration" Label="持续时间"
+                                                             HelperText="双精度浮点数, 单位: 秒" Variant="Variant.Filled" Min="@double.MinValue" Max="@double.MaxValue" Clearable="true"/>
+                                        </MudTooltip>
+                                        <MudTooltip Text="EffectsDamageProperties.FadeOut">
+                                            <MudNumericField @bind-Value="properties.FadeOut" Label="淡出"
+                                                             HelperText="双精度浮点数, 除了注射器的一般都设置为0, 常见0, 5, 单位: 秒" Variant="Variant.Filled" Min="@double.MinValue" Max="@double.MaxValue" Clearable="true"/>
+                                        </MudTooltip>
+                                        <MudTooltip Text="EffectsDamageProperties.Cost">
+                                            <MudNumericField @bind-Value="properties.Cost" Label="消耗"
+                                                             HelperText="仅急救包使用, 单次使用消耗的耐久值" Variant="Variant.Filled" Min="@double.MinValue" Max="@double.MaxValue" Clearable="true"/>
+                                        </MudTooltip>
+                                        <MudTooltip Text="EffectsDamageProperties.HealthPenaltyMin">
+                                            <MudNumericField @bind-Value="properties.HealthPenaltyMin" Label="健康惩罚下限"
+                                                             HelperText="急救包一般有但赋值0, 一般用于手术包, 注射器不需要" Variant="Variant.Filled" Min="@double.MinValue" Max="@double.MaxValue" Clearable="true"/>
+                                        </MudTooltip>
+                                        <MudTooltip Text="EffectsDamageProperties.HealthPenaltyMax">
+                                            <MudNumericField @bind-Value="properties.HealthPenaltyMax" Label="健康惩罚上限"
+                                                             HelperText="急救包一般有但赋值0, 一般用于手术包, 注射器不需要" Variant="Variant.Filled" Min="@double.MinValue" Max="@double.MaxValue" Clearable="true"/>
+                                        </MudTooltip>
+                                        <MudButton OnClick="@(() => OnDeleteDamageEffectType(damageEffectType))">删除此效果</MudButton>
+                                    </MudStack>
+                                }
+                            }
+                        </MudCardContent>
+                    </MudCard>
+                </MudTooltip>
+            </MudStack>
+            
+            @* BodyPartPriority *@
+            <MudTooltip Text="MedicalInfo.BodyPartPriority">
+                <MudStack Row="true" AlignItems="AlignItems.Center">
+                    <MudSelect T="string" @bind-Value="BodyPart" Variant="Variant.Filled" Clearable="true"
+                               Label="手术包治疗优先级" HelperText="手术包治疗身体部位的优先级">
+                        @foreach (string bodyPart in BodyPartEnum.Where(x => !BodyPartPrioritySet.Contains(x)))
+                        {
+                            <MudSelectItem Value="@bodyPart">@bodyPart</MudSelectItem>
+                        }
+                    </MudSelect>
+                    <MudButton OnClick="@(() => OnCreateBodyPart())">添加身体部位</MudButton>
+                    <MudButton OnClick="@(() =>
+                                        {
+                                            BodyPartPriorityList.Clear();
+                                            BodyPartPrioritySet.Clear();
+                                        })">清空列表</MudButton>
+                </MudStack>
+                <MudStack Row="true" AlignItems="AlignItems.Center">
+                    @foreach (string bodyPart in BodyPartPriorityList)
+                    {
+                        <MudText>@bodyPart</MudText>
+                        <MudButton OnClick="@(() => OnDeleteBodyPart(bodyPart))">删除部位</MudButton>
+                    }
+                </MudStack>
+            </MudTooltip>
+            
+        </MudTooltip>
+    </MudStack>
+    
+    <MudButton OnClick="@(() => OnCheckCallback())">检查数据</MudButton>
+</MudCard>
+
+@code {
+    /// <summary> 外部MedicalInfo实例 </summary>
+    [Parameter] public required MedicalInfo MedicalInfo { get; set; }
+    /// <summary> 要添加的身体部位 </summary>
+    private string? BodyPart { get; set; }
+    /// <summary> 添加的身体部位优先级信息(优先级队列) </summary>
+    private List<string> BodyPartPriorityList { get; } = [];
+    /// <summary> 添加的身体部位优先级信息(方便查询) </summary>
+    private HashSet<string> BodyPartPrioritySet { get; } = [];
+    /// <summary> 要添加的DamageEffectType </summary>
+    private DamageEffectType? DamageEffectType { get; set; }
+    /// <summary> DamageEffectType的所有枚举 </summary>
+    private HashSet<DamageEffectType> DamageEffectTypeAll { get; }
+     = Enum.GetValues(typeof(DamageEffectType)).Cast<DamageEffectType>().ToHashSet();
+    
+    private void OnCreateBodyPart()
+    {
+        if (BodyPart is not null && BodyPartPrioritySet.Add(BodyPart))
+        {
+            BodyPartPriorityList.Add(BodyPart);
+            BodyPart = null;
+        }
+    }
+    
+    private void OnCreateDamageEffectType()
+    {
+        if (DamageEffectType is null) return;
+        MedicalInfo.EffectsDamage ??= new Dictionary<DamageEffectType, EffectsDamageProperties>();
+        if (!MedicalInfo.EffectsDamage.ContainsKey(DamageEffectType.Value))
+        {
+            MedicalInfo.EffectsDamage.Add(
+                DamageEffectType.Value,
+                new EffectsDamageProperties()
+            );
+        }
+        DamageEffectType = null;
+    }
+
+    private void OnDeleteBodyPart(string bodyPart)
+    {
+        if (BodyPartPrioritySet.Remove(bodyPart))
+        {
+            BodyPartPriorityList.Remove(bodyPart);
+        }
+    }
+    
+    private void OnDeleteDamageEffectType(DamageEffectType damageEffectType)
+    {
+        MedicalInfo.EffectsDamage?.Remove(damageEffectType);
+    }
+
+    private static readonly HashSet<string> BodyPartEnum =
+    [
+        "Stomach",
+        "RightLeg",
+        "LeftLeg",
+        "RightArm",
+        "LeftArm"
+    ]; 
+    
+    private Task OnCheckCallback()
+    {
+        if (BodyPartPriorityList.Count > 0)
+        {
+            MedicalInfo.BodyPartPriority = Cloner.Clone(BodyPartPriorityList);
+        }
+        return Task.CompletedTask;
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        MedicalInfo.EffectsHealth ??= [];
+        MedicalInfo.EffectsDamage ??= new Dictionary<DamageEffectType, EffectsDamageProperties>();
+    }
+
+}
