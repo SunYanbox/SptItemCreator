@@ -2,7 +2,7 @@
 
 > 赋值为下面出现的中文键或英文值均可
 >
-> 也可以赋值为`通用声音`或`generic`，中文键仅限本模组使用
+> 也可以赋值为`通用声音`或`generic`，中文键仅限本模组除了使用propertyOverride以外的字段使用
 
 ```c#
 public static class ItemSoundData
