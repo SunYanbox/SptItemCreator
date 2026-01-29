@@ -267,19 +267,19 @@
         {
             warning.Add($"BaseInfo.Id({BaseInfo.Id})是无效MongoId");
         }
-        if (IsNotNullAndValid(BaseInfo.ParentId))
+        if (!IsNotNullAndValid(BaseInfo.ParentId))
         {
             BaseInfo.ParentId = null;
         }
-        if (IsNotNullAndValid(BaseInfo.CloneId))
+        if (!IsNotNullAndValid(BaseInfo.CloneId))
         {
             BaseInfo.CloneId = null;
         }
-        if (IsNotNullAndValid(BaseInfo.HandbookParentId))
+        if (!IsNotNullAndValid(BaseInfo.HandbookParentId))
         {
             BaseInfo.HandbookParentId = null;
         }
-        if (IsNotNullAndValid(BaseInfo.TraderId))
+        if (!IsNotNullAndValid(BaseInfo.TraderId))
         {
             BaseInfo.TraderId = null;
         }
