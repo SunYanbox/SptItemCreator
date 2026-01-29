@@ -22,4 +22,8 @@ public static class Default
     public const double BaseInfoFleaPriceMinimum = 1.000000;
     /// <summary> 默认新物品手册最低价格(1) </summary>
     public const double BaseInfoHandbookPriceMinimum = 1.000000;
+    /// <summary> 默认ParentId缓存更新时间 </summary>
+    public const double ParentIdCacheUpdateTime = 90 * 60 * 1000;
+    /// <summary> 默认缓存系统更新/加载时间 </summary>
+    public const long CacheSystemUpdateTime = 5 * 60 * 1000;
 }

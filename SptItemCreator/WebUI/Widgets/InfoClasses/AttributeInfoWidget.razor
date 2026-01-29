@@ -1,3 +1,5 @@
+@inject SPTDataCacheService SPTDataCacheService
+
 <MudCard Outlined="true" Class="overflow-y-auto pa-4 ma-2">
     <MudCardHeader><MudText Typo="Typo.h4">AttributeInfo</MudText></MudCardHeader>
     
@@ -17,19 +19,22 @@
                              HelperText="新物品的高度" Variant="Variant.Filled" Min="1" Max="@int.MaxValue" Clearable="true"/>
         </MudTooltip>
         
-        <MudTooltip Text="AttributeInfo.RarityPvE">
-            <MudSelect T="string" @bind-Value="AttributeInfo.RarityPvE" Variant="Variant.Filled" Clearable="true" Label="RarityPvE*" HelperText="物品稀有度">
-                @foreach (string rarity in ItemRarityData.RarityMapping.Keys)
-                {
-                    <MudSelectItem Value="@rarity">@rarity</MudSelectItem>
-                }
-            </MudSelect>
-        </MudTooltip>
         
         <MudTooltip Text="AttributeInfo.DiscardLimit">
             <MudNumericField @bind-Value="AttributeInfo.DiscardLimit" Label="丢弃限制"
                              HelperText="丢弃限制, 常见-1, 0, 1, 2" Variant="Variant.Filled" 
                              Min="@double.MinValue" Max="@double.MaxValue" Clearable="true"/>
+        </MudTooltip>
+    </MudStack>
+    
+    <MudStack Row="true" AlignItems="AlignItems.Center">
+        <MudTooltip Text="AttributeInfo.RarityPvE">
+            <MudSelect T="string" @bind-Value="AttributeInfo.RarityPvE" Variant="Variant.Filled" Clearable="true" Label="RarityPvE*" HelperText="物品稀有度">
+                @foreach (string rarity in ItemRarityData.RarityMapping.Keys)
+                {
+                <MudSelectItem Value="@rarity">@rarity</MudSelectItem>
+                }
+            </MudSelect>
         </MudTooltip>
         
         <MudTooltip Text="AttributeInfo.ItemSound">
@@ -41,16 +46,20 @@
             </MudSelect>
         </MudTooltip>
         
+        <MudTooltip Text="AttributeInfo.BackgroundColor">
+            <MudSelect T="string" @bind-Value="AttributeInfo.BackgroundColor" Clearable="true" Style="min-width: 20ch" Variant="Variant.Filled" Label="物品背景颜色" HelperText="物品背景颜色">
+                @foreach (string backgroundColor in SPTDataCacheService.BackgroundColorCache!)
+                {
+                    <MudSelectItem Value="@backgroundColor">@backgroundColor</MudSelectItem>
+                }
+            </MudSelect>
+        </MudTooltip>
     </MudStack>
     
     <MudStack Row="true" AlignItems="AlignItems.Center">
         <MudTooltip Text="AttributeInfo.StackMaxSize">
             <MudNumericField @bind-Value="AttributeInfo.StackMaxSize" Label="最大堆叠数"
                              HelperText="最大堆叠数" Variant="Variant.Filled" Min="1" Max="@int.MaxValue" Clearable="true"/>
-        </MudTooltip>
-        
-        <MudTooltip Text="BaseInfo.ExaminedByDefault">
-            <MudSwitch Color="Color.Warning" @bind-Value="AttributeInfo.ExaminedByDefault">是否默认已检视</MudSwitch>
         </MudTooltip>
         
         <MudTooltip Text="AttributeInfo.ExamineTime">
@@ -98,6 +107,7 @@
     {
         base.OnInitialized();
         AttributeInfo.ItemSound ??= "通用声音";
+        AttributeInfo.RarityPvE ??= "普通";
         AttributeInfo.ExaminedByDefault ??= true;
     }
 

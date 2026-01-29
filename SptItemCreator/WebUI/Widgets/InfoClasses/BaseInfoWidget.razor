@@ -7,6 +7,7 @@
 
 @inject ModHelper ModHelper
 @inject ISnackbar Snackbar
+@inject SPTDataCacheService SPTDataCacheService
 
 <MudCard Outlined="true" Class="overflow-y-auto pa-4 ma-2">
     <MudCardHeader><MudText Typo="Typo.h4">BaseInfo</MudText></MudCardHeader>
@@ -19,8 +20,13 @@
         </MudTooltip>
         
         <MudTooltip Text="BaseInfo.ParentId">
-            <MudTextField Typo="Typo.body1" @bind-Value="BaseInfo.ParentId" Label="ParentId" HelperText="物品的唯一MongoId类型ParentId, 赋值CloneId后可以不赋值ParentId"
-                          Variant="Variant.Filled" Clearable="true"/>
+            <MudSelect T="string" @bind-Value="BaseInfo.ParentId" Style="min-width: 60ch" HelperText="物品的唯一MongoId类型ParentId, 赋值CloneId后可以不赋值ParentI"
+                       Typo="Typo.body1" Variant="Variant.Filled" Label="ParentId" Clearable="true">
+                @foreach (ParentIdNameRate parentIdNameRate in SPTDataCacheService.ParentIdCache!.ParentIdNameRate)
+                {
+                    <MudSelectItem Value="@parentIdNameRate.ParentId.ToString()">@($"{parentIdNameRate.ParentId} {parentIdNameRate.Name} x {parentIdNameRate.Count}")</MudSelectItem>
+                }
+            </MudSelect>
         </MudTooltip>
         
         <MudTooltip Text="BaseInfo.CloneId">

@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using MudBlazor.Services;
+﻿using MudBlazor.Services;
 using SptItemCreator.NewItemClasses;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;

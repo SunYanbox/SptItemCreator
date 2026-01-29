@@ -38,6 +38,9 @@ public record AttributeInfo: AbstractInfo
     
     [JsonPropertyName("examineExperience")]
     public int? ExamineExperience { get; set; }
+    
+    [JsonPropertyName("backgroundColor")]
+    public string? BackgroundColor { get; set; }
 
     public override void UpdateProperties(TemplateItemProperties properties)
     {
@@ -50,6 +53,7 @@ public record AttributeInfo: AbstractInfo
         if (ExamineExperience != null) properties.ExamineExperience = ExamineExperience;
         if (StackMaxSize != null) properties.StackMaxSize = StackMaxSize;
         if (ExaminedByDefault != null) properties.ExaminedByDefault = ExaminedByDefault;
+        if (BackgroundColor != null) properties.BackgroundColor = BackgroundColor;
         if (RarityPvE != null)
         {
             string? rarity = ItemRarityData.GetRarityKey(RarityPvE);
