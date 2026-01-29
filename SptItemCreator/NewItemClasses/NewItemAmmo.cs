@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Services;
+using SptItemCreator.Enums;
 using SptItemCreator.InfoClasses;
 
 namespace SptItemCreator.NewItemClasses;
@@ -12,7 +13,7 @@ public class NewItemAmmo : NewItemCommon
     
     protected override bool DoCustomValidation()
     {
-        Enable ??= false;
+        Enable ??= Default.NewItemEnable;
         // 弹药特殊验证逻辑
         if (AmmoInfo is not { AmmoType: "buckshot", BuckshotBullets: <= 0 }) return true;
         LocalLog?.LocalLogMsg(LocalLogType.Error, $"弹药{ItemPath}作为霰弹类型弹药必须设置弹丸数量");

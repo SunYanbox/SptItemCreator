@@ -18,7 +18,7 @@ public enum LocalLogType
     Error
 }
 
-public static class Constants
+internal static class Constants
 {
     public const string LogFolder = "logs";
     public const string DataFolder = "data";

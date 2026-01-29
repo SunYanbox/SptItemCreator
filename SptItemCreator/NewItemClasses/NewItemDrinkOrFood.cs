@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Services;
+using SptItemCreator.Enums;
 using SptItemCreator.InfoClasses;
 
 namespace SptItemCreator.NewItemClasses;
@@ -27,7 +28,7 @@ public class NewItemDrinkOrFood: NewItemCommon
 
     protected override bool DoCustomValidation()
     {
-        Enable ??= false;
+        Enable ??= Default.NewItemEnable;
         return base.DoCustomValidation() && DrinkFoodInfo != null;
     }
 }

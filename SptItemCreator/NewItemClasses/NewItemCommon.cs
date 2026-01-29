@@ -3,6 +3,7 @@ using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Services;
 using SptItemCreator.Abstracts;
+using SptItemCreator.Enums;
 using SptItemCreator.InfoClasses;
 
 namespace SptItemCreator.NewItemClasses;
@@ -17,7 +18,7 @@ public class NewItemCommon: AbstractNewItem
     
     protected override bool DoCustomValidation()
     {
-        Enable ??= false;
+        Enable ??= Default.NewItemEnable;
         return true;
     }
 

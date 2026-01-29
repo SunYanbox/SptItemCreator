@@ -3,6 +3,7 @@ using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Services;
+using SptItemCreator.Enums;
 using SptItemCreator.InfoClasses;
 using SptItemCreator.NewItemClasses;
 
@@ -42,7 +43,7 @@ public abstract class AbstractNewItem
     /// 控制是否加载该物品(默认为false, 且不应频繁修改, 避免对存档造成损坏)
     /// </summary>
     [JsonPropertyName("enable")]
-    public bool? Enable { get; set; } = false;
+    public bool? Enable { get; set; } = Default.NewItemEnable;
     
     /// <summary>
     /// 基础新物品信息
@@ -281,12 +282,12 @@ public abstract class AbstractNewItem
     private void InitializeBaseInfo()
     {
         BaseInfo ??= new BaseInfo();
-        BaseInfo.Name ??= "未命名物品";
-        BaseInfo.Type ??= "common";
-        BaseInfo.Author ??= "佚名";
-        BaseInfo.License ??= "MIT";
-        BaseInfo.Description ??= "";
-        BaseInfo.Order ??= 0;
+        BaseInfo.Name ??= Default.BaseInfoName;
+        BaseInfo.Type ??= Default.BaseInfoType;
+        BaseInfo.Author ??= Default.BaseInfoAuthor;
+        BaseInfo.License ??= Default.BaseInfoLicense;
+        BaseInfo.Description ??= Default.BaseInfoDescription;
+        BaseInfo.Order ??= Default.BaseInfoOrder;
         
         // 只在 Description 不包含基本信息时才追加; 提供Locales后，实际客户端显示的描述中不会有这些额外信息
         if (!BaseInfo.Description.Contains(BaseInfo.Name) || 
@@ -296,8 +297,8 @@ public abstract class AbstractNewItem
             BaseInfo.Description += $"\n\n{BaseInfo.Name}\n作者: @{BaseInfo.Author}\n协议: {BaseInfo.License}";
         }
         
-        BaseInfo.FleaPrice = Math.Max(BaseInfo.FleaPrice, 1); // 避免价格为0导致物品无效
-        BaseInfo.HandbookPrice = Math.Max(BaseInfo.HandbookPrice, 1); // 避免价格为0导致物品无效
+        BaseInfo.FleaPrice = Math.Max(BaseInfo.FleaPrice, Default.BaseInfoFleaPriceMinimum); // 避免价格为0导致物品无效
+        BaseInfo.HandbookPrice = Math.Max(BaseInfo.HandbookPrice, Default.BaseInfoHandbookPriceMinimum); // 避免价格为0导致物品无效
     }
 
     /// <summary>

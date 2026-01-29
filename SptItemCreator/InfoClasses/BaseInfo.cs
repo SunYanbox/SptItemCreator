@@ -4,6 +4,7 @@ using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Services;
 using SptItemCreator.Abstracts;
+using SptItemCreator.Enums;
 
 namespace SptItemCreator.InfoClasses;
 
@@ -139,7 +140,7 @@ public sealed record BaseInfo: AbstractInfo
     /// 是否允许在跳蚤市场售卖 默认为true
     /// </summary>
     [JsonPropertyName("canSellOnRagfair")]
-    public bool CanSellOnRagfair { get; set; } = true;
+    public bool CanSellOnRagfair { get; set; } = Default.BaseInfoCanSellOnRagfair;
     
     /// <summary>
     /// 一键允许所有容器放置本物品
