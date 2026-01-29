@@ -351,15 +351,34 @@ public abstract class AbstractNewItem
             results["Id"] = $"无效的MongoId: {BaseInfo.Id}";
         }
 
+        if (BaseInfo.ParentId is not null && !MongoId.IsValidMongoId(BaseInfo.ParentId))
+        {
+            BaseInfo.ParentId = null;
+        }
+        
+        // 继承ParentId
+        if (BaseInfo.CloneId is not null && BaseInfo.ParentId is null)
+        {
+            if (DatabaseService!.GetTemplates().Items.TryGetValue(BaseInfo.CloneId, out TemplateItem? cloneItem))
+            {
+                BaseInfo.ParentId = cloneItem.Parent;
+            }
+            else
+            {
+                errorMessages.Add($"新物品{BaseInfo.Id}的CloneId无效: 无法在**游戏文件夹/SPT/SPT_Data/database/templates/items.json**中检索到这个物品Id");
+                BaseInfo.ParentId = null;
+            }
+        }
+
         // 验证 ParentId 字段
         if (BaseInfo.ParentId == null)
         {
             errorMessages.Add("缺少parent字段");
-            results["ParentId"] = "ParentId字段不能为null";
+            results["ParentId"] = "没有赋值有效CloneId时ParentId字段不能为null";
         }
         else if (!MongoId.IsValidMongoId(BaseInfo.ParentId))
         {
-            errorMessages.Add("parent字段不是有效的MongoId");
+            errorMessages.Add("ParentId字段不是有效的MongoId");
             results["ParentId"] = $"无效的MongoId: {BaseInfo.ParentId}";
         }
     }

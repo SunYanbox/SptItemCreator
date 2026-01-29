@@ -1,10 +1,15 @@
+@using System.Reflection
 @using SPTarkov.Server.Core.Models.Common
 @using SPTarkov.Server.Core.Models.Spt.Mod
+@using SPTarkov.Server.Core.Models.Eft.Common.Tables
+@using Color = MudBlazor.Color
+@using Path = System.IO.Path
 
+@inject ModHelper ModHelper
 @inject ISnackbar Snackbar
 
 <MudCard Outlined="true" Class="overflow-y-auto pa-4 ma-2">
-    <MudCardHeader>BaseInfo</MudCardHeader>
+    <MudCardHeader><MudText Typo="Typo.h4">BaseInfo</MudText></MudCardHeader>
     
     @* Id | ParentId | CloneId | HandbookParentId *@
     <MudStack Row="true" AlignItems="AlignItems.Center">
@@ -14,7 +19,7 @@
         </MudTooltip>
         
         <MudTooltip Text="BaseInfo.ParentId">
-            <MudTextField Typo="Typo.body1" @bind-Value="BaseInfo.ParentId" Label="ParentId*" HelperText="物品的唯一MongoId类型ParentId"
+            <MudTextField Typo="Typo.body1" @bind-Value="BaseInfo.ParentId" Label="ParentId" HelperText="物品的唯一MongoId类型ParentId, 赋值CloneId后可以不赋值ParentId"
                           Variant="Variant.Filled" Clearable="true"/>
         </MudTooltip>
         
@@ -68,6 +73,7 @@
         </MudTooltip>
     </MudStack>
     
+    @* TraderId, FleaPrice, HandbookPrice *@
     <MudStack Row="true" AlignItems="AlignItems.Center">
         <MudTooltip Text="BaseInfo.TraderId">
             <MudTextField Typo="Typo.body1" @bind-Value="BaseInfo.TraderId" Label="TraderId" HelperText="售卖该物品的商人Id"
@@ -75,29 +81,115 @@
         </MudTooltip>
         
         <MudTooltip Text="BaseInfo.FleaPrice">
-            <MudNumericField @bind-Value="BaseInfo.FleaPrice" Label="跳蚤市场价格"
+            <MudNumericField @bind-Value="BaseInfo.FleaPrice" Label="跳蚤市场价格" HelperText="跳蚤市场价格"
                              Variant="Variant.Filled" Min="1" Max="@double.MaxValue"/>
         </MudTooltip>
         
         <MudTooltip Text="BaseInfo.HandbookPrice">
-            <MudNumericField @bind-Value="BaseInfo.HandbookPrice" Label="手册价格"
+            <MudNumericField @bind-Value="BaseInfo.HandbookPrice" Label="手册价格" HelperText="手册价格"
                              Variant="Variant.Filled" Min="1" Max="@double.MaxValue"/>
         </MudTooltip>
     </MudStack>
     
+    @* CanSellOnRagfair, AllowAll *@
     <MudStack Row="true" AlignItems="AlignItems.Center">
-        <MudTooltip Text="BaseInfo.CanSellOnRagfair">
-            <MudSwitch @bind-Value="BaseInfo.CanSellOnRagfair">是否允许在跳蚤市场售卖</MudSwitch>
+        <MudTooltip Text="BaseInfo.CanSellOnRagfair" Class="overflow-y-auto pa-4 ma-2">
+            <MudSwitch Color="Color.Warning" @bind-Value="BaseInfo.CanSellOnRagfair">是否允许在跳蚤市场售卖</MudSwitch>
         </MudTooltip>
         
-        <MudTooltip Text="BaseInfo.AllowAll">
-            <MudSwitch @bind-Value="BaseInfo.AllowAll">一键允许所有容器放置本物品</MudSwitch>
+        <MudTooltip Text="BaseInfo.AllowAll" Class="overflow-y-auto pa-4 ma-2">
+            <MudSwitch Color="Color.Warning" @bind-Value="BaseInfo.AllowAll">一键允许所有容器放置本物品</MudSwitch>
         </MudTooltip>
     </MudStack>
     
-    @* TODO: Prefab, UsePrefab *@
+    @* Prefab, UsePrefab *@
+    <MudStack>
+        <MudStack Row="true" AlignItems="AlignItems.Center">
+            <MudTooltip Text="BaseInfo.Prefab">
+                <MudText Typo="Typo.body1">模型</MudText>
+            </MudTooltip>
+            <MudTooltip Text="BaseInfo.Prefab.Path">
+                <MudTextField Typo="Typo.body1" @bind-Value="PrefabPath" Label="模型路径" HelperText="@($"相对于{ModBundlesPath}的路径, 使用'/'作为路径的分隔符")"
+                              Variant="Variant.Filled" Clearable="true"/>
+            </MudTooltip>
+            <MudTooltip Text="BaseInfo.Prefab.Rcid">
+                <MudTextField Typo="Typo.body1" @bind-Value="PrefabRcid" Label="模型Rcid" HelperText="基本都是空字符串, 不用管"
+                              Variant="Variant.Filled" Clearable="true"/>
+            </MudTooltip>
+        </MudStack>
+        
+        <MudStack Row="true" AlignItems="AlignItems.Center">
+            <MudTooltip Text="BaseInfo.UsePrefab">
+                <MudText Typo="Typo.body1">使用时模型</MudText>
+            </MudTooltip>
+            <MudTooltip Text="BaseInfo.UsePrefab.Path">
+                <MudTextField Typo="Typo.body1" @bind-Value="UsePrefabPath" Label="使用时模型的路径" HelperText="@($"相对于{ModBundlesPath}的路径, 使用'/'作为路径的分隔符")"
+                              Variant="Variant.Filled" Clearable="true"/>
+            </MudTooltip>
+            <MudTooltip Text="BaseInfo.UsePrefab.Rcid">
+                <MudTextField Typo="Typo.body1" @bind-Value="UsePrefabRcid" Label="使用时模型的Rcid" HelperText="基本都是空字符串, 不用管"
+                              Variant="Variant.Filled" Clearable="true"/>
+            </MudTooltip>
+        </MudStack>
+    </MudStack>
     
-    @* TODO: CanFilter, CantFilter *@
+    @* CanFilter, CantFilter *@
+    <MudStack Row="true" AlignItems="AlignItems.Center">
+        <MudTooltip Text="BaseInfo.CanFilter">
+            <MudCard Style="max-height: 150px" Class="overflow-y-auto pa-4 ma-2">
+                <MudCardHeader>可放置本物品的容器</MudCardHeader>
+                <MudCardContent>
+                    <MudStack Row="true" AlignItems="AlignItems.Center">
+                        <MudTextField Typo="Typo.body2" @bind-Value="CanFilterContainerId" Label="容器Id"
+                                      HelperText="必须为非空MongoId才能正确添加"
+                                      Variant="Variant.Filled" Clearable="true"/>
+                        <MudButton OnClick="@(() => OnCreateCanFilterCallback())">添加容器Id</MudButton>
+                        <MudButton OnClick="@(() => BaseInfo.CanFilter?.Clear())">清空列表</MudButton>
+                    </MudStack>
+                    @if (BaseInfo.CanFilter is not null)
+                    {
+                        foreach (MongoId id in BaseInfo.CanFilter)
+                        {
+                            <MudStack Row="true" AlignItems="AlignItems.Center">
+                                <MudText>Id: </MudText>
+                                <MudTooltip Text="Id">
+                                    <MudText Typo="Typo.body2">@id</MudText>
+                                </MudTooltip>
+                                <MudButton OnClick="@(() => OnDeleteCanFilterCallback(id))">删除此容器Id</MudButton>
+                            </MudStack>
+                        }
+                    }
+                </MudCardContent>
+            </MudCard>
+        </MudTooltip>
+        <MudTooltip Text="BaseInfo.CantFilter">
+            <MudCard Style="max-height: 150px" Class="overflow-y-auto pa-4 ma-2">
+                <MudCardHeader>不可放置本物品的容器</MudCardHeader>
+                <MudCardContent>
+                    <MudStack Row="true" AlignItems="AlignItems.Center">
+                        <MudTextField Typo="Typo.body2" @bind-Value="CantFilterContainerId" Label="容器Id"
+                                      HelperText="必须为非空MongoId才能正确添加"
+                                      Variant="Variant.Filled" Clearable="true"/>
+                        <MudButton OnClick="@(() => OnCreateCantFilterCallback())">添加容器Id</MudButton>
+                        <MudButton OnClick="@(() => BaseInfo.CantFilter?.Clear())">清空列表</MudButton>
+                    </MudStack>
+                    @if (BaseInfo.CantFilter is not null)
+                    {
+                        foreach (MongoId id in BaseInfo.CantFilter)
+                        {
+                            <MudStack Row="true" AlignItems="AlignItems.Center">
+                                <MudText>Id: </MudText>
+                                <MudTooltip Text="Id">
+                                    <MudText Typo="Typo.body2">@id</MudText>
+                                </MudTooltip>
+                                <MudButton OnClick="@(() => OnDeleteCantFilterCallback(id))">删除此容器Id</MudButton>
+                            </MudStack>
+                        }
+                    }
+                </MudCardContent>
+            </MudCard>
+        </MudTooltip>
+    </MudStack>
     
     @* 本地化数据 *@
     <MudTooltip Text="BaseInfo.Locales">
@@ -140,41 +232,61 @@
 @code {
     [Parameter]
     public required BaseInfo BaseInfo { get; set; }
+    private static string? ModBundlesPath { get; set; }
     private string? NewLocaleName { get; set; }
+    private string? CanFilterContainerId { get; set; }
+    private string? CantFilterContainerId { get; set; }
+    private string? PrefabPath { get; set; }
+    private string? PrefabRcid { get; set; }
+    private string? UsePrefabPath { get; set; }
+    private string? UsePrefabRcid { get; set; }
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
         BaseInfo.Type ??= SicType.Common;
+        ModBundlesPath = Path.Combine(ModHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly()), "bundles");
+    }
+
+    /// <summary>
+    /// 获取字符串是否是非空有效Id
+    /// </summary>
+    private bool IsNotNullAndValid(string? value)
+    {
+        return value is not null && MongoId.IsValidMongoId(value);
     }
 
     private void OnCheckCallback()
     {
         List<string> warning = [];
-        if (BaseInfo.Id?.Length != 24)
+        if (BaseInfo.Id is null)
         {
             BaseInfo.Id = new MongoId();
         }
-        if (BaseInfo.ParentId?.Length != 24)
+        else if (!MongoId.IsValidMongoId(BaseInfo.Id))
+        {
+            warning.Add($"BaseInfo.Id({BaseInfo.Id})是无效MongoId");
+        }
+        if (IsNotNullAndValid(BaseInfo.ParentId))
         {
             BaseInfo.ParentId = null;
         }
-        if (BaseInfo.CloneId?.Length != 24)
+        if (IsNotNullAndValid(BaseInfo.CloneId))
         {
             BaseInfo.CloneId = null;
         }
-        if (BaseInfo.HandbookParentId?.Length != 24)
+        if (IsNotNullAndValid(BaseInfo.HandbookParentId))
         {
             BaseInfo.HandbookParentId = null;
         }
-        if (BaseInfo.TraderId?.Length != 24)
+        if (IsNotNullAndValid(BaseInfo.TraderId))
         {
             BaseInfo.TraderId = null;
         }
 
-        if (BaseInfo.ParentId is null)
+        if (BaseInfo.ParentId is null && BaseInfo.CloneId is null)
         {
-            warning.Add("ParentId没有设置非空且24个字符长度的MongoId!");
+            warning.Add("在没有赋值CloneId的情况下ParentId没有设置为有效的MongoId!");
         }
         BaseInfo.Type ??= SicType.Common;
         if (BaseInfo.Name?.Length == 0)
@@ -188,7 +300,30 @@
 
         if (BaseInfo.FleaPrice < 1) BaseInfo.FleaPrice = 1;
         if (BaseInfo.HandbookPrice < 1) BaseInfo.HandbookPrice = 1;
+
+        if (PrefabPath is not null)
+        {
+            BaseInfo.Prefab ??= new Prefab();
+            BaseInfo.Prefab.Path = PrefabPath;
+            BaseInfo.Prefab.Rcid ??= "";
+            BaseInfo.Prefab.Rcid = PrefabRcid;
+        }
+        else if (BaseInfo.Prefab is not null)
+        {
+            BaseInfo.Prefab = null;
+        }
         
+        if (UsePrefabPath is not null)
+        {
+            BaseInfo.UsePrefab ??= new Prefab();
+            BaseInfo.UsePrefab.Path = UsePrefabPath;
+            BaseInfo.UsePrefab.Rcid ??= "";
+            BaseInfo.UsePrefab.Rcid = UsePrefabRcid;
+        }
+        else if (BaseInfo.UsePrefab is not null)
+        {
+            BaseInfo.UsePrefab = null;
+        }
 
         if (warning.Count > 0)
         {
@@ -206,6 +341,56 @@
         NewLocaleName = null;
     }
 
+    private void OnCreateCanFilterCallback()
+    {
+        if (IsNotNullAndValid(CanFilterContainerId))
+        {
+            BaseInfo.CanFilter ??= [];
+            BaseInfo.CanFilter.Add(CanFilterContainerId!);
+            if (BaseInfo.CantFilter?.Contains(CanFilterContainerId!) ?? false)
+            {
+                BaseInfo.CanFilter.Remove(CanFilterContainerId!);
+                BaseInfo.CantFilter.Remove(CanFilterContainerId!);
+                Snackbar.Add($"警告: 同时为CanFilter和CantFilter添加了相同容器Id, 已移除该Id: {CanFilterContainerId!}");
+            }
+            CanFilterContainerId = null;
+        }
+        else
+        {
+            CanFilterContainerId = null;
+        }
+    }
+    
+    private void OnCreateCantFilterCallback()
+    {
+        if (IsNotNullAndValid(CantFilterContainerId))
+        {
+            BaseInfo.CantFilter ??= [];
+            BaseInfo.CantFilter.Add(CantFilterContainerId!);
+            if (BaseInfo.CanFilter?.Contains(CantFilterContainerId!) ?? false)
+            {
+                BaseInfo.CanFilter.Remove(CantFilterContainerId!);
+                BaseInfo.CantFilter.Remove(CantFilterContainerId!);
+                Snackbar.Add($"警告: 同时为CanFilter和CantFilter添加了相同容器Id, 已移除该Id: {CantFilterContainerId!}");
+            }
+            CantFilterContainerId = null;
+        }
+        else
+        {
+            CantFilterContainerId = null;
+        }
+    }
+
+    private void OnDeleteCanFilterCallback(string? id)
+    {
+        if (IsNotNullAndValid(id)) BaseInfo.CanFilter?.Remove(id!);
+    }
+    
+    private void OnDeleteCantFilterCallback(string? id)
+    {
+        if (IsNotNullAndValid(id)) BaseInfo.CantFilter?.Remove(id!);
+    }
+    
     private void OnDeleteLocaleCallback(string locale)
     {
         BaseInfo.Locales?.Remove(locale);
