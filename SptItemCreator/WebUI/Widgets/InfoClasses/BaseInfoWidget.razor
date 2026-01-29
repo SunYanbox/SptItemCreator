@@ -36,7 +36,7 @@
     
     @* SicType *@
     <MudTooltip Text="BaseInfo.Type">
-        <MudSelect T="string" Disabled="@Freeze" @bind-Value="BaseInfo.Type" Typo="Typo.body1" Style="width: auto" Label="SicType*">
+        <MudSelect T="string" Disabled="@Freeze" @bind-Value="BaseInfo.Type" Typo="Typo.body1" Style="width: auto" Variant="Variant.Filled" Label="SicType*">
             @foreach (string sicType in SicType.AllSicType)
             {
                 <MudSelectItem Value="@sicType">@sicType</MudSelectItem>
@@ -247,7 +247,7 @@
     {
         base.OnInitialized();
         BaseInfo.Type ??= SicType.Common;
-        ModBundlesPath = Path.Combine(ModHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly()), "bundles");
+        ModBundlesPath ??= Path.Combine(ModHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly()), "bundles");
     }
 
     /// <summary>

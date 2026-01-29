@@ -62,6 +62,15 @@ public static class ItemSoundData
         {"榴弹发射器音效", "ammo_launcher"}
     };
 
+    public static readonly HashSet<string> AllowCnKeys = [
+        ..DrinkSounds.Keys,
+        ..FoodSounds.Keys,
+        ..MedsSounds.Keys,
+        ..OtherSounds.Keys,
+        ..AmmoSounds.Keys,
+        "通用声音"
+    ];
+
     public static readonly HashSet<string> AllowKeys = new()
     {
         "food_bottle", "food_juice_carton", "food_soda_can", 
