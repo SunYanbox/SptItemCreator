@@ -1,0 +1,39 @@
+<MudCard Outlined="true" Class="overflow-y-auto pa-4 ma-2">
+    <MudCardHeader><MudText Typo="Typo.h4">DrinkFoodInfo</MudText></MudCardHeader>
+    
+    <MudStack Row="true" AlignItems="AlignItems.Center">
+        <MudTooltip Text="DrinkFoodInfo.FoodUseTime">
+            <MudNumericField @bind-Value="DrinkFoodInfo.FoodUseTime" Label="食物使用时间"
+                             HelperText="食物使用时间, 双精度浮点数类型, 单位: 秒" Variant="Variant.Filled" Min="0" Max="@double.MaxValue" Clearable="true"/>
+        </MudTooltip>
+        
+        <MudTooltip Text="DrinkFoodInfo.Hydration">
+            <MudNumericField @bind-Value="DrinkFoodInfo.Hydration" Label="恢复的水分"
+                             HelperText="恢复的水分, 整数, 为负数时为扣除水分" Variant="Variant.Filled" Min="@double.MinValue" Max="@double.MaxValue" Clearable="true"/>
+        </MudTooltip>
+        
+        <MudTooltip Text="DrinkFoodInfo.Energy">
+            <MudNumericField @bind-Value="DrinkFoodInfo.Energy" Label="恢复的能量"
+                             HelperText="恢复的能量, 整数, 为负数时为扣除能量" Variant="Variant.Filled" Min="@double.MinValue" Max="@double.MaxValue" Clearable="true"/>
+        </MudTooltip>
+        
+        <MudTooltip Text="DrinkFoodInfo.MaxResource">
+            <MudNumericField @bind-Value="DrinkFoodInfo.MaxResource" Label="最大资源量"
+                             HelperText="整数, 吃的一般为1, 喝的常见为40, 50, 60, 70, 100" Variant="Variant.Filled" 
+                             Min="1" Max="@int.MaxValue" Clearable="true"/>
+        </MudTooltip>
+    </MudStack>
+    
+    <MudButton OnClick="@(() => OnCheckCallback())">检查数据</MudButton>
+</MudCard>
+
+@code {
+    /// <summary> 外部DrinkFoodInfo实例 </summary>
+    [Parameter] public required DrinkFoodInfo DrinkFoodInfo { get; set; }
+    
+    private Task OnCheckCallback()
+    {
+        return Task.CompletedTask;
+    }
+
+}
