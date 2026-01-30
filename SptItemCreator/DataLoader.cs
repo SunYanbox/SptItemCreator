@@ -61,7 +61,7 @@ public class DataLoader(
         {
             try
             {
-                NewItemCommon? newItemBase = DeserializeBasedOnType(File.ReadAllText(file));
+                var newItemBase = DeserializeBasedOnType<NewItemCommon>(File.ReadAllText(file));
                 if (newItemBase == null) throw new Exception("反序列化的结果为null");
                 if (newItemBase.BaseInfo == null) throw new Exception("反序列化后获取不到baseInfo字段");
                 newItemBase.BaseInfo.ItemPath = file;
@@ -112,19 +112,22 @@ public class DataLoader(
     }
     
     // 根据 TypeIdentifier 在反序列化时直接创建正确的类型
-    private static NewItemCommon? DeserializeBasedOnType(string json)
+    public static T? DeserializeBasedOnType<T>(string json) where T: NewItemCommon
     {
         using JsonDocument doc = JsonDocument.Parse(json);
         string typeIdentifier = doc.RootElement.GetProperty("$type").GetString()!;
         if (_jsonUtil != null)
-            return typeIdentifier switch
-            {
-                SicType.Common => _jsonUtil.Deserialize<NewItemCommon>(json),
-                SicType.DrinkOrFood => _jsonUtil.Deserialize<NewItemDrinkOrFood>(json),
-                SicType.Medical => _jsonUtil.Deserialize<NewItemMedical>(json),
-                SicType.Ammo => _jsonUtil.Deserialize<NewItemAmmo>(json),
-                _ => _jsonUtil.Deserialize<NewItemCommon>(json)
-            };
+        {
+            if (typeIdentifier == SicType.Common)
+                return (T?)_jsonUtil.Deserialize<NewItemCommon>(json);
+            if (typeIdentifier == SicType.DrinkOrFood)
+                return (T?)(NewItemCommon?)_jsonUtil.Deserialize<NewItemDrinkOrFood>(json);
+            if (typeIdentifier == SicType.Medical)
+                return (T?)(NewItemCommon?)_jsonUtil.Deserialize<NewItemMedical>(json);
+            if (typeIdentifier == SicType.Ammo)
+                return (T?)(NewItemCommon?)_jsonUtil.Deserialize<NewItemAmmo>(json);
+            return _jsonUtil.Deserialize<T>(json);
+        }
         _localLog?.LocalLogMsg(LocalLogType.Warn, $"解析数据时出现问题: _jsonUtil未初始化");
         return null;
     }

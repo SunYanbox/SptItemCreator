@@ -1,4 +1,4 @@
-﻿@inherits LayoutComponentBase
+@inherits LayoutComponentBase
 @inject ModMetadata ModMetadata
 
 <HeadContent>
@@ -19,10 +19,7 @@
 <MudLayout>
     <MudAppBar Elevation="2" Style="width: 100%">
         <MudText Typo="Typo.body1" Style="min-width: 18ch">@NameAndVersion</MudText>
-        <MudNavLink Class="mud-nav-link" Href="/SIC" Match="NavLinkMatch.All">主页</MudNavLink>
-        <MudNavLink Class="mud-nav-link" Href="/SIC/Common" Match="NavLinkMatch.All">创建通用物品</MudNavLink>
-        <MudNavLink Class="mud-nav-link" Href="/SIC/DrinkOrFood" Match="NavLinkMatch.All">创建食物或饮品</MudNavLink>
-        <MudNavLink Class="mud-nav-link" Href="/SIC/Medical" Match="NavLinkMatch.All">创建药品</MudNavLink>
+        <MudNavLink Class="mud-nav-link" Href="/SIC" Match="NavLinkMatch.All">返回主页</MudNavLink>
         <MudSpacer/>
         <MudLink Class="mud-nav-link" Color="Color.Default" Target="_blank" Href="@Url">关于</MudLink>
         <style>

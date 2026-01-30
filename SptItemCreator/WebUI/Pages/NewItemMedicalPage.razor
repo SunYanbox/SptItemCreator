@@ -1,0 +1,142 @@
+@page "/SIC/Medical"
+@using System.Text.Json
+@using System.Text.Json.Nodes
+@using SPTarkov.Server.Core.Models.Common
+
+@inject SPTDataCacheService SPTDataCacheService
+@inject ISnackbar Snackbar
+@inject LocalLog LocalLog
+@inject JsonUtil JsonUtil
+
+<BackMainLayout />
+
+<MudStack Row="true" AlignItems="AlignItems.Center">
+    <MudText>保存文件</MudText>
+    <MudTextField @bind-Value="SicFolder" Clearable="true" Label="文件夹名称"
+                  HelperText="相对于模组data文件夹的子文件夹路径"/>
+    <MudTextField @bind-Value="FileName" Clearable="true" Label="文件名称"
+                  HelperText="可省略(默认使用物品Id), 不需要后缀名"/>
+    <MudButton OnClick="@(() => Save2File())">保存文件</MudButton>
+    <MudButton OnClick="@(() =>
+                        {
+                            NewItemMedical = null;
+                            OnInitialized();
+                        })">
+        清空数据
+    </MudButton>
+    </MudStack>
+
+<MudPaper Outlined="true" Class="overflow-y-auto pa-4 ma-2">
+    <BaseInfoWidget BaseInfo="NewItemMedical!.BaseInfo" Freeze="true"/>
+    <MudStack Row="true" AlignItems="AlignItems.Center">
+        <MudSwitch T="bool?" @bind-Value="NewItemMedical.Enable">启用该物品</MudSwitch>
+        <MudSwitch T="bool" @bind-Value="Medical">启用MedicalInfo</MudSwitch>
+        <MudSwitch T="bool" @bind-Value="Attribute">启用AttributeInfo</MudSwitch>
+        <MudSwitch T="bool" @bind-Value="Buffs">启用BuffsInfo</MudSwitch>
+        <MudSwitch T="bool" @bind-Value="PropertyOverride">启用PropertyOverride</MudSwitch>
+    </MudStack>
+    @if (Attribute)
+    {
+        <AttributeInfoWidget AttributeInfo="NewItemMedical.AttributeInfo"/>
+    }
+    @if (Medical)
+    {
+        <MedicalInfoWidget MedicalInfo="NewItemMedical.MedicalInfo"/>
+    }
+    @if (Buffs)
+    {
+        <BuffsInfoWidget BuffsInfo="NewItemMedical.BuffsInfo"/>
+    }
+    @if (PropertyOverride)
+    {
+        <PropertyOverrideWidget PropertyOverride="NewItemMedical.PropertyOverride"/>
+    }
+</MudPaper>
+
+@code {
+    public string? SicFolder { get; set; }
+    public string? FileName { get; set; }
+    public static NewItemMedical? NewItemMedical { get; set; }
+    private bool Attribute { get; set; }
+    private bool Buffs { get; set; }
+    private bool PropertyOverride { get; set; }
+    private bool Medical { get; set; } = true;
+    private const string Type = SicType.Medical;
+
+    protected override void OnInitialized()
+    {
+        NewItemMedical ??= new NewItemMedical
+        {
+            BaseInfo = new BaseInfo
+            {
+                Type = Type
+            },
+            AttributeInfo = new AttributeInfo(),
+            BuffsInfo = new BuffsInfo(),
+            Enable = false,
+            PropertyOverride = new TemplateItemProperties(),
+            MedicalInfo = new MedicalInfo()
+        };
+        Attribute = Buffs = PropertyOverride = false;
+        base.OnInitialized();
+    }
+
+    private async Task Save2File()
+    {
+        if (NewItemMedical?.BaseInfo is null)
+        {
+            return;
+        }
+
+        NewItemMedical.BaseInfo.Id ??= new MongoId();
+        FileName ??= NewItemMedical.BaseInfo?.Id;
+
+        try
+        {
+            string path = Path.Combine(SPTDataCacheService.ModPath!, "data");
+            if (!string.IsNullOrEmpty(SicFolder)) path = Path.Combine(path, SicFolder);
+            path = Path.Combine(path, $"{FileName}.sic.jsonc");
+            NewItemMedical save = new NewItemMedical
+            {
+                Enable = NewItemMedical.Enable,
+                BaseInfo = NewItemMedical.BaseInfo
+            };
+            if (Attribute)
+            {
+                save.AttributeInfo = NewItemMedical.AttributeInfo;
+            }
+            if (Buffs)
+            {
+                save.BuffsInfo = NewItemMedical.BuffsInfo;
+            }
+            if (PropertyOverride)
+            {
+                save.PropertyOverride = NewItemMedical.PropertyOverride;
+            }
+
+            string? s = JsonUtil.Serialize(save, true);
+            
+            if (string.IsNullOrEmpty(s)) throw new Exception("序列化对象的结果为空");
+            
+            JsonObject jsonObject = JsonNode.Parse(s)!.AsObject();
+
+            // 添加$type属性
+            jsonObject["$type"] = $"{NewItemMedical.BaseInfo?.Type ?? SicType.Medical}";
+
+            // 序列化回JSON字符串
+            string result = jsonObject.ToJsonString(new JsonSerializerOptions 
+            { 
+                WriteIndented = true // 可选：格式化输出
+            });
+            
+            await File.WriteAllTextAsync(path, result);
+            Snackbar.Add($"已保存文件到{path}");
+        }
+        catch (Exception e)
+        {
+            string msg = $"保存{NewItemMedical}时出现错误(文件夹: {SicFolder} 文件名: {FileName}): {e.Message} {e.StackTrace}";
+            LocalLog.LocalLogMsg(LocalLogType.Error, msg);
+            Snackbar.Add($"保存时出现错误(文件夹: {SicFolder} 文件名: {FileName}): {e.Message}");
+        }
+    }
+}

@@ -76,6 +76,7 @@ public sealed class SPTDataCacheService(
     private bool _initialized;
     private bool _firstOrganize;
     private long _updateTime;
+    public string? ModPath { get; private set; }
     private string? ModCachePath { get; set; }
     private string? ParentIdCachePath { get; set; }
     private string? BackgroundColorCachePath { get; set; }
@@ -101,7 +102,8 @@ public sealed class SPTDataCacheService(
     
     public Task OnLoad()
     {
-        ModCachePath ??= Path.Combine(modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly()), "cache");
+        ModPath ??= modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
+        ModCachePath ??= Path.Combine(ModPath, "cache");
         ParentIdCachePath ??= Path.Combine(ModCachePath, "ParentIdCache.json");
         BackgroundColorCachePath ??= Path.Combine(ModCachePath, "BackgroundColorCache.json");
         BuffCachePath ??= Path.Combine(ModCachePath, "BuffCache.json");
