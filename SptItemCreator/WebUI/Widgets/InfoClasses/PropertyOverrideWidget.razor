@@ -1,0 +1,66 @@
+@inject ISnackbar Snackbar
+@inject LocalLog LocalLog
+@inject JsonUtil JsonUtil
+
+<MudCard Outlined="true" Style="max-height: 720px" Class="overflow-y-auto pa-4 ma-2">
+    <MudCardHeader><MudText Typo="Typo.h4">PropertyOverride</MudText></MudCardHeader>
+    <MudCardContent Style="width: 100%; min-height: 300px; max-height: 600px" Class="overflow-y-auto">
+        <MudTextField T="string" Label="PropertyOverrideText" Style="width: 100%;" Variant="Variant.Text" 
+                      @bind-Value="@PropertyOverrideText" AutoGrow HelperText="TemplateItemProperties类型的Json格式输入/查看框    当然, 更推荐你使用VsCode等软件把格式化好后的属性粘贴过来" />
+    </MudCardContent>
+    <MudStack Row="true" AlignItems="AlignItems.Center">
+        <MudButton OnClick="@(() => OnUpdateJsonTextCallback())">重新格式化json文本</MudButton>
+        <MudTooltip Text="此处只会检测输入的文本是否符合Json格式, 不会单独检验每个属性是否合理">
+            <MudButton OnClick="@(() => Text2Obj())">检查数据</MudButton>
+        </MudTooltip>
+    </MudStack>
+</MudCard>
+
+@code {
+    /// <summary> 外部PropertyOverride实例 </summary>
+    [Parameter] public required TemplateItemProperties PropertyOverride { get; set; }
+
+    private string PropertyOverrideText { get; set; } = "{}";
+
+    private void Text2Obj()
+    {
+        try
+        {
+            var result = JsonUtil.Deserialize<TemplateItemProperties>(PropertyOverrideText);
+            PropertyOverride = result ?? throw new NullReferenceException(nameof(PropertyOverrideText));
+            LocalLog.LocalLogMsg(LocalLogType.Debug, "反序列化PropertyOverrideText文本结束");
+        }
+        catch (Exception e)
+        {
+            Snackbar.Add($"反序列化PropertyOverrideText文本时出现错误({e.Message}), 请检查你输入的文本格式是否正确");
+            LocalLog.LocalLogMsg(LocalLogType.Error, $"反序列化PropertyOverrideText文本时出现错误: {e.Message} {e.StackTrace}");
+        }
+    }
+    
+    private void Obj2Text()
+    {
+        try
+        {
+            PropertyOverrideText = JsonUtil.Serialize(PropertyOverride, true) ?? "{}";
+            LocalLog.LocalLogMsg(LocalLogType.Debug, "序列化PropertyOverride结束");
+        }
+        catch (Exception e)
+        {
+            Snackbar.Add($"序列化PropertyOverride对象时出现错误({e.Message})");
+            LocalLog.LocalLogMsg(LocalLogType.Error, $"序列化PropertyOverride对象时出现错误: {e.Message} {e.StackTrace}");
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        Obj2Text();
+        base.OnInitialized();
+    }
+
+    private Task OnUpdateJsonTextCallback()
+    {
+        Text2Obj();
+        Obj2Text();
+        return Task.CompletedTask;
+    }
+}
