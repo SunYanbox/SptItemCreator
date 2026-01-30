@@ -2,30 +2,37 @@
 
 > 需要像示例一样使用下方的字符串之一
 
-- `9mm_PM`
-- `Caliber9x18PM`
-- `Caliber9x19PARA`
-- `Caliber9x21`
-- `Caliber9x33R`
-- `Caliber9x39`
-- `Caliber30x29`
-- `Caliber545x39`
-- `Caliber556x45NATO`
-- `Caliber57x28`
-- `Caliber12g`
-- `Caliber762x25TT`
-- `Caliber762x51`
-- `Caliber762x39`
-- `Caliber762x54R`
-- `Caliber40mmRU`
-- `Caliber40x46`
-- `Caliber46x30`
-- `Caliber725`
-- `Caliber762x25TT`
-- `Caliber20g`
-- `Caliber127x55`
-- `Caliber127x108`
-- `Caliber366TKM`
+- "Caliber556x45NATO",
+- "Caliber9x18PM",
+- "Caliber12g",
+- "Caliber762x54R",
+- "Caliber762x39",
+- "Caliber40mmRU",
+- "Caliber9x19PARA",
+- "Caliber545x39",
+- "Caliber762x25TT",
+- "Caliber9x39",
+- "Caliber762x51",
+- "Caliber366TKM",
+- "Caliber9x21",
+- "Caliber20g",
+- "Caliber46x30",
+- "Caliber127x55",
+- "Caliber57x28",
+- "Caliber127x108",
+- "Caliber30x29",
+- "Caliber1143x23ACP",
+- "Caliber23x75",
+- "Caliber40x46",
+- "Caliber762x35",
+- "Caliber86x70",
+- "Caliber9x33R",
+- "Caliber26x75",
+- "Caliber68x51",
+- "Caliber20x1mm",
+- "Caliber127x33",
+- "Caliber725",
+- "Caliber127x99"
 
 **示例**
 
