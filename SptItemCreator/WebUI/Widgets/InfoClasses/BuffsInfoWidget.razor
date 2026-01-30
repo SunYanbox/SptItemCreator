@@ -1,0 +1,118 @@
+@using SPTarkov.Server.Core.Models.Eft.Common
+
+@inject ISnackbar Snackbar
+@inject SPTDataCacheService SPTDataCacheService
+
+<MudCard Outlined="true" Class="overflow-y-auto pa-4 ma-2">
+    <MudCardHeader><MudText Typo="Typo.h4">BuffsInfo</MudText></MudCardHeader>
+    
+    <MudTooltip Text="BuffsInfo.StimulatorBuffs">
+        <MudTextField @bind-Value="BuffsInfo.StimulatorBuffs" Label="效果的唯一Id"
+                         HelperText="任意字符串, 如果使用SPT数据库已注册的字符串可以省略下面的Buffs" Variant="Variant.Filled" Clearable="true"/>
+    </MudTooltip>
+    
+    <MudTooltip Text="BuffsInfo.Buffs">
+        <MudCard Style="max-height: 450px" Class="overflow-y-auto pa-4 ma-2">
+            <MudCardHeader>效果列表配置</MudCardHeader>
+            <MudStack Row="true" AlignItems="AlignItems.Center">
+                <MudSelect T="string" @bind-Value="BuffType" Variant="Variant.Filled" Label="BuffType">
+                    @foreach (string buffType in SPTDataCacheService.BuffCache!.BuffType)
+                    {
+                        <MudSelectItem T="string" Value="@buffType">@buffType</MudSelectItem>
+                    }
+                </MudSelect>
+                <MudButton OnClick="@(() => OnCreateEffect())">创建效果</MudButton>
+                <MudButton OnClick="@(() => BuffsInfo.Buffs?.Clear())" Color="Color.Warning">清空效果</MudButton>
+            </MudStack>
+            @if (BuffsInfo.Buffs is not null)
+            {
+                foreach (Buff buff in BuffsInfo.Buffs)
+                {
+                    <MudStack Row="true" AlignItems="AlignItems.Center">
+                        <MudTooltip Text="Buff.BuffType">
+                            <MudText>@buff.BuffType</MudText>
+                        </MudTooltip>
+                        <MudTooltip Text="Buff.Chance">
+                            <MudNumericField @bind-Value="buff.Chance" Label=""
+                                             HelperText="双精度浮点数, 一般只用于能量(Energy)或水分(Hydration)" Variant="Variant.Filled" Min="@double.MinValue" Max="@double.MaxValue" Clearable="true"/>
+                        </MudTooltip>
+                        <MudTooltip Text="Buff.Delay">
+                            <MudNumericField @bind-Value="buff.Delay" Label="延迟"
+                                             HelperText="双精度浮点数, 单位: 秒" Variant="Variant.Filled" Min="@double.MinValue" Max="@double.MaxValue" Clearable="true"/>
+                        </MudTooltip>
+                        <MudTooltip Text="Buff.Duration">
+                            <MudNumericField @bind-Value="buff.Duration" Label="持续时间"
+                                             HelperText="双精度浮点数, 单位: 秒" Variant="Variant.Filled" Min="@double.MinValue" Max="@double.MaxValue" Clearable="true"/>
+                        </MudTooltip>
+                        <MudTooltip Text="Buff.Value">
+                            <MudNumericField @bind-Value="buff.Value" Label="数值"
+                                             HelperText="双精度浮点数, 与AbsoluteValue选项配合使用" Variant="Variant.Filled" Min="@double.MinValue" Max="@double.MaxValue" Clearable="true"/>
+                        </MudTooltip>
+                        <MudTooltip Text="Buff.SkillName">
+                            <MudSelect T="string" Disabled="@(buff.BuffType != "SkillRate")" @bind-Value="buff.SkillName" Variant="Variant.Filled" Label="SkillName" HelperText="当BuffType为'SkillRate'时赋值这个以设置影响的技能" Clearable="true">
+                                @foreach (string skillName in SPTDataCacheService.BuffCache!.SkillName)
+                                {
+                                    <MudSelectItem T="string" Value="@skillName">@skillName</MudSelectItem>
+                                }
+                            </MudSelect>
+                        </MudTooltip>
+
+                        <MudTooltip Text="Buff.AbsoluteValue">
+                            <MudSwitch @bind-Value="SetAbsoluteValueNull" Label="是否设置Buff.AbsoluteValue为null(目前没有这样设置的, 保持关闭即可)"/>
+                            <MudSwitch @bind-Value="buff.AbsoluteValue" Label="绝对数值"/>
+                            <MudText>关闭时代表Value部分为百分比加成, 开启后为按数值加法</MudText>
+                        </MudTooltip>
+
+                        <MudButton OnClick="@(() => OnDeleteEffect(buff))">删除此效果</MudButton>
+                    </MudStack>
+                }
+            }
+        </MudCard>
+    </MudTooltip>
+    
+    <MudButton OnClick="@(() => OnCheckCallback())">检查数据</MudButton>
+</MudCard>
+
+@code {
+    /// <summary> 外部BuffsInfo实例 </summary>
+    [Parameter] public required BuffsInfo BuffsInfo { get; set; }
+    private bool SetAbsoluteValueNull { get; set; }
+    public string? BuffType { get; set; }
+
+    private Task OnCheckCallback()
+    {
+        return Task.CompletedTask;
+    }
+
+    private Task OnCreateEffect()
+    {
+        if (string.IsNullOrEmpty(BuffType))
+        {
+            Snackbar.Add($"BuffType不可为空: {BuffType}");
+            return Task.CompletedTask;
+        }
+
+        BuffsInfo.Buffs ??= [];
+        
+        BuffsInfo.Buffs.Add(new Buff
+        {
+            BuffType = BuffType
+        });
+        
+        return Task.CompletedTask;
+    }
+
+    private Task OnDeleteEffect(Buff buff)
+    {
+        if (BuffsInfo.Buffs?.Remove(buff) ?? false)
+        {
+            Snackbar.Add($"Buff({buff})移除成功");
+        }
+        else
+        {
+            Snackbar.Add($"Buff({buff})移除失败");
+        }
+        
+        return Task.CompletedTask;
+    }
+}
