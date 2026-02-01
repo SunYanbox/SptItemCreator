@@ -60,8 +60,30 @@ public sealed class DataLoader(
         
         
         List<string> foundFiles = [];
+        List<string> jumpFolderPath = [];
+        List<string> jumpFilePath = [];
         
-        TraverseForSicFiles(localLog.DataFolderPath, foundFiles);
+        TraverseForSicFiles(localLog.DataFolderPath, foundFiles, jumpFolderPath, jumpFilePath);
+        
+        if (jumpFilePath.Count + jumpFolderPath.Count >= 1)
+        {
+            var message = string.Empty;
+            if (jumpFolderPath.Count > 0)
+            {
+                message += $"已跳过模板文件夹:\n\t - {string.Join("\n\t - ", jumpFolderPath)}";
+                if (jumpFilePath.Count > 0)
+                {
+                    message += "\n\n";
+                }
+            }
+            if (jumpFilePath.Count > 0)
+            {
+                message +=
+                    $"已跳过模板文件:\n\t - {string.Join("\n\t - ", jumpFilePath)}";
+            }
+
+            _localLog.LocalLogMsg(LocalLogType.Debug, message);
+        }
         
         foreach (string file in foundFiles)
         {
@@ -144,17 +166,22 @@ public sealed class DataLoader(
                && (_configService?.Config?.IgnoreTemplateFiles ?? false)
                && (Path.GetFileName(name).Contains("Template") || Path.GetFileName(name).Contains("模板"));
     }
-    
+
     /// <summary>
     /// 递归遍历, 获取新物品数据
     /// </summary>
     /// <param name="path">目录路径</param>
     /// <param name="results">结果列表</param>
+    /// <param name="jumpFolderPath">跳过的文件夹路径列表</param>
+    /// <param name="jumpFilePath">跳过的文件路径列表</param>
     /// <param name="currentDepth">当前递归深度（内部使用）</param>
-    public static void TraverseForSicFiles(string path, List<string> results, int currentDepth = 10)
+    public static void TraverseForSicFiles(string path, List<string> results, List<string> jumpFolderPath, List<string> jumpFilePath, int currentDepth = 10)
     {
-        List<string> jumpFilePath = [];
-        List<string> jumpFolderPath = [];
+        if (JumpFolderOrFile(Path.GetDirectoryName(path)))
+        {
+            jumpFolderPath.Add(path);
+            return;
+        }
         try
         {
             // 检查递归深度
@@ -163,6 +190,17 @@ public sealed class DataLoader(
                 if (_localLog != null) _localLog.LocalLogMsg(LocalLogType.Warn, $"达到最大递归深度，停止遍历: {path}");
                 else Console.WriteLine($"[{_modName}] 达到最大递归深度，停止遍历: {path}");
                 return;
+            }
+            
+            // 递归遍历所有子目录
+            foreach (string subDirectory in Directory.GetDirectories(path))
+            {
+                if (JumpFolderOrFile(Path.GetDirectoryName(subDirectory)))
+                {
+                    jumpFolderPath.Add(subDirectory);
+                    continue;
+                }
+                TraverseForSicFiles(subDirectory, results, jumpFolderPath, jumpFilePath, currentDepth - 1);
             }
 
             // 遍历当前目录的所有文件
@@ -177,17 +215,6 @@ public sealed class DataLoader(
                 {
                     results.Add(file);
                 }
-            }
-        
-            // 递归遍历所有子目录
-            foreach (string subDirectory in Directory.GetDirectories(path))
-            {
-                if (JumpFolderOrFile(Path.GetDirectoryName(subDirectory)))
-                {
-                    jumpFolderPath.Add(subDirectory);
-                    continue;
-                }
-                TraverseForSicFiles(subDirectory, results, currentDepth - 1);
             }
         }
         catch (UnauthorizedAccessException)
@@ -204,15 +231,6 @@ public sealed class DataLoader(
         {
             if (_localLog != null) _localLog.LocalLogMsg(LocalLogType.Error, $"处理目录 {path} 时出错: {ex.Message}");
             else Console.WriteLine($"[{_modName}] 处理目录 {path} 时出错: {ex.Message}");
-        }
-
-        if (jumpFilePath.Count + jumpFolderPath.Count >= 1)
-        {
-            var message =
-                $"已跳过模板文件:\n\t - {string.Join("\n\t - ", jumpFilePath)}\n\n已跳过模板文件夹:\n\t - {string.Join("\n\t - ", jumpFolderPath)}";
-
-            if (_localLog != null) _localLog.LocalLogMsg(LocalLogType.Info, message);
-            else Console.WriteLine($"[{_modName}] {message}");
         }
     }
     
