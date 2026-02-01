@@ -5,10 +5,22 @@ copyright: MIT
 site_dir: site/SptItemCreatorWiki
 
 
+
 theme:
-  name: mkdocs
+  name: material
   custom_dir: custom_theme/
   user_color_mode_toggle: true
-  locale: zh_CN
+  language: zh # material 页面语言
+
+extra: 
+  alternate:
+    - name: 中文
+      link: /zh/
+      lang: zh
+    - name: English
+      link: /en/
+      lang: en
+  sitemap:
+    filename: sitemap.xml
 
 use_directory_urls: false
