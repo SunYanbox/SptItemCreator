@@ -11,6 +11,18 @@ theme:
   custom_dir: custom_theme/
   user_color_mode_toggle: true
   language: zh # material 页面语言
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: 暗色模式
+    - media: "(prefers-color-scheme: dark)"
+      primary: teal
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: 亮色模式
 
 extra: 
   alternate:
