@@ -13,7 +13,7 @@ using SPTarkov.Server.Core.Utils;
 using SptItemCreator.Enums;
 using Path = System.IO.Path;
 
-namespace SptItemCreator.CacheSystem;
+namespace SptItemCreator.Services;
 
 [UsedImplicitly]
 public sealed class ParentIdNameRate
@@ -254,10 +254,10 @@ public sealed class SPTDataCacheService(
                 if (countAmmoSfx > 0 && countCaliber > 0 && countCasingSounds > 0 && countAmmoType > 0)
                 {
                     localLog.LocalLogMsg(LocalLogType.Info,
-                        $"子弹缓存加载成功 - 射击音效: {countAmmoSfx?.ToString() ?? "0"} 个, " +
-                        $"口径: {countCaliber?.ToString() ?? "0"} 个, " +
-                        $"弹壳音效: {countCasingSounds?.ToString() ?? "0"} 个" +
-                        $"子弹类型: {countAmmoType?.ToString() ?? "0"} 个");
+                        $"子弹缓存加载成功 - 射击音效: {countAmmoSfx.ToString() ?? "0"} 个, " +
+                        $"口径: {countCaliber.ToString() ?? "0"} 个, " +
+                        $"弹壳音效: {countCasingSounds.Value.ToString()} 个" +
+                        $"子弹类型: {countAmmoType.ToString() ?? "0"} 个");
                     return;
                 }
             }

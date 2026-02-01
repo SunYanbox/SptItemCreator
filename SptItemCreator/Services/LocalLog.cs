@@ -5,9 +5,10 @@ using System.Text;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers;
-using SPTarkov.Server.Core.Models.Utils;
+using SptItemCreator.Enums;
+using LogLevel = SPTarkov.Server.Core.Models.Spt.Logging.LogLevel;
 
-namespace SptItemCreator;
+namespace SptItemCreator.Services;
 
 public enum LocalLogType
 {
@@ -27,10 +28,11 @@ internal static class Constants
 /// 封装本地化日志, 获取模组配置信息
 /// </summary>
 [Injectable(InjectionType = InjectionType.Singleton, TypePriority = OnLoadOrder.PreSptModLoader + 1)]
-public class LocalLog(ModHelper modHelper, ISptLogger<LocalLog> logger): IOnLoad
+public class LocalLog(ModHelper modHelper, ConfigService configService): IOnLoad
 {
     public string? DataFolderPath { get; set; }
     public string? LogFolderPath { get; set; }
+    public string? ModFolderPath { get; set; }
     protected readonly Dictionary<LocalLogType, StreamWriter> LogWriters = new();
     protected readonly Lock LogLock = new();
 
@@ -39,13 +41,14 @@ public class LocalLog(ModHelper modHelper, ISptLogger<LocalLog> logger): IOnLoad
         try
         {
             bool result = func();
-            logger.Debug($"[{GetModName()}]<{task}> 任务完成");
+            configService.SptLog(LogLevel.Debug, $"<{task}> 任务完成");
             return result;
         }
         catch (Exception e)
         {
-            logger.Error($"[{GetModName()}]<{task}>: {e.Message}\n\t{e.StackTrace}");
-            LocalLogMsg(LocalLogType.Error, $"{e.Message}\n\t{e.StackTrace}");
+            string errorMessage = $"{e.Message}\n\t{e.StackTrace}";
+            configService.SptLog(LogLevel.Error, $"<{task}>: {errorMessage}");
+            LocalLogMsg(LocalLogType.Error, errorMessage);
             return false;
         }
     }
@@ -71,7 +74,8 @@ public class LocalLog(ModHelper modHelper, ISptLogger<LocalLog> logger): IOnLoad
     /// <returns></returns>
     protected bool InitLogCore(string pathToMod)
     {
-        const int maxLogFileSize = 10 * 1024 * 1024; // 10 MB
+        long maxLogFileSize = configService.Config?.LocalFilesMaximumBytes ?? Default.LocalFilesMaximumBytes;
+        ModFolderPath = pathToMod;
         LogFolderPath = Path.Combine(pathToMod, Constants.LogFolder);
         DataFolderPath = Path.Combine(pathToMod, Constants.DataFolder);
 
@@ -141,7 +145,8 @@ public class LocalLog(ModHelper modHelper, ISptLogger<LocalLog> logger): IOnLoad
     /// </summary>
     /// <param name="type">日志类型</param>
     /// <param name="message">日志消息</param>
-    public void LocalLogMsg(LocalLogType type, string message)
+    /// <param name="ex">报错内容</param>
+    public void LocalLogMsg(LocalLogType type, string message, Exception? ex = null)
     {
         if (LogWriters.TryGetValue(type, out StreamWriter? writer))
         {
@@ -158,6 +163,22 @@ public class LocalLog(ModHelper modHelper, ISptLogger<LocalLog> logger): IOnLoad
 
                 return true;
             });
+        }
+
+        if (configService.Config?.SynchronousLogging ?? false)
+        {
+            switch (type)
+            {
+                case LocalLogType.Info:
+                    configService.SptLog(LogLevel.Info, message, ex);
+                    break;
+                case LocalLogType.Warn:
+                    configService.SptLog(LogLevel.Warn, message, ex);
+                    break;
+                case LocalLogType.Error:
+                    configService.SptLog(LogLevel.Error, message, ex);
+                    break;
+            }
         }
     }
 
@@ -179,7 +200,7 @@ public class LocalLog(ModHelper modHelper, ISptLogger<LocalLog> logger): IOnLoad
         }
         catch (Exception e)
         {
-            LocalLogMsg(LocalLogType.Error, $"<任务: {task}> {e.Message}\n\t{e.StackTrace}\n\t{taskResult}({taskResult?.Id}, {taskResult?.CreationOptions}, 状态: {taskResult?.Status})");
+            LocalLogMsg(LocalLogType.Error, $"<任务: {task}> {e.Message}\n\t{taskResult}({taskResult?.Id}, {taskResult?.CreationOptions})", e);
             // return Task.FromException<Exception>(e);
         }
     }
@@ -188,8 +209,6 @@ public class LocalLog(ModHelper modHelper, ISptLogger<LocalLog> logger): IOnLoad
     {
         return new StackTrace(true).ToString();
     }
-
-    public static string GetModName() => "SptItemCreator";
     
     public static string ToStringExcludeNulls(object? obj)
     {
@@ -198,7 +217,7 @@ public class LocalLog(ModHelper modHelper, ISptLogger<LocalLog> logger): IOnLoad
         var builder = new StringBuilder();
         builder.Append($"{obj.GetType().Name} {{ ");
         
-        var properties = obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
+        IEnumerable<PropertyInfo> properties = obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
             .Where(p => p.CanRead);
         
         var nonNullProperties = properties.Select(p => new { 
@@ -206,7 +225,7 @@ public class LocalLog(ModHelper modHelper, ISptLogger<LocalLog> logger): IOnLoad
             Value = p.GetValue(obj) 
         }).Where(x => x.Value != null).ToList();
         
-        for (int i = 0; i < nonNullProperties.Count; i++)
+        for (var i = 0; i < nonNullProperties.Count; i++)
         {
             if (i > 0) builder.Append(", ");
             
@@ -252,7 +271,7 @@ public class LocalLog(ModHelper modHelper, ISptLogger<LocalLog> logger): IOnLoad
         }
     }
 
-    private static void AppendEscapedEnumerable(StringBuilder builder, IEnumerable enumerable)
+    private static void AppendEscapedEnumerable(StringBuilder builder, IEnumerable? enumerable)
     {
         if (enumerable == null)
         {
@@ -313,7 +332,7 @@ public class LocalLog(ModHelper modHelper, ISptLogger<LocalLog> logger): IOnLoad
         
         switch (c)
         {
-            case '\\': builder.Append("\\\\"); break;
+            case '\\': builder.Append(@"\\"); break;
             case '\'': builder.Append("\\'"); break;
             case '\n': builder.Append("\\n"); break;
             case '\r': builder.Append("\\r"); break;

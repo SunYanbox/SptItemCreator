@@ -1,0 +1,66 @@
+@page "/SIC/Setting"
+
+@inject ISnackbar Snackbar
+@inject ConfigService ConfigService
+
+<MainLayout/>
+
+<MudPaper>
+    <MudStack>
+        @* 同步日志 *@
+        <MudTooltip Text="在记录本地日志时, 同步将Info, Warn, Error级别的日志输出到SPT服务端控制台">
+            <MudSwitch @bind-Value="SynchronousLogging" Label="同步日志" Color="Color.Secondary"/>
+        </MudTooltip>
+        @* 忽略模板文件 *@
+        <MudTooltip Text="@("""忽略名称中带有"模板", "Template"的所有文件与文件夹下的文件""")">
+            <MudSwitch @bind-Value="IgnoreTemplateFiles" Label="忽略模板文件" Color="Color.Secondary"/>
+        </MudTooltip>
+        @* 本地日志文件最大字节数 *@
+        <MudTooltip Text="1MB = 1024KB = 1024*1024B">
+            <MudNumericField @bind-Value="LocalFilesMaximumBytes" Label="本地日志文件最大字节数" Variant="Variant.Text" Min="0" Max="10485760"/>
+        </MudTooltip>
+        
+    </MudStack>
+    
+    <MudStack Row="true">
+        <MudButton OnClick="@(async () => await OnSaveConfig())">保存设置修改</MudButton>
+        <MudButton OnClick="@(() => CancelSaveConfig())">取消设置修改</MudButton>
+    </MudStack>
+</MudPaper>
+
+@code {
+    protected bool SynchronousLogging { get; set; }
+
+    protected long LocalFilesMaximumBytes { get; set; }
+
+    protected bool IgnoreTemplateFiles { get; set; }
+    
+    private async Task OnSaveConfig()
+    {
+        if (ConfigService.Config is null)
+        {
+            Snackbar.Add("设置保存失败: 实例为null");
+            return;
+        }
+        ConfigService.Config.SynchronousLogging = SynchronousLogging;
+        ConfigService.Config.LocalFilesMaximumBytes = LocalFilesMaximumBytes;
+        ConfigService.Config.IgnoreTemplateFiles = IgnoreTemplateFiles;
+
+        await ConfigService.SaveConfig();
+        
+        Snackbar.Add("设置保存完毕");
+    }
+
+    private void CancelSaveConfig()
+    {
+        SynchronousLogging = ConfigService.Config?.SynchronousLogging ?? false;
+        LocalFilesMaximumBytes = ConfigService.Config?.LocalFilesMaximumBytes ?? Default.LocalFilesMaximumBytes;
+        IgnoreTemplateFiles = ConfigService.Config?.IgnoreTemplateFiles ?? false;
+    }
+
+    protected override void OnInitialized()
+    {
+        CancelSaveConfig();
+        base.OnInitialized();
+    }
+}

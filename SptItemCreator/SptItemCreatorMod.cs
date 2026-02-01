@@ -5,11 +5,12 @@ using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Mod;
-using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Services.Mod;
 using SptItemCreator.Abstracts;
+using SptItemCreator.Services;
+using LogLevel = SPTarkov.Server.Core.Models.Spt.Logging.LogLevel;
 
 namespace SptItemCreator;
 
@@ -21,9 +22,9 @@ public class SptItemCreatorMod(
     LocalLog localLog,
     HttpServer httpServer,
     DataLoader dataLoader,
+    ConfigService configService,
     WebApplicationBuilder builder,
     DatabaseService databaseService,
-    ISptLogger<SptItemCreatorMod> logger,
     CustomItemService customItemService): IOnLoad
 {
     public void CreateTask<T>(Dictionary<string, T> data, string taskName) where T: NewItemCommon
@@ -50,7 +51,8 @@ public class SptItemCreatorMod(
         CreateTask(dataLoader.NewItemMedical, "药品");
         CreateTask(dataLoader.NewItemAmmo, "弹药");
         
-        logger.Info($"{DateTime.Now.ToLongDateString()} {DateTime.Now.ToLongTimeString()} WeiUI run at {httpServer.ListeningUrl()}/SIC");
+        
+        configService.SptLog(LogLevel.Info, $"{DateTime.Now.ToLongDateString()} {DateTime.Now.ToLongTimeString()} WeiUI run at {httpServer.ListeningUrl()}/SIC");
         return Task.CompletedTask;
     }
 

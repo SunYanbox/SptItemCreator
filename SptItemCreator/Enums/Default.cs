@@ -26,4 +26,6 @@ public static class Default
     public const double ParentIdCacheUpdateTime = 90 * 60 * 1000;
     /// <summary> 默认缓存系统更新/加载时间 </summary>
     public const long CacheSystemUpdateTime = 5 * 60 * 1000;
+    /// <summary> 本地日志文件最大字节数(512KB) </summary>
+    public const long LocalFilesMaximumBytes = 512 * 1024;
 }

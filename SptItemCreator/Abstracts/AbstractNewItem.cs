@@ -6,6 +6,7 @@ using SPTarkov.Server.Core.Services;
 using SptItemCreator.Enums;
 using SptItemCreator.InfoClasses;
 using SptItemCreator.NewItemClasses;
+using SptItemCreator.Services;
 
 namespace SptItemCreator.Abstracts;
 

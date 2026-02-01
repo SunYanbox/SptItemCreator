@@ -3,6 +3,7 @@ using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Services;
 using SptItemCreator.Enums;
 using SptItemCreator.InfoClasses;
+using SptItemCreator.Services;
 
 namespace SptItemCreator.NewItemClasses;
 

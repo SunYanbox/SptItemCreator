@@ -1,4 +1,5 @@
 using System.Text.Json;
+using JetBrains.Annotations;
 using SptItemCreator.NewItemClasses;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
@@ -8,18 +9,22 @@ using SPTarkov.Server.Core.Utils;
 using SptItemCreator.Abstracts;
 using SptItemCreator.Enums;
 
-namespace SptItemCreator;
+namespace SptItemCreator.Services;
 
 [Injectable(InjectionType = InjectionType.Singleton, TypePriority = OnLoadOrder.PostDBModLoader + 1)]
-public class DataLoader(
+[UsedImplicitly]
+public sealed class DataLoader(
         LocalLog localLog,
         JsonUtil jsonUtil,
+        ConfigService configService,
         ItemHelper itemHelper,
         DatabaseService databaseService
     ): IOnLoad
 {
+    private static string? _modName;
     private static LocalLog? _localLog;
     private static JsonUtil? _jsonUtil;
+    private static ConfigService? _configService;
     /// <summary>
     /// 通用/默认创建物品接口
     /// </summary>
@@ -43,8 +48,9 @@ public class DataLoader(
         AbstractInfo.ItemHelper ??= itemHelper;
         AbstractNewItem.LocalLog ??= localLog;
         AbstractNewItem.DatabaseService ??= databaseService;
+        _modName ??= configService.ModMetadata?.Name ?? "SptItemCreator";
         _jsonUtil  ??= jsonUtil;
-        
+        _configService ??= configService;
         _localLog = localLog;
         if (localLog.DataFolderPath == null)
         {
@@ -69,7 +75,7 @@ public class DataLoader(
                 if (newItemBase.AttributeInfo is not null) newItemBase.AttributeInfo.ItemPath = file;
                 newItemBase.ItemPath = file;
                 newItemBase.Verify();
-                localLog.LocalLogMsg(LocalLogType.Debug, $"已加载新物品 Id{newItemBase.BaseInfo.Id}({newItemBase.BaseInfo.Name}, @{newItemBase.BaseInfo.Author}) \t {newItemBase.BaseInfo.License} \n\t > Path = {file}");
+                localLog.LocalLogMsg(LocalLogType.Debug, $"已加载新物品 Id{newItemBase.BaseInfo.Id}({newItemBase.BaseInfo.Name}, @{newItemBase.BaseInfo.Author}) \t License = {newItemBase.BaseInfo.License} \t Path = {file}");
                 // 类型转换
                 switch (newItemBase.BaseInfo.Type)
                 {
@@ -131,6 +137,13 @@ public class DataLoader(
         _localLog?.LocalLogMsg(LocalLogType.Warn, $"解析数据时出现问题: _jsonUtil未初始化");
         return null;
     }
+
+    private static bool JumpFolderOrFile(string? name)
+    {
+        return name != null
+               && (_configService?.Config?.IgnoreTemplateFiles ?? false)
+               && (Path.GetFileName(name).Contains("Template") || Path.GetFileName(name).Contains("模板"));
+    }
     
     /// <summary>
     /// 递归遍历, 获取新物品数据
@@ -140,19 +153,26 @@ public class DataLoader(
     /// <param name="currentDepth">当前递归深度（内部使用）</param>
     public static void TraverseForSicFiles(string path, List<string> results, int currentDepth = 10)
     {
+        List<string> jumpFilePath = [];
+        List<string> jumpFolderPath = [];
         try
         {
             // 检查递归深度
             if (currentDepth < 0)
             {
                 if (_localLog != null) _localLog.LocalLogMsg(LocalLogType.Warn, $"达到最大递归深度，停止遍历: {path}");
-                else Console.WriteLine($"[{LocalLog.GetModName()}] 达到最大递归深度，停止遍历: {path}");
+                else Console.WriteLine($"[{_modName}] 达到最大递归深度，停止遍历: {path}");
                 return;
             }
 
             // 遍历当前目录的所有文件
             foreach (string file in Directory.GetFiles(path))
             {
+                if (JumpFolderOrFile(Path.GetFileName(file)))
+                {
+                    jumpFilePath.Add(file);
+                    continue;
+                }
                 if (file.EndsWith(".sic") || file.EndsWith(".sic.json") || file.EndsWith(".sic.jsonc"))
                 {
                     results.Add(file);
@@ -162,23 +182,38 @@ public class DataLoader(
             // 递归遍历所有子目录
             foreach (string subDirectory in Directory.GetDirectories(path))
             {
+                if (JumpFolderOrFile(Path.GetDirectoryName(subDirectory)))
+                {
+                    jumpFolderPath.Add(subDirectory);
+                    continue;
+                }
                 TraverseForSicFiles(subDirectory, results, currentDepth - 1);
             }
         }
         catch (UnauthorizedAccessException)
         {
             if (_localLog != null) _localLog.LocalLogMsg(LocalLogType.Error, $"无权访问目录: {path}");
-            else Console.WriteLine($"[{LocalLog.GetModName()}] 无权访问目录: {path}");
+            else Console.WriteLine($"[{_modName}] 无权访问目录: {path}");
         }
         catch (DirectoryNotFoundException)
         {
             if (_localLog != null) _localLog.LocalLogMsg(LocalLogType.Error, $"目录不存在: {path}");
-            else Console.WriteLine($"[{LocalLog.GetModName()}] 目录不存在: {path}");
+            else Console.WriteLine($"[{_modName}] 目录不存在: {path}");
         }
         catch (Exception ex)
         {
             if (_localLog != null) _localLog.LocalLogMsg(LocalLogType.Error, $"处理目录 {path} 时出错: {ex.Message}");
-            else Console.WriteLine($"[{LocalLog.GetModName()}] 处理目录 {path} 时出错: {ex.Message}");
+            else Console.WriteLine($"[{_modName}] 处理目录 {path} 时出错: {ex.Message}");
+        }
+
+        if (jumpFilePath.Count + jumpFolderPath.Count >= 1)
+        {
+            var message =
+                $"已跳过模板文件:\n\t - {string.Join("\n\t - ", jumpFilePath)}\n\n已跳过模板文件夹:\n\t - {string.Join("\n\t - ", jumpFolderPath)}";
+
+            if (_localLog != null) _localLog.LocalLogMsg(LocalLogType.Info, message);
+            else Console.WriteLine($"[{_modName}] {message}");
         }
     }
+    
 }
