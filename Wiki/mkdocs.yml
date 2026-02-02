@@ -4,7 +4,11 @@ site_author: Suntion
 copyright: MIT
 site_dir: site/SptItemCreatorWiki
 
-
+plugins:
+  - search:
+      separator: '[\s\u200b\-]'
+  - open-in-new-tab:
+      add_icon: true
 
 theme:
   name: material
@@ -24,7 +28,7 @@ theme:
         icon: material/weather-sunny
         name: 亮色模式
 
-extra: 
+extra:
   alternate:
     - name: 中文
       link: /zh/

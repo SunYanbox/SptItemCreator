@@ -1,8 +1,8 @@
-## effects_damage的键
+## the key of effects_damage
 
-> 既可以用前面的名称，也可以用对应的整数
+> You can use either the previous names or the corresponding integers
 
-这个属性(`effects_damage`)常用于饮品和药品
+This attribute (`effects_damage`) is commonly used for drinks and medicines.
 
 ```c#
 public enum DamageEffectType
@@ -19,12 +19,12 @@ public enum DamageEffectType
 }
 ```
 
-## 例子
+## Example
 
-**饮品**
+**Drinks**
 
 ```jsonc
-// 物品item_food_purewater的effects_damage，可以移除辐射
+// The effects_damage of the item item_food_purewater, which can remove radiation
 "effects_damage": {
     "6": {
         "delay": 0,
@@ -33,10 +33,10 @@ public enum DamageEffectType
 }
 ```
 
-**药品**
+**Medicines**
 
 ```jsonc
-// 物品morphine的effects_damage，提供5min的止痛并移除挫伤
+// The effects_damage of the item morphine, providing 5 minutes of pain relief and removing contusions
 "effects_damage": {
     "3": {
         "delay": 0,
@@ -49,7 +49,7 @@ public enum DamageEffectType
         "fadeOut": 5
     }
 }
-// 物品morphine的effects_damage，提供5min的止痛并移除挫伤
+// The effects_damage of the item morphine, providing 5 minutes of pain relief and removing contusions
 "effects_damage": {
     "Fracture": {
         "delay": 0,

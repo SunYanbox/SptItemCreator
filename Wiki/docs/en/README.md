@@ -14,9 +14,14 @@ Click on the navigation bar at the top to enter the item creation interface (ite
 
 > For subsequent modifications, refer to:
 >
-> - [Manual Item Creation Method.md](Creation Tutorials/Manual Item Creation Method.md)
-> - [0. Understanding Mod Data Structure (Optional).md](Creation Tutorials/0. Understanding Mod Data Structure (Optional).md)
-> - [1. Fields Used by the Mod.md](Creation Tutorials/1. Fields Used by the Mod.md)
+> - [Manual item creation method.md](./Item Creation Tutorial/Manual item creation method.md)
+> - Mod Data Structures
+>   - [Data File Type](./About This Mod/Data File Type.md)
+>   - [BaseInfo](./Data Structure/BaseInfo.md)
+>   - [AttributeInfo](./Data Structure/AttributeInfo.md)
+>   - [BuffsInfo](./Data Structure/BuffsInfo.md)
+>   - [MedicalInfo](./Data Structure/MedicalInfo.md)
+>   - [DrinkFoodInfo](./Data Structure/DrinkFoodInfo.md)
 
 ## Reference Materials
 

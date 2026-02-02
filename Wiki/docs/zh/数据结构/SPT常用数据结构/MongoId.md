@@ -1,6 +1,6 @@
 ## MongoId
 
-[SPTarkov.Server.Core/Models/Common/MongoId.cs](https://github.com/sp-tarkov/server-csharp/blob/main/Libraries/SPTarkov.Server.Core/Models/Common/MongoId.cs)
+[SPTarkov.Server.Core/Models/Common/MongoId.cs](https://github.com/sp-tarkov/server-csharp/blob/main/Libraries/SPTarkov.Server.Core/Models/Common/MongoId.cs?_blank)
 
 MongoId由24位(12字节)组成, 分别为：
 

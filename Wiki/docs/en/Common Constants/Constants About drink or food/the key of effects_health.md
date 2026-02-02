@@ -1,8 +1,8 @@
 ## effects_health的键
 
-> 既可以用前面的名称，也可以用对应的整数
+> You can use either the previous names or the corresponding integers
 
-这个属性(`effects_health`)用于饮品或者食物
+This attribute (`effects_health`) is commonly used for drinks and foods.
 
 ```C#
 public enum HealthFactor
@@ -18,12 +18,12 @@ public enum HealthFactor
 }
 ```
 
-## 例子
+## Example
 
-**饮品**
+**Drinks**
 
 ```jsonc
-// 物品juice_army的effects_health，恢复8能量与30水分
+// The effects_health of the item juice_army, restoring 8 energy and 30 hydration
 "effects_health": {
     "3": {
         "value": 8
@@ -34,10 +34,10 @@ public enum HealthFactor
 }
 ```
 
-**食物**
+**Foods**
 
 ```jsonc
-// 物品Crackers的effects_health，扣除5水分，恢复10能量
+// The effects_health of the item Crackers, deducting 5 hydration and restoring 10 energy
 "effects_health": {
     "3": {
         "value": 10
@@ -46,7 +46,7 @@ public enum HealthFactor
         "value": -5
     }
 }
-// 物品Crackers的effects_health，扣除5水分，恢复10能量
+// The effects_health of the item Crackers, deducting 5 hydration and restoring 10 energy
 "effects_health": {
     "Energy": {
         "value": 10

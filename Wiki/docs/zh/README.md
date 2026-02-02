@@ -15,7 +15,13 @@
 > 后续修改参考: 
 >
 > - [手动创建物品方式.md](./创建物品教程/手动创建物品方式.md)
-> - [模组数据结构](./数据结构/)
+> - 模组数据结构
+>   - [数据文件类型](./关于模组/数据文件类型.md)
+>   - [基础信息 BaseInfo](./数据结构/基础信息 BaseInfo.md)
+>   - [属性信息 AttributeInfo](./数据结构/属性信息 AttributeInfo.md)
+>   - [增益效果信息 BuffsInfo](./数据结构/增益效果信息 BuffsInfo.md)
+>   - [医疗信息 MedicalInfo](./数据结构/医疗信息 MedicalInfo.md)
+>   - [饮食信息 DrinkFoodInfo](./数据结构/饮食信息 DrinkFoodInfo.md)
 
 ## 参考文献
 
