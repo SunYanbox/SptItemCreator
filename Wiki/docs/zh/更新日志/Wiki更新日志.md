@@ -13,12 +13,18 @@
 - Wiki界面新增明暗主题切换
 
 - 新增**数据结构**模块，整理了SPTData中常用的类型和资产
+  - 关于`0. 了解模组数据结构(可选).md`
+    - 提取其中关于X的信息移动到新模块，X新增数据类型信息与在数据文件中写法列
 
-  - 把`0. 了解模组数据结构(可选).md`中关于BaseInfo的信息移动到新模块，BaseInfo新增数据类型信息，并于整理后的类型进行引用
+    - X: BaseInfo, DrinkFoodInfo, MedicalInfo BuffsInfo, AttributeInfo
 
   - 新增完整的SPT常用数据结构文档，涵盖Buff、LocaleDetails、Prefab、MongoId等核心类型
-
+  
   - 创建SPT数据文件说明，包含globals.json和items.json的详细解释
+  
+- 修复effects_damage键的示例说明错误
+- 移除了整理数据结构后重复的Wiki界面
+- 更新英文Wiki
 
 ## Wiki_26_01_30_14_45
 
