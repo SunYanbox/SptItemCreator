@@ -36,7 +36,7 @@ public enum DamageEffectType
 **药品**
 
 ```jsonc
-// 物品morphine的effects_health，提供5min的止痛并移除挫伤
+// 物品morphine的effects_damage，提供5min的止痛并移除挫伤
 "effects_damage": {
     "3": {
         "delay": 0,
@@ -49,7 +49,7 @@ public enum DamageEffectType
         "fadeOut": 5
     }
 }
-// 物品morphine的effects_health，提供5min的止痛并移除挫伤
+// 物品morphine的effects_damage，提供5min的止痛并移除挫伤
 "effects_damage": {
     "Fracture": {
         "delay": 0,
