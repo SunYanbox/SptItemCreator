@@ -17,7 +17,7 @@ namespace SptItemCreator;
 /// <summary>
 /// 在SPT数据库加载后第一时间加载
 /// </summary>
-[Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
+[Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 2)]
 public class SptItemCreatorMod(
     LocalLog localLog,
     HttpServer httpServer,
@@ -29,6 +29,11 @@ public class SptItemCreatorMod(
 {
     public void CreateTask<T>(Dictionary<string, T> data, string taskName) where T: NewItemCommon
     {
+        if (data.Count == 0)
+        {
+            localLog.LocalLogMsg(LocalLogType.Warn, $"任务{taskName}中没有加载任何数据文件");
+            return;
+        }
         foreach ((string path, T item) in data
                      .Where(k => k.Value.BaseInfo != null)
                      .OrderBy(k => k.Value.BaseInfo?.Order ?? int.MaxValue))
