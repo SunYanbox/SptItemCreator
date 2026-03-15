@@ -1,6 +1,7 @@
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
+using System.Threading.Channels;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers;
@@ -8,6 +9,7 @@ using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils;
 using SptItemCreator.Core.Services;
+using HashUtil = SuntionCore.Services.HashUtils.HashUtil;
 
 namespace SptItemCreator.Core.Cache;
 
@@ -18,8 +20,12 @@ public class PropertyStatsService(
     DatabaseService databaseService): IOnLoad
 {
     public const string CacheFolderName = "StatsCache";
+    /// <summary> 统计器 </summary>
     public readonly Dictionary<string, StatsHandler> StatsHandlers = new();
+    /// <summary> 缓存写入文件时的哈希, 避免频繁写入 </summary>
+    public Dictionary<string, string> StatsFileCacheHash = new();
     public string? CacheFolderPath;
+    public string? CacheHashFilePath;
     
     public Task OnLoad()
     {
@@ -27,6 +33,7 @@ public class PropertyStatsService(
         StatsHandler.DatabaseService ??= databaseService;
         
         CacheFolderPath = Path.Combine(LocalLog.ModFolder ?? "", CacheFolderName);
+        CacheHashFilePath = Path.Combine(CacheFolderPath, "hash.json");
         
         Directory.CreateDirectory(CacheFolderPath);
 
@@ -54,6 +61,19 @@ public class PropertyStatsService(
         LocalLog.TryCatch("[PropertyStatsService] 加载已统计缓存", () =>
         {
             List<string> successLoad = [];
+
+            if (Path.Exists(CacheHashFilePath))
+            {
+                try
+                {
+                    StatsFileCacheHash = jsonUtil.DeserializeFromFile<Dictionary<string, string>>(CacheHashFilePath) ??
+                                         new Dictionary<string, string>();
+                }
+                catch (Exception e)
+                {
+                    LocalLog.Logger.Error($"加载缓存的哈希值时出现错误({CacheHashFilePath})", e);
+                }
+            }
             
             List<string> files = Directory.EnumerateFiles(CacheFolderPath, "*.json", SearchOption.AllDirectories).ToList();
             
@@ -79,7 +99,7 @@ public class PropertyStatsService(
                         if (!baseClassesValues.Contains(statsHandler.HandleBaseClasses))
                             errors.Add($"HandleBaseClasses '{statsHandler.HandleBaseClasses}' 不在允许的 baseClassesValues 中");
 
-                        if (baseClassesDict!.GetValueOrDefault(statsHandler.CacheName) != statsHandler.HandleBaseClasses)
+                        if (!string.IsNullOrEmpty(statsHandler.CacheName) && baseClassesDict!.GetValueOrDefault(statsHandler.CacheName) != statsHandler.HandleBaseClasses)
                             errors.Add($"CacheName '{statsHandler.CacheName}' 对应的 BaseClasses 与 HandleBaseClasses '{statsHandler.HandleBaseClasses}' 不匹配");
                     }
 
@@ -137,9 +157,15 @@ public class PropertyStatsService(
         LocalLog.TryCatch("[PropertyStatsService] 保存数据", () =>
         {
             StringBuilder stringBuilder = new();
-            stringBuilder.Append($"保存{StatsHandlers.Count}条统计成功率: ");
-            int success = 0, emptyData = 0, total = StatsHandlers.Count;
-
+            int total = StatsHandlers.Count;
+            stringBuilder.Append($"保存{total}条统计成功率: ");
+            int success = 0, emptyData = 0, equalFile = 0;
+            
+            // 用于安全写入数据
+            var keyValueChannel = Channel.CreateBounded<(string name, string hashValue)>(
+                    new BoundedChannelOptions(total)
+                );
+            
             Task.WaitAll(StatsHandlers.Values.Select(async statsHandler =>
             {
                 try
@@ -154,8 +180,18 @@ public class PropertyStatsService(
                     string? json = jsonUtil.Serialize(statsHandler, true);
                     if (json is null)
                         throw new JsonException($"序列化{statsHandler.GetType().Name}({statsHandler.CacheName})的结果为空");
-                    await File.WriteAllTextAsync(statsHandler.SavePath, json);
-                    Interlocked.Increment(ref success);
+                    string jsonHash = HashUtil.Hash(json);
+                    if (jsonHash != StatsFileCacheHash!.GetValueOrDefault(statsHandler.CacheName))
+                    {
+                        await File.WriteAllTextAsync(statsHandler.SavePath, json);
+                        Interlocked.Increment(ref success);
+                        await keyValueChannel.Writer.WriteAsync((name: statsHandler.CacheName, hashValue: jsonHash)!);
+                    }
+                    else
+                    {
+                        Interlocked.Increment(ref equalFile);
+                    }
+                    
                 }
                 catch (Exception e)
                 {
@@ -166,8 +202,21 @@ public class PropertyStatsService(
                     }
                 }
             }));
+            
+            keyValueChannel.Writer.Complete();
 
-            stringBuilder.AppendLine($"{(double)(success + emptyData) / total:P4}((成功: {success}, 跳过空数据: {emptyData})/总共: {total})");
+            Task.Run(async () =>
+            {
+                await foreach ((string cacheName, string hashValue) in keyValueChannel.Reader.ReadAllAsync())
+                {
+                    StatsFileCacheHash[cacheName] = hashValue;
+                }
+                
+                await File.WriteAllTextAsync(CacheHashFilePath, jsonUtil.Serialize(StatsFileCacheHash, true));
+            }).Wait();
+            
+            stringBuilder.AppendLine($"{(double)(success + emptyData + equalFile) / total:P4}" +
+                                     $"((成功: {success}, 跳过空数据: {emptyData}, 跳过与原文件相等: {equalFile})/总共: {total})");
             LocalLog.Logger.Debug(stringBuilder.ToString());
             return true;
         });
