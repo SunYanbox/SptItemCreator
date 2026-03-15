@@ -6,13 +6,13 @@ using SPTarkov.Server.Web;
 namespace SptItemCreator;
 
 [Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
-public record ModMetadata : AbstractModMetadata, IModWebMetadata
+public record ModMetadata : AbstractModMetadata
 {
     public override string ModGuid { get; init; } = "com.suntion.sptitemcreator";
     public override string Name { get; init; } = "SptItemCreator";
     public override string Author { get; init; } = "Suntion";
     public override List<string>? Contributors { get; init; } = [];
-    public override SemanticVersioning.Version Version { get; init; } = new("0.0.4");
+    public override SemanticVersioning.Version Version { get; init; } = new("0.1.0");
     public override SemanticVersioning.Range SptVersion { get; init; } = new("~4.0.8");
     
     
