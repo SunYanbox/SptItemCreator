@@ -19,6 +19,7 @@ public class PropertyStatsService(
     ItemHelper itemHelper, 
     DatabaseService databaseService): IOnLoad
 {
+    private const string HashFileName = "hash.json";
     public const string CacheFolderName = "StatsCache";
     /// <summary> 统计器 </summary>
     public readonly Dictionary<string, StatsHandler> StatsHandlers = new();
@@ -33,7 +34,7 @@ public class PropertyStatsService(
         StatsHandler.DatabaseService ??= databaseService;
         
         CacheFolderPath = Path.Combine(LocalLog.ModFolder ?? "", CacheFolderName);
-        CacheHashFilePath = Path.Combine(CacheFolderPath, "hash.json");
+        CacheHashFilePath = Path.Combine(CacheFolderPath, HashFileName);
         
         Directory.CreateDirectory(CacheFolderPath);
 
@@ -75,7 +76,9 @@ public class PropertyStatsService(
                 }
             }
             
-            List<string> files = Directory.EnumerateFiles(CacheFolderPath, "*.json", SearchOption.AllDirectories).ToList();
+            List<string> files = Directory.EnumerateFiles(CacheFolderPath, "*.json", SearchOption.AllDirectories)
+                .Where(file => Path.GetFileName(file) != HashFileName)
+                .ToList();
             
             StatsHandler?[] results = Task.WhenAll(files.Select(async filePath =>
             {
@@ -99,7 +102,7 @@ public class PropertyStatsService(
                         if (!baseClassesValues.Contains(statsHandler.HandleBaseClasses))
                             errors.Add($"HandleBaseClasses '{statsHandler.HandleBaseClasses}' 不在允许的 baseClassesValues 中");
 
-                        if (!string.IsNullOrEmpty(statsHandler.CacheName) && baseClassesDict!.GetValueOrDefault(statsHandler.CacheName) != statsHandler.HandleBaseClasses)
+                        if (!string.IsNullOrEmpty(statsHandler.CacheName) && baseClassesDict.GetValueOrDefault(statsHandler.CacheName) != statsHandler.HandleBaseClasses)
                             errors.Add($"CacheName '{statsHandler.CacheName}' 对应的 BaseClasses 与 HandleBaseClasses '{statsHandler.HandleBaseClasses}' 不匹配");
                     }
 
