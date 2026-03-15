@@ -15,6 +15,7 @@ namespace SptItemCreator.Core.Services;
 [Injectable(InjectionType = InjectionType.Singleton, TypePriority = OnLoadOrder.PreSptModLoader + 1)]
 public class LocalLog(ModHelper modHelper): IOnLoad
 {
+    public static string? ModFolder { get; private set; }
     public const string DataFolder = "data";
     
     public static readonly ModLogger Logger
@@ -41,8 +42,8 @@ public class LocalLog(ModHelper modHelper): IOnLoad
     
     public Task OnLoad()
     {
-        string pathToMod = modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
-        DataFolderPath = Path.Combine(pathToMod, DataFolder);
+        ModFolder = modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
+        DataFolderPath = Path.Combine(ModFolder, DataFolder);
         
         TryCatch("创建数据文件夹", () =>
         {
