@@ -14,13 +14,15 @@ Data file: By default, refers to new item data files in this module with the `.s
 
    > Be sure to modify the item Id in the template file to ensure it is unique.
 
-2. Use the WebUI to create a new item based on detailed help text (editing existing files via WebUI is not currently supported).
+~~2. Use the WebUI to create a new item based on detailed help text (editing existing files via WebUI is not currently supported).~~
 
-   > If the item Id is default in the WebUI, click the **Check Data** button to immediately generate a MongoId.
+   > ~~If the item Id is default in the WebUI, click the **Check Data** button to immediately generate a MongoId.~~
 
 ## Q: Where can I find the mod's WebUI?
 
-By default, it is `https://127.0.0.1:6969/SIC`. Specifically, it is the address opened by the SPT server + "/SIC".
+~~By default, it is `https://127.0.0.1:6969/SIC`. Specifically, it is the address opened by the SPT server + "/SIC".~~
+
+**The built-in WebUI has been removed after version 0.1.0**
 
 ## Q: The location of the template file mentioned in the Wiki.
 
