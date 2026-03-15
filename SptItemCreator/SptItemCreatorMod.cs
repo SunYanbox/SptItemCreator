@@ -1,16 +1,13 @@
-﻿using MudBlazor.Services;
-using SptItemCreator.Models.Items;
+﻿using SptItemCreator.Models.Items;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Mod;
-using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Services.Mod;
 using SptItemCreator.Models.Abstracts;
 using SptItemCreator.Core.Services;
-using LogLevel = SPTarkov.Server.Core.Models.Spt.Logging.LogLevel;
 
 namespace SptItemCreator;
 
@@ -19,10 +16,7 @@ namespace SptItemCreator;
 /// </summary>
 [Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 2)]
 public class SptItemCreatorMod(
-    HttpServer httpServer,
     DataLoader dataLoader,
-    ConfigService configService,
-    WebApplicationBuilder builder,
     DatabaseService databaseService,
     CustomItemService customItemService): IOnLoad
 {
@@ -43,7 +37,6 @@ public class SptItemCreatorMod(
     
     public Task OnLoad()
     {
-        builder.Services.AddMudServices();
         AbstractNewItem.DatabaseService ??= databaseService;
         
         LocalLog.Logger.Info("开始创建新物品任务...");
@@ -52,8 +45,6 @@ public class SptItemCreatorMod(
         CreateTask(dataLoader.NewItemMedical, "药品");
         CreateTask(dataLoader.NewItemAmmo, "弹药");
         
-        
-        configService.SptLog(LogLevel.Info, $"{DateTime.Now.ToLongDateString()} {DateTime.Now.ToLongTimeString()} WeiUI run at {httpServer.ListeningUrl()}/SIC");
         return Task.CompletedTask;
     }
 
@@ -141,7 +132,7 @@ public class SptItemCreatorMod(
         assort.BarterScheme[item.Id] =
         [
             [
-                new BarterScheme()
+                new BarterScheme
                 {
                     Count = price,
                     Template = "5449016a4bdc2d6f028b456f" // 卢布
