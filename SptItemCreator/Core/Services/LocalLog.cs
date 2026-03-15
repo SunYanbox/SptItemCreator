@@ -6,7 +6,6 @@ using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers;
 using SuntionCore.Services.LogUtils;
-using LogLevel = SPTarkov.Server.Core.Models.Spt.Logging.LogLevel;
 
 namespace SptItemCreator.Core.Services;
 
@@ -14,7 +13,7 @@ namespace SptItemCreator.Core.Services;
 /// 封装本地化日志, 获取模组配置信息
 /// </summary>
 [Injectable(InjectionType = InjectionType.Singleton, TypePriority = OnLoadOrder.PreSptModLoader + 1)]
-public class LocalLog(ModHelper modHelper, ConfigService configService): IOnLoad
+public class LocalLog(ModHelper modHelper): IOnLoad
 {
     public const string DataFolder = "data";
     
@@ -23,19 +22,18 @@ public class LocalLog(ModHelper modHelper, ConfigService configService): IOnLoad
     
     public static string? DataFolderPath { get; set; }
 
-    public bool TryCatch(string task, Func<bool> func)
+    public static bool TryCatch(string task, Func<bool> func)
     {
+        var stopwatch = Stopwatch.StartNew();
         try
         {
             bool result = func();
-            configService.SptLog(LogLevel.Debug, $"<{task}> 任务完成");
-            Logger.Info($"<{task}>: {result}");
+            Logger.Info($"<{task}>: {result} 耗时: {stopwatch.Elapsed.TotalMilliseconds:F3}ms");
             return result;
         }
         catch (Exception e)
         {
-            string errorMessage = $"执行任务<{task}>时出现错误: {e.Message}";
-            configService.SptLog(LogLevel.Error, $"<{task}>: {errorMessage}");
+            var errorMessage = $"执行任务<{task}>时出现错误: {e.Message} 耗时: {stopwatch.Elapsed.TotalMilliseconds:F3}ms";
             Logger.Error(errorMessage, e);
             return false;
         }
