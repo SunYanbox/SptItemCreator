@@ -1,0 +1,177 @@
+using System.Reflection;
+using System.Text;
+using System.Text.Json;
+using SPTarkov.DI.Annotations;
+using SPTarkov.Server.Core.DI;
+using SPTarkov.Server.Core.Helpers;
+using SPTarkov.Server.Core.Models.Common;
+using SPTarkov.Server.Core.Services;
+using SPTarkov.Server.Core.Utils;
+using SptItemCreator.Core.Services;
+
+namespace SptItemCreator.Core.Cache;
+
+[Injectable(InjectionType.Singleton)]
+public class PropertyStatsService(
+    JsonUtil jsonUtil, 
+    ItemHelper itemHelper, 
+    DatabaseService databaseService): IOnLoad
+{
+    public const string CacheFolderName = "StatsCache";
+    public readonly Dictionary<string, StatsHandler> StatsHandlers = new();
+    public string? CacheFolderPath;
+    
+    public Task OnLoad()
+    {
+        StatsHandler.ItemHelper ??= itemHelper;
+        StatsHandler.DatabaseService ??= databaseService;
+        
+        CacheFolderPath = Path.Combine(LocalLog.ModFolder ?? "", CacheFolderName);
+        
+        Directory.CreateDirectory(CacheFolderPath);
+
+        Dictionary<string, MongoId> baseClassesDict = null!;
+
+        HashSet<MongoId> baseClassesValues = null!;
+
+        LocalLog.TryCatch("[PropertyStatsService] 反射获取所有BaseClasses类型", () =>
+        {
+            baseClassesDict = typeof(BaseClasses)
+                .GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly)
+                .Where(f => f.FieldType == typeof(MongoId))
+                .ToDictionary(
+                    f => f.Name,
+                    f => (MongoId)f.GetValue(null)!
+                );
+            baseClassesValues = baseClassesDict.Values.ToHashSet();
+            LocalLog.Logger.Debug($"获取到BaseClasses(共{baseClassesValues.Count}个): [{string.Join(", ", baseClassesDict.Keys)}]");
+            return true;
+        });
+        
+        if (baseClassesDict is null || baseClassesValues is null)
+            throw new ArgumentNullException(nameof(baseClassesDict) + " || " + nameof(baseClassesValues));
+
+        LocalLog.TryCatch("[PropertyStatsService] 加载已统计缓存", () =>
+        {
+            List<string> successLoad = [];
+            
+            List<string> files = Directory.EnumerateFiles(CacheFolderPath, "*.json", SearchOption.AllDirectories).ToList();
+            
+            StatsHandler?[] results = Task.WhenAll(files.Select(async filePath =>
+            {
+                try
+                {
+                    var statsHandler = await jsonUtil.DeserializeFromFileAsync<StatsHandler>(filePath);
+                    var errors = new List<string>();
+
+                    if (statsHandler is null)
+                    {
+                        errors.Add("statsHandler 为空");
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(statsHandler.CacheName))
+                            errors.Add("CacheName 为空或null");
+
+                        if (statsHandler.StatisticalData.Count == 0)
+                            errors.Add("StatisticalData 为空");
+
+                        if (!baseClassesValues.Contains(statsHandler.HandleBaseClasses))
+                            errors.Add($"HandleBaseClasses '{statsHandler.HandleBaseClasses}' 不在允许的 baseClassesValues 中");
+
+                        if (baseClassesDict!.GetValueOrDefault(statsHandler.CacheName) != statsHandler.HandleBaseClasses)
+                            errors.Add($"CacheName '{statsHandler.CacheName}' 对应的 BaseClasses 与 HandleBaseClasses '{statsHandler.HandleBaseClasses}' 不匹配");
+                    }
+
+                    if (errors.Count == 0)
+                    {
+                        return statsHandler;
+                    }
+
+                    LocalLog.Logger.Error($"加载位于缓存路径下的{filePath}时出现问题: {string.Join("; ", errors)}");
+                    return null;
+                }
+                catch (Exception e)
+                {
+                    LocalLog.Logger.Error($"加载位于缓存路径下的{filePath}时出现问题", e);
+                    return null;
+                }
+            })).Result;
+            
+            foreach (StatsHandler? statsHandler in results.Where(r => r is not null))
+            {
+                successLoad.Add(statsHandler!.CacheName!);
+                StatsHandlers[statsHandler.CacheName!] = statsHandler;
+            }
+            
+            if (successLoad.Count > 0)
+            {
+                LocalLog.Logger.Debug($"已加载{successLoad.Count}条统计数据: [{string.Join(", ", new HashSet<string>(successLoad))}]");
+            }
+
+            return true;
+        });
+        
+        LocalLog.TryCatch("[PropertyStatsService] 统计数据", () =>
+        {
+            StringBuilder stringBuilder = new();
+            foreach ((string typeName, MongoId baseClasses) in baseClassesDict)
+            {
+                if (!StatsHandlers.TryGetValue(typeName, out StatsHandler? handler))
+                {
+                    handler = new StatsHandler
+                    {
+                        CacheName = typeName,
+                        HandleBaseClasses = baseClasses,
+                        SavePath = Path.Combine(CacheFolderPath, $"{typeName}.json")
+                    };
+                    StatsHandlers[typeName] = handler;
+                }
+
+                stringBuilder.AppendLine("\t> " + handler.StatsItems());
+            }
+            LocalLog.Logger.Debug(stringBuilder.ToString());
+            return true;
+        });
+        
+        LocalLog.TryCatch("[PropertyStatsService] 保存数据", () =>
+        {
+            StringBuilder stringBuilder = new();
+            stringBuilder.Append($"保存{StatsHandlers.Count}条统计成功率: ");
+            int success = 0, emptyData = 0, total = StatsHandlers.Count;
+
+            Task.WaitAll(StatsHandlers.Values.Select(async statsHandler =>
+            {
+                try
+                {
+                    if (statsHandler.StatisticalData.Count == 0)
+                    {
+                        Interlocked.Increment(ref emptyData);
+                        return;
+                    }
+        
+                    statsHandler.SavePath ??= Path.Combine(CacheFolderPath, $"{statsHandler.CacheName}.json");
+                    string? json = jsonUtil.Serialize(statsHandler, true);
+                    if (json is null)
+                        throw new JsonException($"序列化{statsHandler.GetType().Name}({statsHandler.CacheName})的结果为空");
+                    await File.WriteAllTextAsync(statsHandler.SavePath, json);
+                    Interlocked.Increment(ref success);
+                }
+                catch (Exception e)
+                {
+                    var msg = $"保存统计数据{statsHandler.CacheName}到路径{statsHandler.SavePath}时出现错误";
+                    lock (stringBuilder)
+                    {
+                        LocalLog.Logger.Error(msg, e);
+                    }
+                }
+            }));
+
+            stringBuilder.AppendLine($"{(double)(success + emptyData) / total:P4}((成功: {success}, 跳过空数据: {emptyData})/总共: {total})");
+            LocalLog.Logger.Debug(stringBuilder.ToString());
+            return true;
+        });
+        
+        return Task.CompletedTask;
+    }
+}
