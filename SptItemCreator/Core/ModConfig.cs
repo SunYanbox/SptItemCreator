@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using SptItemCreator.Enums;
+using SptItemCreator.Core.Enums;
 
-namespace SptItemCreator.Models;
+namespace SptItemCreator.Core;
 
 public class ModConfig
 {

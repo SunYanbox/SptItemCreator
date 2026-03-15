@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
-using SptItemCreator.Abstracts;
+using SptItemCreator.Models.Abstracts;
 
-namespace SptItemCreator.InfoClasses;
+namespace SptItemCreator.Models.InfoData;
 
 public sealed record AmmoInfo : AbstractInfo
 {

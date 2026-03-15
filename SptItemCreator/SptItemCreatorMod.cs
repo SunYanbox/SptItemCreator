@@ -1,5 +1,5 @@
 ﻿using MudBlazor.Services;
-using SptItemCreator.NewItemClasses;
+using SptItemCreator.Models.Items;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Common;
@@ -8,8 +8,8 @@ using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Services.Mod;
-using SptItemCreator.Abstracts;
-using SptItemCreator.Services;
+using SptItemCreator.Models.Abstracts;
+using SptItemCreator.Core.Services;
 using LogLevel = SPTarkov.Server.Core.Models.Spt.Logging.LogLevel;
 
 namespace SptItemCreator;

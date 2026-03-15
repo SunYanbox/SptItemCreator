@@ -8,10 +8,10 @@ using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils;
-using SptItemCreator.Services;
+using SptItemCreator.Core.Services;
 using Path = System.IO.Path;
 
-namespace SptItemCreator.Debug;
+namespace SptItemCreator.Core.Debug;
 
 [Injectable]
 public class DebugHelper(

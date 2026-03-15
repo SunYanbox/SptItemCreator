@@ -2,9 +2,9 @@ using System.Text.Json.Serialization;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Services;
-using SptItemCreator.Services;
+using SptItemCreator.Core.Services;
 
-namespace SptItemCreator.Abstracts;
+namespace SptItemCreator.Models.Abstracts;
 
 /// <summary>
 /// 抽象信息基类

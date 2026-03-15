@@ -2,10 +2,10 @@ using System.Text.Json.Serialization;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Services;
-using SptItemCreator.Abstracts;
-using SptItemCreator.Services;
+using SptItemCreator.Models.Abstracts;
+using SptItemCreator.Core.Services;
 
-namespace SptItemCreator.InfoClasses;
+namespace SptItemCreator.Models.InfoData;
 
 
 public record BuffsInfo : AbstractInfo

@@ -4,10 +4,10 @@ using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Utils;
-using SptItemCreator.Models;
+using SptItemCreator.Core;
 using LogLevel = SPTarkov.Server.Core.Models.Spt.Logging.LogLevel;
 
-namespace SptItemCreator.Services;
+namespace SptItemCreator.Core.Services;
 
 /// <summary> 本模组的所有配置 </summary>
 [Injectable(InjectionType = InjectionType.Singleton, TypePriority = OnLoadOrder.PostDBModLoader + 1)]

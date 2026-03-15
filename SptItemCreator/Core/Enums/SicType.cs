@@ -1,4 +1,4 @@
-namespace SptItemCreator.Enums;
+namespace SptItemCreator.Core.Enums;
 
 public static class SicType
 {

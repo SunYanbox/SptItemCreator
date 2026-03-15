@@ -2,11 +2,11 @@ using System.Text.Json.Serialization;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Services;
-using SptItemCreator.Abstracts;
-using SptItemCreator.Enums;
-using SptItemCreator.InfoClasses;
+using SptItemCreator.Models.Abstracts;
+using SptItemCreator.Core.Enums;
+using SptItemCreator.Models.InfoData;
 
-namespace SptItemCreator.NewItemClasses;
+namespace SptItemCreator.Models.Items;
 
 [Injectable]
 public class NewItemCommon: AbstractNewItem

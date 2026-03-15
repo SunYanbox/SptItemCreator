@@ -3,12 +3,12 @@ using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Services;
-using SptItemCreator.Enums;
-using SptItemCreator.InfoClasses;
-using SptItemCreator.NewItemClasses;
-using SptItemCreator.Services;
+using SptItemCreator.Core.Enums;
+using SptItemCreator.Models.InfoData;
+using SptItemCreator.Models.Items;
+using SptItemCreator.Core.Services;
 
-namespace SptItemCreator.Abstracts;
+namespace SptItemCreator.Models.Abstracts;
 
 /// <summary>
 /// 抽象新物品基类 

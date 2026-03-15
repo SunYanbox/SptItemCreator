@@ -10,10 +10,10 @@ using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils;
-using SptItemCreator.Enums;
+using SptItemCreator.Core.Enums;
 using Path = System.IO.Path;
 
-namespace SptItemCreator.Services;
+namespace SptItemCreator.Core.Services;
 
 [UsedImplicitly]
 public sealed class ParentIdNameRate

@@ -5,10 +5,10 @@ using System.Text;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers;
-using SptItemCreator.Enums;
+using SptItemCreator.Core.Enums;
 using LogLevel = SPTarkov.Server.Core.Models.Spt.Logging.LogLevel;
 
-namespace SptItemCreator.Services;
+namespace SptItemCreator.Core.Services;
 
 public enum LocalLogType
 {

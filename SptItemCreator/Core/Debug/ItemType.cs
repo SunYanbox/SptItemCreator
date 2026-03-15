@@ -1,6 +1,6 @@
 using SPTarkov.Server.Core.Models.Common;
 
-namespace SptItemCreator.Debug;
+namespace SptItemCreator.Core.Debug;
 
 /// <summary>
 /// 创建新物品类型的字符串枚举

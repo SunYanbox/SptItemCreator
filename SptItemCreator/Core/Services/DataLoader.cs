@@ -1,15 +1,15 @@
 using System.Text.Json;
 using JetBrains.Annotations;
-using SptItemCreator.NewItemClasses;
+using SptItemCreator.Models.Items;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils;
-using SptItemCreator.Abstracts;
-using SptItemCreator.Enums;
+using SptItemCreator.Models.Abstracts;
+using SptItemCreator.Core.Enums;
 
-namespace SptItemCreator.Services;
+namespace SptItemCreator.Core.Services;
 
 [Injectable(InjectionType = InjectionType.Singleton, TypePriority = OnLoadOrder.PostDBModLoader + 1)]
 [UsedImplicitly]

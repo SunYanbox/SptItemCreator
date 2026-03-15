@@ -1,4 +1,4 @@
-namespace SptItemCreator.Enums;
+namespace SptItemCreator.Core.Enums;
 
 /*
  * 所有基类是Item的类型
