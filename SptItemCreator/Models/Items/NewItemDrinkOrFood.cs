@@ -20,10 +20,10 @@ public class NewItemDrinkOrFood: NewItemCommon
         DrinkFoodInfo?.Update(props, databaseService);
     }
 
-    protected override void DoCustomParameterValidation(Dictionary<string, string> oldResults)
+    protected override void DoCustomParameterValidation(Dictionary<string, string> validationErrors)
     {
-        base.DoCustomParameterValidation(oldResults);
-        if (DrinkFoodInfo == null) oldResults["DrinkFoodInfo"] = "DrinkFoodInfo属性不存在, 无法正确生成食物与饮品数据";
+        base.DoCustomParameterValidation(validationErrors);
+        if (DrinkFoodInfo == null) validationErrors["DrinkFoodInfo"] = "DrinkFoodInfo属性不存在, 无法正确生成食物与饮品数据";
     }
 
     protected override bool DoCustomValidation()

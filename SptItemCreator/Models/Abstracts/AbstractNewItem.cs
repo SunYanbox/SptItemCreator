@@ -67,6 +67,32 @@ public abstract class AbstractNewItem
     /// 储存数据库信息
     /// </summary>
     [JsonIgnore] public static DatabaseService? DatabaseService;
+
+    #region 子类重载
+
+    /// <summary>
+    /// 执行自定义验证 **必须重载**
+    /// <remarks>验证成功, 没有问题时返回true</remarks>
+    /// </summary>
+    protected abstract bool DoCustomValidation();
+
+    /// <summary>
+    /// 执行自定义参数验证并记录错误信息 **必须重载**
+    ///
+    /// 可以在此处为一些属性赋默认值
+    /// 
+    /// 通过参数字典传递数据
+    /// <param name="validationErrors">需要将所有验证时出现的问题放在此处, 而不是抛出异常</param>
+    /// </summary>
+    protected abstract void DoCustomParameterValidation(Dictionary<string, string> validationErrors);
+    
+    /// <summary>
+    /// 应用自定义属性覆盖 **必须重载**
+    /// 应当只修改Property(物品属性)的内容, 对其他属性应当是只读的
+    /// </summary>
+    protected abstract void DoPropertyApplication(TemplateItemProperties props, DatabaseService? databaseService = null);
+    
+    #endregion
     
     /// <summary>
     /// 验证数据有效性, 并根据基础信息更新BaseInfo
@@ -206,29 +232,34 @@ public abstract class AbstractNewItem
         BaseInfo.Update(PropertyOverride, DatabaseService);
         DoPropertyApplication(PropertyOverride, DatabaseService);
     }
-    
-    /// <summary>
-    /// 执行自定义验证 **必须重载**
-    /// <remarks>验证成功, 没有问题时返回true</remarks>
-    /// </summary>
-    protected abstract bool DoCustomValidation();
 
     /// <summary>
-    /// 执行自定义参数验证并记录错误信息 **必须重载**
-    ///
-    /// 可以在此处为一些属性赋默认值
-    /// 
-    /// 通过参数字典传递数据
+    /// 初始化 BaseInfo 的默认值
     /// </summary>
-    protected abstract void DoCustomParameterValidation(Dictionary<string, string> oldResults);
-    
-    /// <summary>
-    /// 应用自定义属性覆盖 **必须重载**
-    /// 应当只修改PropertyApply的内容, 对其他属性应当是只读的
-    /// </summary>
-    protected abstract void DoPropertyApplication(TemplateItemProperties props, DatabaseService? databaseService = null);
-    
-    
+    private void InitializeBaseInfo()
+    {
+        BaseInfo ??= new BaseInfo();
+        BaseInfo.Name ??= Default.BaseInfoName;
+        BaseInfo.Type ??= Default.BaseInfoType;
+        BaseInfo.Author ??= Default.BaseInfoAuthor;
+        BaseInfo.License ??= Default.BaseInfoLicense;
+        BaseInfo.Description ??= Default.BaseInfoDescription;
+        BaseInfo.Order ??= Default.BaseInfoOrder;
+        
+        // 只在 Description 不包含基本信息时才追加; 提供Locales后，实际客户端显示的描述中不会有这些额外信息
+        if (!BaseInfo.Description.Contains(BaseInfo.Name) || 
+            !BaseInfo.Description.Contains("作者:") || 
+            !BaseInfo.Description.Contains("协议:"))
+        {
+            BaseInfo.Description += $"\n\n{BaseInfo.Name}\n作者: @{BaseInfo.Author}\n协议: {BaseInfo.License}";
+        }
+        
+        BaseInfo.FleaPrice = Math.Max(BaseInfo.FleaPrice, Default.BaseInfoFleaPriceMinimum); // 避免价格为0导致物品无效
+        BaseInfo.HandbookPrice = Math.Max(BaseInfo.HandbookPrice, Default.BaseInfoHandbookPriceMinimum); // 避免价格为0导致物品无效
+    }
+
+    #region 验证属性或字段
+
     /// <summary>
     /// 检查参数是否为空或满足要求, 随后初始化
     ///
@@ -269,31 +300,6 @@ public abstract class AbstractNewItem
 
         LogValidationErrors(results);
         return false;
-    }
-
-    /// <summary>
-    /// 初始化 BaseInfo 的默认值
-    /// </summary>
-    private void InitializeBaseInfo()
-    {
-        BaseInfo ??= new BaseInfo();
-        BaseInfo.Name ??= Default.BaseInfoName;
-        BaseInfo.Type ??= Default.BaseInfoType;
-        BaseInfo.Author ??= Default.BaseInfoAuthor;
-        BaseInfo.License ??= Default.BaseInfoLicense;
-        BaseInfo.Description ??= Default.BaseInfoDescription;
-        BaseInfo.Order ??= Default.BaseInfoOrder;
-        
-        // 只在 Description 不包含基本信息时才追加; 提供Locales后，实际客户端显示的描述中不会有这些额外信息
-        if (!BaseInfo.Description.Contains(BaseInfo.Name) || 
-            !BaseInfo.Description.Contains("作者:") || 
-            !BaseInfo.Description.Contains("协议:"))
-        {
-            BaseInfo.Description += $"\n\n{BaseInfo.Name}\n作者: @{BaseInfo.Author}\n协议: {BaseInfo.License}";
-        }
-        
-        BaseInfo.FleaPrice = Math.Max(BaseInfo.FleaPrice, Default.BaseInfoFleaPriceMinimum); // 避免价格为0导致物品无效
-        BaseInfo.HandbookPrice = Math.Max(BaseInfo.HandbookPrice, Default.BaseInfoHandbookPriceMinimum); // 避免价格为0导致物品无效
     }
 
     /// <summary>
@@ -434,7 +440,10 @@ public abstract class AbstractNewItem
         
         return $"@{ItemPath} 物品属性验证出错，共发现 {results.Count} 个问题:\n{detailedErrors}";
     }
-        
+    
+    #endregion
+
+
     public override string ToString()
     {
         return $"{GetType().Name} {{ baseInfo: {LocalLog.ToStringExcludeNulls(BaseInfo)}, overrideProperties: {LocalLog.ToStringExcludeNulls(PropertyOverride)}}}";

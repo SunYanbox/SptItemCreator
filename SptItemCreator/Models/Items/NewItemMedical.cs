@@ -17,9 +17,9 @@ public class NewItemMedical: NewItemCommon
         return base.DoCustomValidation();
     }
 
-    protected override void DoCustomParameterValidation(Dictionary<string, string> oldResults)
+    protected override void DoCustomParameterValidation(Dictionary<string, string> validationErrors)
     {
-        base.DoCustomParameterValidation(oldResults);
+        base.DoCustomParameterValidation(validationErrors);
         MedicalInfo ??= new MedicalInfo();
     }
 

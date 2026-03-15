@@ -21,9 +21,9 @@ public class NewItemAmmo : NewItemCommon
         return false;
     }
 
-    protected override void DoCustomParameterValidation(Dictionary<string, string> oldResults)
+    protected override void DoCustomParameterValidation(Dictionary<string, string> validationErrors)
     {
-        base.DoCustomParameterValidation(oldResults);
+        base.DoCustomParameterValidation(validationErrors);
         AmmoInfo ??= new AmmoInfo();
     }
 
