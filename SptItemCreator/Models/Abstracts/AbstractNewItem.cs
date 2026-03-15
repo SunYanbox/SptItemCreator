@@ -100,13 +100,10 @@ public abstract class AbstractNewItem
     /// <returns></returns>
     public bool Verify()
     {
-        if (BaseInfo != null)
-        {
-            CheckParameter();
-            AutoPropertyApply();
-        }
-        
-        if (BaseInfo?.Id == null || BaseInfo.ParentId == null || !DoCustomValidation())
+        if (BaseInfo?.Id == null
+            || BaseInfo.ParentId == null // BaseInfo / 新物品Id / ParentId 不存在
+            || !CheckParameter() // 未通过参数验证
+            || !DoCustomValidation()) // 未通过子类的自定义验证
         {
             return false;
         }
@@ -132,6 +129,7 @@ public abstract class AbstractNewItem
             return null;
         }
         if (BaseInfo == null) return null;
+        AutoPropertyApply();
         return new NewItemDetails
         {
             NewItem = new TemplateItem
@@ -176,6 +174,7 @@ public abstract class AbstractNewItem
     {
         if (Verify() && BaseInfo is { Id: not null, ParentId: not null, CloneId: not null, HandbookParentId: not null })
         {
+            AutoPropertyApply();
             return new NewItemFromCloneDetails
             {
                 ItemTplToClone = BaseInfo.CloneId!,
@@ -231,6 +230,12 @@ public abstract class AbstractNewItem
         if (BaseInfo == null) return;
         BaseInfo.Update(PropertyOverride, DatabaseService);
         DoPropertyApplication(PropertyOverride, DatabaseService);
+        LocalLog.Logger.Debug($"已使用[{string.Join(",", GetType()
+            .GetProperties()
+            .Where(p => p.PropertyType.IsSubclassOf(typeof(AbstractInfo)))
+            .Where(p => p.GetValue(this) != null)
+            .Select(p => p.Name)
+            .ToList())}]生成物品{BaseInfo.Name}({BaseInfo.Id})的属性Property");
     }
 
     /// <summary>
@@ -312,7 +317,7 @@ public abstract class AbstractNewItem
             $"基于克隆创建新物品\"{ItemPath}\"时验证失败:" : 
             $"基于详情创建新物品\"{ItemPath}\"时验证失败:";
         
-        List<string> errorMessages = new List<string>();
+        List<string> errorMessages = [];
 
         // 验证公共字段
         ValidateCommonFields(results, errorMessages);
@@ -427,7 +432,7 @@ public abstract class AbstractNewItem
         if (results.Count == 0) return;
 
         string errorSummary = FormatValidationErrorSummary(results);
-        LocalLog.Logger.Error(errorSummary);
+        LocalLog.Logger.Error($"验证{this}参数时出现错误", new Exception($"验证参数时出现错误: {errorSummary}"));
     }
 
     /// <summary>
