@@ -68,7 +68,6 @@ public sealed class AmmoCache
 [Injectable(InjectionType.Singleton, typePriority: OnLoadOrder.TraderCallbacks - 1)]
 public sealed class SPTDataCacheService(
         ModHelper modHelper,
-        LocalLog localLog,
         JsonUtil jsonUtil,
         DatabaseService databaseService
     ): IOnLoad, IOnUpdate
@@ -133,9 +132,9 @@ public sealed class SPTDataCacheService(
         if (_firstOrganize)
         {
             _firstOrganize = false;
-            localLog.LocalLogMsg(LocalLogType.Info, "已强制更新缓存");
+            LocalLog.Logger.Info("已强制更新缓存");
         }
-        localLog.LocalLogMsg(LocalLogType.Debug, $"更新缓存消耗时间: {(now - Stopwatch.ElapsedMilliseconds) / 1000.0:F3}s");
+        LocalLog.Logger.Debug($"更新缓存消耗时间: {(now - Stopwatch.ElapsedMilliseconds) / 1000.0:F3}s");
         return true;
     }
 
@@ -154,13 +153,13 @@ public sealed class SPTDataCacheService(
                 int? count = BackgroundColorCache?.Count;
                 if (count >= 9)
                 {
-                    localLog.LocalLogMsg(LocalLogType.Info, $"加载物品BackgroundColor(背景色)缓存共{count}条");
+                    LocalLog.Logger.Info($"加载物品BackgroundColor(背景色)缓存共{count}条");
                     return;
                 }
             }
             catch (Exception e)
             {
-                localLog.LocalLogMsg(LocalLogType.Warn, $"加载物品BackgroundColor(背景色)缓存时出现问题: {e.Message}");
+                LocalLog.Logger.Warn($"加载物品BackgroundColor(背景色)缓存时出现问题: {e.Message}");
             }
         }
 
@@ -179,10 +178,10 @@ public sealed class SPTDataCacheService(
         }
         catch (Exception e)
         {
-            localLog.LocalLogMsg(LocalLogType.Warn, $"保存物品BackgroundColor(背景色)缓存时出现问题: {e.Message}");
+            LocalLog.Logger.Warn($"保存物品BackgroundColor(背景色)缓存时出现问题: {e.Message}");
         }
         
-        localLog.LocalLogMsg(LocalLogType.Info, "已整理物品背景颜色缓存");
+        LocalLog.Logger.Info("已整理物品背景颜色缓存");
     }
     
     /// <summary>
@@ -199,13 +198,13 @@ public sealed class SPTDataCacheService(
                 (int? countBuffType, int? countSkillName) = (BuffCache?.BuffType.Count, BuffCache?.SkillName.Count);
                 if (countBuffType > 0 && countSkillName > 0)
                 {
-                    localLog.LocalLogMsg(LocalLogType.Info, $"加载BuffType(效果类型)缓存共{countBuffType}条, 加载SkillName(技能名称)缓存共{countSkillName}条");
+                    LocalLog.Logger.Info($"加载BuffType(效果类型)缓存共{countBuffType}条, 加载SkillName(技能名称)缓存共{countSkillName}条");
                     return;
                 }
             }
             catch (Exception e)
             {
-                localLog.LocalLogMsg(LocalLogType.Warn, $"加载BuffCache(效果缓存)时出现问题: {e.Message}");
+                LocalLog.Logger.Warn($"加载BuffCache(效果缓存)时出现问题: {e.Message}");
             }
         }
 
@@ -226,10 +225,10 @@ public sealed class SPTDataCacheService(
         }
         catch (Exception e)
         {
-            localLog.LocalLogMsg(LocalLogType.Warn, $"保存BuffCache(效果缓存)时出现问题: {e.Message}");
+            LocalLog.Logger.Warn($"保存BuffCache(效果缓存)时出现问题: {e.Message}");
         }
         
-        localLog.LocalLogMsg(LocalLogType.Info, "已整理BuffCache(效果缓存)");
+        LocalLog.Logger.Info("已整理BuffCache(效果缓存)");
     }
 
     
@@ -253,7 +252,7 @@ public sealed class SPTDataCacheService(
                     AmmoCache?.AmmoType.Count);
                 if (countAmmoSfx > 0 && countCaliber > 0 && countCasingSounds > 0 && countAmmoType > 0)
                 {
-                    localLog.LocalLogMsg(LocalLogType.Info,
+                    LocalLog.Logger.Info(
                         $"子弹缓存加载成功 - 射击音效: {countAmmoSfx.ToString() ?? "0"} 个, " +
                         $"口径: {countCaliber.ToString() ?? "0"} 个, " +
                         $"弹壳音效: {countCasingSounds.Value.ToString()} 个" +
@@ -263,7 +262,7 @@ public sealed class SPTDataCacheService(
             }
             catch (Exception e)
             {
-                localLog.LocalLogMsg(LocalLogType.Warn, $"加载AmmoCache(子弹缓存)时出现问题: {e.Message}");
+                LocalLog.Logger.Warn($"加载AmmoCache(子弹缓存)时出现问题: {e.Message}");
             }
         }
 
@@ -294,10 +293,10 @@ public sealed class SPTDataCacheService(
         }
         catch (Exception e)
         {
-            localLog.LocalLogMsg(LocalLogType.Warn, $"保存AmmoCache(子弹缓存)时出现问题: {e.Message}");
+            LocalLog.Logger.Warn($"保存AmmoCache(子弹缓存)时出现问题: {e.Message}");
         }
         
-        localLog.LocalLogMsg(LocalLogType.Info, "已整理AmmoCache(子弹缓存)");
+        LocalLog.Logger.Info("已整理AmmoCache(子弹缓存)");
     }
     
     /// <summary>
@@ -314,13 +313,13 @@ public sealed class SPTDataCacheService(
                 int? count = ParentIdCache?.ParentIdNameRate.Count;
                 if (count > 0)
                 {
-                    localLog.LocalLogMsg(LocalLogType.Info, $"加载物品ParentId缓存共{count}条");
+                    LocalLog.Logger.Info($"加载物品ParentId缓存共{count}条");
                     return;
                 }
             }
             catch (Exception e)
             {
-                localLog.LocalLogMsg(LocalLogType.Warn, $"加载ParentId缓存时出现问题: {e.Message}");
+                LocalLog.Logger.Warn($"加载ParentId缓存时出现问题: {e.Message}");
             }
         }
         ParentIdCache ??= new ParentIdCache();
@@ -385,9 +384,9 @@ public sealed class SPTDataCacheService(
         }
         catch (Exception e)
         {
-            localLog.LocalLogMsg(LocalLogType.Warn, $"保存ParentId缓存时出现问题: {e.Message}");
+            LocalLog.Logger.Warn($"保存ParentId缓存时出现问题: {e.Message}");
         }
         
-        localLog.LocalLogMsg(LocalLogType.Info, "已整理物品ParentId缓存");
+        LocalLog.Logger.Info("已整理物品ParentId缓存");
     }
 }

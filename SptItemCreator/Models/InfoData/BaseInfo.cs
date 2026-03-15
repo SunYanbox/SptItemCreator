@@ -178,7 +178,7 @@ public sealed record BaseInfo: AbstractInfo
             {
                 if (string.IsNullOrEmpty(Prefab.Path))
                 {
-                    LocalLog?.LocalLogMsg(LocalLogType.Warn, $"物品{Name}的Prefab.Path为空, 请检查{ItemPath}");
+                    LocalLog.Logger.Warn($"物品{Name}的Prefab.Path为空, 请检查{ItemPath}");
                 }
                 properties.Prefab = Prefab;
             }
@@ -186,14 +186,14 @@ public sealed record BaseInfo: AbstractInfo
             {
                 if (string.IsNullOrEmpty(UsePrefab.Path))
                 {
-                    LocalLog?.LocalLogMsg(LocalLogType.Warn, $"物品{Name}的UsePrefab.Path为空, 请检查{ItemPath}");
+                    LocalLog.Logger.Warn($"物品{Name}的UsePrefab.Path为空, 请检查{ItemPath}");
                 }
                 properties.UsePrefab = UsePrefab;
             }
         }
         catch (Exception e)
         {
-            LocalLog?.LocalLogMsg(LocalLogType.Error, $"物品{Name}的Prefab或UsePrefab语法错误, 无法解析 - {ItemPath} - {e.Message}");
+            LocalLog.Logger.Error($"物品{Name}的Prefab或UsePrefab语法错误, 无法解析 - {ItemPath} - {e.Message}");
         }
     }
     
@@ -205,7 +205,7 @@ public sealed record BaseInfo: AbstractInfo
         // 一键允许所有容器放置本物品
         if (AllowAll ?? false)
         {
-            LocalLog?.LocalLogMsg(LocalLogType.Info, $"新物品{Name}已启用`AllowAll`字段");
+            LocalLog.Logger.Info($"新物品{Name}已启用`AllowAll`字段");
             foreach ((MongoId containerTpl, TemplateItem container) in _itemTemplate.Where(x =>
                          x.Value.Properties?.Grids != null
                          && ItemHelper!.IsOfBaseclasses(x.Value.Id,
@@ -216,7 +216,7 @@ public sealed record BaseInfo: AbstractInfo
                 {
                     if (containerOutput.Add(containerTpl))
                     {
-                        LocalLog?.LocalLogMsg(LocalLogType.Warn, $"容器{name}({containerTpl})没有非空的Grids属性");
+                        LocalLog.Logger.Warn($"容器{name}({containerTpl})没有非空的Grids属性");
                     }
                     continue;
                 }
@@ -226,7 +226,7 @@ public sealed record BaseInfo: AbstractInfo
                     {
                         if (containerOutput.Add(containerTpl))
                         {
-                            LocalLog?.LocalLogMsg(LocalLogType.Warn, $"容器{name}({containerTpl})的网格{grid.Name}({grid.Id})没有非空Filters属性");
+                            LocalLog.Logger.Warn($"容器{name}({containerTpl})的网格{grid.Name}({grid.Id})没有非空Filters属性");
                         }
                         continue;
                     }

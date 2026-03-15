@@ -14,7 +14,6 @@ namespace SptItemCreator.Core.Services;
 [Injectable(InjectionType = InjectionType.Singleton, TypePriority = OnLoadOrder.PostDBModLoader + 1)]
 [UsedImplicitly]
 public sealed class DataLoader(
-        LocalLog localLog,
         JsonUtil jsonUtil,
         ConfigService configService,
         ItemHelper itemHelper,
@@ -22,7 +21,6 @@ public sealed class DataLoader(
     ): IOnLoad
 {
     private static string? _modName;
-    private static LocalLog? _localLog;
     private static JsonUtil? _jsonUtil;
     private static ConfigService? _configService;
     /// <summary>
@@ -44,17 +42,14 @@ public sealed class DataLoader(
 
     public Task OnLoad()
     {
-        AbstractInfo.LocalLog ??= localLog;
         AbstractInfo.ItemHelper ??= itemHelper;
-        AbstractNewItem.LocalLog ??= localLog;
         AbstractNewItem.DatabaseService ??= databaseService;
         _modName ??= configService.ModMetadata?.Name ?? "SptItemCreator";
         _jsonUtil  ??= jsonUtil;
         _configService ??= configService;
-        _localLog = localLog;
-        if (localLog.DataFolderPath == null)
+        if (LocalLog.DataFolderPath == null)
         {
-            localLog.LocalLogMsg(LocalLogType.Error, $"数据文件路径为空\n\t堆栈: {LocalLog.GetCurrentStackTrace()}");
+            LocalLog.Logger.Error($"数据文件路径为空\n\t堆栈: {LocalLog.GetCurrentStackTrace()}");
             return Task.CompletedTask;
         }
         
@@ -63,7 +58,7 @@ public sealed class DataLoader(
         List<string> jumpFolderPath = [];
         List<string> jumpFilePath = [];
         
-        TraverseForSicFiles(localLog.DataFolderPath, foundFiles, jumpFolderPath, jumpFilePath);
+        TraverseForSicFiles(LocalLog.DataFolderPath, foundFiles, jumpFolderPath, jumpFilePath);
         
         if (jumpFilePath.Count + jumpFolderPath.Count >= 1)
         {
@@ -82,7 +77,7 @@ public sealed class DataLoader(
                     $"已跳过模板文件:\n\t - {string.Join("\n\t - ", jumpFilePath)}";
             }
 
-            _localLog.LocalLogMsg(LocalLogType.Debug, message);
+            LocalLog.Logger.Debug(message);
         }
         
         foreach (string file in foundFiles)
@@ -97,7 +92,7 @@ public sealed class DataLoader(
                 if (newItemBase.AttributeInfo is not null) newItemBase.AttributeInfo.ItemPath = file;
                 newItemBase.ItemPath = file;
                 newItemBase.Verify();
-                localLog.LocalLogMsg(LocalLogType.Debug, $"已加载新物品 Id{newItemBase.BaseInfo.Id}({newItemBase.BaseInfo.Name}, @{newItemBase.BaseInfo.Author}) \t License = {newItemBase.BaseInfo.License} \t Path = {file}");
+                LocalLog.Logger.Debug($"已加载新物品 Id{newItemBase.BaseInfo.Id}({newItemBase.BaseInfo.Name}, @{newItemBase.BaseInfo.Author}) \t License = {newItemBase.BaseInfo.License} \t Path = {file}");
                 // 类型转换
                 switch (newItemBase.BaseInfo.Type)
                 {
@@ -124,17 +119,17 @@ public sealed class DataLoader(
                         break;
                     }
                     default: 
-                        localLog.LocalLogMsg(LocalLogType.Error, $"在分类新物品数据\"{file}\"类型时出现问题: `baseInfo.type` (当前为: {newItemBase.BaseInfo.Type}) 不存在或不合法 \n\t > Path = {file}");
+                        LocalLog.Logger.Error($"在分类新物品数据\"{file}\"类型时出现问题: `baseInfo.type` (当前为: {newItemBase.BaseInfo.Type}) 不存在或不合法 \n\t > Path = {file}");
                         break;
                 }
             }
             catch (Exception e)
             {
-                localLog.LocalLogMsg(LocalLogType.Error, $"在反序列化\"{file}\"时出现问题: {e.Message}");
+                LocalLog.Logger.Error($"在反序列化\"{file}\"时出现问题: {e.Message}");
             }
         }
         
-        localLog.LocalLogMsg(LocalLogType.Info, $"已处理{foundFiles.Count}条sic文件");
+        LocalLog.Logger.Info($"已处理{foundFiles.Count}条sic文件");
         
         return Task.CompletedTask;
     }
@@ -156,7 +151,7 @@ public sealed class DataLoader(
                 return (T?)(NewItemCommon?)_jsonUtil.Deserialize<NewItemAmmo>(json);
             return _jsonUtil.Deserialize<T>(json);
         }
-        _localLog?.LocalLogMsg(LocalLogType.Warn, $"解析数据时出现问题: _jsonUtil未初始化");
+        LocalLog.Logger.Warn($"解析数据时出现问题: _jsonUtil未初始化");
         return null;
     }
 
@@ -187,8 +182,7 @@ public sealed class DataLoader(
             // 检查递归深度
             if (currentDepth < 0)
             {
-                if (_localLog != null) _localLog.LocalLogMsg(LocalLogType.Warn, $"达到最大递归深度，停止遍历: {path}");
-                else Console.WriteLine($"[{_modName}] 达到最大递归深度，停止遍历: {path}");
+                LocalLog.Logger.Warn($"达到最大递归深度，停止遍历: {path}");
                 return;
             }
             
@@ -217,20 +211,17 @@ public sealed class DataLoader(
                 }
             }
         }
-        catch (UnauthorizedAccessException)
+        catch (UnauthorizedAccessException unauthorizedAccessException)
         {
-            if (_localLog != null) _localLog.LocalLogMsg(LocalLogType.Error, $"无权访问目录: {path}");
-            else Console.WriteLine($"[{_modName}] 无权访问目录: {path}");
+            LocalLog.Logger.Error($"无权访问目录: {path}", unauthorizedAccessException);
         }
-        catch (DirectoryNotFoundException)
+        catch (DirectoryNotFoundException directoryNotFoundException)
         {
-            if (_localLog != null) _localLog.LocalLogMsg(LocalLogType.Error, $"目录不存在: {path}");
-            else Console.WriteLine($"[{_modName}] 目录不存在: {path}");
+            LocalLog.Logger.Error($"目录不存在: {path}", directoryNotFoundException);
         }
         catch (Exception ex)
         {
-            if (_localLog != null) _localLog.LocalLogMsg(LocalLogType.Error, $"处理目录 {path} 时出错: {ex.Message}");
-            else Console.WriteLine($"[{_modName}] 处理目录 {path} 时出错: {ex.Message}");
+            LocalLog.Logger.Error($"处理目录 {path} 时出错: {ex.Message}", ex);
         }
     }
     

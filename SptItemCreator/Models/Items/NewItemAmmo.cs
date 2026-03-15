@@ -17,7 +17,7 @@ public class NewItemAmmo : NewItemCommon
         Enable ??= Default.NewItemEnable;
         // 弹药特殊验证逻辑
         if (AmmoInfo is not { AmmoType: "buckshot", BuckshotBullets: <= 0 }) return true;
-        LocalLog?.LocalLogMsg(LocalLogType.Error, $"弹药{ItemPath}作为霰弹类型弹药必须设置弹丸数量");
+        LocalLog.Logger.Error($"弹药{ItemPath}作为霰弹类型弹药必须设置弹丸数量");
         return false;
     }
 

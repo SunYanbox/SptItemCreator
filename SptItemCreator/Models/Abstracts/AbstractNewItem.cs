@@ -64,11 +64,6 @@ public abstract class AbstractNewItem
     [JsonIgnore] public string ItemPath { get; set; } = string.Empty;
     
     /// <summary>
-    /// 储存本地日志实例, 方便输出错误信息
-    /// </summary>
-    [JsonIgnore] public static LocalLog? LocalLog;
-    
-    /// <summary>
     /// 储存数据库信息
     /// </summary>
     [JsonIgnore] public static DatabaseService? DatabaseService;
@@ -101,14 +96,13 @@ public abstract class AbstractNewItem
     {
         if (!Verify() || BaseInfo?.Id == null || BaseInfo?.ParentId == null || BaseInfo?.CloneId != null)
         {
-            if (LocalLog == null) return null;
             var msg = "";
             if (!Verify()) msg += $"{this}.Verify 详情创建模式 验证失败:";
             if (BaseInfo?.Id == null) msg += "\n\tbaseInfo.id 意外为null";
             if (BaseInfo?.ParentId == null) msg += "\n\tbaseInfo.parent 意外为null";
             if (BaseInfo?.CloneId != null) msg += "\n\tbaseInfo.cloneId 意外被赋值";
             if (BaseInfo?.HandbookParentId != null) msg += "\n\tbaseInfo.handbookParentId 意外被赋值";
-            if (!string.IsNullOrEmpty(msg)) LocalLog.LocalLogMsg(LocalLogType.Error, msg);
+            if (!string.IsNullOrEmpty(msg)) LocalLog.Logger.Error(msg);
             return null;
         }
         if (BaseInfo == null) return null;
@@ -189,14 +183,13 @@ public abstract class AbstractNewItem
                 OverrideProperties = PropertyOverride,
             };
         }
-        if (LocalLog == null) return null;
         var msg = "";
         if (!Verify()) msg += $"{this}.Verify 克隆创建模式 验证失败:";
         if (BaseInfo?.Id == null) msg += "\n\tbaseInfo.id 意外为null";
         if (BaseInfo?.ParentId == null) msg += "\n\tbaseInfo.parent 意外为null";
         if (BaseInfo?.CloneId == null && BaseInfo?.HandbookParentId == null) 
             msg += "\n\tbaseInfo.cloneId为null时baseInfo.handbookParentId意外为null";
-        if (!string.IsNullOrEmpty(msg)) LocalLog.LocalLogMsg(LocalLogType.Error, msg);
+        if (!string.IsNullOrEmpty(msg)) LocalLog.Logger.Error(msg);
         return null;
     }
 
@@ -216,6 +209,7 @@ public abstract class AbstractNewItem
     
     /// <summary>
     /// 执行自定义验证 **必须重载**
+    /// <remarks>验证成功, 没有问题时返回true</remarks>
     /// </summary>
     protected abstract bool DoCustomValidation();
 
@@ -427,7 +421,7 @@ public abstract class AbstractNewItem
         if (results.Count == 0) return;
 
         string errorSummary = FormatValidationErrorSummary(results);
-        LocalLog?.LocalLogMsg(LocalLogType.Error, errorSummary);
+        LocalLog.Logger.Error(errorSummary);
     }
 
     /// <summary>

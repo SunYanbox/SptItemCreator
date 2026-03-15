@@ -18,6 +18,13 @@
         <PackageReference Include="SPTarkov.Server.Web" Version="4.0.8"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <Reference Include="SuntionCore.dll">
+            <HintPath>libs\SuntionCore.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+    </ItemGroup>
+
 <!--    <ItemGroup>-->
 <!--        <Content Include="data\**">-->
 <!--            <CopyToOutputDirectory>Always</CopyToOutputDirectory>-->

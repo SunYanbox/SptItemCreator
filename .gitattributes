@@ -5,3 +5,4 @@
 *.pdf binary
 *.zip binary
 *.exe binary
+*.dll binary

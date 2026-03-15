@@ -11,7 +11,6 @@ namespace SptItemCreator.Models.Abstracts;
 /// </summary>
 public abstract record AbstractInfo
 {
-    [JsonIgnore] public static LocalLog? LocalLog;
     [JsonIgnore] public static ItemHelper? ItemHelper;
     [JsonIgnore] public string ItemPath { get; set; } = string.Empty;
     
@@ -48,8 +47,7 @@ public abstract record AbstractInfo
             }
             catch (Exception e)
             {
-                LocalLog?.LocalLogMsg(LocalLogType.Warn, 
-                    $"ItemPath: {ItemPath}, \n\tMessage: {e.Message}, \n\tStackTrace: {e.StackTrace}, \n\tSource:{e.Source}");
+                LocalLog.Logger.Warn($"物品更新数据库时出现问题: {e.Message}\n\tItemPath: {ItemPath}", e);
             }
         }
     }

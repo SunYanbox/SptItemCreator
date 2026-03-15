@@ -15,7 +15,6 @@ namespace SptItemCreator.Core.Debug;
 
 [Injectable]
 public class DebugHelper(
-    LocalLog localLog,
     ModHelper modHelper,
     ItemHelper itemHelper,
     JsonUtil jsonUtil,
@@ -28,7 +27,7 @@ public class DebugHelper(
     public void OrganizeItemTypeData()
     {
         // 调试用, 整理所有类型的物品数据
-        localLog.LocalLogMsg(LocalLogType.Warn, "<OrganizeItemTypeData>如果你发现服务端卡死或者看到这条消息, 这是由于调试用任务未被正确关闭, 请将包含该提示的日志告知作者");
+        LocalLog.Logger.Warn("<OrganizeItemTypeData>如果你发现服务端卡死或者看到这条消息, 这是由于调试用任务未被正确关闭, 请将包含该提示的日志告知作者");
         string pathToMod = modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
         string classificationPath = Path.Combine(pathToMod, "Classification");
         Directory.CreateDirectory(classificationPath);
@@ -55,7 +54,7 @@ public class DebugHelper(
             }
             catch (Exception e)
             {
-                localLog.LocalLogMsg(LocalLogType.Error, $"整理{name}类型的物品时出现错误: {e.Message}");
+                LocalLog.Logger.Error($"整理{name}类型的物品时出现错误: {e.Message}", e);
                 throw;
             }
         }
@@ -67,7 +66,7 @@ public class DebugHelper(
     public void OrganizeParentId()
     {
         long start = DateTime.UtcNow.Ticks;
-        localLog.LocalLogMsg(LocalLogType.Warn, "<OrganizeParentId>如果你发现服务端卡死或者看到这条消息, 这是由于调试用任务未被正确关闭, 请将包含该提示的日志告知作者");
+        LocalLog.Logger.Warn("<OrganizeParentId>如果你发现服务端卡死或者看到这条消息, 这是由于调试用任务未被正确关闭, 请将包含该提示的日志告知作者");
         Dictionary<MongoId, TemplateItem> itemTemplate = databaseService.GetTemplates().Items;
         Dictionary<string, string> localeCh = databaseService.GetLocales().Global["ch"].Value!;
         // 使用更合适的容量初始化，减少扩容
