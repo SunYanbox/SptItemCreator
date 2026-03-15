@@ -4,6 +4,26 @@
 >
 > Missing links indicate that it inherits the mod version adapted for the previous Wiki version
 
+## Wiki_26_03_16_03_40
+
+Minimum Mod Version: [v0.1.0](Mod%20Update%20Log.md#v010)
+
+* Updated the Chinese README.md, marking the WebUI access guide as deleted content, clearly informing users that WebUI has been removed after version 0.1.0
+
+* Added a new document, AI-Assisted Creation Workflow.md, detailing a four-stage item creation workflow based on AI technology
+
+* Added cache system instructions in the AI-assisted workflow document, guiding users to view attribute data categorized by item type in the SPT\user\mods\SptItemCreator\StatsCache path
+
+* Added best practice tips, emphasizing key operational points such as starting from templates, prioritizing encapsulated fields, and maintaining ID uniqueness
+
+* Updated notes, clarifying technical details such as data file suffix requirements, encapsulated field priority, and model path specifications
+
+* Added a new technical update log entry for v0.1.0, documenting core code changes such as namespace refactoring, logging system rewrite, and cache system introduction
+
+* Added a new mod update log entry for v0.1.0, documenting user-visible changes such as WebUI removal, validation process optimization, and cache system output directory
+
+* Detailed the output path, content structure, and practical uses of the new cache system in the mod update log, facilitating users in utilizing statistical data for item creation
+
 ## Wiki_26_02_02_18_20
 
 Minimum Mod Version: [v0.0.4](Mod Update Log.md#v004)
