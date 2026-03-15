@@ -31,11 +31,15 @@ public record BuffsInfo : AbstractInfo
         }
         if (!stimulatorBuffsIsNull && Buffs != null)
         {
-            if (!buffs.TryAdd(StimulatorBuffs!, Buffs))
+            if (buffs.TryAdd(StimulatorBuffs!, Buffs))
             {
-                LocalLog.Logger.Info($"已成功创建新效果{StimulatorBuffs}(共{Buffs.Count}条)\n\tPath={ItemPath}");
-                return;
+                LocalLog.Logger.Info($"已成功创建新效果: {StimulatorBuffs}(共{Buffs.Count}条)\n\tPath={ItemPath}");
             }
+            else
+            {
+                LocalLog.Logger.Error($"无法添加新效果: {StimulatorBuffs}(共{Buffs.Count}条)\n\tPath={ItemPath}");
+            }
+            return;
         }
         if (!stimulatorBuffsIsNull && Buffs == null && !buffs.ContainsKey(StimulatorBuffs!))
         {
