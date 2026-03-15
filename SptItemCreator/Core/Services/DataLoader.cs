@@ -92,7 +92,7 @@ public sealed class DataLoader(
                 if (newItemBase.AttributeInfo is not null) newItemBase.AttributeInfo.ItemPath = file;
                 newItemBase.ItemPath = file;
                 newItemBase.Verify();
-                LocalLog.Logger.Debug($"已加载新物品 Id{newItemBase.BaseInfo.Id}({newItemBase.BaseInfo.Name}, @{newItemBase.BaseInfo.Author}) \t License = {newItemBase.BaseInfo.License} \t Path = {file}");
+                LocalLog.Logger.Debug($"已加载新物品({(newItemBase.Enable ?? false ? "已" : "未")}启用) Id{newItemBase.BaseInfo.Id}({newItemBase.BaseInfo.Name}, @{newItemBase.BaseInfo.Author}) \t License = {newItemBase.BaseInfo.License} \t Path = {file}");
                 // 类型转换
                 switch (newItemBase.BaseInfo.Type)
                 {
