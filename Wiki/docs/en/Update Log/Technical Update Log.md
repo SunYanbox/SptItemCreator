@@ -1,3 +1,20 @@
+## v0.1.0
+
+* Refactored project namespaces, reorganizing core classes by functionality into SptItemCreator.Models and SptItemCreator.Core
+* Refactored the logging system, completely rewriting the LocalLog class to uniformly use SuntionCore.Services.LogUtils.ModLogger as the logging interface, removing dependency injection parameters
+* Transformed the TryCatch method into a static method and added Stopwatch performance monitoring mechanism
+* Added a new PropertyList data structure to uniformly store various attribute lists such as IntProps, StringProps, MongoIdProps
+* Added a new PropertyListExtensions extension class, enabling type-safe attribute addition and cleanup through pattern matching
+* Added a new StatsHandler core component, implementing automatic extraction and aggregation statistics of non-null public attributes from item templates based on reflection
+* Added a new PropertyStatsService service, implementing asynchronous batch loading, persistence, and data validation of statistical data
+* Introduced a hashing mechanism to optimize cache writing logic, achieving intelligent disk writing by calculating JSON content hash values
+* Introduced System.Threading.Channels.Channel to implement a thread-safe asynchronous channel for collecting write results and updating the global hash cache
+* Set the version dependency for com.suntion.suntioncore in ModMetadata to >=1.2.0
+* Removed the DebugHelper debugging module and all debugging methods
+* Removed item type string constants and mapping dictionaries from ItemType.cs
+* Fixed the logical error in the BuffsInfo.TryAdd method where a success log was incorrectly reported upon addition failure
+* Corrected the defect where the hash.json file could be mistakenly processed as statistical data during cache loading
+
 ## v0.0.4
 
 - Refactored service namespaces, unifying core services such as DataLoader, LocalLog, and SPTDataCacheService under `SptItemCreator.Services`.

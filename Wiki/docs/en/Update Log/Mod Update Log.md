@@ -4,6 +4,26 @@
 >
 > Missing links indicate that it inherits the Wiki version adapted for the previous mod version
 
+## v0.1.0
+
+Minimum Wiki Version: [Wiki_26_03_16_03_40](Wiki%20Update%20Log.md#wiki_26_03_16_03_40)
+
+* Completely removed all WebUI Razor files, including layouts, pages, and various information components; the original item creation and management interface will be inaccessible
+* Removed the built-in WebUI service, deleting references to HttpServer, WebApplicationBuilder, and MudBlazor.Services
+* Removed obsolete WebUI access guides and related operational instructions from documentation, pending the completion of the refactored new UI or checking for alternatives
+* Optimized the item validation process, unified parameter naming, and ensured attribute generation is executed only after validation passes, avoiding duplicate calculations
+* Enhanced the NewItemCommon validation logic to silently clear data and log the reason when BuffsInfo is provided but StimulatorBuffs is not
+* Optimized the item loading log format by adding dynamic display of item enable status, improving debug information readability
+* Upgraded the project version number from 0.0.4 to 0.1.0, reflecting this major refactoring
+* Updated config.json, adding the default configuration ignoreTemplateFiles: true
+* Removed the original JSON cache file structure (such as ParentIdCache.json, AmmoCache.json, etc.); required statistical data will be regenerated upon startup
+
+**New Cache System**
+
+* Output Directory: `Game Root Directory\SPT\user\mods\SptItemCreator\StatsCache`
+* Content: Based on all current SPT databases, the mod organizes a list of attribute names and all occurring values for each item type
+* Purpose: Reference for creating new items; foundation for scripting frequency counts, numerical distribution analysis, mean value calculations, etc.
+
 ## v0.0.4
 
 Minimum Wiki Version: [Wiki_26_02_02_18_20](Wiki Update Log.md#wiki_26_02_02_18_20)

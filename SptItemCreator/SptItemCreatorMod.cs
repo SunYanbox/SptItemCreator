@@ -1,16 +1,13 @@
-﻿using MudBlazor.Services;
-using SptItemCreator.NewItemClasses;
+﻿using SptItemCreator.Models.Items;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Mod;
-using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Services.Mod;
-using SptItemCreator.Abstracts;
-using SptItemCreator.Services;
-using LogLevel = SPTarkov.Server.Core.Models.Spt.Logging.LogLevel;
+using SptItemCreator.Models.Abstracts;
+using SptItemCreator.Core.Services;
 
 namespace SptItemCreator;
 
@@ -19,11 +16,7 @@ namespace SptItemCreator;
 /// </summary>
 [Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 2)]
 public class SptItemCreatorMod(
-    LocalLog localLog,
-    HttpServer httpServer,
     DataLoader dataLoader,
-    ConfigService configService,
-    WebApplicationBuilder builder,
     DatabaseService databaseService,
     CustomItemService customItemService): IOnLoad
 {
@@ -31,33 +24,27 @@ public class SptItemCreatorMod(
     {
         if (data.Count == 0)
         {
-            localLog.LocalLogMsg(LocalLogType.Warn, $"任务{taskName}中没有加载任何数据文件");
+            LocalLog.Logger.Warn($"任务<{taskName}>中没有加载任何数据文件");
             return;
         }
-        foreach ((string path, T item) in data
+        foreach ((string _, T item) in data
                      .Where(k => k.Value.BaseInfo != null)
                      .OrderBy(k => k.Value.BaseInfo?.Order ?? int.MaxValue))
         {
-            localLog.LocalLogMsg(LocalLogType.Debug, $"尝试创建{taskName}: \n\t > path={path} \n\t > item={item}");
             CreateNewItemTask(item);
         }  
     }
     
     public Task OnLoad()
     {
-        builder.Services.AddMudServices();
-        AbstractInfo.LocalLog ??= localLog;
-        AbstractNewItem.LocalLog ??= localLog;
         AbstractNewItem.DatabaseService ??= databaseService;
         
-        localLog.LocalLogMsg(LocalLogType.Info, $"开始创建新物品任务...");
+        LocalLog.Logger.Info("开始创建新物品任务...");
         CreateTask(dataLoader.NewItemCommon, "通用物品");
         CreateTask(dataLoader.NewItemDrinkOrDrugs, "食物/饮品");
         CreateTask(dataLoader.NewItemMedical, "药品");
         CreateTask(dataLoader.NewItemAmmo, "弹药");
         
-        
-        configService.SptLog(LogLevel.Info, $"{DateTime.Now.ToLongDateString()} {DateTime.Now.ToLongTimeString()} WeiUI run at {httpServer.ListeningUrl()}/SIC");
         return Task.CompletedTask;
     }
 
@@ -69,7 +56,7 @@ public class SptItemCreatorMod(
             {
                 if (!(newItemBase.Enable ?? false))
                 {
-                    localLog.LocalLogMsg(LocalLogType.Info, $"未启用目标物品: {newItemBase}");
+                    LocalLog.Logger.Info($"未启用目标物品: {newItemBase}");
                     return;
                 }
                 
@@ -78,36 +65,36 @@ public class SptItemCreatorMod(
                     NewItemFromCloneDetails? details = newItemBase.CreateItemFromClone();
                     if (details == null)
                     {
-                        localLog.LocalLogMsg(LocalLogType.Warn, $"获取物品的详情时获取的结果为null {LocalLog.GetCurrentStackTrace()}\n\t > 目标物品: {newItemBase}");
+                        LocalLog.Logger.Warn($"获取物品的详情时获取的结果为null {LocalLog.GetCurrentStackTrace()}\n\t > 目标物品: {newItemBase}");
                         return;
                     }
 
                     CreateItemResult result = customItemService.CreateItemFromClone(details);
-                    localLog.LocalLogMsg(LocalLogType.Info, $"创建新物品结果: {LocalLog.ToStringExcludeNulls(result)}\n\t> id: {newItemBase.BaseInfo.Id}\n\t> name: {newItemBase.BaseInfo.Name}");
+                    LocalLog.Logger.Info($"创建新物品结果: {LocalLog.ToStringExcludeNulls(result)}\n\t> id: {newItemBase.BaseInfo.Id}\n\t> name: {newItemBase.BaseInfo.Name}");
                 }
                 else
                 {
                     NewItemDetails? details = newItemBase.CreateNewItem();
                     if (details == null)
                     {
-                        localLog.LocalLogMsg(LocalLogType.Warn, $"获取物品的详情时获取失败 {LocalLog.GetCurrentStackTrace()}\n\t > 目标物品: {newItemBase}");
+                        LocalLog.Logger.Warn($"获取物品的详情时获取失败 {LocalLog.GetCurrentStackTrace()}\n\t > 目标物品: {newItemBase}");
                         return;
                     }
 
                     CreateItemResult result = customItemService.CreateItem(details);
-                    localLog.LocalLogMsg(LocalLogType.Info, $"创建新物品结果: {LocalLog.ToStringExcludeNulls(result)}\n\t> id: {newItemBase.BaseInfo.Id}\n\t> name: {newItemBase.BaseInfo.Name}");
+                    LocalLog.Logger.Info($"创建新物品结果: {LocalLog.ToStringExcludeNulls(result)}\n\t> id: {newItemBase.BaseInfo.Id}\n\t> name: {newItemBase.BaseInfo.Name}");
                 }
 
                 AutoAddItemToTraderAssort(newItemBase);
             }
             catch (Exception e)
             {
-                localLog.LocalLogMsg(LocalLogType.Error, $"创建新物品{newItemBase.ItemPath}时出现错误: {e.Message}\n\t{e.StackTrace}\n");
+                LocalLog.Logger.Error($"创建新物品{newItemBase.ItemPath}时出现错误: {e.Message}", e);
             }
         }
         else
         {
-            localLog.LocalLogMsg(LocalLogType.Error, $"验证新物品数据结构时验证失败 \n\t > newItemBase: {newItemBase} \n\t > 堆栈: {LocalLog.GetCurrentStackTrace()}");
+            LocalLog.Logger.Error($"验证新物品数据结构时验证失败 \n\t > newItemBase: {newItemBase} \n\t > 堆栈: {LocalLog.GetCurrentStackTrace()}");
         }
     }
 
@@ -117,7 +104,7 @@ public class SptItemCreatorMod(
         if (databaseService.GetTables().Traders.TryGetValue(newItemCommon.BaseInfo.TraderId, out var trader))
         {
             TraderAssort assort = trader.Assort;
-            Item item = new Item
+            Item item = new()
             {
                 Id = new MongoId(),
                 Template = newItemCommon.BaseInfo.Id,
@@ -130,11 +117,11 @@ public class SptItemCreatorMod(
                 }
             };
             AddItemToAssort(assort, item, newItemCommon.BaseInfo.HandbookPrice, 1);
-            localLog.LocalLogMsg(LocalLogType.Info, $"添加物品给商人售卖: \n\t> trader: {trader.Base.Surname}\n\t> id: {newItemCommon.BaseInfo.Id}\n\t> name: {newItemCommon.BaseInfo.Name}");
+            LocalLog.Logger.Info($"添加物品给商人售卖: \n\t> trader: {trader.Base.Surname}\n\t> id: {newItemCommon.BaseInfo.Id}\n\t> name: {newItemCommon.BaseInfo.Name}");
         }
         else
         {
-            localLog.LocalLogMsg(LocalLogType.Error, $"物品{newItemCommon.BaseInfo.Name}({newItemCommon.BaseInfo.Id})的默认商人{newItemCommon.BaseInfo.TraderId}不存在");
+            LocalLog.Logger.Warn($"物品{newItemCommon.BaseInfo.Name}({newItemCommon.BaseInfo.Id})的默认商人{newItemCommon.BaseInfo.TraderId}不存在");
         }
     }
     
@@ -145,7 +132,7 @@ public class SptItemCreatorMod(
         assort.BarterScheme[item.Id] =
         [
             [
-                new BarterScheme()
+                new BarterScheme
                 {
                     Count = price,
                     Template = "5449016a4bdc2d6f028b456f" // 卢布
