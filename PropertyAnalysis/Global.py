@@ -16,11 +16,11 @@ if not os.path.exists(data_path):
 logger = _logging.getLogger("PropertyAnalysis")
 logger.setLevel(level=_logging.DEBUG)
 
-file_handler = _logging.FileHandler(Path(data_path, "PropertyAnalysis.log"))
-file_handler.setLevel(_logging.DEBUG)
-formatter = _logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-file_handler.setFormatter(formatter)
-logger.addHandler(file_handler)
+_file_handler = _logging.FileHandler(Path(data_path, "PropertyAnalysis.log"))
+_file_handler.setLevel(_logging.DEBUG)
+_formatter = _logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+_file_handler.setFormatter(_formatter)
+logger.addHandler(_file_handler)
 
 # 配置初始化
 
