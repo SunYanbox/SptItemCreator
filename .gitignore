@@ -16,3 +16,8 @@ IgnoreCache/
 site/
 
 SptItemCreator.sln.DotSettings.user
+
+*.log
+.vscode/
+__pycache__/
+PropertyAnalysis/config.yaml
