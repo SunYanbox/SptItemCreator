@@ -1,3 +1,4 @@
+import pickle
 from typing import Set, Tuple
 from stats_struct import *
 from dataLoader import LoadsFormFolder
@@ -24,20 +25,20 @@ class StatsManager:
         _base_classes_to_prop_keys_values: List[Tuple[str, Set[str]]] = list(self._base_classes_to_prop_keys.items())
 
         self._unique_props_per_type = {
-            # 获取不是type_name类型下其他所有集合并拆成单个元素后再合并集合, 随后利用差集的性质获取唯一的属性
-            type_name: value_set - set().union(
-                    *[s for k, s in _base_classes_to_prop_keys_values if k != type_name]
+            # 获取不是the_type_name类型下其他所有集合并拆成单个元素后再合并集合, 随后利用差集的性质获取唯一的属性
+            the_type_name: value_set - set().union(
+                    *[s for k, s in _base_classes_to_prop_keys_values if k != the_type_name]
                 )
-            for type_name, value_set
+            for the_type_name, value_set
             in self._base_classes_to_prop_keys.items()
         }
 
     @classmethod
-    async def create_from_folder(cls, folder_path: str) -> Optional['StatsManager']:
-        if not Path(folder_path).exists():
+    async def create_from_folder(cls, cache_folder_path: str) -> Optional['StatsManager']:
+        if not Path(cache_folder_path).exists():
             return None
         else:
-            data = await LoadsFormFolder(folder_path)
+            data = await LoadsFormFolder(cache_folder_path)
             return StatsManager(data)
 
     @property
@@ -52,21 +53,38 @@ class StatsManager:
         """获取所有存在的属性(Props)名称"""
         return self._prop_keys
 
-    def get_prop_keys(self, base_classes: str) -> Optional[Set[str]]:
+    def get_prop_keys(self, target_base_classes: str) -> Optional[Set[str]]:
         """获取指定物品类型有的所有属性名称"""
-        return self._base_classes_to_prop_keys.get(base_classes, None)
+        return self._base_classes_to_prop_keys.get(target_base_classes, None)
 
-    def get_unique_prop_keys(self, base_classes: str) -> Optional[Set[str]]:
+    def get_unique_prop_keys(self, target_base_classes: str) -> Optional[Set[str]]:
         """获取指定物品类型有的唯一属性名称"""
-        return self._unique_props_per_type.get(base_classes, None)
+        return self._unique_props_per_type.get(target_base_classes, None)
+
+    def save_to_file(self, target_file_path: str) -> None:
+        with open(target_file_path, mode='wb') as f:
+            logger.debug(f'[StatsManager] 已保存统计数据到{target_file_path}')
+            pickle.dump(self, f)
+
+    @staticmethod
+    def create_from_file(target_file_path: str) -> 'StatsManager':
+        with open(target_file_path, mode='rb') as f:
+            logger.debug(f'[StatsManager] 已从{target_file_path}加载统计数据')
+            return pickle.load(f)
 
 
 
 if __name__ == '__main__':
-    import asyncio
+    save_file_path = config.get('StatsManagerSavePath')
 
     folder_path: List[str] = config.get('DataLoaderTestFolder', ["data"])
-    stats = asyncio.run(StatsManager.create_from_folder(folder_path[0]))
+
+    # 保存
+    # stats = asyncio.run(StatsManager.create_from_folder(folder_path[0]))
+    # stats.save_to_file(save_file_path)
+    # 加载
+    stats = StatsManager.create_from_file(save_file_path)
+
 
     test_types = [
         'DRINK',
