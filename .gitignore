@@ -9,6 +9,7 @@ riderModule.iml
 launchSettings.json
 doc/
 
+*.plk
 *.bat
 .idea/
 IgnoreCache/
