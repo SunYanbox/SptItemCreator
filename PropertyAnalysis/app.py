@@ -8,7 +8,7 @@ from Global import logger
 from models.config_bp import config_bp
 from stats_mgr import StatsManager
 
-stats_mgr: Optional[StatsManager] = None
+from models.stats_mgr_bp import stats_mgr, stats_mgr_bp
 
 port: int = 6666
 
@@ -32,7 +32,7 @@ def get_url_map():
 
 # 注册蓝图
 app.register_blueprint(config_bp)
-
+app.register_blueprint(stats_mgr_bp)
 
 def register_error_handlers(target_app: Flask):
     @target_app.errorhandler(NotFound)
