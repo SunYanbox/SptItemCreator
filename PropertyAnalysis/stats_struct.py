@@ -20,6 +20,12 @@ class StatsStruct:
             _data = None
         self._data: Optional[Dict[str, Union[str, List[str], Dict[str, Dict[str, List[Any]]]]]] = _data
 
+        self._cache_name: Optional[str] = None
+        self._save_path: Optional[str] = None
+        self._statisticalData: Optional[Dict[str, Dict[str, List[Any]]]] = None
+        self._handleBaseClasses: Optional[str] = None
+        self._handledItems: Optional[List[str]] = None
+
     @classmethod
     async def create_from_file(cls, file_path: str, name: Optional[str] = None) -> Optional['StatsStruct']:
         if not Path(file_path).exists():
@@ -34,7 +40,40 @@ class StatsStruct:
 
     @property
     def name(self):
+        """类型名称 / BaseClasses名称"""
         return self._name
+
+    @property
+    def cache_name(self):
+        if self._cache_name is None:
+            self._cache_name = self._data.get("cacheName")
+        return self._cache_name
+
+    @property
+    def save_path(self) -> Optional[str]:
+        """缓存文件保存路径"""
+        if self._save_path is None:
+            self._save_path = self._data.get("savePath")
+        return self._save_path
+
+    @property
+    def statistical_data(self) -> Optional[Dict[str, Dict[str, List[Any]]]]:
+        """属性名称 -> { 类型名称 -> 所有值列表 }"""
+        if self._statisticalData is None:
+            self._statisticalData = self._data.get("statisticalData")
+        return self._statisticalData
+
+    @property
+    def handled_items(self) -> Optional[List[str]]:
+        if self._handledItems is None:
+            self._handledItems = self._data.get("handledItems")
+        return self._handledItems
+
+    @property
+    def handle_base_classes(self) -> Optional[str]:
+        if self._handleBaseClasses is None:
+            self._handleBaseClasses = self._data.get("handleBaseClasses")
+        return self._handleBaseClasses
 
     def __str__(self):
         return f'StatsStruct(name={self.name}, id={id(self)})'
