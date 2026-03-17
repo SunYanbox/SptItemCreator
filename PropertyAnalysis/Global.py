@@ -32,3 +32,7 @@ logger.addHandler(_file_handler)
 with open('config.yaml', 'r', encoding='utf-8') as file:
     config: Dict[str, Any] = yaml.load(file, Loader=yaml.FullLoader)
     logger.debug(f'已加载配置: [{', '.join(config.keys())}]')
+
+def save_config():
+    with open('config.yaml', 'w', encoding='utf-8') as file:
+        yaml.dump(config, file)
