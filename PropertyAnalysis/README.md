@@ -10,3 +10,7 @@ conda install --yes --file requirements.txt
 ```
 
 需要在当前目录创建一个名为`config.yaml`的文件用于设置配置
+
+```yaml
+SptItemCreatorStatsCacheFolderPath: "SptItemCreator/StatsCache的绝对路径"
+```

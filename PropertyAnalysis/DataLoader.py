@@ -28,6 +28,14 @@ async def LoadsFormFolder(folder_path=".") -> List[Dict[str, Any]]:
     logger.debug(f'在路径{folder_path}成功加载{len(objs)}条缓存文件')
     return objs
 
+_data: Optional[List[Dict[str, Any]]] = None
+
+async def GetAllData():
+    '''根据config.yaml设置的路径获取所有数据'''
+    if _data is None:
+        _data = await LoadsFormFolder(config.get("SptItemCreatorStatsCacheFolderPath"))
+    return _data
+
 if __name__ == "__main__":
     for file_path in config.get('DataLoaderTestFilePaths', []):
         try:
