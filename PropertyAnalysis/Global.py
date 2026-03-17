@@ -1,4 +1,6 @@
 import os
+from logging import Logger
+
 import yaml
 from pathlib import Path
 import logging as _logging
@@ -13,10 +15,13 @@ if not os.path.exists(data_path):
 
 # 日志初始化
 
-logger = _logging.getLogger("PropertyAnalysis")
+logger: Logger = _logging.getLogger("PropertyAnalysis")
 logger.setLevel(level=_logging.DEBUG)
 
-_file_handler = _logging.FileHandler(Path(data_path, "PropertyAnalysis.log"))
+_file_handler = _logging.FileHandler(
+    Path(data_path, "PropertyAnalysis.log"),
+    encoding='utf-8'
+)
 _file_handler.setLevel(_logging.DEBUG)
 _formatter = _logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 _file_handler.setFormatter(_formatter)
