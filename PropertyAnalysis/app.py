@@ -10,23 +10,36 @@ from stats_mgr import StatsManager
 
 stats_mgr: Optional[StatsManager] = None
 
+port: int = 6666
+
 app = Flask('PropertyAnalysis')
 
 @app.route('/', strict_slashes=False)
 def index():
-    return "Hello"
+    state = {
+        'Ip:Host': f'localhost:{port}',
+        'LoadedStatsManager': stats_mgr is not None,
+    }
+    return jsonify(state)
+
+@app.route('/url_map/', strict_slashes=False)
+def get_url_map():
+    routes = []
+    for rule in app.url_map.iter_rules():
+        routes.append(f'{list(rule.methods - {'HEAD', 'OPTIONS'})}{str(rule)}')
+    return jsonify(routes)
 
 
 # 注册蓝图
 app.register_blueprint(config_bp)
 
 
-def register_error_handlers(app: Flask):
-    @app.errorhandler(NotFound)
+def register_error_handlers(target_app: Flask):
+    @target_app.errorhandler(NotFound)
     def handle_not_found(_):
         return jsonify({"error": "NOT_FOUND"}), 404
 
-    @app.errorhandler(500)
+    @target_app.errorhandler(500)
     def handle_internal_error(_):
         request_id = request.headers.get("X-Request-ID", "N/A")
         if current_app.debug:
@@ -45,4 +58,4 @@ register_error_handlers(app)
 
 if __name__ == '__main__':
     print(app.url_map)
-    app.run(port=6666)
+    app.run(port=port)
