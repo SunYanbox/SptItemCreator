@@ -1,0 +1,38 @@
+import os
+from logging import Logger
+
+import yaml
+from pathlib import Path
+import logging as _logging
+from typing import Any, Dict
+
+# 数据路径初始化
+
+data_path = 'data'
+
+if not os.path.exists(data_path):
+    os.makedirs(data_path)
+
+# 日志初始化
+
+logger: Logger = _logging.getLogger("PropertyAnalysis")
+logger.setLevel(level=_logging.DEBUG)
+
+_file_handler = _logging.FileHandler(
+    Path(data_path, "PropertyAnalysis.log"),
+    encoding='utf-8'
+)
+_file_handler.setLevel(_logging.DEBUG)
+_formatter = _logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+_file_handler.setFormatter(_formatter)
+logger.addHandler(_file_handler)
+
+# 配置初始化
+
+with open('config.yaml', 'r', encoding='utf-8') as file:
+    config: Dict[str, Any] = yaml.load(file, Loader=yaml.FullLoader)
+    logger.debug(f'已加载配置: [{', '.join(config.keys())}]')
+
+def save_config():
+    with open('config.yaml', 'w', encoding='utf-8') as file:
+        yaml.dump(config, file)
