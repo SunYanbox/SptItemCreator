@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 
 from Global import logger
-from gui.detail_viewer import show_detail_window
+from gui.detail_viewer import DetailViewer
 from models.object_context import ObjectContext
 
 
@@ -30,15 +30,21 @@ def _create_listbox_with_scrollbar(parent_frame, height=15, select_mode=tk.SINGL
 class StatsViewerGUI:
     """数据查看GUI界面"""
     
-    def __init__(self, parent: tk.Misc):
+    def __init__(self, parent: tk.Misc, app=None):
         self.pk_listbox = None
         self.status_label = None
         self.bc_listbox = None
         self.parent = parent
+        if not hasattr(app, 'add_tab') or not callable(app.add_tab):
+            raise TypeError("app.add_tab must be callable")
+        self.app = app  # 主应用程序引用
         self.oc = ObjectContext()
-        self.stats_mgr = self.oc.stats_mgr
         self.create_widgets()
         self.refresh_base_classes()
+
+    @property
+    def stats_mgr(self):
+        return self.oc.stats_mgr
 
     def create_widgets(self):
         """创建界面组件"""
@@ -160,6 +166,30 @@ class StatsViewerGUI:
         if not self.oc.stats_mgr:
             messagebox.showerror("错误", "StatsManager未加载")
             return
+
+        title = f"BaseClass 详情: {bc_name}"
+
+        detail_win = tk.Toplevel(self.app.root)
+        detail_win.title(title)
+        detail_win.geometry("700x500")
+
+        # 创建详情查看器
+        viewer = DetailViewer(detail_win, bc_name, self.stats_mgr)
+        viewer.pack(fill='both', expand=True, padx=10, pady=10)
+
+        def add_to_tab(inner_bc_name: str, stats_mgr):
+            self.app.add_tab(lambda parent : DetailViewer.build(parent, inner_bc_name, stats_mgr), inner_bc_name, title, enable_close=True)
+            detail_win.destroy()
+
+        # 控制按钮框架
+        button_frame = tk.Frame(detail_win)
+        button_frame.pack(side='bottom', fill='x', padx=10, pady=5)
+
+        tk.Button(button_frame, text="添加到标签页",
+                  command=lambda: add_to_tab(bc_name, self.stats_mgr)).pack(side='left', padx=5)
+
+        tk.Button(button_frame, text="关闭窗口",
+                  command=detail_win.destroy).pack(side='right', padx=5)
+
+        return detail_win
         
-        # 调用详情窗口
-        show_detail_window(self.parent, bc_name, self.oc.stats_mgr)

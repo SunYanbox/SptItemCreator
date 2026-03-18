@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 import sys
 import os
+from typing import Dict, Union, Any, Optional, Callable
 
 from models.object_context import ObjectContext
 
@@ -11,6 +12,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from Global import logger
 from gui.config_gui import ConfigGUI
 from gui.stats_viewer import StatsViewerGUI
+from gui.detail_viewer import DetailViewer
 
 
 class MainApplication:
@@ -23,7 +25,8 @@ class MainApplication:
         self.stats_tab = None
         self.main_frame = None
         self.status_bar = None
-        self.tab_control = None
+        self.tab_control: Optional[ttk.Notebook] = None
+        self._tabs: Dict[str, tk.Widget] = {}  # 存储动态创建的详情标签页 ID -> 实例
         self.root = root
         self.root.title("PropertyAnalysis GUI")
         self.root.geometry("1000x700")
@@ -99,10 +102,48 @@ class MainApplication:
         
         # 绑定选项卡切换事件
         self.tab_control.bind("<<NotebookTabChanged>>", self.on_tab_changed)
+
+    def close_tab(self, name: str):
+        if name in self._tabs:
+            try:
+                sure_tab_id = self._tabs[name]
+                self.tab_control.forget(sure_tab_id)
+                self._tabs[name].destroy()
+            except Exception as e:
+                logger.error(f'清理标签页{name}时出现错误: {e}', exc_info=True)
+            self._tabs.pop(name)
+            logger.debug(f'已执行关闭标签页: {name}, 剩余标签页: {",".join(self._tabs.keys())}')
     
+    def add_tab(self, widget:  Callable[[tk.Widget], tk.Widget], name: str, tab_title: str, enable_close: bool = False):
+        if name in self._tabs:
+            self.tab_control.select(self._tabs[name])
+            self.update_status(f"已切换到已有标签页: {tab_title}")
+            return
+        # 创建新标签页框架
+        tab_frame = ttk.Frame(self.tab_control)
+        self.tab_control.add(tab_frame, text=tab_title)
+        
+        title_frame = ttk.Frame(tab_frame)
+        title_frame.pack(fill='x', side='top', padx=10)
+
+        tk.ttk.Label(title_frame, text=tab_title).pack(side='left')
+
+        if enable_close:
+            tk.ttk.Button(title_frame, text='x', command=lambda x = name: self.close_tab(x)).pack(side='right')
+
+        viewer = widget(tab_frame)
+        
+        viewer.pack(fill='both', expand=True, padx=10, pady=10)
+        
+        # 存储标签页信息
+        self._tabs[name] = tab_frame
+        
+        # 切换到新标签页
+        self.update_status(f"已创建详情标签页: {tab_title}")
+
     def init_stats_tab(self):
         """初始化数据查看选项卡"""
-        self.stats_gui = StatsViewerGUI(self.stats_tab)
+        self.stats_gui = StatsViewerGUI(self.stats_tab, self)
     
     def init_config_tab(self):
         """初始化配置管理选项卡"""
