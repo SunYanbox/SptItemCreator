@@ -1,14 +1,12 @@
 import json
 from typing import Optional, Any, Dict, List, Union
 
-from Global import config, logger
+from Global import logger
 from flask import jsonify, Response
-from pathlib import Path
 from flask.blueprints import Blueprint
 
-from stats_mgr import StatsManager
-from models.stats_mgr_bp import get_stats_mgr
-from stats_struct import StatsStruct
+from models.blueprints.stats_mgr_bp import get_stats_mgr
+from models.stats_struct import StatsStruct
 
 stats_bp = Blueprint('stats', __name__, url_prefix='/stats')
 

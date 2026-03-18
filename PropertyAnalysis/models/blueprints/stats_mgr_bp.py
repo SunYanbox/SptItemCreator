@@ -5,7 +5,7 @@ from flask import jsonify
 from pathlib import Path
 from flask.blueprints import Blueprint
 
-from stats_mgr import StatsManager
+from managers.stats_mgr import StatsManager
 
 stats_mgr: Optional[StatsManager] = None
 
