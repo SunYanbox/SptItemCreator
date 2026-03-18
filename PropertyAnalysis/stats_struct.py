@@ -75,6 +75,18 @@ class StatsStruct:
             self._handleBaseClasses = self._data.get("handleBaseClasses")
         return self._handleBaseClasses
 
+    def get_prop_data(self, prop_key: str) -> Optional[Dict[str, List[Any]]]:
+        """获取当前类型物品中指定属性名称的数据 { 属性类型 -> 值列表 }"""
+        base_classes: Optional[Dict[str, Dict[str, List[Any]]]] = self.statistical_data
+        if base_classes is None:
+            logger.warning(f'尝试获取BaseClasses({self.cache_name})的属性数据时, 没有任何属性字典')
+            return None
+        prop: Optional[Dict[str, List[Any]]] = base_classes.get(prop_key)
+        if prop is None:
+            logger.warning(f'尝试获取BaseClasses({self.cache_name})的属性{prop_key}时, 该类型物品没有统计到此属性数据')
+            return None
+        return prop
+
     def __str__(self):
         return f'StatsStruct(name={self.name}, id={id(self)})'
 
