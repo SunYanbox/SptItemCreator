@@ -3,11 +3,12 @@ from flask import Flask, jsonify, request, current_app
 from werkzeug.exceptions import NotFound
 
 from Global import logger, config
+from stats_mgr import StatsManager
+
 # 蓝图
 from models.config_bp import config_bp
-
+from models.stats_bp import stats_bp
 from models.stats_mgr_bp import get_stats_mgr, set_stats_mgr, stats_mgr_bp
-from stats_mgr import StatsManager
 
 port: int = 6666
 
@@ -34,6 +35,7 @@ def get_url_map():
 # 注册蓝图
 app.register_blueprint(config_bp)
 app.register_blueprint(stats_mgr_bp)
+app.register_blueprint(stats_bp)
 
 def register_error_handlers(target_app: Flask):
     @target_app.errorhandler(NotFound)

@@ -12,6 +12,44 @@ curl.exe -s localhost:6666/
 curl.exe -s localhost:6666/url_map/
 ```
 
+### stats_bp 统计查询路由
+
+查看所有顶层统计类别(BaseClasses)
+
+```shell
+curl.exe -s localhost:6666/stats/base_classes
+```
+
+查看所有统计属性键名(PropKeys)
+
+```shell
+curl.exe -s localhost:6666/stats/prop_keys
+```
+
+查看指定统计类别下的所有属性键名
+
+```shell
+curl.exe -s localhost:6666/stats/prop_keys/<string:base_classes>
+```
+
+查看指定统计类别下的唯一属性键名(去重后)
+
+```shell
+curl.exe -s localhost:6666/stats/prop_keys/<string:base_classes>/unique
+```
+
+查看指定类别下指定属性的值类型枚举(仅英文名)
+
+```shell
+curl.exe -s localhost:6666/stats/<string:base_classes>/<string:prop_key>/type
+```
+
+查看指定类别下指定属性的所有统计数据值
+
+```shell
+curl.exe -s localhost:6666/stats/<string:base_classes>/<string:prop_key>
+```
+
 ### cfg 配置路由
 
 **查看所有配置信息**
