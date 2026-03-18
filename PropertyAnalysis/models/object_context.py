@@ -1,4 +1,4 @@
-from Global import logger, config
+from Global import config
 from managers.stats_mgr import StatsManager
 
 
