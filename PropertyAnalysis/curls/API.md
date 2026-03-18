@@ -12,11 +12,7 @@ curl.exe -s localhost:6666/
 curl.exe -s localhost:6666/url_map/
 ```
 
-**查看统计数据管理器状态**
-
-```shell
-curl.exe -s localhost:6666/stats_mgr/
-```
+### cfg 配置路由
 
 **查看所有配置信息**
 
@@ -38,6 +34,32 @@ curl.exe -s localhost:6666/cfg/keys/<string:key>/
 示例
 ```shell
 curl.exe -s localhost:6666/cfg/keys/StatsManagerSavePath/
+```
+
+### stats_mgr 统计路由
+
+查看当前统计管理器状态
+
+```shell
+curl.exe -s localhost:6666/stats_mgr/
+```
+
+保存当前统计管理器数据
+
+```shell
+curl.exe -s localhost:6666/stats_mgr/save
+```
+
+从已保存的统计管理器文件加载数据
+
+```shell
+curl.exe -s localhost:6666/stats_mgr/load/
+```
+
+从SptItemCreator模组导出的StatsCache文件夹加载数据
+
+```shell
+curl.exe -s localhost:6666/stats_mgr/load/<path:folder_path>
 ```
 
 ## POST
