@@ -2,11 +2,12 @@ import traceback
 from flask import Flask, jsonify, request, current_app
 from werkzeug.exceptions import NotFound
 
-from Global import logger
+from Global import logger, config
 # 蓝图
 from models.config_bp import config_bp
 
-from models.stats_mgr_bp import get_stats_mgr, stats_mgr_bp
+from models.stats_mgr_bp import get_stats_mgr, set_stats_mgr, stats_mgr_bp
+from stats_mgr import StatsManager
 
 port: int = 6666
 
@@ -58,4 +59,12 @@ register_error_handlers(app)
 
 if __name__ == '__main__':
     print(app.url_map)
+    try:
+        save_file_path = config.get('StatsManagerSavePath')
+        set_stats_mgr(StatsManager.create_from_file(save_file_path))
+        stats_mgr = get_stats_mgr()
+        data_count = len(stats_mgr.data) if stats_mgr is not None else 0
+        logger.info(f'[初始化] 自动导入plk数据文件完成: {data_count}条数据')
+    except Exception as e:
+        logger.error(f'[初始化] 自动导入plk数据文件时出错: {e}')
     app.run(port=port)

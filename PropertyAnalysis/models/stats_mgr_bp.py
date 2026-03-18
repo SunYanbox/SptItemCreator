@@ -15,6 +15,10 @@ def get_stats_mgr() -> Optional[StatsManager]:
     global stats_mgr
     return stats_mgr
 
+def set_stats_mgr(target_stats_mgr: Optional[StatsManager]):
+    global stats_mgr
+    stats_mgr = target_stats_mgr
+
 @stats_mgr_bp.route('/', strict_slashes=False)
 def _index():
     save_file_path = config.get('StatsManagerSavePath')
