@@ -2,6 +2,9 @@ import tkinter as tk
 from tkinter import ttk
 from typing import Optional, Dict, List, Any
 
+import gettext
+
+
 import matplotlib
 
 matplotlib.use('TkAgg')  # 使用 Tkinter 后端
@@ -38,7 +41,7 @@ class StatsInfoTab(tk.Frame):
         self.container.pack(fill='both', expand=True)
 
         # 基本统计信息区域
-        basic_frame = ttk.LabelFrame(self.container, text="基本统计")
+        basic_frame = ttk.LabelFrame(self.container, text=gettext.gettext("基本统计"))
         basic_frame.pack(fill='x', padx=5, pady=5)
 
         self.basic_text = tk.Text(basic_frame, height=10, wrap='word')
@@ -46,7 +49,7 @@ class StatsInfoTab(tk.Frame):
         self.basic_text.configure(state='disabled')
 
         # 扩展统计信息区域
-        extended_frame = ttk.LabelFrame(self.container, text="扩展统计")
+        extended_frame = ttk.LabelFrame(self.container, text=gettext.gettext("扩展统计"))
         extended_frame.pack(fill='x', padx=5, pady=5)
 
         self.extended_text = tk.Text(extended_frame, height=6, wrap='word')
@@ -72,7 +75,7 @@ class StatsInfoTab(tk.Frame):
         self._clear_display()
 
         if not prop_data:
-            self._set_text(self.basic_text, f"属性 '{prop_name}' 无数据")
+            self._set_text(self.basic_text, gettext.gettext("属性 '{}' 无数据").format(prop_name))
             return
 
         try:
@@ -83,7 +86,7 @@ class StatsInfoTab(tk.Frame):
                     all_values.extend(values)
 
             if not all_values:
-                self._set_text(self.basic_text, f"属性 '{prop_name}' 数据为空")
+                self._set_text(self.basic_text, gettext.gettext("属性 '{}' 数据为空").format(prop_name))
                 return
 
             # 使用 DataProcessor 过滤数据
@@ -96,21 +99,22 @@ class StatsInfoTab(tk.Frame):
             if unsupported_counts:
                 unsupported_info = ", ".join([f"{k}: {v}" for k, v in unsupported_counts.items()])
                 self.type_label.configure(
-                    text=f"可统计数据: {supported_count}/{total_count} (已排除: {unsupported_info})"
+                    text=gettext.gettext("可统计数据: {}/{} (已排除: {})").format(supported_count, total_count, unsupported_info)
                 )
                 logger.debug(f"属性 '{prop_name}' 包含不可统计类型: {unsupported_info}")
             else:
-                self.type_label.configure(text=f"数据总数: {total_count}")
+                self.type_label.configure(text=gettext.gettext("数据总数: {}").format(total_count))
 
             if not supported_values:
                 self._set_text(self.basic_text,
-                               f"属性 '{prop_name}' 无可统计数据\n\n"
-                               f"仅支持以下类型的统计:\n"
-                               f"  - 字符串 (str)\n"
-                               f"  - 布尔值 (bool)\n"
-                               f"  - 整数 (int)\n"
-                               f"  - 浮点数 (float)\n\n"
-                               f"检测到的类型:\n"
+                               gettext.gettext("属性 '{}' 无可统计数据\n\n")
+                               .format(prop_name) +
+                               gettext.gettext("仅支持以下类型的统计:\n") +
+                               f"  - {gettext.gettext('字符串')} (str)\n"
+                               f"  - {gettext.gettext('布尔值')} (bool)\n"
+                               f"  - {gettext.gettext('整数')} (int)\n"
+                               f"  - {gettext.gettext('浮点数')} (float)\n\n"
+                               + gettext.gettext("检测到的类型:\n") +
                                f"  {', '.join([f'{k}: {v}' for k, v in unsupported_counts.items()])}"
                                )
                 return
@@ -128,7 +132,7 @@ class StatsInfoTab(tk.Frame):
                 self._display_mixed_stats(supported_values, prop_name)
 
         except Exception as e:
-            error_msg = f"统计计算失败: {e}"
+            error_msg = gettext.gettext("统计计算失败: {}").format(e)
             logger.error(error_msg, exc_info=True)
             self._set_text(self.basic_text, error_msg)
 
@@ -138,28 +142,28 @@ class StatsInfoTab(tk.Frame):
             numeric_values = convert_to_numeric(values)
 
             if len(numeric_values) < 1:
-                self._set_text(self.basic_text, "无法转换为数值数据")
+                self._set_text(self.basic_text, gettext.gettext("无法转换为数值数据"))
                 return
 
             # 计算基本统计
             basic_stats = calculate_basic_statistics(numeric_values)
 
             if not basic_stats:
-                self._set_text(self.basic_text, "基本统计计算失败")
+                self._set_text(self.basic_text, gettext.gettext("基本统计计算失败"))
                 return
 
             # 格式化基本统计显示
             basic_lines = [
-                f"属性: {prop_name}",
-                f"数据数量: {basic_stats.get('count', 0)}",
-                f"均值: {basic_stats.get('mean', 0):.4f}",
-                f"标准差: {basic_stats.get('std_dev', 0):.4f}",
-                f"方差: {basic_stats.get('variance', 0):.4f}",
-                f"最小值: {basic_stats.get('min', 0):.4f}",
-                f"最大值: {basic_stats.get('max', 0):.4f}",
-                f"中位数: {basic_stats.get('median', 0):.4f}",
-                f"总和: {basic_stats.get('sum', 0):.4f}",
-                f"四分位距 (IQR): {basic_stats.get('iqr', 0):.4f}",
+                gettext.gettext("属性: {}").format(prop_name),
+                gettext.gettext("数据数量: {}").format(basic_stats.get('count', 0)),
+                gettext.gettext("均值: {:.4f}").format(basic_stats.get('mean', 0)),
+                gettext.gettext("标准差: {:.4f}").format(basic_stats.get('std_dev', 0)),
+                gettext.gettext("方差: {:.4f}").format(basic_stats.get('variance', 0)),
+                gettext.gettext("最小值: {:.4f}").format(basic_stats.get('min', 0)),
+                gettext.gettext("最大值: {:.4f}").format(basic_stats.get('max', 0)),
+                gettext.gettext("中位数: {:.4f}").format(basic_stats.get('median', 0)),
+                gettext.gettext("总和: {:.4f}").format(basic_stats.get('sum', 0)),
+                gettext.gettext("四分位距 (IQR): {:.4f}").format(basic_stats.get('iqr', 0)),
             ]
             self._set_text(self.basic_text, '\n'.join(basic_lines))
 
@@ -168,18 +172,18 @@ class StatsInfoTab(tk.Frame):
                 extended_stats = calculate_extended_statistics(numeric_values)
                 if extended_stats:
                     extended_lines = [
-                        f"偏度: {extended_stats.get('skewness', 0):.4f}",
-                        f"峰度: {extended_stats.get('kurtosis', 0):.4f}",
-                        f"变异系数: {extended_stats.get('coefficient_of_variation', 0):.4f}",
+                        gettext.gettext("偏度: {:.4f}").format(extended_stats.get('skewness', 0)),
+                        gettext.gettext("峰度: {:.4f}").format(extended_stats.get('kurtosis', 0)),
+                        gettext.gettext("变异系数: {:.4f}").format(extended_stats.get('coefficient_of_variation', 0)),
                     ]
                     self._set_text(self.extended_text, '\n'.join(extended_lines))
                 else:
-                    self._set_text(self.extended_text, "扩展统计计算失败")
+                    self._set_text(self.extended_text, gettext.gettext("扩展统计计算失败"))
             else:
-                self._set_text(self.extended_text, "数据不足，无法计算扩展统计（需要至少3个数据点）")
+                self._set_text(self.extended_text, gettext.gettext("数据不足，无法计算扩展统计（需要至少3个数据点）"))
 
         except Exception as e:
-            error_msg = f"数值统计计算异常: {e}"
+            error_msg = gettext.gettext("数值统计计算异常: {}").format(e)
             logger.error(error_msg, exc_info=True)
             self._set_text(self.basic_text, error_msg)
 
@@ -197,19 +201,19 @@ class StatsInfoTab(tk.Frame):
             min_length = min(lengths) if lengths else 0
 
             lines = [
-                f"属性: {prop_name}",
-                f"数据数量: {total_count}",
-                f"唯一值数量: {unique_count}",
-                f"平均长度: {avg_length:.2f}",
-                f"最大长度: {max_length}",
-                f"最小长度: {min_length}",
-                f"重复率: {(1 - unique_count / total_count) * 100:.2f}%" if total_count > 0 else "重复率: N/A",
+                gettext.gettext("属性: {}").format(prop_name),
+                gettext.gettext("数据数量: {}").format(total_count),
+                gettext.gettext("唯一值数量: {}").format(unique_count),
+                gettext.gettext("平均长度: {:.2f}").format(avg_length),
+                gettext.gettext("最大长度: {}").format(max_length),
+                gettext.gettext("最小长度: {}").format(min_length),
+                gettext.gettext("重复率: {:.2f}%").format((1 - unique_count / total_count) * 100) if total_count > 0 else gettext.gettext("重复率: N/A"),
             ]
             self._set_text(self.basic_text, '\n'.join(lines))
-            self._set_text(self.extended_text, "字符串类型无扩展统计")
+            self._set_text(self.extended_text, gettext.gettext("字符串类型无扩展统计"))
 
         except Exception as e:
-            error_msg = f"字符串统计计算异常: {e}"
+            error_msg = gettext.gettext("字符串统计计算异常: {}").format(e)
             logger.error(error_msg, exc_info=True)
             self._set_text(self.basic_text, error_msg)
 
@@ -221,16 +225,16 @@ class StatsInfoTab(tk.Frame):
             total_count = len(values)
 
             lines = [
-                f"属性: {prop_name}",
-                f"数据数量: {total_count}",
-                f"True 数量: {true_count} ({true_count / total_count * 100:.2f}%)" if total_count > 0 else "True 数量: 0",
-                f"False 数量: {false_count} ({false_count / total_count * 100:.2f}%)" if total_count > 0 else "False 数量: 0",
+                gettext.gettext("属性: {}").format(prop_name),
+                gettext.gettext("数据数量: {}").format(total_count),
+                gettext.gettext("True 数量: {} ({:.2f}%)").format(true_count, true_count / total_count * 100) if total_count > 0 else gettext.gettext("True 数量: 0"),
+                gettext.gettext("False 数量: {} ({:.2f}%)").format(false_count, false_count / total_count * 100) if total_count > 0 else gettext.gettext("False 数量: 0"),
             ]
             self._set_text(self.basic_text, '\n'.join(lines))
-            self._set_text(self.extended_text, "布尔类型无扩展统计")
+            self._set_text(self.extended_text, gettext.gettext("布尔类型无扩展统计"))
 
         except Exception as e:
-            error_msg = f"布尔统计计算异常: {e}"
+            error_msg = gettext.gettext("布尔统计计算异常: {}").format(e)
             logger.error(error_msg, exc_info=True)
             self._set_text(self.basic_text, error_msg)
 
@@ -243,18 +247,18 @@ class StatsInfoTab(tk.Frame):
                 type_counts[type_name] = type_counts.get(type_name, 0) + 1
 
             lines = [
-                f"属性: {prop_name}",
-                f"数据数量: {len(values)}",
-                f"类型分布:",
+                gettext.gettext("属性: {}").format(prop_name),
+                gettext.gettext("数据数量: {}").format(len(values)),
+                gettext.gettext("类型分布:"),
             ]
             for type_name, count in sorted(type_counts.items(), key=lambda x: x[1], reverse=True):
                 lines.append(f"  - {type_name}: {count} ({count / len(values) * 100:.2f}%)")
 
             self._set_text(self.basic_text, '\n'.join(lines))
-            self._set_text(self.extended_text, "混合类型无法计算扩展统计")
+            self._set_text(self.extended_text, gettext.gettext("混合类型无法计算扩展统计"))
 
         except Exception as e:
-            error_msg = f"混合统计计算异常: {e}"
+            error_msg = gettext.gettext("混合统计计算异常: {}").format(e)
             logger.error(error_msg, exc_info=True)
             self._set_text(self.basic_text, error_msg)
 

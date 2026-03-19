@@ -3,6 +3,7 @@ from tkinter import messagebox
 from tkinter.simpledialog import askinteger, askfloat
 from typing import Optional
 
+import gettext
 
 class ConfigGUI:
     """配置管理GUI界面"""
@@ -20,7 +21,7 @@ class ConfigGUI:
     def create_widgets(self):
         """创建界面组件"""
         # 顶部标签
-        title_label = tk.Label(self.parent, text="配置管理", font=("Arial", 14, "bold"))
+        title_label = tk.Label(self.parent, text=gettext.gettext("配置管理"), font=("Arial", 14, "bold"))
         title_label.pack(pady=10)
         
         # 配置键列表框架
@@ -28,7 +29,7 @@ class ConfigGUI:
         list_frame.pack(fill='both', expand=True, padx=10, pady=5)
         
         # 列表标签
-        tk.Label(list_frame, text="配置键列表:").pack(anchor='w')
+        tk.Label(list_frame, text=gettext.gettext("配置键列表:")).pack(anchor='w')
         
         # 配置键列表
         self.config_listbox = tk.Listbox(list_frame, height=15, selectmode=tk.SINGLE)
@@ -46,7 +47,7 @@ class ConfigGUI:
         value_frame = tk.Frame(self.parent)
         value_frame.pack(fill='both', expand=True, padx=10, pady=5)
         
-        tk.Label(value_frame, text="配置值:", font=("Arial", 10)).pack(anchor='w')
+        tk.Label(value_frame, text=gettext.gettext("配置值:"), font=("Arial", 10)).pack(anchor='w')
         
         self.value_text = tk.Text(value_frame, height=8, width=50, state='disabled')
         self.value_text.pack(fill='both', expand=True)
@@ -55,9 +56,9 @@ class ConfigGUI:
         button_frame = tk.Frame(self.parent)
         button_frame.pack(pady=10)
         
-        tk.Button(button_frame, text="刷新", command=self.refresh_config_list).pack(side='left', padx=5)
-        tk.Button(button_frame, text="保存配置", command=self.save_config).pack(side='left', padx=5)
-        tk.Button(button_frame, text="编辑选中项", command=self.edit_selected).pack(side='left', padx=5)
+        tk.Button(button_frame, text=gettext.gettext("刷新"), command=self.refresh_config_list).pack(side='left', padx=5)
+        tk.Button(button_frame, text=gettext.gettext("保存配置"), command=self.save_config).pack(side='left', padx=5)
+        tk.Button(button_frame, text=gettext.gettext("编辑选中项"), command=self.edit_selected).pack(side='left', padx=5)
     
     def refresh_config_list(self):
         """刷新配置键列表"""
@@ -92,17 +93,17 @@ class ConfigGUI:
         try:
             from Global import save_config
             save_config()
-            messagebox.showinfo("成功", "配置已保存")
+            messagebox.showinfo(gettext.gettext("成功"), gettext.gettext("配置已保存"))
         except Exception as e:
             from Global import logger
             logger.error(f"保存配置时出错: {e}")
-            messagebox.showerror("错误", f"保存配置时出错: {e}")
+            messagebox.showerror(gettext.gettext("错误"), gettext.gettext("保存配置时出错: {}").format(e))
     
     def edit_selected(self):
         """编辑选中的配置项"""
         selection = self.config_listbox.curselection()
         if not selection:
-            messagebox.showwarning("警告", "请先选择一个配置项")
+            messagebox.showwarning(gettext.gettext("警告"), gettext.gettext("请先选择一个配置项"))
             return
         
         key = self.config_listbox.get(selection[0])
@@ -111,22 +112,22 @@ class ConfigGUI:
         
         # 处理数字类型：使用原有对话框
         if isinstance(value, int):
-            new_value = askinteger("编辑配置", f"输入 {key} 的新值:", initialvalue=value)
+            new_value = askinteger(gettext.gettext("编辑配置"), gettext.gettext("输入 {} 的新值:").format(key), initialvalue=value)
             if new_value is None:
                 return
             config[key] = new_value
             self.refresh_config_list()
             self.on_config_selected(None)
-            messagebox.showinfo("成功", f"配置项 {key} 已更新")
+            messagebox.showinfo(gettext.gettext("成功"), gettext.gettext("配置项 {} 已更新").format(key))
             return
         elif isinstance(value, float):
-            new_value = askfloat("编辑配置", f"输入 {key} 的新值:", initialvalue=value)
+            new_value = askfloat(gettext.gettext("编辑配置"), gettext.gettext("输入 {} 的新值:").format(key), initialvalue=value)
             if new_value is None:
                 return
             config[key] = new_value
             self.refresh_config_list()
             self.on_config_selected(None)
-            messagebox.showinfo("成功", f"配置项 {key} 已更新")
+            messagebox.showinfo(gettext.gettext("成功"), gettext.gettext("配置项 {} 已更新").format(key))
             return
         
         # 处理字符串、列表、字典类型：使用大文本输入对话框
@@ -134,11 +135,11 @@ class ConfigGUI:
             # 创建大文本编辑对话框
             import yaml
             edit_win = tk.Toplevel(self.parent)
-            edit_win.title(f"编辑配置: {key}")
+            edit_win.title(gettext.gettext("编辑配置: {}").format(key))
             edit_win.geometry("750x500")
             
             # 标签
-            tk.Label(edit_win, text=f"编辑 {key} (支持多行输入):", font=("Arial", 10)).pack(pady=5)
+            tk.Label(edit_win, text=gettext.gettext("编辑 {} (支持多行输入):").format(key), font=("Arial", 10)).pack(pady=5)
             
             # 文本区域
             text_frame = tk.Frame(edit_win)
@@ -175,27 +176,27 @@ class ConfigGUI:
                         new_value = yaml.safe_load(new_text)
                         # 验证类型匹配
                         if isinstance(value, list) and not isinstance(new_value, list):
-                            messagebox.showerror("错误", "输入必须为YAML列表格式")
+                            messagebox.showerror(gettext.gettext("错误"), gettext.gettext("输入必须为YAML列表格式"))
                             return
                         if isinstance(value, dict) and not isinstance(new_value, dict):
-                            messagebox.showerror("错误", "输入必须为YAML字典格式")
+                            messagebox.showerror(gettext.gettext("错误"), gettext.gettext("输入必须为YAML字典格式"))
                             return
                     except yaml.YAMLError:
-                        messagebox.showerror("错误", "无效的YAML格式")
+                        messagebox.showerror(gettext.gettext("错误"), gettext.gettext("无效的YAML格式"))
                         return
                 
                 config[key] = new_value
                 self.refresh_config_list()
                 self.on_config_selected(None)
                 edit_win.destroy()
-                messagebox.showinfo("成功", f"配置项 {key} 已更新")
+                messagebox.showinfo(gettext.gettext("成功"), gettext.gettext("配置项 {} 已更新").format(key))
             
             def on_cancel():
                 """取消按钮回调"""
                 edit_win.destroy()
             
-            tk.Button(button_frame, text="确定", command=on_confirm).pack(side='left', padx=5)
-            tk.Button(button_frame, text="取消", command=on_cancel).pack(side='left', padx=5)
+            tk.Button(button_frame, text=gettext.gettext("确定"), command=on_confirm).pack(side='left', padx=5)
+            tk.Button(button_frame, text=gettext.gettext("取消"), command=on_cancel).pack(side='left', padx=5)
             
             # 绑定回车和ESC键
             # edit_win.bind('<Return>', lambda e: on_confirm())
@@ -206,4 +207,4 @@ class ConfigGUI:
             edit_win.grab_set()
             edit_win.wait_window()
         else:
-            messagebox.showinfo("提示", f"该类型({type(value).__name__})的编辑功能尚未实现")
+            messagebox.showinfo(gettext.gettext("提示"), gettext.gettext("该类型({})的编辑功能尚未实现").format(type(value).__name__))
