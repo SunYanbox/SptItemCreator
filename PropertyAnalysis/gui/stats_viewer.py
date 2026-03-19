@@ -1,9 +1,10 @@
 import tkinter as tk
 from tkinter import messagebox
+from typing import Optional
 
-from Global import logger
+from Global import logger, config
 from gui.detail_viewer import DetailViewer
-from models.object_context import ObjectContext
+from managers.stats_mgr import StatsManager
 
 
 def _create_listbox_with_scrollbar(parent_frame, height=15, select_mode=tk.SINGLE):
@@ -29,6 +30,7 @@ def _create_listbox_with_scrollbar(parent_frame, height=15, select_mode=tk.SINGL
 
 class StatsViewerGUI:
     """数据查看GUI界面"""
+    stats_mgr: Optional[StatsManager] = None
     
     def __init__(self, parent: tk.Misc, app=None):
         self.pk_listbox = None
@@ -38,13 +40,17 @@ class StatsViewerGUI:
         if not hasattr(app, 'add_tab') or not callable(app.add_tab):
             raise TypeError("app.add_tab must be callable")
         self.app = app  # 主应用程序引用
-        self.oc = ObjectContext()
+        self.auto_load_plk()
         self.create_widgets()
         self.refresh_base_classes()
 
-    @property
-    def stats_mgr(self):
-        return self.oc.stats_mgr
+    def auto_load_plk(self):
+        """重新根据配置文件加载数据"""
+        try:
+            save_file_path = config.get('StatsManagerSavePath')
+            self.stats_mgr = StatsManager.create_from_file(save_file_path)
+        except Exception as e:
+            logger.error(f'在StatsViewerGUI中, 根据配置自动初始化StatsManager失败: {e}', exc_info=True)
 
     def create_widgets(self):
         """创建界面组件"""
@@ -114,8 +120,8 @@ class StatsViewerGUI:
     def refresh_base_classes(self):
         """刷新BaseClasses列表"""
         self.bc_listbox.delete(0, tk.END)
-        if self.oc.stats_mgr:
-            base_classes = self.oc.stats_mgr.base_classes
+        if self.stats_mgr:
+            base_classes = self.stats_mgr.base_classes
             for bc in sorted(base_classes):
                 self.bc_listbox.insert(tk.END, bc)
         else:
@@ -125,8 +131,8 @@ class StatsViewerGUI:
     def refresh_prop_keys(self):
         """刷新PropKeys列表"""
         self.pk_listbox.delete(0, tk.END)
-        if self.oc.stats_mgr:
-            prop_keys = self.oc.stats_mgr.prop_keys
+        if self.stats_mgr:
+            prop_keys = self.stats_mgr.prop_keys
             for pk in sorted(prop_keys):
                 self.pk_listbox.insert(tk.END, pk)
         else:
@@ -139,13 +145,13 @@ class StatsViewerGUI:
             bc_name = self.bc_listbox.get(selection[0])
             self.update_status_for_selected(bc_name)
     
-    def update_status_for_selected(self, bc_name: str):
+    def update_status_for_selected(self, bc_name: str) -> None:
         """更新状态显示选中的BaseClass信息"""
-        if not self.oc.stats_mgr:
+        if not self.stats_mgr:
             return
         
-        all_props = self.oc.stats_mgr.get_prop_keys(bc_name)
-        unique_props = self.oc.stats_mgr.get_unique_prop_keys(bc_name)
+        all_props = self.stats_mgr.get_prop_keys(bc_name)
+        unique_props = self.stats_mgr.get_unique_prop_keys(bc_name)
         
         prop_count = len(all_props) if all_props else 0
         unique_count = len(unique_props) if unique_props else 0
@@ -155,17 +161,17 @@ class StatsViewerGUI:
                  f"选中: {bc_name} | 属性: {prop_count} | 唯一属性: {unique_count}"
         )
     
-    def show_props_for_selected(self):
+    def show_props_for_selected(self) -> Optional[tk.Toplevel]:
         """显示选中BaseClass的属性"""
         selection = self.bc_listbox.curselection()
         if not selection:
             messagebox.showwarning("警告", "请先选择一个BaseClass")
-            return
+            return None
         
         bc_name = self.bc_listbox.get(selection[0])
-        if not self.oc.stats_mgr:
+        if not self.stats_mgr:
             messagebox.showerror("错误", "StatsManager未加载")
-            return
+            return None
 
         title = f"BaseClass 详情: {bc_name}"
 
