@@ -177,7 +177,7 @@ class StatsViewerGUI:
 
         detail_win = tk.Toplevel(self.app.root)
         detail_win.title(title)
-        detail_win.geometry("700x500")
+        detail_win.geometry("850x800")
 
         # 创建详情查看器
         viewer = DetailViewer(detail_win, bc_name, self.stats_mgr)
@@ -189,7 +189,7 @@ class StatsViewerGUI:
 
         # 控制按钮框架
         button_frame = tk.Frame(detail_win)
-        button_frame.pack(side='bottom', fill='x', padx=10, pady=5)
+        button_frame.pack(side='top', fill='x', padx=10, pady=5)
 
         tk.Button(button_frame, text="添加到标签页",
                   command=lambda: add_to_tab(bc_name, self.stats_mgr)).pack(side='left', padx=5)
