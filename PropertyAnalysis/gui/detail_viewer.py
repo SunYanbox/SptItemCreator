@@ -1,7 +1,7 @@
 import json
 import tkinter as tk
 from tkinter import ttk
-from typing import Optional, Callable
+from typing import Optional
 
 from managers.stats_mgr import StatsManager
 
@@ -14,6 +14,7 @@ class DetailViewer(tk.Frame):
     all_listbox: tk.Listbox
     all_frame: tk.Frame
     notebook: ttk.Notebook
+    right_notebook: ttk.Notebook
     parent: tk.Misc
     bc_name: str
     stats_mgr: StatsManager
@@ -44,6 +45,16 @@ class DetailViewer(tk.Frame):
 
     def create_widgets(self):
         """创建界面组件"""
+        # 信息标签
+        info_text = f"BaseClass: {self.bc_name}\n"
+        info_text += f"总属性数: {len(self.all_props) if self.all_props else 0}\n"
+        info_text += f"唯一属性数: {len(self.unique_props) if self.unique_props else 0}"
+
+        # 信息在顶部显示
+        info_frame = ttk.Frame(self)
+        info_frame.pack(fill='x', side='top', padx=5, pady=5)
+        tk.Label(info_frame, text=info_text, height=3, font=("Arial", 10)).pack(fill='x')
+
         # 创建左右分隔的主容器
         main_paned = ttk.PanedWindow(self, orient='horizontal')
         main_paned.pack(fill='both', expand=True)
@@ -51,13 +62,6 @@ class DetailViewer(tk.Frame):
         # 左侧面板
         left_frame = tk.Frame(main_paned)
         main_paned.add(left_frame, weight=1)
-
-        # 信息标签
-        info_text = f"BaseClass: {self.bc_name}\n"
-        info_text += f"总属性数: {len(self.all_props) if self.all_props else 0}\n"
-        info_text += f"唯一属性数: {len(self.unique_props) if self.unique_props else 0}"
-
-        tk.Label(left_frame, text=info_text, font=("Arial", 10)).pack(pady=10)
 
         # 创建选项卡
         self.notebook = ttk.Notebook(left_frame)
@@ -99,8 +103,16 @@ class DetailViewer(tk.Frame):
         right_frame = tk.Frame(main_paned)
         main_paned.add(right_frame, weight=1)
 
+        # 创建右侧选项卡
+        self.right_notebook = ttk.Notebook(right_frame)
+        self.right_notebook.pack(fill='both', expand=True, padx=5, pady=5)
+
+        # JSON显示标签页
+        json_tab = tk.Frame(self.right_notebook)
+        self.right_notebook.add(json_tab, text="JSON数据")
+
         # 缩进选择控件
-        indent_frame = tk.Frame(right_frame)
+        indent_frame = tk.Frame(json_tab)
         indent_frame.pack(fill='x', padx=5, pady=5)
 
         tk.Label(indent_frame, text="JSON缩进:").pack(side='left')
@@ -115,8 +127,8 @@ class DetailViewer(tk.Frame):
             command=self.update_json_display
         ).pack(side='left', padx=5)
 
-        # JSON显示的Frame容器（便于未来扩展）
-        self.json_container = tk.Frame(right_frame)
+        # JSON显示的Frame容器
+        self.json_container = tk.Frame(json_tab)
         self.json_container.pack(fill='both', expand=True, padx=5, pady=5)
 
         # JSON显示文本框
