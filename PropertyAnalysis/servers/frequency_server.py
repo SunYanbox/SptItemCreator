@@ -1,3 +1,4 @@
+import math
 from typing import Dict, List, Union, Any, Counter
 from collections import Counter
 from Global import logger
@@ -10,10 +11,13 @@ def count_label_frequencies(data: Dict[str, List[ValueType]]) -> Dict[str, Dict[
     统计字典中每个标签下值的频率分布
     
     Args:
-        data: 字典，键为标签名，值为值列表（可包含int, float, bool）
+        data: 字典，键为标签名，值为值列表（可包含int, float, bool, str）
         
     Returns:
         嵌套字典：外层键为标签名，内层字典键为值，值为出现次数
+        
+    Note:
+        会自动过滤不可哈希类型（dict, list, set等），仅统计基本类型
     """
     if not data:
         logger.warning('传入空字典')
@@ -31,8 +35,28 @@ def count_label_frequencies(data: Dict[str, List[ValueType]]) -> Dict[str, Dict[
             result[label] = {}
             continue
         
+        # 防御性过滤：只保留可哈希的基本类型
+        hashable_values = []
+        unhashable_count = 0
+        for v in values:
+            # 注意：bool 是 int 的子类，需要先检查 bool
+            if isinstance(v, bool):
+                hashable_values.append(v)
+            elif isinstance(v, (int, float, str)) and not isinstance(v, bool):
+                hashable_values.append(v)
+            else:
+                unhashable_count += 1
+        
+        if unhashable_count > 0:
+            logger.debug(f'标签"{label}"过滤了{unhashable_count}个不可哈希值')
+        
+        if not hashable_values:
+            logger.debug(f'标签"{label}"无可统计值')
+            result[label] = {}
+            continue
+        
         # 统计频率
-        counter = Counter(values)
+        counter = Counter(hashable_values)
         # 将Counter转换为普通字典
         freq_dict = dict(counter)
         

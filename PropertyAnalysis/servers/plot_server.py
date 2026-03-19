@@ -1,10 +1,8 @@
-import matplotlib
 import base64
 import io
 from typing import List, Dict, Any, Union, Tuple, Optional
 from enum import Enum
 from Global import logger
-matplotlib.use('Agg')  # 使用非交互式后端
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -74,8 +72,8 @@ class PlotServer:
         try:
             ax.plot(x_data, y_data, marker='o', linestyle='-', linewidth=2)
             ax.set_title(title, fontsize=14, fontweight='bold')
-            ax.set_x_label(x_label, fontsize=12)
-            ax.set_y_label(y_label, fontsize=12)
+            ax.set_xlabel(x_label, fontsize=12)
+            ax.set_ylabel(y_label, fontsize=12)
             ax.grid(True, alpha=0.3)
             ax.tick_params(axis='both', which='major', labelsize=10)
             
@@ -114,8 +112,8 @@ class PlotServer:
         try:
             bars = ax.bar(categories, values, color='steelblue', alpha=0.8)
             ax.set_title(title, fontsize=14, fontweight='bold')
-            ax.set_x_label(x_label, fontsize=12)
-            ax.set_y_label(y_label, fontsize=12)
+            ax.set_xlabel(x_label, fontsize=12)
+            ax.set_ylabel(y_label, fontsize=12)
             
             # 在柱子上方显示数值
             for bar in bars:
@@ -157,8 +155,8 @@ class PlotServer:
         try:
             ax.hist(data, bins=bins, color='skyblue', edgecolor='black', alpha=0.7)
             ax.set_title(title, fontsize=14, fontweight='bold')
-            ax.set_x_label(x_label, fontsize=12)
-            ax.set_y_label(y_label, fontsize=12)
+            ax.set_xlabel(x_label, fontsize=12)
+            ax.set_ylabel(y_label, fontsize=12)
             ax.grid(True, alpha=0.3)
             
             # 添加统计信息
@@ -204,8 +202,8 @@ class PlotServer:
         try:
             _ = ax.scatter(x_data, y_data, c='coral', alpha=0.6, edgecolors='w', linewidth=0.5)
             ax.set_title(title, fontsize=14, fontweight='bold')
-            ax.set_x_label(x_label, fontsize=12)
-            ax.set_y_label(y_label, fontsize=12)
+            ax.set_xlabel(x_label, fontsize=12)
+            ax.set_ylabel(y_label, fontsize=12)
             ax.grid(True, alpha=0.3)
             
             return self._save_figure(fig, return_format)
@@ -244,7 +242,7 @@ class PlotServer:
                 patch.set_facecolor(color)
             
             ax.set_title(title, fontsize=14, fontweight='bold')
-            ax.set_y_label(y_label, fontsize=12)
+            ax.set_ylabel(y_label, fontsize=12)
             ax.grid(True, alpha=0.3, axis='y')
             
             return self._save_figure(fig, return_format)
