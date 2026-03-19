@@ -3,12 +3,12 @@ from flask import Flask, jsonify, request, current_app
 from werkzeug.exceptions import NotFound
 
 from Global import logger, config
-from stats_mgr import StatsManager
+from managers.stats_mgr import StatsManager
 
 # 蓝图
-from models.config_bp import config_bp
-from models.stats_bp import stats_bp
-from models.stats_mgr_bp import get_stats_mgr, set_stats_mgr, stats_mgr_bp
+from models.blueprints.config_bp import config_bp
+from models.blueprints.stats_bp import stats_bp
+from models.blueprints.stats_mgr_bp import get_stats_mgr, set_stats_mgr, stats_mgr_bp
 
 port: int = 6666
 
@@ -68,5 +68,5 @@ if __name__ == '__main__':
         data_count = len(stats_mgr.data) if stats_mgr is not None else 0
         logger.info(f'[初始化] 自动导入plk数据文件完成: {data_count}条数据')
     except Exception as e:
-        logger.error(f'[初始化] 自动导入plk数据文件时出错: {e}')
+        logger.error(f'[初始化] 自动导入plk数据文件时出错: {e}', exc_info=True)
     app.run(port=port)
