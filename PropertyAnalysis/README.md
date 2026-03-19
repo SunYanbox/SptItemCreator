@@ -2,16 +2,28 @@
 
 一个Python项目，用于分析模组生成的缓存数据
 
-安装依赖:
+安装依赖(不是很推荐):
 
 ```shell
 conda activate <yourEnvName>
 conda install --yes --file requirements.txt
 ```
 
-运行脚本:
+最低依赖(推荐创建虚拟环境后安装这些, 如果报错了再补上缺的, 然后麻烦在Github提个issue):
+
+- pyyaml
+- matplotlib (安装时会自动安装numpy, contourpy等依赖)
+- aiofiles (数据文件的异步加载)
+- flask (不使用API功能不需要)
+
+运行脚本(GUI):
 ```shell
 python main.py
+```
+
+运行Flask服务器(仅提供本地网络接口)
+```shell
+python app.py
 ```
 
 ## 脚本功能
