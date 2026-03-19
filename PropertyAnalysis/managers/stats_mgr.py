@@ -1,6 +1,6 @@
 import pickle
 from typing import Set, Tuple
-from stats_struct import *
+from models.stats_struct import *
 from dataLoader import LoadsFormFolder
 
 
