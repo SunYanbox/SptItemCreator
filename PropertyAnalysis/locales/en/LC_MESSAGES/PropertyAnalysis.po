@@ -1,0 +1,973 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2026-03-19 23:35+0800\n"
+"PO-Revision-Date: 2026-03-20 00:32+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.9\n"
+"X-Poedit-Basepath: ../gui\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: config_gui.py:27 main_gui.py:107 main_gui.py:174
+msgid "配置管理"
+msgstr "Configuration Management"
+
+#: config_gui.py:35
+msgid "配置键列表:"
+msgstr "Configuration Key List:"
+
+#: config_gui.py:53
+msgid "配置值:"
+msgstr "Configuration Value:"
+
+#: config_gui.py:62 stats_display/frequency_tab.py:57
+msgid "刷新"
+msgstr "Refresh"
+
+#: config_gui.py:63
+msgid "保存配置"
+msgstr "Save Configuration"
+
+#: config_gui.py:64
+msgid "编辑选中项"
+msgstr "Edit Selected Item"
+
+#: config_gui.py:99 config_gui.py:124 config_gui.py:133 config_gui.py:195
+#: main_gui.py:186 main_gui.py:255 main_gui.py:297 main_gui.py:336
+msgid "成功"
+msgstr "Success"
+
+#: config_gui.py:99
+msgid "配置已保存"
+msgstr "Configuration saved"
+
+#: config_gui.py:103 config_gui.py:182 config_gui.py:185 config_gui.py:188
+#: main_gui.py:191 main_gui.py:201 main_gui.py:248 main_gui.py:266
+#: main_gui.py:270 main_gui.py:274 main_gui.py:308 main_gui.py:312
+#: main_gui.py:340 stats_viewer.py:181
+msgid "错误"
+msgstr "Error"
+
+#: config_gui.py:103
+#, python-brace-format
+msgid "保存配置时出错: {}"
+msgstr "Error saving configuration: {}"
+
+#: config_gui.py:109 main_gui.py:204 main_gui.py:319 stats_viewer.py:176
+msgid "警告"
+msgstr "Warning"
+
+#: config_gui.py:109
+msgid "请先选择一个配置项"
+msgstr "Please select a configuration item first"
+
+#: config_gui.py:118 config_gui.py:127
+msgid "编辑配置"
+msgstr "Edit Configuration"
+
+#: config_gui.py:118 config_gui.py:127
+#, python-brace-format
+msgid "输入 {} 的新值:"
+msgstr "Enter new value for {}:"
+
+#: config_gui.py:124 config_gui.py:133 config_gui.py:195
+#, python-brace-format
+msgid "配置项 {} 已更新"
+msgstr "Configuration item {} updated"
+
+#: config_gui.py:141
+#, python-brace-format
+msgid "编辑配置: {}"
+msgstr "Edit Configuration: {}"
+
+#: config_gui.py:145
+#, python-brace-format
+msgid "编辑 {} (支持多行输入):"
+msgstr "Edit {} (supports multi-line input):"
+
+#: config_gui.py:182
+msgid "输入必须为YAML列表格式"
+msgstr "Input must be in YAML list format"
+
+#: config_gui.py:185
+msgid "输入必须为YAML字典格式"
+msgstr "Input must be in YAML dictionary format"
+
+#: config_gui.py:188
+msgid "无效的YAML格式"
+msgstr "Invalid YAML format"
+
+#: config_gui.py:201
+msgid "确定"
+msgstr "OK"
+
+#: config_gui.py:202
+msgid "取消"
+msgstr "Cancel"
+
+#: config_gui.py:213
+msgid "提示"
+msgstr "Prompt"
+
+#: config_gui.py:213
+#, python-brace-format
+msgid "该类型({})的编辑功能尚未实现"
+msgstr "Editing functionality for this type ({}) is not yet implemented"
+
+#: detail_viewer.py:57
+#, python-brace-format
+msgid "BaseClass: {}\n"
+msgstr "BaseClass: {}\n"
+
+#: detail_viewer.py:58
+#, python-brace-format
+msgid "总属性数: {}\n"
+msgstr "Total number of properties: {}\n"
+
+#: detail_viewer.py:59
+#, python-brace-format
+msgid "唯一属性数: {}"
+msgstr "Number of unique properties: {}"
+
+#: detail_viewer.py:80
+msgid "所有属性"
+msgstr "All Properties"
+
+#: detail_viewer.py:89
+msgid "无属性"
+msgstr "No Properties"
+
+#: detail_viewer.py:96
+msgid "唯一属性"
+msgstr "Unique Properties"
+
+#: detail_viewer.py:105
+msgid "无唯一属性"
+msgstr "No Unique Properties"
+
+#: detail_viewer.py:120
+msgid "JSON数据"
+msgstr "JSON Data"
+
+#: detail_viewer.py:126
+msgid "JSON缩进:"
+msgstr "JSON Indent:"
+
+#: detail_viewer.py:153
+msgid "统计信息"
+msgstr "Statistics Information"
+
+#: detail_viewer.py:159
+msgid "频率统计"
+msgstr "Frequency Statistics"
+
+#: detail_viewer.py:165
+msgid "统计图表"
+msgstr "Statistical Charts"
+
+#: detail_viewer.py:199
+#, python-brace-format
+msgid "JSON格式化错误: {}"
+msgstr "JSON Formatting Error: {}"
+
+#: detail_viewer.py:201 stats_display/stats_info_tab.py:79
+#, python-brace-format
+msgid "属性 '{}' 无数据"
+msgstr "Property '{}' has no data"
+
+#: detail_viewer.py:203
+#, python-brace-format
+msgid "BaseClass '{}' 不存在"
+msgstr "BaseClass '{}' does not exist"
+
+#: detail_viewer.py:205
+msgid "请从左侧选择一个属性"
+msgstr "Please select a property from the left"
+
+#: main_gui.py:37
+msgid "PropertyAnalysis GUI"
+msgstr "PropertyAnalysis GUI"
+
+#: main_gui.py:66
+msgid "文件"
+msgstr "File"
+
+#: main_gui.py:67
+msgid "从文件加载数据"
+msgstr "Load Data from File"
+
+#: main_gui.py:68
+msgid "从文件夹加载数据"
+msgstr "Load Data from Folder"
+
+#: main_gui.py:69
+msgid "保存"
+msgstr "Save"
+
+#: main_gui.py:71 main_gui.py:346
+msgid "退出"
+msgstr "Exit"
+
+#: main_gui.py:75
+msgid "工具"
+msgstr "Tools"
+
+#: main_gui.py:76
+msgid "重新加载数据"
+msgstr "Reload Data"
+
+#: main_gui.py:78
+msgid "打开日志"
+msgstr "Open Log"
+
+#: main_gui.py:82
+msgid "帮助"
+msgstr "Help"
+
+#: main_gui.py:83 main_gui.py:223
+msgid "关于"
+msgstr "About"
+
+#: main_gui.py:92
+msgid "就绪"
+msgstr "Ready"
+
+#: main_gui.py:103 main_gui.py:167 stats_viewer.py:62
+msgid "数据查看"
+msgstr "Data View"
+
+#: main_gui.py:130
+#, python-brace-format
+msgid "已切换到已有标签页: {}"
+msgstr "Switched to existing tab: {}"
+
+#: main_gui.py:152
+#, python-brace-format
+msgid "已创建详情标签页: {}"
+msgstr "Created details tab: {}"
+
+#: main_gui.py:168
+msgid "数据查看模式"
+msgstr "Data View Mode"
+
+#: main_gui.py:175
+msgid "配置管理模式"
+msgstr "Configuration Management Mode"
+
+#: main_gui.py:185 main_gui.py:186
+msgid "数据已重新加载"
+msgstr "Data reloaded"
+
+#: main_gui.py:191
+#, python-brace-format
+msgid ""
+"重新加载数据时出错:\n"
+"{}"
+msgstr ""
+"Error reloading data:\n"
+"{}"
+
+#: main_gui.py:199
+#, python-brace-format
+msgid "已打开日志文件: {}"
+msgstr "Opened log file: {}"
+
+#: main_gui.py:201
+#, python-brace-format
+msgid ""
+"无法打开日志文件:\n"
+"{}"
+msgstr ""
+"Cannot open log file:\n"
+"{}"
+
+#: main_gui.py:204
+#, python-brace-format
+msgid ""
+"日志文件不存在:\n"
+"{}"
+msgstr ""
+"Log file does not exist:\n"
+"{}"
+
+#: main_gui.py:208
+msgid ""
+"PropertyAnalysis GUI\n"
+"        \n"
+"版本: 1.0.0\n"
+"作者: Suntion\n"
+"描述: SPTarkov 模组属性分析工具\n"
+"        \n"
+"基于 Flask API 蓝图迁移到 Tkinter GUI\n"
+"        \n"
+"功能:\n"
+"- 配置管理\n"
+"- 数据查看 (BaseClasses 和 PropKeys)\n"
+"- 属性统计分析\n"
+"        \n"
+"© 2026 Suntion"
+msgstr ""
+"PropertyAnalysis GUI\n"
+"        \n"
+"Version: 1.0.0\n"
+"Author: Suntion\n"
+"Description: SPTarkov Mod Property Analysis Tool\n"
+"        \n"
+"Migrated from Flask API blueprint to Tkinter GUI\n"
+"        \n"
+"Features:\n"
+"- Configuration Management\n"
+"- Data View (BaseClasses and PropKeys)\n"
+"- Property Statistical Analysis\n"
+"        \n"
+"© 2026 Suntion"
+
+#: main_gui.py:233
+msgid "选择数据文件"
+msgstr "Select Data File"
+
+#: main_gui.py:242
+#, python-brace-format
+msgid "正在加载文件: {}"
+msgstr "Loading file: {}"
+
+#: main_gui.py:248
+msgid "不支持的文件格式"
+msgstr "Unsupported file format"
+
+#: main_gui.py:249
+msgid "加载失败: 不支持的文件格式"
+msgstr "Load failed: Unsupported file format"
+
+#: main_gui.py:254 main_gui.py:296
+#, python-brace-format
+msgid "数据加载成功: {} 条记录"
+msgstr "Data loaded successfully: {} records"
+
+#: main_gui.py:255
+#, python-brace-format
+msgid ""
+"数据加载成功\n"
+"共加载 {} 条记录"
+msgstr ""
+"Data loaded successfully\n"
+"Total {} records loaded"
+
+#: main_gui.py:266
+msgid "数据加载失败"
+msgstr "Data loading failed"
+
+#: main_gui.py:267 main_gui.py:309
+msgid "加载失败"
+msgstr "Load failed"
+
+#: main_gui.py:270
+#, python-brace-format
+msgid ""
+"文件不存在:\n"
+"{}"
+msgstr ""
+"File does not exist:\n"
+"{}"
+
+#: main_gui.py:271
+msgid "加载失败: 文件不存在"
+msgstr "Load failed: File does not exist"
+
+#: main_gui.py:274 main_gui.py:312
+#, python-brace-format
+msgid ""
+"加载数据时出错:\n"
+"{}"
+msgstr ""
+"Error loading data:\n"
+"{}"
+
+#: main_gui.py:275 main_gui.py:313
+#, python-brace-format
+msgid "加载失败: {}"
+msgstr "Load failed: {}"
+
+#: main_gui.py:281
+msgid "选择数据文件夹"
+msgstr "Select Data Folder"
+
+#: main_gui.py:289
+#, python-brace-format
+msgid "正在加载文件夹: {}"
+msgstr "Loading folder: {}"
+
+#: main_gui.py:297
+#, python-brace-format
+msgid ""
+"数据加载成功\n"
+"共加载 {} 条记录\n"
+"路径: {}"
+msgstr ""
+"Data loaded successfully\n"
+"Total {} records loaded\n"
+"Path: {}"
+
+#: main_gui.py:308
+msgid "数据加载失败，请检查文件夹路径是否正确"
+msgstr "Data loading failed, please check if the folder path is correct"
+
+#: main_gui.py:319
+msgid ""
+"当前没有已加载的数据\n"
+"请先加载数据后再保存"
+msgstr ""
+"No data currently loaded\n"
+"Please load data first before saving"
+
+#: main_gui.py:330
+#, python-brace-format
+msgid "正在保存数据到: {}"
+msgstr "Saving data to: {}"
+
+#: main_gui.py:335
+#, python-brace-format
+msgid "数据保存成功: {} 条记录"
+msgstr "Data saved successfully: {} records"
+
+#: main_gui.py:336
+#, python-brace-format
+msgid ""
+"数据保存成功\n"
+"共保存 {} 条记录\n"
+"路径: {}"
+msgstr ""
+"Data saved successfully\n"
+"Total {} records saved\n"
+"Path: {}"
+
+#: main_gui.py:340
+#, python-brace-format
+msgid ""
+"保存数据时出错:\n"
+"{}"
+msgstr ""
+"Error saving data:\n"
+"{}"
+
+#: main_gui.py:341
+#, python-brace-format
+msgid "保存失败: {}"
+msgstr "Save failed: {}"
+
+#: main_gui.py:346
+msgid "确定要退出应用程序吗？"
+msgstr "Are you sure you want to exit the application?"
+
+#: stats_display/frequency_tab.py:46
+msgid "显示前"
+msgstr "Show Top"
+
+#: stats_display/frequency_tab.py:55 stats_display/frequency_tab.py:139
+msgid "项"
+msgstr "Items"
+
+#: stats_display/frequency_tab.py:68 stats_display/plot_tab.py:183
+msgid "值"
+msgstr "Value"
+
+#: stats_display/frequency_tab.py:69 stats_display/plot_tab.py:184
+#: stats_display/plot_tab.py:219
+msgid "频数"
+msgstr "Frequency"
+
+#: stats_display/frequency_tab.py:70
+msgid "百分比"
+msgstr "Percentage"
+
+#: stats_display/frequency_tab.py:84
+msgid "统计摘要"
+msgstr "Statistical Summary"
+
+#: stats_display/frequency_tab.py:116
+msgid "无数据"
+msgstr "No Data"
+
+#: stats_display/frequency_tab.py:127 stats_display/plot_tab.py:120
+msgid "数据为空"
+msgstr "Data is empty"
+
+#: stats_display/frequency_tab.py:138
+msgid "无可统计数据\n"
+msgstr "No data available for statistics\n"
+
+#: stats_display/frequency_tab.py:139
+msgid "原始数据"
+msgstr "Raw Data"
+
+#: stats_display/frequency_tab.py:140
+msgid "不支持类型"
+msgstr "Unsupported Type"
+
+#: stats_display/frequency_tab.py:141
+msgid "仅支持"
+msgstr "Only Supports"
+
+#: stats_display/frequency_tab.py:151
+msgid "频率计算失败"
+msgstr "Frequency calculation failed"
+
+#: stats_display/frequency_tab.py:167
+msgid "可统计数据"
+msgstr "Statisticable Data"
+
+#: stats_display/frequency_tab.py:168
+msgid "唯一值数量"
+msgstr "Number of Unique Values"
+
+#: stats_display/frequency_tab.py:169
+msgid "最常见值"
+msgstr "Most Common Value"
+
+#: stats_display/frequency_tab.py:169
+msgid "次"
+msgstr "times"
+
+#: stats_display/frequency_tab.py:170
+msgid "信息熵"
+msgstr "Information Entropy"
+
+#: stats_display/frequency_tab.py:174
+msgid "已排除"
+msgstr "Excluded"
+
+#: stats_display/frequency_tab.py:177
+msgid "统计摘要计算失败"
+msgstr "Statistical summary calculation failed"
+
+#: stats_display/frequency_tab.py:180
+#, python-brace-format
+msgid "频率统计失败: {}"
+msgstr "Frequency statistics failed: {}"
+
+#: stats_display/plot_tab.py:51
+msgid "图表类型:"
+msgstr "Chart Type:"
+
+#: stats_display/plot_tab.py:64
+msgid "显示项数:"
+msgstr "Number of Items to Display:"
+
+#: stats_display/plot_tab.py:73
+msgid "绘制"
+msgstr "Plot"
+
+#: stats_display/plot_tab.py:81
+msgid "请选择属性后点击绘制"
+msgstr "Please select a property and click Plot"
+
+#: stats_display/plot_tab.py:109
+msgid "无数据可绘制"
+msgstr "No data to plot"
+
+#: stats_display/plot_tab.py:131
+#, python-brace-format
+msgid "无可绘制数据 (已排除: {})"
+msgstr "No data to plot (Excluded: {})"
+
+#: stats_display/plot_tab.py:156
+#, python-brace-format
+msgid "图表已绘制 ({} 类型)"
+msgstr "Chart plotted ({} type)"
+
+#: stats_display/plot_tab.py:159
+#, python-brace-format
+msgid "已排除: {}"
+msgstr "Excluded: {}"
+
+#: stats_display/plot_tab.py:160
+#, python-brace-format
+msgid "数据: {}/{}"
+msgstr "Data: {}/{}"
+
+#: stats_display/plot_tab.py:164
+#, python-brace-format
+msgid "图表绘制失败: {}"
+msgstr "Chart plotting failed: {}"
+
+#: stats_display/plot_tab.py:174 stats_display/plot_tab.py:243
+msgid "无法计算频率"
+msgstr "Unable to calculate frequency"
+
+#: stats_display/plot_tab.py:182
+#, python-brace-format
+msgid "{} - 频率分布"
+msgstr "{} - Frequency Distribution"
+
+#: stats_display/plot_tab.py:199
+#, python-brace-format
+msgid "柱状图绘制异常: {}"
+msgstr "Bar chart plotting exception: {}"
+
+#: stats_display/plot_tab.py:209
+msgid "数值数据不足（需要至少2个数值）"
+msgstr "Insufficient numerical data (requires at least 2 values)"
+
+#: stats_display/plot_tab.py:217
+msgid "数值分布"
+msgstr "Numerical Distribution"
+
+#: stats_display/plot_tab.py:218
+msgid "数值"
+msgstr "Numerical Value"
+
+#: stats_display/plot_tab.py:223
+#, python-brace-format
+msgid ""
+"数量: {}\n"
+"均值: {:.2f}\n"
+"标准差: {:.2f}"
+msgstr ""
+"Count: {}\n"
+"Mean: {:.2f}\n"
+"Std Dev: {:.2f}"
+
+#: stats_display/plot_tab.py:233
+#, python-brace-format
+msgid "直方图绘制异常: {}"
+msgstr "Histogram plotting exception: {}"
+
+#: stats_display/plot_tab.py:250
+msgid "其他"
+msgstr "Other"
+
+#: stats_display/plot_tab.py:260
+#, python-brace-format
+msgid "{} - 占比分布"
+msgstr "{} - Proportion Distribution"
+
+#: stats_display/plot_tab.py:266
+#, python-brace-format
+msgid "饼图绘制异常: {}"
+msgstr "Pie chart plotting exception: {}"
+
+#: stats_display/stats_info_tab.py:45
+msgid "基本统计"
+msgstr "Basic Statistics"
+
+#: stats_display/stats_info_tab.py:53
+msgid "扩展统计"
+msgstr "Extended Statistics"
+
+#: stats_display/stats_info_tab.py:90
+#, python-brace-format
+msgid "属性 '{}' 数据为空"
+msgstr "Data for property '{}' is empty"
+
+#: stats_display/stats_info_tab.py:103
+#, python-brace-format
+msgid "可统计数据: {}/{} (已排除: {})"
+msgstr "Statisticable Data: {}/{} (Excluded: {})"
+
+#: stats_display/stats_info_tab.py:107
+#, python-brace-format
+msgid "数据总数: {}"
+msgstr "Total Data Count: {}"
+
+#: stats_display/stats_info_tab.py:111
+#, python-brace-format
+msgid ""
+"属性 '{}' 无可统计数据\n"
+"\n"
+msgstr ""
+"Property '{}' has no statisticable data\n"
+"\n"
+
+#: stats_display/stats_info_tab.py:113
+msgid "仅支持以下类型的统计:\n"
+msgstr "Only supports statistics for the following types:\n"
+
+#: stats_display/stats_info_tab.py:114
+msgid "字符串"
+msgstr "String"
+
+#: stats_display/stats_info_tab.py:115
+msgid "布尔值"
+msgstr "Boolean"
+
+#: stats_display/stats_info_tab.py:116
+msgid "整数"
+msgstr "Integer"
+
+#: stats_display/stats_info_tab.py:117
+msgid "浮点数"
+msgstr "Float"
+
+#: stats_display/stats_info_tab.py:118
+msgid "检测到的类型:\n"
+msgstr "Detected Type:\n"
+
+#: stats_display/stats_info_tab.py:136
+#, python-brace-format
+msgid "统计计算失败: {}"
+msgstr "Statistical calculation failed: {}"
+
+#: stats_display/stats_info_tab.py:146
+msgid "无法转换为数值数据"
+msgstr "Cannot convert to numerical data"
+
+#: stats_display/stats_info_tab.py:153
+msgid "基本统计计算失败"
+msgstr "Basic statistical calculation failed"
+
+#: stats_display/stats_info_tab.py:158 stats_display/stats_info_tab.py:205
+#: stats_display/stats_info_tab.py:229 stats_display/stats_info_tab.py:251
+#, python-brace-format
+msgid "属性: {}"
+msgstr "Property: {}"
+
+#: stats_display/stats_info_tab.py:159 stats_display/stats_info_tab.py:206
+#: stats_display/stats_info_tab.py:230 stats_display/stats_info_tab.py:252
+#, python-brace-format
+msgid "数据数量: {}"
+msgstr "Data Count: {}"
+
+#: stats_display/stats_info_tab.py:160
+#, python-brace-format
+msgid "均值: {:.4f}"
+msgstr "Mean: {:.4f}"
+
+#: stats_display/stats_info_tab.py:161
+#, python-brace-format
+msgid "标准差: {:.4f}"
+msgstr "Standard Deviation: {:.4f}"
+
+#: stats_display/stats_info_tab.py:162
+#, python-brace-format
+msgid "方差: {:.4f}"
+msgstr "Variance: {:.4f}"
+
+#: stats_display/stats_info_tab.py:163
+#, python-brace-format
+msgid "最小值: {:.4f}"
+msgstr "Minimum: {:.4f}"
+
+#: stats_display/stats_info_tab.py:164
+#, python-brace-format
+msgid "最大值: {:.4f}"
+msgstr "Maximum: {:.4f}"
+
+#: stats_display/stats_info_tab.py:165
+#, python-brace-format
+msgid "中位数: {:.4f}"
+msgstr "Median: {:.4f}"
+
+#: stats_display/stats_info_tab.py:166
+#, python-brace-format
+msgid "总和: {:.4f}"
+msgstr "Sum: {:.4f}"
+
+#: stats_display/stats_info_tab.py:167
+#, python-brace-format
+msgid "四分位距 (IQR): {:.4f}"
+msgstr "Interquartile Range (IQR): {:.4f}"
+
+#: stats_display/stats_info_tab.py:176
+#, python-brace-format
+msgid "偏度: {:.4f}"
+msgstr "Skewness: {:.4f}"
+
+#: stats_display/stats_info_tab.py:177
+#, python-brace-format
+msgid "峰度: {:.4f}"
+msgstr "Kurtosis: {:.4f}"
+
+#: stats_display/stats_info_tab.py:178
+#, python-brace-format
+msgid "变异系数: {:.4f}"
+msgstr "Coefficient of Variation: {:.4f}"
+
+#: stats_display/stats_info_tab.py:182
+msgid "扩展统计计算失败"
+msgstr "Extended statistics calculation failed"
+
+#: stats_display/stats_info_tab.py:184
+msgid "数据不足，无法计算扩展统计（需要至少3个数据点）"
+msgstr "Insufficient data to calculate extended statistics (requires at least 3 data points)"
+
+#: stats_display/stats_info_tab.py:187
+#, python-brace-format
+msgid "数值统计计算异常: {}"
+msgstr "Numerical statistical calculation exception: {}"
+
+#: stats_display/stats_info_tab.py:207
+#, python-brace-format
+msgid "唯一值数量: {}"
+msgstr "Number of Unique Values: {}"
+
+#: stats_display/stats_info_tab.py:208
+#, python-brace-format
+msgid "平均长度: {:.2f}"
+msgstr "Average Length: {:.2f}"
+
+#: stats_display/stats_info_tab.py:209
+#, python-brace-format
+msgid "最大长度: {}"
+msgstr "Maximum Length: {}"
+
+#: stats_display/stats_info_tab.py:210
+#, python-brace-format
+msgid "最小长度: {}"
+msgstr "Minimum Length: {}"
+
+#: stats_display/stats_info_tab.py:211
+#, python-brace-format
+msgid "重复率: {:.2f}%"
+msgstr "Duplication Rate: {:.2f}%"
+
+#: stats_display/stats_info_tab.py:211
+msgid "重复率: N/A"
+msgstr "Duplication Rate: N/A"
+
+#: stats_display/stats_info_tab.py:214
+msgid "字符串类型无扩展统计"
+msgstr "No extended statistics for string type"
+
+#: stats_display/stats_info_tab.py:217
+#, python-brace-format
+msgid "字符串统计计算异常: {}"
+msgstr "String statistical calculation exception: {}"
+
+#: stats_display/stats_info_tab.py:231
+#, python-brace-format
+msgid "True 数量: {} ({:.2f}%)"
+msgstr "True Count: {} ({:.2f}%)"
+
+#: stats_display/stats_info_tab.py:231
+msgid "True 数量: 0"
+msgstr "True Count: 0"
+
+#: stats_display/stats_info_tab.py:232
+#, python-brace-format
+msgid "False 数量: {} ({:.2f}%)"
+msgstr "False Count: {} ({:.2f}%)"
+
+#: stats_display/stats_info_tab.py:232
+msgid "False 数量: 0"
+msgstr "False Count: 0"
+
+#: stats_display/stats_info_tab.py:235
+msgid "布尔类型无扩展统计"
+msgstr "No extended statistics for boolean type"
+
+#: stats_display/stats_info_tab.py:238
+#, python-brace-format
+msgid "布尔统计计算异常: {}"
+msgstr "Boolean statistical calculation exception: {}"
+
+#: stats_display/stats_info_tab.py:253
+msgid "类型分布:"
+msgstr "Type Distribution:"
+
+#: stats_display/stats_info_tab.py:259
+msgid "混合类型无法计算扩展统计"
+msgstr "Cannot calculate extended statistics for mixed types"
+
+#: stats_display/stats_info_tab.py:262
+#, python-brace-format
+msgid "混合统计计算异常: {}"
+msgstr "Mixed statistical calculation exception: {}"
+
+#: stats_viewer.py:70
+#, python-brace-format
+msgid "已加载数据条数: {}"
+msgstr "Number of loaded data records: {}"
+
+#: stats_viewer.py:78
+msgid "BaseClasses 列表"
+msgstr "BaseClasses List"
+
+#: stats_viewer.py:85
+msgid "所有BaseClasses:"
+msgstr "All BaseClasses:"
+
+#: stats_viewer.py:95 stats_viewer.py:115
+msgid "刷新列表"
+msgstr "Refresh List"
+
+#: stats_viewer.py:96
+msgid "查看详情"
+msgstr "View Details"
+
+#: stats_viewer.py:99
+msgid "PropKeys 列表"
+msgstr "PropKeys List"
+
+#: stats_viewer.py:105
+msgid "所有PropKeys:"
+msgstr "All PropKeys:"
+
+#: stats_viewer.py:132 stats_viewer.py:143
+msgid "未加载数据"
+msgstr "Data not loaded"
+
+#: stats_viewer.py:164
+#, python-brace-format
+msgid "已加载数据条数: {} | 选中: {} | 属性: {} | 唯一属性: {}"
+msgstr "Loaded records: {} | Selected: {} | Properties: {} | Unique Properties: {}"
+
+#: stats_viewer.py:176
+msgid "请先选择一个BaseClass"
+msgstr "Please select a BaseClass first"
+
+#: stats_viewer.py:181
+msgid "StatsManager未加载"
+msgstr "StatsManager not loaded"
+
+#: stats_viewer.py:184
+#, python-brace-format
+msgid "BaseClass 详情: {}"
+msgstr "BaseClass Details: {}"
+
+#: stats_viewer.py:202
+msgid "添加到标签页"
+msgstr "Add to Tab"
+
+#: stats_viewer.py:205
+msgid "关闭窗口"
+msgstr "Close Window"
+
+#: config_gui.py
+msgid "语言设置"
+msgstr "Language Settings"
+
+#: config_gui.py
+msgid "当前语言:"
+msgstr "Current Language:"
+
+#: config_gui.py
+msgid "切换语言"
+msgstr "Switch Language"
+
+#: config_gui.py
+msgid "提示: 切换语言后需要重启应用程序才能生效"
+msgstr "Note: Restart the application for language changes to take effect"
+
+#: config_gui.py
+msgid "语言未更改"
+msgstr "Language unchanged"
+
+#: config_gui.py
+#, python-brace-format
+msgid ""
+"语言已切换为: {}\n"
+"请重启应用程序以使更改生效"
+msgstr ""
+"Language switched to: {}\n"
+"Please restart the application for changes to take effect"
+
+msgid "中文"
+msgstr "Chinese"
+
+msgid "英文"
+msgstr "English"
