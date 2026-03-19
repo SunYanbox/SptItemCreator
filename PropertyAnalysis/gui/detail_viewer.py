@@ -4,6 +4,7 @@ from tkinter import ttk
 from typing import Optional
 
 from managers.stats_mgr import StatsManager
+from gui.stats_display import StatsInfoTab, FrequencyTab, PlotTab
 
 
 class DetailViewer(tk.Frame):
@@ -19,6 +20,9 @@ class DetailViewer(tk.Frame):
     bc_name: str
     stats_mgr: StatsManager
     json_container: tk.Frame
+    stats_info_tab: StatsInfoTab
+    frequency_tab: FrequencyTab
+    plot_tab: PlotTab
 
     def __init__(self, parent: tk.Misc, bc_name: str, stats_mgr):
         """初始化详情查看器
@@ -140,6 +144,24 @@ class DetailViewer(tk.Frame):
         json_scrollbar.pack(side='right', fill='y')
         self.json_text.configure(yscrollcommand=json_scrollbar.set)
 
+        # 统计信息标签页
+        stats_frame = tk.Frame(self.right_notebook)
+        self.right_notebook.add(stats_frame, text="统计信息")
+        self.stats_info_tab = StatsInfoTab(stats_frame)
+        self.stats_info_tab.pack(fill='both', expand=True)
+
+        # 频率统计标签页
+        freq_frame = tk.Frame(self.right_notebook)
+        self.right_notebook.add(freq_frame, text="频率统计")
+        self.frequency_tab = FrequencyTab(freq_frame)
+        self.frequency_tab.pack(fill='both', expand=True)
+
+        # 统计图表标签页
+        plot_frame = tk.Frame(self.right_notebook)
+        self.right_notebook.add(plot_frame, text="统计图表")
+        self.plot_tab = PlotTab(plot_frame)
+        self.plot_tab.pack(fill='both', expand=True)
+
         # 初始化显示
         self.update_json_display()
 
@@ -147,6 +169,7 @@ class DetailViewer(tk.Frame):
     def on_prop_select(self, _):
         """处理属性选择事件"""
         self.update_json_display()
+        self.update_stats_display()
 
 
     def update_json_display(self):
@@ -179,6 +202,34 @@ class DetailViewer(tk.Frame):
 
         # 设置为只读
         self.json_text.configure(state='disabled')
+
+    def update_stats_display(self):
+        """更新统计相关标签页的显示"""
+        selected_prop = self.get_selected_prop()
+
+        if selected_prop and self.stats_mgr:
+            stats_struct = self.stats_mgr.data.get(self.bc_name)
+            if stats_struct:
+                prop_data = stats_struct.get_prop_data(selected_prop)
+                if prop_data:
+                    # 更新统计信息标签页
+                    self.stats_info_tab.update_display(prop_data, selected_prop)
+                    # 更新频率统计标签页
+                    self.frequency_tab.update_display(prop_data, selected_prop)
+                    # 更新统计图表标签页
+                    self.plot_tab.update_display(prop_data, selected_prop)
+                else:
+                    self._clear_stats_tabs(selected_prop)
+            else:
+                self._clear_stats_tabs(selected_prop)
+        else:
+            self._clear_stats_tabs("")
+
+    def _clear_stats_tabs(self, prop_name: str):
+        """清空统计标签页显示"""
+        self.stats_info_tab.update_display(None, prop_name)
+        self.frequency_tab.update_display(None, prop_name)
+        self.plot_tab.update_display(None, prop_name)
 
 
     def get_selected_prop(self) -> Optional[str]:
