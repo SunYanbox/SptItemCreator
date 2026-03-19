@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import messagebox
 from typing import Optional
 
+from Global import gettext
+
 from Global import logger, config
 from gui.detail_viewer import DetailViewer
 from managers.stats_mgr import StatsManager
@@ -55,7 +57,7 @@ class StatsViewerGUI:
     def create_widgets(self):
         """创建界面组件"""
         # 顶部标签
-        title_label = tk.Label(self.parent, text="数据查看", font=("Arial", 14, "bold"))
+        title_label = tk.Label(self.parent, text=gettext("数据查看"), font=("Arial", 14, "bold"))
         title_label.pack(pady=10)
         
         # 状态信息
@@ -63,7 +65,7 @@ class StatsViewerGUI:
         status_frame.pack(fill='x', padx=10, pady=5)
         
         data_count = len(self.stats_mgr.data) if self.stats_mgr else 0
-        self.status_label = tk.Label(status_frame, text=f"已加载数据条数: {data_count}")
+        self.status_label = tk.Label(status_frame, text=gettext("已加载数据条数: {}").format(data_count))
         self.status_label.pack(side='left')
         
         # 双列布局容器
@@ -71,14 +73,14 @@ class StatsViewerGUI:
         main_container.pack(fill='both', expand=True, padx=10, pady=5)
         
         # 左列: BaseClasses 区域
-        bc_frame = tk.LabelFrame(main_container, text="BaseClasses 列表", padx=10, pady=10)
+        bc_frame = tk.LabelFrame(main_container, text=gettext("BaseClasses 列表"), padx=10, pady=10)
         bc_frame.pack(side='left', fill='both', expand=True, padx=(0, 5))
         
         # BaseClasses 列表框架
         bc_list_frame = tk.Frame(bc_frame)
         bc_list_frame.pack(fill='both', expand=True)
         
-        tk.Label(bc_list_frame, text="所有BaseClasses:").pack(anchor='w')
+        tk.Label(bc_list_frame, text=gettext("所有BaseClasses:")).pack(anchor='w')
         
         self.bc_listbox, _ = _create_listbox_with_scrollbar(
             bc_list_frame, height=15, select_mode=tk.SINGLE
@@ -88,17 +90,17 @@ class StatsViewerGUI:
         bc_button_frame = tk.Frame(bc_frame)
         bc_button_frame.pack(pady=5)
         
-        tk.Button(bc_button_frame, text="刷新列表", command=self.refresh_base_classes).pack(side='left', padx=5)
-        tk.Button(bc_button_frame, text="查看详情", command=self.show_props_for_selected).pack(side='left', padx=5)
+        tk.Button(bc_button_frame, text=gettext("刷新列表"), command=self.refresh_base_classes).pack(side='left', padx=5)
+        tk.Button(bc_button_frame, text=gettext("查看详情"), command=self.show_props_for_selected).pack(side='left', padx=5)
         
         # 右列: PropKeys 区域
-        pk_frame = tk.LabelFrame(main_container, text="PropKeys 列表", padx=10, pady=10)
+        pk_frame = tk.LabelFrame(main_container, text=gettext("PropKeys 列表"), padx=10, pady=10)
         pk_frame.pack(side='right', fill='both', expand=True, padx=(5, 0))
         
         pk_list_frame = tk.Frame(pk_frame)
         pk_list_frame.pack(fill='both', expand=True)
         
-        tk.Label(pk_list_frame, text="所有PropKeys:").pack(anchor='w')
+        tk.Label(pk_list_frame, text=gettext("所有PropKeys:")).pack(anchor='w')
         
         self.pk_listbox, _ = _create_listbox_with_scrollbar(
             pk_list_frame, height=15, select_mode=tk.SINGLE
@@ -108,7 +110,7 @@ class StatsViewerGUI:
         pk_button_frame = tk.Frame(pk_frame)
         pk_button_frame.pack(pady=5)
 
-        tk.Button(pk_button_frame, text="刷新列表", command=self.refresh_prop_keys).pack(side='left', padx=5)
+        tk.Button(pk_button_frame, text=gettext("刷新列表"), command=self.refresh_prop_keys).pack(side='left', padx=5)
         
         # 绑定事件
         self.bc_listbox.bind('<<ListboxSelect>>', self.on_bc_selected)
@@ -125,7 +127,7 @@ class StatsViewerGUI:
             for bc in sorted(base_classes):
                 self.bc_listbox.insert(tk.END, bc)
         else:
-            self.bc_listbox.insert(tk.END, "未加载数据")
+            self.bc_listbox.insert(tk.END, gettext("未加载数据"))
             logger.warning("StatsManager未加载")
     
     def refresh_prop_keys(self):
@@ -136,7 +138,7 @@ class StatsViewerGUI:
             for pk in sorted(prop_keys):
                 self.pk_listbox.insert(tk.END, pk)
         else:
-            self.pk_listbox.insert(tk.END, "未加载数据")
+            self.pk_listbox.insert(tk.END, gettext("未加载数据"))
     
     def on_bc_selected(self, _):
         """BaseClass选中事件"""
@@ -157,23 +159,27 @@ class StatsViewerGUI:
         unique_count = len(unique_props) if unique_props else 0
         
         self.status_label.config(
-            text=f"已加载数据条数: {len(self.stats_mgr.data) if self.stats_mgr else 0} | "
-                 f"选中: {bc_name} | 属性: {prop_count} | 唯一属性: {unique_count}"
+            text=gettext("已加载数据条数: {} | 选中: {} | 属性: {} | 唯一属性: {}").format(
+                len(self.stats_mgr.data) if self.stats_mgr else 0,
+                bc_name,
+                prop_count,
+                unique_count
+            )
         )
     
     def show_props_for_selected(self) -> Optional[tk.Toplevel]:
         """显示选中BaseClass的属性"""
         selection = self.bc_listbox.curselection()
         if not selection:
-            messagebox.showwarning("警告", "请先选择一个BaseClass")
+            messagebox.showwarning(gettext("警告"), gettext("请先选择一个BaseClass"))
             return None
         
         bc_name = self.bc_listbox.get(selection[0])
         if not self.stats_mgr:
-            messagebox.showerror("错误", "StatsManager未加载")
+            messagebox.showerror(gettext("错误"), gettext("StatsManager未加载"))
             return None
 
-        title = f"BaseClass 详情: {bc_name}"
+        title = gettext("BaseClass 详情: {}").format(bc_name)
 
         detail_win = tk.Toplevel(self.app.root)
         detail_win.title(title)
@@ -191,10 +197,10 @@ class StatsViewerGUI:
         button_frame = tk.Frame(detail_win)
         button_frame.pack(side='top', fill='x', padx=10, pady=5)
 
-        tk.Button(button_frame, text="添加到标签页",
+        tk.Button(button_frame, text=gettext("添加到标签页"),
                   command=lambda: add_to_tab(bc_name, self.stats_mgr)).pack(side='left', padx=5)
 
-        tk.Button(button_frame, text="关闭窗口",
+        tk.Button(button_frame, text=gettext("关闭窗口"),
                   command=detail_win.destroy).pack(side='right', padx=5)
 
         return detail_win

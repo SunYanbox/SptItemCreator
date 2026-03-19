@@ -5,12 +5,15 @@ PropertyAnalysis 主入口点
 此文件启动 Tkinter GUI 应用程序。
 """
 
-import sys
 import os
+import sys
 import tkinter as tk
 from tkinter import ttk, messagebox
 
 import matplotlib
+
+from Global import init_translation
+
 matplotlib.use('TkAgg')  # 必须在导入 pyplot 之前设置后端
 import matplotlib.pyplot as plt
 
@@ -23,6 +26,9 @@ from gui.main_gui import MainApplication
 
 def setup_environment():
     """设置运行环境"""
+
+    init_translation()
+
     # 确保必要的目录存在
     data_dir = os.path.join(os.path.dirname(__file__), "data")
     if not os.path.exists(data_dir):

@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import ttk
 from typing import Optional, Dict, List, Any
 
+from Global import gettext
+
 import matplotlib
 
 matplotlib.use('TkAgg')  # 使用 Tkinter 后端
@@ -39,7 +41,7 @@ class FrequencyTab(tk.Frame):
         control_frame = ttk.Frame(self)
         control_frame.pack(fill='x', padx=5, pady=5)
 
-        ttk.Label(control_frame, text="显示前").pack(side='left')
+        ttk.Label(control_frame, text=gettext("显示前")).pack(side='left')
 
         self.top_n_var = tk.IntVar(value=20)
         self.top_n_spinbox = ttk.Spinbox(
@@ -48,9 +50,9 @@ class FrequencyTab(tk.Frame):
         )
         self.top_n_spinbox.pack(side='left', padx=5)
 
-        ttk.Label(control_frame, text="项").pack(side='left')
+        ttk.Label(control_frame, text=gettext("项")).pack(side='left')
 
-        self.refresh_btn = ttk.Button(control_frame, text="刷新", command=self._on_refresh)
+        self.refresh_btn = ttk.Button(control_frame, text=gettext("刷新"), command=self._on_refresh)
         self.refresh_btn.pack(side='left', padx=10)
 
         # 频率表格
@@ -61,9 +63,9 @@ class FrequencyTab(tk.Frame):
         columns = ('value', 'count', 'percentage')
         self.tree = ttk.Treeview(table_frame, columns=columns, show='headings', height=15)
 
-        self.tree.heading('value', text='值')
-        self.tree.heading('count', text='频数')
-        self.tree.heading('percentage', text='百分比')
+        self.tree.heading('value', text=gettext('值'))
+        self.tree.heading('count', text=gettext('频数'))
+        self.tree.heading('percentage', text=gettext('百分比'))
 
         self.tree.column('value', width=200)
         self.tree.column('count', width=80)
@@ -77,7 +79,7 @@ class FrequencyTab(tk.Frame):
         vsb.pack(side='right', fill='y')
 
         # 底部统计摘要
-        summary_frame = ttk.LabelFrame(self, text="统计摘要")
+        summary_frame = ttk.LabelFrame(self, text=gettext("统计摘要"))
         summary_frame.pack(fill='x', padx=5, pady=5)
 
         self.summary_text = tk.Text(summary_frame, height=4, wrap='word')
@@ -109,7 +111,7 @@ class FrequencyTab(tk.Frame):
         self._clear_table()
 
         if not prop_data:
-            self._set_summary("无数据")
+            self._set_summary(gettext("无数据"))
             return
 
         try:
@@ -120,7 +122,7 @@ class FrequencyTab(tk.Frame):
                     all_values.extend(values)
 
             if not all_values:
-                self._set_summary("数据为空")
+                self._set_summary(gettext("数据为空"))
                 return
 
             # 使用 DataProcessor 过滤数据
@@ -131,10 +133,10 @@ class FrequencyTab(tk.Frame):
             if not supported_values:
                 unsupported_info = ", ".join([f"{k}: {v}" for k, v in unsupported_counts.items()])
                 self._set_summary(
-                    f"无可统计数据\n"
-                    f"原始数据: {total_count} 项\n"
-                    f"不支持类型: {unsupported_info}\n\n"
-                    f"仅支持: str, bool, int, float"
+                    gettext("无可统计数据\n") +
+                    f"{gettext('原始数据')}: {total_count} {gettext('项')}\n"
+                    f"{gettext('不支持类型')}: {unsupported_info}\n\n"
+                    f"{gettext('仅支持')}: str, bool, int, float"
                 )
                 return
 
@@ -144,7 +146,7 @@ class FrequencyTab(tk.Frame):
             top_freq = get_top_frequencies(data_dict, top_n)
 
             if prop_name not in top_freq:
-                self._set_summary("频率计算失败")
+                self._set_summary(gettext("频率计算失败"))
                 return
 
             # 填充表格
@@ -160,20 +162,20 @@ class FrequencyTab(tk.Frame):
 
             if stats:
                 summary_lines = [
-                    f"可统计数据: {supported_count}/{total_count}",
-                    f"唯一值数量: {stats.get('unique_count', 0)}",
-                    f"最常见值: {self._format_value(stats.get('most_common'))} ({stats.get('most_common_count', 0)}次)",
-                    f"信息熵: {stats.get('entropy', 0):.4f}",
+                    f"{gettext('可统计数据')}: {supported_count}/{total_count}",
+                    f"{gettext('唯一值数量')}: {stats.get('unique_count', 0)}",
+                    f"{gettext('最常见值')}: {self._format_value(stats.get('most_common'))} ({stats.get('most_common_count', 0)}{gettext('次')})",
+                    f"{gettext('信息熵')}: {stats.get('entropy', 0):.4f}",
                 ]
                 if unsupported_counts:
                     unsupported_info = ", ".join([f"{k}: {v}" for k, v in unsupported_counts.items()])
-                    summary_lines.append(f"已排除: {unsupported_info}")
+                    summary_lines.append(f"{gettext('已排除')}: {unsupported_info}")
                 self._set_summary('\n'.join(summary_lines))
             else:
-                self._set_summary("统计摘要计算失败")
+                self._set_summary(gettext("统计摘要计算失败"))
 
         except Exception as e:
-            error_msg = f"频率统计失败: {e}"
+            error_msg = gettext("频率统计失败: {}").format(e)
             logger.error(error_msg, exc_info=True)
             self._set_summary(error_msg)
 

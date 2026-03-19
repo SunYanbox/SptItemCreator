@@ -9,6 +9,10 @@ riderModule.iml
 launchSettings.json
 doc/
 
+**/build/
+**/dist/
+*.spec
+
 *.plk
 *.bat
 .idea/
