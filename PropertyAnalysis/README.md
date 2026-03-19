@@ -31,6 +31,9 @@ python main.py
 需要在当前目录创建一个名为`config.yaml`的文件用于设置配置
 
 ```yaml
+# 语言设置: zh (中文), en (英文)
+Language: zh
+
 # 默认值
 StatsManagerSavePath: "data/StatsManager.plk"
 CachePath: data/Cache.cache
