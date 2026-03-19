@@ -10,6 +10,10 @@ import os
 import tkinter as tk
 from tkinter import ttk, messagebox
 
+import matplotlib
+matplotlib.use('TkAgg')  # 必须在导入 pyplot 之前设置后端
+import matplotlib.pyplot as plt
+
 # 添加项目根目录到 Python 路径
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
@@ -33,6 +37,7 @@ def setup_environment():
 
 def main():
     """主函数"""
+    root = None
     try:
         # 环境设置
         setup_environment()
@@ -61,6 +66,14 @@ def main():
         error_msg = f"应用程序启动失败:\n{str(e)}"
         messagebox.showerror("启动错误", error_msg)
         sys.exit(1)
+    finally:
+        # 清理 matplotlib 资源，确保进程能正常退出
+        plt.close('all')
+        if root is not None:
+            try:
+                root.quit()
+            except tk.TclError:
+                pass
 
 
 if __name__ == '__main__':

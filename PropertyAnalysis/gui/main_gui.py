@@ -5,6 +5,8 @@ import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
 from typing import Dict, Optional, Callable
 
+import matplotlib.pyplot as plt
+
 # 导入本地模块
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -338,8 +340,13 @@ class MainApplication:
     def on_closing(self):
         """窗口关闭事件"""
         if messagebox.askokcancel("退出", "确定要退出应用程序吗？"):
-            logger.info("PropertyAnalysis GUI 应用程序已退出")
+            logger.info("PropertyAnalysis GUI 应用程序正在退出...")
+            # 清理 matplotlib 资源
+            plt.close('all')
+            # 先调用 quit() 退出主循环，再销毁窗口
+            self.root.quit()
             self.root.destroy()
+            logger.info("PropertyAnalysis GUI 应用程序已退出")
 
 
 def main():
