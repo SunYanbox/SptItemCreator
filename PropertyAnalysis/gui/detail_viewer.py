@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import ttk
 from typing import Optional
 
-import gettext
+from Global import gettext
 
 from managers.stats_mgr import StatsManager
 from gui.stats_display import StatsInfoTab, FrequencyTab, PlotTab
@@ -52,9 +52,9 @@ class DetailViewer(tk.Frame):
     def create_widgets(self):
         """创建界面组件"""
         # 信息标签
-        info_text = gettext.gettext("BaseClass: {}\n").format(self.bc_name)
-        info_text += gettext.gettext("总属性数: {}\n").format(len(self.all_props) if self.all_props else 0)
-        info_text += gettext.gettext("唯一属性数: {}").format(len(self.unique_props) if self.unique_props else 0)
+        info_text = gettext("BaseClass: {}\n").format(self.bc_name)
+        info_text += gettext("总属性数: {}\n").format(len(self.all_props) if self.all_props else 0)
+        info_text += gettext("唯一属性数: {}").format(len(self.unique_props) if self.unique_props else 0)
 
         # 信息在顶部显示
         info_frame = ttk.Frame(self)
@@ -75,7 +75,7 @@ class DetailViewer(tk.Frame):
 
         # 所有属性标签页
         self.all_frame = tk.Frame(self.notebook)
-        self.notebook.add(self.all_frame, text=gettext.gettext("所有属性"))
+        self.notebook.add(self.all_frame, text=gettext("所有属性"))
 
         self.all_listbox = tk.Listbox(self.all_frame, exportselection=0)
         self.all_listbox.pack(fill='both', expand=True, padx=5, pady=5)
@@ -84,14 +84,14 @@ class DetailViewer(tk.Frame):
             for prop in sorted(self.all_props):
                 self.all_listbox.insert(tk.END, prop)
         else:
-            self.all_listbox.insert(tk.END, gettext.gettext("无属性"))
+            self.all_listbox.insert(tk.END, gettext("无属性"))
 
         # 绑定选择事件
         self.all_listbox.bind('<<ListboxSelect>>', self.on_prop_select)
 
         # 唯一属性标签页
         self.unique_frame = tk.Frame(self.notebook)
-        self.notebook.add(self.unique_frame, text=gettext.gettext("唯一属性"))
+        self.notebook.add(self.unique_frame, text=gettext("唯一属性"))
 
         self.unique_listbox = tk.Listbox(self.unique_frame, exportselection=0)
         self.unique_listbox.pack(fill='both', expand=True, padx=5, pady=5)
@@ -100,7 +100,7 @@ class DetailViewer(tk.Frame):
             for prop in sorted(self.unique_props):
                 self.unique_listbox.insert(tk.END, prop)
         else:
-            self.unique_listbox.insert(tk.END, gettext.gettext("无唯一属性"))
+            self.unique_listbox.insert(tk.END, gettext("无唯一属性"))
 
         # 绑定选择事件
         self.unique_listbox.bind('<<ListboxSelect>>', self.on_prop_select)
@@ -115,13 +115,13 @@ class DetailViewer(tk.Frame):
 
         # JSON显示标签页
         json_tab = tk.Frame(self.right_notebook)
-        self.right_notebook.add(json_tab, text=gettext.gettext("JSON数据"))
+        self.right_notebook.add(json_tab, text=gettext("JSON数据"))
 
         # 缩进选择控件
         indent_frame = tk.Frame(json_tab)
         indent_frame.pack(fill='x', padx=5, pady=5)
 
-        tk.Label(indent_frame, text=gettext.gettext("JSON缩进:")).pack(side='left')
+        tk.Label(indent_frame, text=gettext("JSON缩进:")).pack(side='left')
 
         tk.Radiobutton(
             indent_frame, text="2", variable=self.json_indent, value=2,
@@ -148,19 +148,19 @@ class DetailViewer(tk.Frame):
 
         # 统计信息标签页
         stats_frame = tk.Frame(self.right_notebook)
-        self.right_notebook.add(stats_frame, text=gettext.gettext("统计信息"))
+        self.right_notebook.add(stats_frame, text=gettext("统计信息"))
         self.stats_info_tab = StatsInfoTab(stats_frame)
         self.stats_info_tab.pack(fill='both', expand=True)
 
         # 频率统计标签页
         freq_frame = tk.Frame(self.right_notebook)
-        self.right_notebook.add(freq_frame, text=gettext.gettext("频率统计"))
+        self.right_notebook.add(freq_frame, text=gettext("频率统计"))
         self.frequency_tab = FrequencyTab(freq_frame)
         self.frequency_tab.pack(fill='both', expand=True)
 
         # 统计图表标签页
         plot_frame = tk.Frame(self.right_notebook)
-        self.right_notebook.add(plot_frame, text=gettext.gettext("统计图表"))
+        self.right_notebook.add(plot_frame, text=gettext("统计图表"))
         self.plot_tab = PlotTab(plot_frame)
         self.plot_tab.pack(fill='both', expand=True)
 
@@ -194,13 +194,13 @@ class DetailViewer(tk.Frame):
                         json_str = json.dumps(prop_data, indent=self.json_indent.get(), ensure_ascii=False)
                         self.json_text.insert('1.0', json_str)
                     except Exception as e:
-                        self.json_text.insert('1.0', gettext.gettext("JSON格式化错误: {}").format(e))
+                        self.json_text.insert('1.0', gettext("JSON格式化错误: {}").format(e))
                 else:
-                    self.json_text.insert('1.0', gettext.gettext("属性 '{}' 无数据").format(selected_prop))
+                    self.json_text.insert('1.0', gettext("属性 '{}' 无数据").format(selected_prop))
             else:
-                self.json_text.insert('1.0', gettext.gettext("BaseClass '{}' 不存在").format(self.bc_name))
+                self.json_text.insert('1.0', gettext("BaseClass '{}' 不存在").format(self.bc_name))
         else:
-            self.json_text.insert('1.0', gettext.gettext("请从左侧选择一个属性"))
+            self.json_text.insert('1.0', gettext("请从左侧选择一个属性"))
 
         # 设置为只读
         self.json_text.configure(state='disabled')

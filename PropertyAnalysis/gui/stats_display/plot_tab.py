@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from typing import Optional, Dict, List, Any, Tuple
 
-import gettext
+from Global import gettext
 
 import matplotlib
 import numpy as np
@@ -46,7 +46,7 @@ class PlotTab(tk.Frame):
         control_frame = ttk.Frame(self)
         control_frame.pack(fill='x', padx=5, pady=5)
 
-        ttk.Label(control_frame, text=gettext.gettext("图表类型:")).pack(side='left')
+        ttk.Label(control_frame, text=gettext("图表类型:")).pack(side='left')
 
         self.plot_type_var = tk.StringVar(value='bar')
         self.plot_type_combo = ttk.Combobox(
@@ -59,7 +59,7 @@ class PlotTab(tk.Frame):
         self.plot_type_combo.pack(side='left', padx=5)
 
         # 柱状图/饼图显示数量
-        ttk.Label(control_frame, text=gettext.gettext("显示项数:")).pack(side='left', padx=(10, 0))
+        ttk.Label(control_frame, text=gettext("显示项数:")).pack(side='left', padx=(10, 0))
 
         self.top_n_var = tk.IntVar(value=15)
         self.top_n_spinbox = ttk.Spinbox(
@@ -68,7 +68,7 @@ class PlotTab(tk.Frame):
         )
         self.top_n_spinbox.pack(side='left', padx=5)
 
-        self.draw_btn = ttk.Button(control_frame, text=gettext.gettext("绘制"), command=self._on_draw)
+        self.draw_btn = ttk.Button(control_frame, text=gettext("绘制"), command=self._on_draw)
         self.draw_btn.pack(side='left', padx=10)
 
         # 图表显示区域
@@ -76,7 +76,7 @@ class PlotTab(tk.Frame):
         self.plot_frame.pack(fill='both', expand=True, padx=5, pady=5)
 
         # 状态标签
-        self.status_label = ttk.Label(self, text=gettext.gettext("请选择属性后点击绘制"))
+        self.status_label = ttk.Label(self, text=gettext("请选择属性后点击绘制"))
         self.status_label.pack(fill='x', padx=5, pady=2)
 
         # 存储当前数据
@@ -104,7 +104,7 @@ class PlotTab(tk.Frame):
         self._clear_plot()
 
         if not prop_data:
-            self.status_label.configure(text=gettext.gettext("无数据可绘制"))
+            self.status_label.configure(text=gettext("无数据可绘制"))
             return
 
         try:
@@ -115,7 +115,7 @@ class PlotTab(tk.Frame):
                     all_values.extend(values)
 
             if not all_values:
-                self.status_label.configure(text=gettext.gettext("数据为空"))
+                self.status_label.configure(text=gettext("数据为空"))
                 return
 
             # 使用 DataProcessor 过滤数据
@@ -126,7 +126,7 @@ class PlotTab(tk.Frame):
             if not supported_values:
                 unsupported_info = ", ".join([f"{k}: {v}" for k, v in unsupported_counts.items()])
                 self.status_label.configure(
-                    text=gettext.gettext("无可绘制数据 (已排除: {})").format(unsupported_info)
+                    text=gettext("无可绘制数据 (已排除: {})").format(unsupported_info)
                 )
                 return
 
@@ -151,15 +151,15 @@ class PlotTab(tk.Frame):
                     self._draw_bar_chart(supported_values, prop_name)
 
             # 更新状态标签
-            status_parts = [gettext.gettext("图表已绘制 ({} 类型)").format(data_type)]
+            status_parts = [gettext("图表已绘制 ({} 类型)").format(data_type)]
             if unsupported_counts:
                 unsupported_info = ", ".join([f"{k}: {v}" for k, v in unsupported_counts.items()])
-                status_parts.append(gettext.gettext("已排除: {}").format(unsupported_info))
-            status_parts.append(gettext.gettext("数据: {}/{}").format(supported_count, total_count))
+                status_parts.append(gettext("已排除: {}").format(unsupported_info))
+            status_parts.append(gettext("数据: {}/{}").format(supported_count, total_count))
             self.status_label.configure(text=" | ".join(status_parts))
 
         except Exception as e:
-            error_msg = gettext.gettext("图表绘制失败: {}").format(e)
+            error_msg = gettext("图表绘制失败: {}").format(e)
             logger.error(error_msg, exc_info=True)
             self.status_label.configure(text=error_msg)
 
@@ -169,7 +169,7 @@ class PlotTab(tk.Frame):
             # 获取频率数据
             result = self._get_top_frequencies_data(values, prop_name)
             if result is None:
-                self.status_label.configure(text=gettext.gettext("无法计算频率"))
+                self.status_label.configure(text=gettext("无法计算频率"))
                 return
             categories, counts = result
 
@@ -177,9 +177,9 @@ class PlotTab(tk.Frame):
             fig, ax = plt.subplots(figsize=(8, 5), dpi=100)
 
             bars = ax.bar(range(len(categories)), counts, color='steelblue', alpha=0.8)
-            ax.set_title(gettext.gettext('{} - 频率分布').format(prop_name), fontsize=12, fontweight='bold')
-            ax.set_xlabel(gettext.gettext('值'), fontsize=10)
-            ax.set_ylabel(gettext.gettext('频数'), fontsize=10)
+            ax.set_title(gettext('{} - 频率分布').format(prop_name), fontsize=12, fontweight='bold')
+            ax.set_xlabel(gettext('值'), fontsize=10)
+            ax.set_ylabel(gettext('频数'), fontsize=10)
             ax.set_xticks(range(len(categories)))
             ax.set_xticklabels(categories, rotation=45, ha='right', fontsize=8)
 
@@ -194,7 +194,7 @@ class PlotTab(tk.Frame):
             self._display_figure(fig)
 
         except Exception as e:
-            error_msg = gettext.gettext("柱状图绘制异常: {}").format(e)
+            error_msg = gettext("柱状图绘制异常: {}").format(e)
             logger.error(error_msg, exc_info=True)
             self.status_label.configure(text=error_msg)
 
@@ -204,7 +204,7 @@ class PlotTab(tk.Frame):
             numeric_values = DataProcessor.convert_to_numeric(values)
 
             if len(numeric_values) < 2:
-                self.status_label.configure(text=gettext.gettext("数值数据不足（需要至少2个数值）"))
+                self.status_label.configure(text=gettext("数值数据不足（需要至少2个数值）"))
                 return
 
             # 创建图表
@@ -212,13 +212,13 @@ class PlotTab(tk.Frame):
 
             n, bins, _ = ax.hist(numeric_values, bins='auto', color='skyblue',
                                  edgecolor='black', alpha=0.7)
-            ax.set_title(f'{prop_name} - {gettext.gettext("数值分布")}', fontsize=12, fontweight='bold')
-            ax.set_xlabel(gettext.gettext('数值'), fontsize=10)
-            ax.set_ylabel(gettext.gettext('频数'), fontsize=10)
+            ax.set_title(f'{prop_name} - {gettext("数值分布")}', fontsize=12, fontweight='bold')
+            ax.set_xlabel(gettext('数值'), fontsize=10)
+            ax.set_ylabel(gettext('频数'), fontsize=10)
             ax.grid(True, alpha=0.3)
 
             # 添加统计信息
-            stats_text = gettext.gettext('数量: {}\n均值: {:.2f}\n标准差: {:.2f}').format(
+            stats_text = gettext('数量: {}\n均值: {:.2f}\n标准差: {:.2f}').format(
                 len(numeric_values), np.mean(numeric_values), np.std(numeric_values))
             ax.text(0.95, 0.95, stats_text, transform=ax.transAxes,
                     fontsize=9, verticalalignment='top', horizontalalignment='right',
@@ -228,7 +228,7 @@ class PlotTab(tk.Frame):
             self._display_figure(fig)
 
         except Exception as e:
-            error_msg = gettext.gettext("直方图绘制异常: {}").format(e)
+            error_msg = gettext("直方图绘制异常: {}").format(e)
             logger.error(error_msg, exc_info=True)
             self.status_label.configure(text=error_msg)
 
@@ -238,14 +238,14 @@ class PlotTab(tk.Frame):
             # 获取频率数据
             result = self._get_top_frequencies_data(values, prop_name)
             if result is None:
-                self.status_label.configure(text=gettext.gettext("无法计算频率"))
+                self.status_label.configure(text=gettext("无法计算频率"))
                 return
             labels, counts = result
 
             # 如果值太多，合并为"其他"
             if len(labels) > 10:
                 other_count = sum(counts[10:])
-                labels = labels[:10] + [gettext.gettext('其他')]
+                labels = labels[:10] + [gettext('其他')]
                 counts = counts[:10] + [other_count]
 
             # 创建图表
@@ -255,13 +255,13 @@ class PlotTab(tk.Frame):
                 counts, labels=labels, autopct='%1.1f%%',
                 startangle=90, textprops={'fontsize': 8}
             )
-            ax.set_title(gettext.gettext('{} - 占比分布').format(prop_name), fontsize=12, fontweight='bold')
+            ax.set_title(gettext('{} - 占比分布').format(prop_name), fontsize=12, fontweight='bold')
 
             plt.tight_layout()
             self._display_figure(fig)
 
         except Exception as e:
-            error_msg = gettext.gettext("饼图绘制异常: {}").format(e)
+            error_msg = gettext("饼图绘制异常: {}").format(e)
             logger.error(error_msg, exc_info=True)
             self.status_label.configure(text=error_msg)
 
