@@ -1,5 +1,6 @@
 {
   "ignoreTemplateFiles": true,
   "cacheInitialized": false,
-  "alwaysUpdateCache": false
+  "alwaysUpdateCache": false,
+  "requiredItemIds": []
 }

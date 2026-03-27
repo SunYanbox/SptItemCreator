@@ -1,9 +1,11 @@
+using System.Diagnostics;
 using System.Text.Json;
 using JetBrains.Annotations;
 using SptItemCreator.Models.Items;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers;
+using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils;
 using SptItemCreator.Models.Abstracts;
@@ -15,8 +17,9 @@ namespace SptItemCreator.Core.Services;
 [UsedImplicitly]
 public sealed class DataLoader(
         JsonUtil jsonUtil,
-        ConfigService configService,
         ItemHelper itemHelper,
+        ConfigService configService,
+        ISptLogger<DataLoader> sptLogger,
         DatabaseService databaseService
     ): IOnLoad
 {
@@ -130,6 +133,9 @@ public sealed class DataLoader(
         }
         
         LocalLog.Logger.Info($"已处理{foundFiles.Count}条sic文件");
+        
+        // 验证必需物品ID
+        ValidateRequiredItemIds();
         
         return Task.CompletedTask;
     }
@@ -314,6 +320,112 @@ public sealed class DataLoader(
         catch (Exception ex)
         {
             LocalLog.Logger.Error($"处理目录 {path} 时出错: {ex.Message}", ex);
+        }
+    }
+    
+    /// <summary>
+    /// 验证必需物品ID是否存在且已启用
+    /// 收集所有问题后汇总输出错误日志
+    /// </summary>
+    private void ValidateRequiredItemIds()
+    {
+        var stopwatch = Stopwatch.StartNew();
+        
+        List<string>? requiredIds = _configService?.Config?.RequiredItemIds;
+        if (requiredIds == null || requiredIds.Count == 0)
+        {
+            return;
+        }
+
+        // 构建所有已加载物品的ID映射: ID -> (是否启用, 文件路径)
+        var itemMap = new Dictionary<string, (bool Enabled, string Path)>();
+        
+        // 遍历所有物品字典
+        foreach (NewItemCommon item in NewItemCommon.Values)
+        {
+            if (item.BaseInfo?.Id != null)
+            {
+                itemMap[item.BaseInfo.Id] = (item.Enable ?? false, item.ItemPath ?? "未知路径");
+            }
+        }
+        
+        foreach (NewItemDrinkOrFood item in NewItemDrinkOrDrugs.Values)
+        {
+            if (item.BaseInfo?.Id != null)
+            {
+                itemMap[item.BaseInfo.Id] = (item.Enable ?? false, item.ItemPath ?? "未知路径");
+            }
+        }
+        
+        foreach (NewItemMedical item in NewItemMedical.Values)
+        {
+            if (item.BaseInfo?.Id != null)
+            {
+                itemMap[item.BaseInfo.Id] = (item.Enable ?? false, item.ItemPath ?? "未知路径");
+            }
+        }
+        
+        foreach (NewItemAmmo item in NewItemAmmo.Values)
+        {
+            if (item.BaseInfo?.Id != null)
+            {
+                itemMap[item.BaseInfo.Id] = (item.Enable ?? false, item.ItemPath ?? "未知路径");
+            }
+        }
+
+        // 收集问题
+        var missingIds = new List<string>();
+        var disabledItems = new List<(string Id, string Path)>();
+
+        foreach (string requiredId in requiredIds)
+        {
+            if (!itemMap.TryGetValue(requiredId, out (bool Enabled, string Path) itemInfo))
+            {
+                missingIds.Add(requiredId);
+            }
+            else if (!itemInfo.Enabled)
+            {
+                disabledItems.Add((requiredId, itemInfo.Path));
+            }
+        }
+
+        // 汇总输出
+        int totalIssues = missingIds.Count + disabledItems.Count;
+        if (totalIssues > 0)
+        {
+            var message = $"要求必需物品验证失败，共 {totalIssues} 个问题:";
+            
+            if (missingIds.Count > 0)
+            {
+                message += $"\n  缺失的物品ID ({missingIds.Count}):";
+                foreach (string id in missingIds)
+                {
+                    message += $"\n    - {id}";
+                }
+            }
+            
+            if (disabledItems.Count > 0)
+            {
+                message += $"\n  未启用的物品ID ({disabledItems.Count}):";
+                foreach ((string id, string path) in disabledItems)
+                {
+                    message += $"\n    - {id} (文件: {path})";
+                }
+            }
+            
+            stopwatch.Stop();
+
+            message += "\n\n    你可以在修复问题后使用**游戏根目录/SPT/user/profiles/backups**的存档备份文件恢复存档";
+            message += $"\n    验证耗时: {stopwatch.Elapsed.TotalMilliseconds:F3} ms";
+            
+            sptLogger.Error(message);
+            LocalLog.Logger.Error(message);
+        }
+        else
+        {
+            stopwatch.Stop();
+            
+            LocalLog.Logger.Debug($"必需物品验证通过，共验证 {requiredIds.Count} 个ID, 验证耗时: {stopwatch.Elapsed.TotalMilliseconds:F3} ms");
         }
     }
     

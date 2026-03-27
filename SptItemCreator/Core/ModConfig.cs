@@ -26,4 +26,12 @@ public class ModConfig
     /// </summary>
     [JsonPropertyName("alwaysUpdateCache")]
     public bool? AlwaysUpdateCache { get; set; } = false;
+
+    /// <summary>
+    /// 必需物品ID列表
+    /// 在加载时会验证这些ID对应的物品是否存在且已启用
+    /// 缺失或未启用的物品将输出详细的错误日志
+    /// </summary>
+    [JsonPropertyName("requiredItemIds")]
+    public List<string>? RequiredItemIds { get; set; }
 }
