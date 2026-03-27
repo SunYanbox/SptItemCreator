@@ -125,7 +125,7 @@ public sealed class DataLoader(
             }
             catch (Exception e)
             {
-                LocalLog.Logger.Error($"在反序列化\"{file}\"时出现问题: {e.Message}");
+                LocalLog.Logger.Error($"在反序列化\"{file}\"时出现问题: {e.Message}", e);
             }
         }
         
@@ -134,24 +134,116 @@ public sealed class DataLoader(
         return Task.CompletedTask;
     }
     
+    /// <summary>
+    /// 移除 JSONC 文本中的注释（单行 // 和多行 /* */）
+    /// 使用状态机正确处理字符串内的注释标记和转义字符
+    /// </summary>
+    /// <param name="jsonc">JSONC 格式的文本</param>
+    /// <returns>移除注释后的 JSON 文本</returns>
+    public static string StripJsoncComments(string jsonc)
+    {
+        var result = new System.Text.StringBuilder(jsonc.Length);
+        var state = ParseState.Normal;
+        
+        for (var i = 0; i < jsonc.Length; i++)
+        {
+            char current = jsonc[i];
+            char next = i + 1 < jsonc.Length ? jsonc[i + 1] : '\0';
+            
+            switch (state)
+            {
+                case ParseState.Normal:
+                    switch (current)
+                    {
+                        case '"':
+                            state = ParseState.InString;
+                            result.Append(current);
+                            break;
+                        case '/' when next == '/':
+                            state = ParseState.InSingleLineComment;
+                            i++; // 跳过第二个 '/'
+                            break;
+                        case '/' when next == '*':
+                            state = ParseState.InMultiLineComment;
+                            i++; // 跳过 '*'
+                            break;
+                        default:
+                            result.Append(current);
+                            break;
+                    }
+                    break;
+                    
+                case ParseState.InString:
+                    state = current switch
+                    {
+                        '\\' => ParseState.InEscape,
+                        '"' => ParseState.Normal,
+                        _ => state
+                    };
+
+                    result.Append(current);
+                    break;
+                    
+                case ParseState.InEscape:
+                    // 任何转义字符后都回到字符串状态
+                    state = ParseState.InString;
+                    result.Append(current);
+                    break;
+                    
+                case ParseState.InSingleLineComment:
+                    if (current == '\n')
+                    {
+                        state = ParseState.Normal;
+                        result.Append(current); // 保留换行符
+                    }
+                    // 其他注释内容跳过
+                    break;
+                    
+                case ParseState.InMultiLineComment:
+                    if (current == '*' && next == '/')
+                    {
+                        state = ParseState.Normal;
+                        i++; // 跳过 '/'
+                    }
+                    // 其他注释内容跳过
+                    break;
+            }
+        }
+        
+        return result.ToString();
+    }
+    
+    private enum ParseState
+    {
+        Normal,
+        InString,
+        InEscape,
+        InSingleLineComment,
+        InMultiLineComment
+    }
+    
     // 根据 TypeIdentifier 在反序列化时直接创建正确的类型
     public static T? DeserializeBasedOnType<T>(string json) where T: NewItemCommon
     {
-        using JsonDocument doc = JsonDocument.Parse(json);
+        // 预处理：移除 JSONC 注释
+        string cleanJson = StripJsoncComments(json);
+        
+        using JsonDocument doc = JsonDocument.Parse(cleanJson);
         string typeIdentifier = doc.RootElement.GetProperty("$type").GetString()!;
+        
         if (_jsonUtil != null)
         {
             if (typeIdentifier == SicType.Common)
-                return (T?)_jsonUtil.Deserialize<NewItemCommon>(json);
+                return (T?)_jsonUtil.Deserialize<NewItemCommon>(cleanJson);
             if (typeIdentifier == SicType.DrinkOrFood)
-                return (T?)(NewItemCommon?)_jsonUtil.Deserialize<NewItemDrinkOrFood>(json);
+                return (T?)(NewItemCommon?)_jsonUtil.Deserialize<NewItemDrinkOrFood>(cleanJson);
             if (typeIdentifier == SicType.Medical)
-                return (T?)(NewItemCommon?)_jsonUtil.Deserialize<NewItemMedical>(json);
+                return (T?)(NewItemCommon?)_jsonUtil.Deserialize<NewItemMedical>(cleanJson);
             if (typeIdentifier == SicType.Ammo)
-                return (T?)(NewItemCommon?)_jsonUtil.Deserialize<NewItemAmmo>(json);
-            return _jsonUtil.Deserialize<T>(json);
+                return (T?)(NewItemCommon?)_jsonUtil.Deserialize<NewItemAmmo>(cleanJson);
+            return _jsonUtil.Deserialize<T>(cleanJson);
         }
-        LocalLog.Logger.Warn($"解析数据时出现问题: _jsonUtil未初始化");
+        LocalLog.Logger.Warn("解析数据时出现问题: _jsonUtil未初始化");
         return null;
     }
 
