@@ -43,7 +43,6 @@ public class PropertyStatsService(
 
         // 检查配置，决定是否跳过统计
         ModConfig? config = configService.Config;
-        var skipStats = false;
         
         if (config is null)
         {
@@ -58,8 +57,8 @@ public class PropertyStatsService(
         }
         else if (config.CacheInitialized == true)
         {
-            LocalLog.Logger.Debug("[PropertyStatsService] CacheInitialized=true，跳过统计计算");
-            skipStats = true;
+            LocalLog.Logger.Debug("[PropertyStatsService] 已跳过所有统计计算");
+            return Task.CompletedTask;
         }
         else
         {
@@ -163,12 +162,6 @@ public class PropertyStatsService(
             return true;
         });
         
-        // 如果跳过统计，只加载缓存后直接返回
-        if (skipStats)
-        {
-            return Task.CompletedTask;
-        }
-
         LocalLog.TryCatch("[PropertyStatsService] 统计数据", () =>
         {
             StringBuilder stringBuilder = new();
