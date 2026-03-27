@@ -81,7 +81,7 @@ public sealed class ConfigService(
     {
         try
         {
-            string? config = _jsonUtil!.Serialize(ModConfigPath);
+            string? config = _jsonUtil!.Serialize(Config);
             if (string.IsNullOrEmpty(config)) throw new Exception("序列化配置的结果为null");
             await File.WriteAllTextAsync(ModConfigPath!, config);
         }
