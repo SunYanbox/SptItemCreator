@@ -28,8 +28,8 @@ public sealed record MedicalInfo : AbstractInfo
     /// <summary>E.g. "Stomach" or "RightLeg"</summary>
     [JsonPropertyName("bodyPartPriority")]
     public List<string>? BodyPartPriority { get; set; }
-    
-    public override void UpdateProperties(TemplateItemProperties properties)
+
+    protected override void UpdateProperties(TemplateItemProperties properties)
     {
         if (MaxHpResource != null) properties.MaxHpResource = MaxHpResource;
         if (MedUseTime != null) properties.MedUseTime = MedUseTime;

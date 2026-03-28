@@ -60,7 +60,7 @@ public sealed record AmmoInfo : AbstractInfo
     [JsonPropertyName("staminaBurnPerDamage")]
     public double? StaminaBurnPerDamage { get; set; }
 
-    public override void UpdateProperties(TemplateItemProperties properties)
+    protected override void UpdateProperties(TemplateItemProperties properties)
     {
         if (AmmoType != null) properties.AmmoType = AmmoType;
         if (InitialSpeed != null) properties.InitialSpeed = InitialSpeed;
