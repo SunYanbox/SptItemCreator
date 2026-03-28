@@ -3,8 +3,9 @@ using SptItemCreator.Models.Abstracts;
 
 namespace SptItemCreator.Models.Validators;
 
-public class ErrorCollector: IErrorCollector
+public class ErrorCollector(INewItem newItem): IErrorCollector
 {
+    private string ItemPath => newItem.ItemPath;
     private readonly Dictionary<string, List<string>> _errors = new();
     
     public void AddError(string category, string errorMessage)
@@ -31,11 +32,11 @@ public class ErrorCollector: IErrorCollector
 
         if (IsEmpty())
         {
-            stringBuilder.Append("ErrorCollector(Empty)");
+            stringBuilder.Append($"ErrorCollector(Path={ItemPath}, Empty)");
         }
         else
         {
-            stringBuilder.Append("ErrorCollector(");
+            stringBuilder.Append($"ErrorCollector(Path={ItemPath}, ");
             stringBuilder.AppendJoin(", ", _errors
                 .Where(kv => kv.Value.Count > 0)
                 .Select(kv => $"{kv.Key}: {{ {string.Join(", ", kv.Value)} }}"));

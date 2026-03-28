@@ -52,7 +52,7 @@ public sealed class NewItem: INewItem
 
     public (bool verify, IErrorCollector errors) Verify()
     {
-        IErrorCollector errorCollector = new ErrorCollector();
+        IErrorCollector errorCollector = new ErrorCollector(this);
         bool result = IValidator.ValidateAll(Validators, this, errorCollector);
         return (result, errorCollector);
     }
