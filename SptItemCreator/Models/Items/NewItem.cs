@@ -18,7 +18,11 @@ namespace SptItemCreator.Models.Items;
 public sealed class NewItem: INewItem
 {
     private static readonly IValidator Validators = IValidator.Build(
-            new BaseInfoValidator()
+            new BaseInfoValidator(),
+            new AttributeInfoValidator(),
+            new BuffsInfoValidator(),
+            new DrinkFoodInfoValidator(),
+            new MedicalInfoValidator()
         );
     
     #region 属性
