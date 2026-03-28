@@ -3,6 +3,7 @@ using JetBrains.Annotations;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Services;
+using SptItemCreator.Core.Enums;
 using SptItemCreator.Core.Services;
 using SptItemCreator.Models.Abstracts;
 using SptItemCreator.Models.InfoData;
@@ -22,7 +23,8 @@ public sealed class NewItem: INewItem
             new AttributeInfoValidator(),
             new BuffsInfoValidator(),
             new DrinkFoodInfoValidator(),
-            new MedicalInfoValidator()
+            new MedicalInfoValidator(),
+            new AmmoInfoValidator()
         );
     
     #region 属性
@@ -64,6 +66,7 @@ public sealed class NewItem: INewItem
 
     public (bool verify, IErrorCollector errors) Verify()
     {
+        Enable ??= Default.NewItemEnable;
         IErrorCollector errorCollector = new ErrorCollector(this);
         bool result = IValidator.ValidateAll(Validators, this, errorCollector);
         return (result, errorCollector);
