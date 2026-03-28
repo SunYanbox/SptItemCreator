@@ -18,13 +18,13 @@ public abstract record AbstractInfo
     /// 封装更新TemplateItemProperties的逻辑
     /// </summary>
     /// <param name="properties"></param>
-    public abstract void UpdateProperties(TemplateItemProperties properties);
+    protected abstract void UpdateProperties(TemplateItemProperties properties);
 
     /// <summary>
     /// 更新DatabaseService
     /// </summary>
     /// <param name="databaseService"></param>
-    public virtual void UpdateDatabaseService(DatabaseService databaseService) {}
+    protected virtual void UpdateDatabaseService(DatabaseService? databaseService) {}
     
     public override string ToString()
     {
@@ -39,16 +39,13 @@ public abstract record AbstractInfo
     public void Update(TemplateItemProperties properties, DatabaseService? databaseService = null)
     {
         UpdateProperties(properties);
-        if (databaseService != null)
+        try
         {
-            try
-            {
-                UpdateDatabaseService(databaseService);
-            }
-            catch (Exception e)
-            {
-                LocalLog.Logger.Warn($"物品更新数据库时出现问题: {e.Message}\n\tItemPath: {ItemPath}", e);
-            }
+            UpdateDatabaseService(databaseService);
+        }
+        catch (Exception e)
+        {
+            LocalLog.Logger.Warn($"物品更新数据库时出现问题: {e.Message}\n\tItemPath: {ItemPath}", e);
         }
     }
 }

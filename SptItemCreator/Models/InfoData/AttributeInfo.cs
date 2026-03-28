@@ -42,7 +42,7 @@ public record AttributeInfo: AbstractInfo
     [JsonPropertyName("backgroundColor")]
     public string? BackgroundColor { get; set; }
 
-    public override void UpdateProperties(TemplateItemProperties properties)
+    protected override void UpdateProperties(TemplateItemProperties properties)
     {
         if (Weight is >= 0) properties.Weight = Weight;
         if (Width is >= 0) properties.Width = Width;

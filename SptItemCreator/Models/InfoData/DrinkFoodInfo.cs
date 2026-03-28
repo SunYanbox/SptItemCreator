@@ -27,7 +27,7 @@ public record DrinkFoodInfo: AbstractInfo
         };
     }
 
-    public override void UpdateProperties(TemplateItemProperties properties)
+    protected override void UpdateProperties(TemplateItemProperties properties)
     {
         if (MaxResource is >= 1) properties.MaxResource = MaxResource;
         if (FoodUseTime is >= 0) properties.FoodUseTime = FoodUseTime;

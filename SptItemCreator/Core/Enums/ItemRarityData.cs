@@ -10,6 +10,10 @@ public static class ItemRarityData
         { "超级稀有", "Superrare" },
         { "不存在", "Not_exist" }
     };
+    
+    public static readonly HashSet<string> AllowCnKeys = [
+        ..RarityMapping.Keys
+    ];
 
     // 所有允许的稀有度键
     public static readonly HashSet<string> AllowKeys = ["Common", "Rare", "Superrare", "Not_exist"];
