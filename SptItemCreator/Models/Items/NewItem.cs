@@ -27,13 +27,21 @@ public sealed class NewItem: INewItem
     
     #region 属性
 
+    [JsonPropertyName("enable")]
     public bool? Enable { get; set; }
+    [JsonPropertyName("baseInfo")]
     public BaseInfo? BaseInfo { get; set; }
+    [JsonPropertyName("propertyOverride")]
     public TemplateItemProperties? PropertyOverride { get; set; }
+    [JsonPropertyName("attributeInfo")]
     public AttributeInfo? AttributeInfo { get; set; }
+    [JsonPropertyName("buffsInfo")]
     public BuffsInfo? BuffsInfo { get; set; }
+    [JsonPropertyName("drinkFoodInfo")]
     public DrinkFoodInfo? DrinkFoodInfo { get; set; }
+    [JsonPropertyName("medicalInfo")]
     public MedicalInfo? MedicalInfo { get; set; }
+    [JsonPropertyName("ammoInfo")]
     public AmmoInfo? AmmoInfo { get; set; }
     [JsonIgnore] public string ItemPath { get; set; } = string.Empty;
     [JsonIgnore] public static DatabaseService? DatabaseService;

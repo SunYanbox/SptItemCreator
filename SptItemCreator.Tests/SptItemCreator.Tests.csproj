@@ -22,5 +22,12 @@
   <ItemGroup>
     <ProjectReference Include="..\SptItemCreator\SptItemCreator.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SuntionCore.dll">
+      <HintPath>libs\SuntionCore.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
   
 </Project>
