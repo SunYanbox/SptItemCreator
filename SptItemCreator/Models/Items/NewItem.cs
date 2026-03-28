@@ -49,13 +49,13 @@ public sealed class NewItem: INewItem
     [JsonIgnore] public static DatabaseService? DatabaseService;
 
     [JsonIgnore]
-    private AbstractInfo[] NeedValidator => new AbstractInfo?[]
+    public AbstractInfo[] NeedValidator => new AbstractInfo?[]
         {
+            BaseInfo,
             AttributeInfo, 
             BuffsInfo, 
             MedicalInfo, 
             DrinkFoodInfo, 
-            MedicalInfo, 
             AmmoInfo
         }
         .Where(info => info is not null).Cast<AbstractInfo>().ToArray();
@@ -185,7 +185,6 @@ public sealed class NewItem: INewItem
     {
         if (PropertyOverride == null) PropertyOverride = new TemplateItemProperties();
         if (BaseInfo == null) return;
-        BaseInfo.Update(PropertyOverride, DatabaseService);
         foreach (AbstractInfo info in NeedValidator)
         {
             info.Update(PropertyOverride, DatabaseService);

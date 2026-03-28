@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Mod;
 using SptItemCreator.Models.InfoData;
@@ -59,6 +60,16 @@ public interface INewItem
     /// 记录新物品文件的路径
     /// </summary>
     [JsonIgnore] public string ItemPath { get; set; }
+
+    /// <summary>
+    /// 验证物品数据
+    /// </summary>
+    /// <remarks>除了非常严重的错误以外，其他情况仍然会返回true(并记录问题)</remarks>
+    public (bool verify, IErrorCollector errors) Verify();
+
+    [JsonIgnore]
+    [UsedImplicitly]
+    AbstractInfo[] NeedValidator { get; }
 
     /// <summary>
     /// 根据物品数据返回创建新物品的NewItemDetails

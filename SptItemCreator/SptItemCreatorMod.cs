@@ -1,13 +1,14 @@
-﻿using SptItemCreator.Models.Items;
-using SPTarkov.DI.Annotations;
+﻿using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Mod;
+using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Services.Mod;
 using SptItemCreator.Models.Abstracts;
 using SptItemCreator.Core.Services;
+using SptItemCreator.Models.Items;
 
 namespace SptItemCreator;
 
@@ -17,17 +18,18 @@ namespace SptItemCreator;
 [Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 2)]
 public class SptItemCreatorMod(
     DataLoader dataLoader,
+    ISptLogger<SptItemCreatorMod> sptLogger,
     DatabaseService databaseService,
     CustomItemService customItemService): IOnLoad
 {
-    public void CreateTask<T>(Dictionary<string, T> data, string taskName) where T: NewItemCommon
+    public void CreateNewItemsTask(string taskName)
     {
-        if (data.Count == 0)
+        if (dataLoader.NewItems.Count == 0)
         {
             LocalLog.Logger.Warn($"任务<{taskName}>中没有加载任何数据文件");
             return;
         }
-        foreach ((string _, T item) in data
+        foreach ((string _, INewItem item) in dataLoader.NewItems
                      .Where(k => k.Value.BaseInfo != null)
                      .OrderBy(k => k.Value.BaseInfo?.Order ?? int.MaxValue))
         {
@@ -40,17 +42,20 @@ public class SptItemCreatorMod(
         AbstractNewItem.DatabaseService ??= databaseService;
         
         LocalLog.Logger.Info("开始创建新物品任务...");
-        CreateTask(dataLoader.NewItemCommon, "通用物品");
-        CreateTask(dataLoader.NewItemDrinkOrDrugs, "食物/饮品");
-        CreateTask(dataLoader.NewItemMedical, "药品");
-        CreateTask(dataLoader.NewItemAmmo, "弹药");
+        CreateNewItemsTask("创建新物品");
         
         return Task.CompletedTask;
     }
 
-    public void CreateNewItemTask(NewItemCommon? newItemBase)
+    public void CreateNewItemTask(INewItem? newItemBase)
     {
-        if (newItemBase != null && newItemBase.Verify() && newItemBase.BaseInfo != null)
+        if (newItemBase is null)
+        {
+            LocalLog.Logger.Error("创建新物品时意外传入null", new ArgumentNullException(nameof(newItemBase)));
+            return;
+        }
+        (bool verify, IErrorCollector errors) = newItemBase.Verify();
+        if (verify && newItemBase.BaseInfo != null)
         {
             try
             {
@@ -59,6 +64,8 @@ public class SptItemCreatorMod(
                     LocalLog.Logger.Info($"未启用目标物品: {newItemBase}");
                     return;
                 }
+                
+                NewItem.DatabaseService ??= databaseService;
                 
                 if (newItemBase.BaseInfo.CloneId != null)
                 {
@@ -89,25 +96,27 @@ public class SptItemCreatorMod(
             }
             catch (Exception e)
             {
-                LocalLog.Logger.Error($"创建新物品{newItemBase.ItemPath}时出现错误: {e.Message}", e);
+                var errorMsg = $"创建新物品{newItemBase.ItemPath}时出现错误: {e.Message}";
+                LocalLog.Logger.Error(errorMsg, e);
+                sptLogger.Error(errorMsg, e);
             }
         }
         else
         {
-            LocalLog.Logger.Error($"验证新物品数据结构时验证失败 \n\t > newItemBase: {newItemBase} \n\t > 堆栈: {LocalLog.GetCurrentStackTrace()}");
+            LocalLog.Logger.Error($"验证新物品数据结构时验证失败 \n\t > 详细问题: {errors.ErrorsToString()} \n\t > newItemBase: {newItemBase} \n\t > 堆栈: {LocalLog.GetCurrentStackTrace()}");
         }
     }
 
-    public void AutoAddItemToTraderAssort(NewItemCommon newItemCommon)
+    public void AutoAddItemToTraderAssort(INewItem newItem)
     {
-        if (newItemCommon.BaseInfo == null || string.IsNullOrEmpty(newItemCommon.BaseInfo.Id) || string.IsNullOrEmpty(newItemCommon.BaseInfo.TraderId)) return;
-        if (databaseService.GetTables().Traders.TryGetValue(newItemCommon.BaseInfo.TraderId, out var trader))
+        if (newItem.BaseInfo == null || string.IsNullOrEmpty(newItem.BaseInfo.Id) || string.IsNullOrEmpty(newItem.BaseInfo.TraderId)) return;
+        if (databaseService.GetTables().Traders.TryGetValue(newItem.BaseInfo.TraderId, out Trader? trader))
         {
             TraderAssort assort = trader.Assort;
             Item item = new()
             {
                 Id = new MongoId(),
-                Template = newItemCommon.BaseInfo.Id,
+                Template = newItem.BaseInfo.Id,
                 ParentId = "hideout",
                 SlotId = "hideout",
                 Upd = new Upd
@@ -116,12 +125,12 @@ public class SptItemCreatorMod(
                     StackObjectsCount = 9999999
                 }
             };
-            AddItemToAssort(assort, item, newItemCommon.BaseInfo.HandbookPrice, 1);
-            LocalLog.Logger.Info($"添加物品给商人售卖: \n\t> trader: {trader.Base.Surname}\n\t> id: {newItemCommon.BaseInfo.Id}\n\t> name: {newItemCommon.BaseInfo.Name}");
+            AddItemToAssort(assort, item, newItem.BaseInfo.HandbookPrice, 1);
+            LocalLog.Logger.Info($"添加物品给商人售卖: \n\t> trader: {trader.Base.Surname}\n\t> id: {newItem.BaseInfo.Id}\n\t> name: {newItem.BaseInfo.Name}");
         }
         else
         {
-            LocalLog.Logger.Warn($"物品{newItemCommon.BaseInfo.Name}({newItemCommon.BaseInfo.Id})的默认商人{newItemCommon.BaseInfo.TraderId}不存在");
+            LocalLog.Logger.Warn($"物品{newItem.BaseInfo.Name}({newItem.BaseInfo.Id})的默认商人{newItem.BaseInfo.TraderId}不存在");
         }
     }
     
