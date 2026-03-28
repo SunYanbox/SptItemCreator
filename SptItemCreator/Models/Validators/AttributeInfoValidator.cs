@@ -7,8 +7,10 @@ namespace SptItemCreator.Models.Validators;
 
 public class AttributeInfoValidator : BaseValidator
 {
-    private static readonly HashSet<string> ValidRarities = ItemRarityData.AllowKeys;
-    private static readonly HashSet<string> ValidItemSounds = ItemSoundData.AllowKeys;
+    private static readonly HashSet<string> ValidRarities 
+        = [..ItemRarityData.AllowKeys, ..ItemRarityData.AllowCnKeys];
+    private static readonly HashSet<string> ValidItemSounds 
+        = [..ItemSoundData.AllowKeys, ..ItemSoundData.AllowCnKeys];
 
     public override bool CanHandle(INewItem newItem) => newItem.AttributeInfo is not null;
 
@@ -22,9 +24,6 @@ public class AttributeInfoValidator : BaseValidator
     private static void ValidateFieldFormats(INewItem newItem, IErrorCollector errorCollector)
     {
         AttributeInfo attr = newItem.AttributeInfo!;
-
-        if (attr.Weight < 0)
-            errorCollector.AddError("AttributeInfo", $"[Weight] 重量不能为负: {attr.Weight}");
 
         if (attr.StackMaxSize < 1)
             errorCollector.AddError("AttributeInfo", $"[StackMaxSize] 必须至少为1: {attr.StackMaxSize}");
