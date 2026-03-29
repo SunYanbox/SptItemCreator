@@ -4,6 +4,20 @@
 >
 > Missing links indicate that it inherits the mod version adapted for the previous Wiki version
 
+## Wiki_26_03_29_23_59
+
+Corresponding Mod Version: [v0.1.1](Mod%20Update%20Log.md#v011)
+
+**Document Updates**:
+* Updated Data File Type documentation, removed `$type` field explanation, added type mechanism clarification
+* Updated BaseInfo documentation, clarified the purpose of the `type` field
+* Updated Mod Update Log and Technical Update Log, added v0.1.1 version records
+* Created a new Mod Configuration documentation, explaining config.json configuration items
+* Synchronously updated English version documentation
+
+**New Document**:
+* Mod Configuration
+
 ## Wiki_26_03_16_03_40
 
 Minimum Mod Version: [v0.1.0](Mod%20Update%20Log.md#v010)

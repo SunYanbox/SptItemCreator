@@ -12,9 +12,8 @@ For example:
 
 ### Step 2: Configure Key Fields
 
-```json
+```jsonc
 {
-  "$type": "common",
   "enable": true,
   "baseInfo": {
     "id": "6900c8e93ea877662a000001",

@@ -1,3 +1,36 @@
+## v0.1.1
+
+**Architecture Refactoring**
+* Refactored item loading and validation architecture, implementing a unified validator system
+* **Unified NewItem class**: All item types share the `NewItem` class, with property application determined by assigned AbstractInfo instances
+* Refactored error collector to support carrying item path information, facilitating issue file location
+* Changed UpdateProperties and UpdateDatabaseService method access modifiers to `protected`
+
+**DataLoader Enhancement**
+* Added StripJsoncComments method to support JSONC comment stripping
+* Uses a state machine to correctly handle comment markers and escape characters within strings
+* Improved deserialization error logging, adding complete exception stack trace information
+
+**Validator System**
+* Implemented IValidator interface with chained validator calls
+* Added BaseInfoValidator: Validates required fields, MongoId format, type legality
+* Added AttributeInfoValidator: Validates positive integer dimensions, rarity, sound types
+* Added BuffsInfoValidator: Validates Buff effect configurations
+* Added MedicalInfoValidator: Validates medical item configurations
+* Added DrinkFoodInfoValidator: Validates food and drink configurations
+* Added AmmoInfoValidator: Validates ammunition configurations, projectile count logic
+
+**Configuration System**
+* Added `cacheInitialized` configuration item to achieve persistent cache initialization state
+* Added `alwaysUpdateCache` configuration item to support forced cache refresh
+* Added `requiredItemIds` configuration item to support dependency item validation
+
+**Unit Testing**
+* Added SptItemCreator.Tests testing project
+* Added NewItem validation tests
+* Added DataLoader JSONC parsing tests
+* Added various ammunition test templates
+
 ## v0.1.0
 
 * Refactored project namespaces, reorganizing core classes by functionality into SptItemCreator.Models and SptItemCreator.Core
