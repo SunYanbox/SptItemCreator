@@ -14,7 +14,7 @@
 | Order            | "order"            | int                                                          | 可选     | 0                                                       | 加载顺序                                               |
 | ParentId         | "parentId"         | [MongoId](./SPT常用数据结构/MongoId.md)                      | 可选     | null                                                    | 父级ID, 当赋值了CloneId时可选, 当没有赋值CloneId时必需 |
 | CloneId          | "cloneId"          | [MongoId](./SPT常用数据结构/MongoId.md)                      | 可选     | null                                                    | 原型ID                                                 |
-| HandbookParentId | "handbookParentId" | [MongoId](./SPT常用数据结构/MongoId.md)                      | 可选     | null                                                    | 手册父级ID                                             |
+| HandbookParentId | "handbookParentId" | [MongoId](./SPT常用数据结构/MongoId.md) <br />[handbookParentId 可选Id与对应类型](../常用常量/常用MongoId常量/handbookParentId 可选Id与对应类型.md) | 可选     | null                                                    | 手册父级ID<br />影响在手册或跳蚤市场的实际分类         |
 | TraderId         | "traderId"         | [MongoId](./SPT常用数据结构/MongoId.md)                      | 可选     | null                                                    | 默认商人ID                                             |
 | FleaPrice        | "fleaPrice"        | double                                                       | 可选     | 1                                                       | 跳蚤市场价格                                           |
 | HandbookPrice    | "handbookPrice"    | double                                                       | 可选     | 1                                                       | 手册价格(商人售卖价格)                                 |
@@ -25,7 +25,7 @@
 | CanFilter        | "canFilter"        | HashSet<[MongoId](./SPT常用数据结构/MongoId.md)>             | 可选     | []                                                      | 指定哪些容器可放置本物品(优先级大于allowAll)           |
 | CantFilter       | "cantFilter"       | HashSet<[MongoId](./SPT常用数据结构/MongoId.md)>             | 可选     | []                                                      | 指定哪些容器不可放置本物品(优先级大于allowAll)         |
 
-> Locales可选键：, ch, cz, en, es-mx, es, fr, ge, hu, it, jp, kr, pl, po, ro, ru, sk, tu
+> Locales可选键：ch, cz, en, es-mx, es, fr, ge, hu, it, jp, kr, pl, po, ro, ru, sk, tu
 
 **注意: id必须提供; traderId不提供或提供有误时不会添加给商人; 其他属性都有默认值**(只有baseInfo有默认值)
 
@@ -62,9 +62,9 @@
     "order": 0,
     // 父级物品ID，用于继承基础属性(和cloneId物品的`_parent`一致)
     "parentId": "5448e8d04bdc2ddf718b4569",
-    // 手册中的父级分类ID(必须和cloneId同时赋值)
+    // 手册中的父级分类ID
     "handbookParentId": "5b47574386f77428ca22b336",
-    // 复制的原型物品ID，基于该物品创建新物品(必须和handbookParentId同时赋值)
+    // 复制的原型物品ID，基于该物品创建新物品
     "cloneId": "5448ff904bdc2d6f028b456e",
     // 默认售卖该物品的商人ID(默认null)
     "traderId": "54cb57776803fa99248b456e",
