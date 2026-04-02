@@ -1,13 +1,13 @@
-using System.Text.Json;
+using System.Diagnostics;
 using JetBrains.Annotations;
 using SptItemCreator.Models.Items;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers;
+using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils;
 using SptItemCreator.Models.Abstracts;
-using SptItemCreator.Core.Enums;
 
 namespace SptItemCreator.Core.Services;
 
@@ -15,8 +15,9 @@ namespace SptItemCreator.Core.Services;
 [UsedImplicitly]
 public sealed class DataLoader(
         JsonUtil jsonUtil,
-        ConfigService configService,
         ItemHelper itemHelper,
+        ConfigService configService,
+        ISptLogger<DataLoader> sptLogger,
         DatabaseService databaseService
     ): IOnLoad
 {
@@ -24,21 +25,9 @@ public sealed class DataLoader(
     private static JsonUtil? _jsonUtil;
     private static ConfigService? _configService;
     /// <summary>
-    /// 通用/默认创建物品接口
+    /// 创建物品数据
     /// </summary>
-    public readonly Dictionary<string, NewItemCommon> NewItemCommon = new();
-    /// <summary>
-    /// 食物饮品创建物品接口
-    /// </summary>
-    public readonly Dictionary<string, NewItemDrinkOrFood> NewItemDrinkOrDrugs = new();
-    /// <summary>
-    /// 药品创建
-    /// </summary>
-    public readonly Dictionary<string, NewItemMedical> NewItemMedical = new();
-    /// <summary>
-    /// 弹药
-    /// </summary>
-    public readonly Dictionary<string, NewItemAmmo> NewItemAmmo = new();
+    public readonly Dictionary<string, INewItem> NewItems = new();
 
     public Task OnLoad()
     {
@@ -84,75 +73,127 @@ public sealed class DataLoader(
         {
             try
             {
-                var newItemBase = DeserializeBasedOnType<NewItemCommon>(File.ReadAllText(file));
+                var newItemBase = _jsonUtil.Deserialize<NewItem>(StripJsoncComments(File.ReadAllText(file)));
                 if (newItemBase == null) throw new Exception("反序列化的结果为null");
                 if (newItemBase.BaseInfo == null) throw new Exception("反序列化后获取不到baseInfo字段");
                 newItemBase.BaseInfo.ItemPath = file;
-                if (newItemBase.BuffsInfo is not null) newItemBase.BuffsInfo.ItemPath = file;
-                if (newItemBase.AttributeInfo is not null) newItemBase.AttributeInfo.ItemPath = file;
-                newItemBase.ItemPath = file;
-                newItemBase.Verify();
-                LocalLog.Logger.Debug($"已加载新物品({(newItemBase.Enable ?? false ? "已" : "未")}启用) Id{newItemBase.BaseInfo.Id}({newItemBase.BaseInfo.Name}, @{newItemBase.BaseInfo.Author}) \t License = {newItemBase.BaseInfo.License} \t Path = {file}");
-                // 类型转换
-                switch (newItemBase.BaseInfo.Type)
+                foreach (AbstractInfo info in newItemBase.NeedValidator)
                 {
-                    case SicType.Common: NewItemCommon.Add(file, newItemBase); break;
-                    case SicType.DrinkOrFood:
-                    {
-                        var newItemDrinkOrFood = (newItemBase as NewItemDrinkOrFood)!;
-                        if (newItemDrinkOrFood.DrinkFoodInfo is not null) newItemDrinkOrFood.DrinkFoodInfo.ItemPath = file;
-                        NewItemDrinkOrDrugs.Add(file, newItemDrinkOrFood);
-                        break;
-                    }
-                    case SicType.Medical:
-                    {
-                        var newItemMedical = (newItemBase as NewItemMedical)!;
-                        if (newItemMedical.MedicalInfo is not null) newItemMedical.MedicalInfo.ItemPath = file;
-                        NewItemMedical.Add(file, newItemMedical);
-                        break;
-                    }
-                    case SicType.Ammo:
-                    {
-                        var newItemAmmo = (newItemBase as NewItemAmmo)!;
-                        if (newItemAmmo.AmmoInfo is not null) newItemAmmo.AmmoInfo.ItemPath = file;
-                        NewItemAmmo.Add(file, newItemAmmo);
-                        break;
-                    }
-                    default: 
-                        LocalLog.Logger.Error($"在分类新物品数据\"{file}\"类型时出现问题: `baseInfo.type` (当前为: {newItemBase.BaseInfo.Type}) 不存在或不合法 \n\t > Path = {file}");
-                        break;
+                    info.ItemPath = file;
                 }
+                newItemBase.ItemPath = file;
+                (bool _, IErrorCollector errors) = newItemBase.Verify();
+                LocalLog.Logger.Debug($"已加载新物品({(newItemBase.Enable ?? false ? "已" : "未")}启用) Id{newItemBase.BaseInfo.Id}({newItemBase.BaseInfo.Name}, @{newItemBase.BaseInfo.Author}) \t License = {newItemBase.BaseInfo.License} \t Path = {file}");
+                if (!errors.IsEmpty())
+                {
+                    var warnMsg = $"加载物品时出现问题: {errors.ErrorsToString()}";
+                    LocalLog.Logger.Warn(warnMsg);
+                    sptLogger.Warning(warnMsg);
+                }
+                NewItems.Add(file, newItemBase);
             }
             catch (Exception e)
             {
-                LocalLog.Logger.Error($"在反序列化\"{file}\"时出现问题: {e.Message}");
+                var errorMsg = $"在反序列化\"{file}\"时出现问题: {e.Message}";
+                LocalLog.Logger.Error(errorMsg, e);
+                sptLogger.Error(errorMsg, e);
             }
         }
         
         LocalLog.Logger.Info($"已处理{foundFiles.Count}条sic文件");
         
+        // 验证必需物品ID
+        ValidateRequiredItemIds();
+        
         return Task.CompletedTask;
     }
     
-    // 根据 TypeIdentifier 在反序列化时直接创建正确的类型
-    public static T? DeserializeBasedOnType<T>(string json) where T: NewItemCommon
+    /// <summary>
+    /// 移除 JSONC 文本中的注释（单行 // 和多行 /* */）
+    /// 使用状态机正确处理字符串内的注释标记和转义字符
+    /// </summary>
+    /// <param name="jsonc">JSONC 格式的文本</param>
+    /// <returns>移除注释后的 JSON 文本</returns>
+    public static string StripJsoncComments(string jsonc)
     {
-        using JsonDocument doc = JsonDocument.Parse(json);
-        string typeIdentifier = doc.RootElement.GetProperty("$type").GetString()!;
-        if (_jsonUtil != null)
+        var result = new System.Text.StringBuilder(jsonc.Length);
+        var state = ParseState.Normal;
+        
+        for (var i = 0; i < jsonc.Length; i++)
         {
-            if (typeIdentifier == SicType.Common)
-                return (T?)_jsonUtil.Deserialize<NewItemCommon>(json);
-            if (typeIdentifier == SicType.DrinkOrFood)
-                return (T?)(NewItemCommon?)_jsonUtil.Deserialize<NewItemDrinkOrFood>(json);
-            if (typeIdentifier == SicType.Medical)
-                return (T?)(NewItemCommon?)_jsonUtil.Deserialize<NewItemMedical>(json);
-            if (typeIdentifier == SicType.Ammo)
-                return (T?)(NewItemCommon?)_jsonUtil.Deserialize<NewItemAmmo>(json);
-            return _jsonUtil.Deserialize<T>(json);
+            char current = jsonc[i];
+            char next = i + 1 < jsonc.Length ? jsonc[i + 1] : '\0';
+            
+            switch (state)
+            {
+                case ParseState.Normal:
+                    switch (current)
+                    {
+                        case '"':
+                            state = ParseState.InString;
+                            result.Append(current);
+                            break;
+                        case '/' when next == '/':
+                            state = ParseState.InSingleLineComment;
+                            i++; // 跳过第二个 '/'
+                            break;
+                        case '/' when next == '*':
+                            state = ParseState.InMultiLineComment;
+                            i++; // 跳过 '*'
+                            break;
+                        default:
+                            result.Append(current);
+                            break;
+                    }
+                    break;
+                    
+                case ParseState.InString:
+                    state = current switch
+                    {
+                        '\\' => ParseState.InEscape,
+                        '"' => ParseState.Normal,
+                        _ => state
+                    };
+
+                    result.Append(current);
+                    break;
+                    
+                case ParseState.InEscape:
+                    // 任何转义字符后都回到字符串状态
+                    state = ParseState.InString;
+                    result.Append(current);
+                    break;
+                    
+                case ParseState.InSingleLineComment:
+                    if (current == '\n')
+                    {
+                        state = ParseState.Normal;
+                        result.Append(current); // 保留换行符
+                    }
+                    // 其他注释内容跳过
+                    break;
+                    
+                case ParseState.InMultiLineComment:
+                    if (current == '*' && next == '/')
+                    {
+                        state = ParseState.Normal;
+                        i++; // 跳过 '/'
+                    }
+                    // 其他注释内容跳过
+                    break;
+            }
         }
-        LocalLog.Logger.Warn($"解析数据时出现问题: _jsonUtil未初始化");
-        return null;
+        
+        return result.ToString();
+    }
+    
+    private enum ParseState
+    {
+        Normal,
+        InString,
+        InEscape,
+        InSingleLineComment,
+        InMultiLineComment
     }
 
     private static bool JumpFolderOrFile(string? name)
@@ -222,6 +263,88 @@ public sealed class DataLoader(
         catch (Exception ex)
         {
             LocalLog.Logger.Error($"处理目录 {path} 时出错: {ex.Message}", ex);
+        }
+    }
+    
+    /// <summary>
+    /// 验证必需物品ID是否存在且已启用
+    /// 收集所有问题后汇总输出错误日志
+    /// </summary>
+    private void ValidateRequiredItemIds()
+    {
+        var stopwatch = Stopwatch.StartNew();
+        
+        List<string>? requiredIds = _configService?.Config?.RequiredItemIds;
+        if (requiredIds == null || requiredIds.Count == 0)
+        {
+            return;
+        }
+
+        // 构建所有已加载物品的ID映射: ID -> (是否启用, 文件路径)
+        var itemMap = new Dictionary<string, (bool Enabled, string Path)>();
+        
+        // 遍历所有物品字典
+        foreach (INewItem item in NewItems.Values)
+        {
+            if (item.BaseInfo?.Id != null)
+            {
+                itemMap[item.BaseInfo.Id] = (item.Enable ?? false, item.ItemPath);
+            }
+        }
+
+        // 收集问题
+        var missingIds = new List<string>();
+        var disabledItems = new List<(string Id, string Path)>();
+
+        foreach (string requiredId in requiredIds)
+        {
+            if (!itemMap.TryGetValue(requiredId, out (bool Enabled, string Path) itemInfo))
+            {
+                missingIds.Add(requiredId);
+            }
+            else if (!itemInfo.Enabled)
+            {
+                disabledItems.Add((requiredId, itemInfo.Path));
+            }
+        }
+
+        // 汇总输出
+        int totalIssues = missingIds.Count + disabledItems.Count;
+        if (totalIssues > 0)
+        {
+            var message = $"要求必需物品验证失败，共 {totalIssues} 个问题:";
+            
+            if (missingIds.Count > 0)
+            {
+                message += $"\n  缺失的物品ID ({missingIds.Count}):";
+                foreach (string id in missingIds)
+                {
+                    message += $"\n    - {id}";
+                }
+            }
+            
+            if (disabledItems.Count > 0)
+            {
+                message += $"\n  未启用的物品ID ({disabledItems.Count}):";
+                foreach ((string id, string path) in disabledItems)
+                {
+                    message += $"\n    - {id} (文件: {path})";
+                }
+            }
+            
+            stopwatch.Stop();
+
+            message += "\n\n    你可以在修复问题后使用**游戏根目录/SPT/user/profiles/backups**的存档备份文件恢复存档";
+            message += $"\n    验证耗时: {stopwatch.Elapsed.TotalMilliseconds:F3} ms";
+            
+            sptLogger.Error(message);
+            LocalLog.Logger.Error(message);
+        }
+        else
+        {
+            stopwatch.Stop();
+            
+            LocalLog.Logger.Debug($"必需物品验证通过，共验证 {requiredIds.Count} 个ID, 验证耗时: {stopwatch.Elapsed.TotalMilliseconds:F3} ms");
         }
     }
     

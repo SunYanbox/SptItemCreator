@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2025.2.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.3.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="4.1.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+      <Content Include="data\**">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SptItemCreator\SptItemCreator.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SuntionCore.dll">
+      <HintPath>libs\SuntionCore.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  
+</Project>

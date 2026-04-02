@@ -1,0 +1,14 @@
+{
+  // 处理Jsonc时不应该错误移除$type属性
+  "$type": "medical",
+  "enable": false,
+  "baseInfo": {
+    "id":   "6900c8e93ea877662a000011",  // 应该正确处理空格
+    "type":  "medical",
+    "author": "Suntion",
+    "license": "\"\n\"\t\"",  // 处理Jsonc时应正确处理转义字符
+    "allowAll": false,
+    "canFilter": [],
+    "cantFilter": []
+  }
+}

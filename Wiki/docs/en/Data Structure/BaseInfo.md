@@ -5,7 +5,7 @@
 | Property           | In Data File       | Data Type                                                     | Required | Default Value                                          | Description                                                |
 | ------------------ | ------------------ | ------------------------------------------------------------ | -------- | ----------------------------------------------------- | ---------------------------------------------------------- |
 | Id                 | "id"               | [MongoId](./Common Data Structures in SPT/MongoId.md)           | **Required** |                                                       | Unique item identifier                                     |
-| Type               | "type"             | string                                                       | Optional | "common"                                              | Template type                                              |
+| Type               | "type"             | string                                                       | Optional | "common"                                              | Item type identifier (for identification only, does not affect property application) |
 | Name               | "name"             | string                                                       | Optional | Unnamed Item                                          | Item name, short name                                      |
 | Description        | "description"      | string                                                       | Optional | Name+Author+License<br/>(If Locales is provided, its description is prioritized) | Item description                                           |
 | Locales            | "locales"          | Dictionary<string, [LocaleDetails](./Common Data Structures in SPT/LocaleDetails.md)> | Optional | null                                                  | Localization information for the item                      |
@@ -35,7 +35,8 @@ When neither `cloneId` nor `handbookParentId` is provided, creation is done enti
 "baseInfo": {
     // The unique identifier ID for the item, represented as a 24-character hexadecimal string
     "id": "6900c8e93ea877662a000000",
-    // Item type, consistent with $type
+    // Item type identifier (optional), for identification purposes only
+    // Actual properties are determined by assigned Info fields (medicalInfo, drinkFoodInfo, etc.)
     "type": "drinkOrDrugs",
     // The name displayed for the item in the game
     "name": "Food Template",
@@ -135,4 +136,6 @@ For traderId, refer to [Trader Ids](../Common Constants/Common MongoId Constants
 ```
 
 > Due to the significant caching requirements introduced by data validation, extensive data validation for many properties will not be implemented until the caching mechanism is optimized.
+
+> **Backward Compatibility**: The `$type` field in older version data files can still be read correctly but will not be output to new files.
 

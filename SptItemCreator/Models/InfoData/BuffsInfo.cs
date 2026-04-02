@@ -14,15 +14,16 @@ public record BuffsInfo : AbstractInfo
     public string? StimulatorBuffs { get; set; }
     [JsonPropertyName("buffs")]
     public List<Buff>? Buffs {get; set;}
-    
-    public override void UpdateProperties(TemplateItemProperties properties)
+
+    protected override void UpdateProperties(TemplateItemProperties properties)
     {
         if (!string.IsNullOrEmpty(StimulatorBuffs))
             properties.StimulatorBuffs = StimulatorBuffs;
     }
-    
-    public override void UpdateDatabaseService(DatabaseService databaseService)
+
+    protected override void UpdateDatabaseService(DatabaseService? databaseService)
     {
+        ArgumentNullException.ThrowIfNull(databaseService);
         Dictionary<string, IEnumerable<Buff>> buffs = databaseService.GetTables().Globals.Configuration.Health.Effects.Stimulator.Buffs;
         bool stimulatorBuffsIsNull = string.IsNullOrEmpty(StimulatorBuffs);
         if (stimulatorBuffsIsNull && Buffs is null)

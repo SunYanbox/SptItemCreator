@@ -166,7 +166,7 @@ public sealed record BaseInfo: AbstractInfo
     /// </summary>
     [JsonIgnore] public bool IsHadInit { get; set; }
 
-    public override void UpdateProperties(TemplateItemProperties properties)
+    protected override void UpdateProperties(TemplateItemProperties properties)
     {
         if (!string.IsNullOrEmpty(Name)) properties.Name = Name;
         if (!string.IsNullOrEmpty(Name)) properties.ShortName = Name;
@@ -197,9 +197,10 @@ public sealed record BaseInfo: AbstractInfo
         }
     }
     
-    public override void UpdateDatabaseService(DatabaseService databaseService)
+    protected override void UpdateDatabaseService(DatabaseService? databaseService)
     {
         if (Id is null) return;
+        ArgumentNullException.ThrowIfNull(databaseService);
         _itemTemplate ??= databaseService.GetTables().Templates.Items;
         HashSet<MongoId> containerOutput = [];
         // 一键允许所有容器放置本物品

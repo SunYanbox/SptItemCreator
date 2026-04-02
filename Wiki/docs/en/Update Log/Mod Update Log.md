@@ -4,6 +4,35 @@
 >
 > Missing links indicate that it inherits the Wiki version adapted for the previous mod version
 
+## v0.1.1
+
+Minimum Wiki Version: [Wiki_26_03_29_23_59](Wiki%20Update%20Log.md#wiki_26_03_29_23_59)
+
+**Data Format Changes**
+* Removed the `$type` field from item templates (backward compatible reading preserved)
+* **Type mechanism clarification**: Item properties are determined by actually assigned Info fields, independent of `baseInfo.type`
+* Data files now support JSONC comments (single-line `//` and multi-line `/* */`)
+
+**New Features**
+* Supports Chinese rarity keys (普通, 稀有, 超级稀有, 不存在)
+* Supports Chinese item sound keys
+* Supports ammunition type item validation
+
+**Configuration Updates**
+* Added `cacheInitialized` configuration item to control cache initialization skip logic
+* Added `alwaysUpdateCache` configuration item to force cache updates
+* Added `requiredItemIds` configuration item to validate required item existence and enabled status
+* See [Mod Configuration](../About%20This%20Mod/Mod%20Configuration.md) for details
+
+**Validation System**
+* Added BaseInfoValidator, AttributeInfoValidator, BuffsInfoValidator
+* Added MedicalInfoValidator, DrinkFoodInfoValidator, AmmoInfoValidator
+* Removed invalid negative weight validation logic
+
+**Architecture Optimization**
+* Changed UpdateProperties and UpdateDatabaseService methods to protected to restrict external calls
+* Enhanced null value validation logic for BaseInfo and BuffsInfo
+
 ## v0.1.0
 
 Minimum Wiki Version: [Wiki_26_03_16_03_40](Wiki%20Update%20Log.md#wiki_26_03_16_03_40)

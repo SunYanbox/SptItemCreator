@@ -1,0 +1,71 @@
+{
+  "enable": false,
+  "baseInfo": {
+    "id": "6900c8e93ea877662a010006",
+    "type": "ammo",
+    "name": "霰弹枪鹿弹模板",
+    "description": null,
+    "locales": {
+      "ch": {
+        "name": "霰弹枪鹿弹模板",
+        "shortName": "鹿弹",
+        "description": "包含多颗弹丸的霰弹枪弹药，适合近距离作战"
+      },
+      "en": {
+        "name": "Shotgun Buckshot Template",
+        "shortName": "Buckshot",
+        "description": "Multiple-pellet shotgun ammunition for close-range combat"
+      }
+    },
+    "author": "Suntion",
+    "license": "MIT",
+    "order": 0,
+    "parentId": "5485a8684bdc2da71d8b4568",
+    "handbookParentId": "5b47574386f77428ca22b2b9",
+    "cloneId": "58dd3ad986f77403051cba8f",
+    "traderId": "54cb57776803fa99248b456e",
+    "fleaPrice": 500,
+    "handbookPrice": 400,
+    "prefab": null,
+    "usePrefab": null,
+    "canSellOnRagfair": true,
+    "allowAll": false,
+    "canFilter": [],
+    "cantFilter": []
+  },
+  "attributeInfo": {
+    "weight": 0.065,
+    "width": 1,
+    "height": 1,
+    "rarityPvE": "Common",
+    "discardLimit": null,
+    "itemSound": null,
+    "stackMaxSize": 20,
+    "examinedByDefault": true,
+    "examineTime": 2,
+    "lootExperience": 30,
+    "examineExperience": 300
+  },
+  "propertyOverride": null,
+  "buffsInfo": null,
+  "ammoInfo": {
+    "ammoType": "bullet",
+    "initialSpeed": 380,
+    "bulletMassGram": 20.0,
+    "damage": 38,
+    "penetrationPower": 15,
+    "armorDamage": 35,
+    "fragmentationChance": 0.2,
+    "ricochetChance": 0.1,
+    "heavyBleedingDelta": 0.25,
+    "lightBleedingDelta": 0.15,
+    "tracer": false,
+    "tracerColor": null,
+    "caliber": "12/70",
+    "buckshotBullets": 8,
+    "ammoAccr": 0,
+    "ammoRec": 0,
+    "ammoDist": 0,
+    "staminaBurnPerDamage": 0.08
+  }
+}

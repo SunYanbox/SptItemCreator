@@ -6,6 +6,7 @@ using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Common;
+using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils;
 using SptItemCreator.Core.Services;
@@ -16,8 +17,10 @@ namespace SptItemCreator.Core.Cache;
 [Injectable(InjectionType.Singleton)]
 public class PropertyStatsService(
     JsonUtil jsonUtil, 
+    ISptLogger<PropertyStatsService> sptLogger,
     ItemHelper itemHelper, 
-    DatabaseService databaseService): IOnLoad
+    DatabaseService databaseService,
+    ConfigService configService): IOnLoad
 {
     private const string HashFileName = "hash.json";
     public const string CacheFolderName = "StatsCache";
@@ -37,6 +40,30 @@ public class PropertyStatsService(
         CacheHashFilePath = Path.Combine(CacheFolderPath, HashFileName);
         
         Directory.CreateDirectory(CacheFolderPath);
+
+        // 检查配置，决定是否跳过统计
+        ModConfig? config = configService.Config;
+        
+        if (config is null)
+        {
+            LocalLog.Logger.Warn("[PropertyStatsService] 在本服务加载时, 无法获取到本应该早已加载的配置服务的配置信息, 缓存构建已跳过");
+            sptLogger.Warning("[SptItemCreator.PropertyStatsService] When loading this service, the configuration information from the configuration service, which should have been loaded earlier, could not be obtained, and cache construction has been skipped.");
+            return Task.CompletedTask;
+        }
+
+        if (config.AlwaysUpdateCache == true)
+        {
+            LocalLog.Logger.Debug("[PropertyStatsService] AlwaysUpdateCache=true，执行哈希检查更新");
+        }
+        else if (config.CacheInitialized == true)
+        {
+            LocalLog.Logger.Debug("[PropertyStatsService] 已跳过所有统计计算");
+            return Task.CompletedTask;
+        }
+        else
+        {
+            LocalLog.Logger.Debug("[PropertyStatsService] 首次运行，执行统计计算");
+        }
 
         Dictionary<string, MongoId> baseClassesDict = null!;
 
@@ -221,6 +248,16 @@ public class PropertyStatsService(
             stringBuilder.AppendLine($"{(double)(success + emptyData + equalFile) / total:P4}" +
                                      $"((成功: {success}, 跳过空数据: {emptyData}, 跳过与原文件相等: {equalFile})/总共: {total})");
             LocalLog.Logger.Debug(stringBuilder.ToString());
+            
+            // 更新配置：标记缓存已初始化
+            if (config?.CacheInitialized != true)
+            {
+                config ??= new ModConfig();
+                config.CacheInitialized = true;
+                configService.SaveConfig().Wait();
+                LocalLog.Logger.Info("[PropertyStatsService] 缓存初始化完成，已更新配置 CacheInitialized=true");
+            }
+            
             return true;
         });
         

@@ -1,0 +1,71 @@
+{
+  "enable": false,
+  "baseInfo": {
+    "id": "6900c8e93ea877662a010001",
+    "type": "ammo",
+    "name": "穿甲弹模板",
+    "description": null,
+    "locales": {
+      "ch": {
+        "name": "穿甲弹模板",
+        "shortName": "穿甲弹",
+        "description": "高穿透力的弹药，专为对付重型护甲设计"
+      },
+      "en": {
+        "name": "Armor Piercing Ammo Template",
+        "shortName": "AP Ammo",
+        "description": "High penetration ammunition designed for heavy armor targets"
+      }
+    },
+    "author": "Suntion",
+    "license": "MIT",
+    "order": 0,
+    "parentId": "5485a8684bdc2da71d8b4568",
+    "handbookParentId": "5b47574386f77428ca22b2b9",
+    "cloneId": "58dd3ad986f77403051cba8f",
+    "traderId": "54cb57776803fa99248b456e",
+    "fleaPrice": 2000,
+    "handbookPrice": 1500,
+    "prefab": null,
+    "usePrefab": null,
+    "canSellOnRagfair": true,
+    "allowAll": false,
+    "canFilter": [],
+    "cantFilter": []
+  },
+  "attributeInfo": {
+    "weight": 0.025,
+    "width": 1,
+    "height": 1,
+    "rarityPvE": "Rare",
+    "discardLimit": null,
+    "itemSound": null,
+    "stackMaxSize": 60,
+    "examinedByDefault": true,
+    "examineTime": 2,
+    "lootExperience": 30,
+    "examineExperience": 300
+  },
+  "propertyOverride": null,
+  "buffsInfo": null,
+  "ammoInfo": {
+    "ammoType": "bullet",
+    "initialSpeed": 880,
+    "bulletMassGram": 9.7,
+    "damage": 35,
+    "penetrationPower": 55,
+    "armorDamage": 85,
+    "fragmentationChance": 0.1,
+    "ricochetChance": 0.2,
+    "heavyBleedingDelta": 0.1,
+    "lightBleedingDelta": 0.05,
+    "tracer": false,
+    "tracerColor": null,
+    "caliber": "7.62x51mm",
+    "buckshotBullets": null,
+    "ammoAccr": 0,
+    "ammoRec": 0,
+    "ammoDist": 0,
+    "staminaBurnPerDamage": 0.1
+  }
+}

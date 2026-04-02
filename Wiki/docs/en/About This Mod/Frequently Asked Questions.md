@@ -32,6 +32,12 @@ File names containing the strings `模板` or `Template`.
 
 ## Q: Why is the jsonc format used, but comments are not currently supported?
 
+### Mod version v0.1.1 and later
+
+Supports JSONC format with comments
+
+### Mod version v0.1.0 and earlier
+
 To support serializing/deserializing SPT-specific types, SPT's JsonUtil is used. Since this does not support the Jsonc format, files with comments cannot be loaded (when I have time, I might try removing comments before using JsonUtil, but comments cannot be re-added when saving).
 
 ## Q: Why does your documentation say some properties don't need to be assigned, but I can find assigned item templates in the current SPT version's data files?
@@ -53,9 +59,8 @@ There are too many bullet-related properties, and it's overwhelming to organize 
 
 Copy the item ID, locales localization data, parentId, handbookParentId, cloneId, price, selling trader, and other information from the other mods into the baseInfo of the following file. Then, assign all other properties that meet the [TemplateItemProperties](../Data Structure/Common Data Structures in SPT/Related To New Items/TemplateItemProperties.md) type under "propertyOverride".
 
-```json
+```jsonc
 {
-    "$type": "common",
     "enable": false,
     "baseInfo": {
         "id": ""  // Must be provided
