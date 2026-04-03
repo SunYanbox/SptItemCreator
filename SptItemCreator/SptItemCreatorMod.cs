@@ -39,8 +39,6 @@ public class SptItemCreatorMod(
     
     public Task OnLoad()
     {
-        AbstractNewItem.DatabaseService ??= databaseService;
-        
         LocalLog.Logger.Info("开始创建新物品任务...");
         CreateNewItemsTask("创建新物品");
         

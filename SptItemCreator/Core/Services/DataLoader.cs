@@ -32,7 +32,6 @@ public sealed class DataLoader(
     public Task OnLoad()
     {
         AbstractInfo.ItemHelper ??= itemHelper;
-        AbstractNewItem.DatabaseService ??= databaseService;
         _modName ??= configService.ModMetadata?.Name ?? "SptItemCreator";
         _jsonUtil  ??= jsonUtil;
         _configService ??= configService;
