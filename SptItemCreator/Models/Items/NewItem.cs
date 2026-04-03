@@ -102,6 +102,9 @@ public sealed class NewItem: INewItem
                 Prototype = BaseInfo.CloneId,
                 Type = "Item"
             },
+            FleaPriceRoubles = BaseInfo.FleaPrice,
+            HandbookPriceRoubles = BaseInfo.HandbookPrice,
+            HandbookParentId = BaseInfo.HandbookParentId,
             Locales = BaseInfo.Locales ?? new Dictionary<string, LocaleDetails>
             {
                 {
