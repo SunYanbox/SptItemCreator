@@ -25,7 +25,7 @@ namespace SptItemCreator.Models.InfoData;
 /// - Order: 影响新物品的创建顺序，数值越大加载越慢 (可选) 
 /// - ParentId: 物品创建的ParentId (必需) 
 /// - CloneId: 复制物品创建的原型Id (可选) 
-/// - HandbookParentId: 复制物品创建的HandbookParentId (可选) 
+/// - HandbookParentId: 物品的HandbookParentId (可选) 
 /// - TraderId: 默认售卖该物品的商人Id (可选) 
 /// - FleaPrice: 价格 (默认值: 1)
 /// - HandbookPrice: 价格 (默认值: 1)
@@ -102,7 +102,7 @@ public sealed record BaseInfo: AbstractInfo
     public string? CloneId { get; set; }
     
     /// <summary>
-    /// 复制物品创建的HandbookParentId  [可缺省]
+    /// 物品的HandbookParentId  [可缺省]
     /// </summary>
     [JsonPropertyName("handbookParentId")]
     public string? HandbookParentId { get; set; }

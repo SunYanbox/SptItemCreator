@@ -134,7 +134,7 @@ public sealed class NewItem: INewItem
     public NewItemFromCloneDetails? CreateItemFromClone()
     {
         (bool verify, IErrorCollector errors) = Verify();
-        if (verify && BaseInfo is { Id: not null, ParentId: not null, CloneId: not null, HandbookParentId: not null })
+        if (verify && BaseInfo is { Id: not null, ParentId: not null, CloneId: not null })
         {
             PropertyApplyAll();
             return new NewItemFromCloneDetails
@@ -169,10 +169,6 @@ public sealed class NewItem: INewItem
                 },
                 OverrideProperties = PropertyOverride,
             };
-        }
-        if (BaseInfo?.CloneId == null && BaseInfo?.HandbookParentId == null)
-        {
-            errors.AddError("CreateItemFromClone", $"使用克隆创建物品(Path={ItemPath})时未设置 baseInfo.cloneId 或 baseInfo.handbookParentId");
         }
         LocalLog.Logger.Error(errors.ErrorsToString());
         return null;
