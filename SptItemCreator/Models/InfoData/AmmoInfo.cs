@@ -4,6 +4,7 @@ using SptItemCreator.Models.Abstracts;
 
 namespace SptItemCreator.Models.InfoData;
 
+[Obsolete("此数据结果将在0.2.0~1.0.0版本间重构")]
 public sealed record AmmoInfo : AbstractInfo
 {
     [JsonPropertyName("ammoType")]

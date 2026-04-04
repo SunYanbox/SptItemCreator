@@ -6,6 +6,7 @@ using SPTarkov.Server.Core.Services;
 using SptItemCreator.Core.Enums;
 using SptItemCreator.Core.Services;
 using SptItemCreator.Models.Abstracts;
+using SptItemCreator.Models.Abstracts.Extensions;
 using SptItemCreator.Models.InfoData;
 using SptItemCreator.Models.Validators;
 
@@ -72,6 +73,25 @@ public sealed class NewItem: INewItem
         return (result, errorCollector);
     }
 
+    private void WarnIfHandbookParentIdIsNull(IErrorCollector errorCollector)
+    {
+        if (BaseInfo?.HandbookParentId != null) return;
+        var errorMessage = $"没有为物品{this.ToIdNameString()}设置HandbookParentId, 会影响在跳蚤市场与手册中的分类";
+        errorCollector.AddError("CreateNewItem", errorMessage);
+        var sptErrorMessage = $"[SptItemCreator] {errorMessage}";
+        if (LocalLog.SptLogger is not null)
+        {
+            LocalLog.SptLogger.Warning(sptErrorMessage);
+        }
+        else
+        {
+            ConsoleColor originalColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"{sptErrorMessage}");
+            Console.ForegroundColor = originalColor;
+        }
+    }
+
     /// <summary>
     /// 根据物品数据返回创建新物品的NewItemDetails
     /// 返回null表示数据无效等意外情况
@@ -89,8 +109,13 @@ public sealed class NewItem: INewItem
             }
             return null;
         }
+        WarnIfHandbookParentIdIsNull(errors);
         if (BaseInfo == null) return null;
         PropertyApplyAll();
+        if (!errors.IsEmpty())
+        {
+            LocalLog.Logger.Warn($"创建物品{this.ToIdNameString()}时出现问题: {errors.ErrorsToString()}");
+        }
         return new NewItemDetails
         {
             NewItem = new TemplateItem
@@ -102,6 +127,9 @@ public sealed class NewItem: INewItem
                 Prototype = BaseInfo.CloneId,
                 Type = "Item"
             },
+            FleaPriceRoubles = BaseInfo.FleaPrice,
+            HandbookPriceRoubles = BaseInfo.HandbookPrice,
+            HandbookParentId = BaseInfo.HandbookParentId,
             Locales = BaseInfo.Locales ?? new Dictionary<string, LocaleDetails>
             {
                 {
@@ -134,48 +162,54 @@ public sealed class NewItem: INewItem
     public NewItemFromCloneDetails? CreateItemFromClone()
     {
         (bool verify, IErrorCollector errors) = Verify();
-        if (verify && BaseInfo is { Id: not null, ParentId: not null, CloneId: not null, HandbookParentId: not null })
+        if (!verify || BaseInfo?.Id == null || BaseInfo?.ParentId == null || BaseInfo?.CloneId == null)
         {
-            PropertyApplyAll();
-            return new NewItemFromCloneDetails
+            if (BaseInfo?.CloneId == null) errors.AddError("CreateItemFromClone", "在通过克隆物品创建物品时 baseInfo.cloneId 没有正确赋值");
+            if (!errors.IsEmpty())
             {
-                ItemTplToClone = BaseInfo.CloneId!,
-                // ParentId refers to the Node item the gun will be under, you can check it in https://db.sp-tarkov.com/search
-                ParentId = BaseInfo.ParentId,
-                NewId = BaseInfo.Id,
-                FleaPriceRoubles = BaseInfo.FleaPrice,
-                HandbookPriceRoubles = BaseInfo.HandbookPrice,
-                HandbookParentId = BaseInfo.HandbookParentId,
-                Locales = BaseInfo.Locales ?? new Dictionary<string, LocaleDetails>
+                LocalLog.Logger.Error(errors.ErrorsToString());
+            }
+            return null;
+        }
+        WarnIfHandbookParentIdIsNull(errors);
+        if (BaseInfo == null) return null;
+        PropertyApplyAll();
+        if (!errors.IsEmpty())
+        {
+            LocalLog.Logger.Warn($"克隆模式创建物品{this.ToIdNameString()}时出现问题: {errors.ErrorsToString()}");
+        }
+        return new NewItemFromCloneDetails
+        {
+            ItemTplToClone = BaseInfo.CloneId!,
+            // ParentId refers to the Node item the gun will be under, you can check it in https://db.sp-tarkov.com/search
+            ParentId = BaseInfo.ParentId,
+            NewId = BaseInfo.Id,
+            FleaPriceRoubles = BaseInfo.FleaPrice,
+            HandbookPriceRoubles = BaseInfo.HandbookPrice,
+            HandbookParentId = BaseInfo.HandbookParentId,
+            Locales = BaseInfo.Locales ?? new Dictionary<string, LocaleDetails>
+            {
                 {
+                    "ch",
+                    new LocaleDetails
                     {
-                        "ch",
-                        new LocaleDetails
-                        {
-                            Name = BaseInfo.Name,
-                            ShortName = BaseInfo.Name,
-                            Description = BaseInfo.Description
-                        }
-                    },
-                    {
-                        "en",
-                        new LocaleDetails
-                        {
-                            Name = BaseInfo.Name,
-                            ShortName = BaseInfo.Name,
-                            Description = BaseInfo.Description
-                        }
+                        Name = BaseInfo.Name,
+                        ShortName = BaseInfo.Name,
+                        Description = BaseInfo.Description
                     }
                 },
-                OverrideProperties = PropertyOverride,
-            };
-        }
-        if (BaseInfo?.CloneId == null && BaseInfo?.HandbookParentId == null)
-        {
-            errors.AddError("CreateItemFromClone", $"使用克隆创建物品(Path={ItemPath})时未设置 baseInfo.cloneId 或 baseInfo.handbookParentId");
-        }
-        LocalLog.Logger.Error(errors.ErrorsToString());
-        return null;
+                {
+                    "en",
+                    new LocaleDetails
+                    {
+                        Name = BaseInfo.Name,
+                        ShortName = BaseInfo.Name,
+                        Description = BaseInfo.Description
+                    }
+                }
+            },
+            OverrideProperties = PropertyOverride,
+        };
     }
 
     /// <summary>

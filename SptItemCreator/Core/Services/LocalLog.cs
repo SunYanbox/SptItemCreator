@@ -5,6 +5,7 @@ using System.Text;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers;
+using SPTarkov.Server.Core.Models.Utils;
 using SuntionCore.Services.LogUtils;
 
 namespace SptItemCreator.Core.Services;
@@ -13,11 +14,12 @@ namespace SptItemCreator.Core.Services;
 /// 封装本地化日志, 获取模组配置信息
 /// </summary>
 [Injectable(InjectionType = InjectionType.Singleton, TypePriority = OnLoadOrder.PreSptModLoader + 1)]
-public class LocalLog(ModHelper modHelper): IOnLoad
+public class LocalLog(ModHelper modHelper, ISptLogger<LocalLog> sptLogger): IOnLoad
 {
     public static string? ModFolder { get; private set; }
     public const string DataFolder = "data";
-    
+
+    public static ISptLogger<LocalLog>? SptLogger;
     public static readonly ModLogger Logger
         = ModLogger.GetOrCreateLogger("SptItemCreator");
     
@@ -42,6 +44,7 @@ public class LocalLog(ModHelper modHelper): IOnLoad
     
     public Task OnLoad()
     {
+        SptLogger = sptLogger;
         ModFolder = modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
         DataFolderPath = Path.Combine(ModFolder, DataFolder);
         

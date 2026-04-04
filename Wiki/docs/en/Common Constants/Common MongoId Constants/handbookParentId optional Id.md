@@ -1,5 +1,7 @@
 ## handbookParentId optional Id and corresponding type
 
+> **Important**: If `handbookParentId` is not provided, item creation will not throw an error, but the item will become an uncategorized item, affecting handbook and flea market category display.
+
 > You need to use the MongoId string corresponding to the type.
 
 ```json

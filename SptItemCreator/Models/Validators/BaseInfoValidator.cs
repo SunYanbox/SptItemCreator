@@ -1,6 +1,7 @@
 using SPTarkov.Server.Core.Models.Common;
 using SptItemCreator.Core.Enums;
 using SptItemCreator.Models.Abstracts;
+using SptItemCreator.Models.Abstracts.Extensions;
 
 namespace SptItemCreator.Models.Validators;
 
@@ -107,7 +108,7 @@ public class BaseInfoValidator: BaseValidator
         {
             if (newItem.BaseInfo.Prefab.Path is null)
             {
-                errorCollector.AddError("BaseInfo", $"[Prefab] 物品{newItem.BaseInfo.Name}的Prefab非空但Prefab.Path为空");
+                errorCollector.AddError("BaseInfo", $"[Prefab] 物品{newItem.ToIdNameString()}的Prefab非空但Prefab.Path为空");
             }
         }
         
@@ -115,7 +116,7 @@ public class BaseInfoValidator: BaseValidator
         {
             if (newItem.BaseInfo.UsePrefab.Path is null)
             {
-                errorCollector.AddError("BaseInfo", $"[UsePrefab] 物品{newItem.BaseInfo.Name}的UsePrefab非空但UsePrefab.Path为空");
+                errorCollector.AddError("BaseInfo", $"[UsePrefab] 物品{newItem.ToIdNameString()}的UsePrefab非空但UsePrefab.Path为空");
             }
         }
     }

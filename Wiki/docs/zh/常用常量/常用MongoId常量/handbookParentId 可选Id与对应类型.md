@@ -1,5 +1,7 @@
 ## handbookParentId 可选Id与对应类型
 
+> **重要**: 如果 `handbookParentId` 未提供，物品创建不会报错，但物品将成为没有分类的物品，影响手册和跳蚤市场的分类显示。
+
 > 需要使用类型对应的前面的MongoId字符串
 
 ```jsonc

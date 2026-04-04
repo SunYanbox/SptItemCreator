@@ -14,7 +14,7 @@
 | Order              | "order"            | int                                                          | Optional | 0                                                     | Load order                                                 |
 | ParentId           | "parentId"         | [MongoId](./Common Data Structures in SPT/MongoId.md)           | Optional | null                                                  | Parent ID. Optional when CloneId is assigned; required when CloneId is not assigned. |
 | CloneId            | "cloneId"          | [MongoId](./Common Data Structures in SPT/MongoId.md)           | Optional | null                                                  | Prototype ID                                               |
-| HandbookParentId   | "handbookParentId" | [MongoId](./Common Data Structures in SPT/MongoId.md)           | Optional | null                                                  | Handbook parent category ID                                |
+| HandbookParentId   | "handbookParentId" | [MongoId](./Common Data Structures in SPT/MongoId.md) <br />[handbookParentId Optional Ids and Corresponding Types](../Common Constants/Common MongoId Constants/handbookParentId optional Id.md) | Optional | null                                                  | Handbook parent category ID<br />Determines item category in handbook and flea market |
 | TraderId           | "traderId"         | [MongoId](./Common Data Structures in SPT/MongoId.md)           | Optional | null                                                  | Default trader ID                                          |
 | FleaPrice          | "fleaPrice"        | double                                                       | Optional | 1                                                     | Flea Market price                                          |
 | HandbookPrice      | "handbookPrice"    | double                                                       | Optional | 1                                                     | Handbook price (Trader selling price)                      |
@@ -25,7 +25,12 @@
 | CanFilter          | "canFilter"        | HashSet<[MongoId](./Common Data Structures in SPT/MongoId.md)>  | Optional | []                                                    | Specify which containers can hold this item (priority over allowAll) |
 | CantFilter         | "cantFilter"       | HashSet<[MongoId](./Common Data Structures in SPT/MongoId.md)>  | Optional | []                                                    | Specify which containers cannot hold this item (priority over allowAll) |
 
-> Optional keys for Locales: , ch, cz, en, es-mx, es, fr, ge, hu, it, jp, kr, pl, po, ro, ru, sk, tu
+> **Warning**: If `handbookParentId` is not provided:
+> - The item creation process will not throw an exception
+> - The item will be added to the item database
+> - **Final result**: The item will become an uncategorized item (affects handbook and flea market category display)
+
+> Optional keys for Locales: ch, cz, en, es-mx, es, fr, ge, hu, it, jp, kr, pl, po, ro, ru, sk, tu
 
 **Note: id must be provided; traderId, if not provided or provided incorrectly, will not add the item to the trader; other properties have default values** (Only baseInfo has default values)
 
@@ -62,9 +67,9 @@ When neither `cloneId` nor `handbookParentId` is provided, creation is done enti
     "order": 0,
     // Parent item ID, used for inheriting base properties (consistent with the `_parent` of the cloneId item)
     "parentId": "5448e8d04bdc2ddf718b4569",
-    // Parent category ID in the handbook (must be assigned together with cloneId)
+    // Parent category ID in the handbook
     "handbookParentId": "5b47574386f77428ca22b336",
-    // Prototype item ID to copy from, based on which the new item is created (must be assigned together with handbookParentId)
+    // Prototype item ID to copy from, based on which the new item is created
     "cloneId": "5448ff904bdc2d6f028b456e",
     // Default trader ID selling this item (default null)
     "traderId": "54cb57776803fa99248b456e",
