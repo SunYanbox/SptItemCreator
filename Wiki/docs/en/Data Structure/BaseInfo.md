@@ -14,7 +14,7 @@
 | Order              | "order"            | int                                                          | Optional | 0                                                     | Load order                                                 |
 | ParentId           | "parentId"         | [MongoId](./Common Data Structures in SPT/MongoId.md)           | Optional | null                                                  | Parent ID. Optional when CloneId is assigned; required when CloneId is not assigned. |
 | CloneId            | "cloneId"          | [MongoId](./Common Data Structures in SPT/MongoId.md)           | Optional | null                                                  | Prototype ID                                               |
-| HandbookParentId   | "handbookParentId" | [MongoId](./Common Data Structures in SPT/MongoId.md) <br />[handbookParentId Optional Ids and Corresponding Types](../Common Constants/Common MongoId Constants/handbookParentId optional Id.md) | Optional | null                                                  | Handbook parent category ID<br />Affects actual classification in handbook or flea market |
+| HandbookParentId   | "handbookParentId" | [MongoId](./Common Data Structures in SPT/MongoId.md) <br />[handbookParentId Optional Ids and Corresponding Types](../Common Constants/Common MongoId Constants/handbookParentId optional Id.md) | Optional | null                                                  | Handbook parent category ID<br />Determines item category in handbook and flea market |
 | TraderId           | "traderId"         | [MongoId](./Common Data Structures in SPT/MongoId.md)           | Optional | null                                                  | Default trader ID                                          |
 | FleaPrice          | "fleaPrice"        | double                                                       | Optional | 1                                                     | Flea Market price                                          |
 | HandbookPrice      | "handbookPrice"    | double                                                       | Optional | 1                                                     | Handbook price (Trader selling price)                      |
@@ -24,6 +24,11 @@
 | AllowAll           | "allowAll"         | bool                                                         | Optional | false                                                 | Allow placement in all containers with one click           |
 | CanFilter          | "canFilter"        | HashSet<[MongoId](./Common Data Structures in SPT/MongoId.md)>  | Optional | []                                                    | Specify which containers can hold this item (priority over allowAll) |
 | CantFilter         | "cantFilter"       | HashSet<[MongoId](./Common Data Structures in SPT/MongoId.md)>  | Optional | []                                                    | Specify which containers cannot hold this item (priority over allowAll) |
+
+> **Warning**: If `handbookParentId` is not provided:
+> - The item creation process will not throw an exception
+> - The item will be added to the item database
+> - **Final result**: The item will become an uncategorized item (affects handbook and flea market category display)
 
 > Optional keys for Locales: ch, cz, en, es-mx, es, fr, ge, hu, it, jp, kr, pl, po, ro, ru, sk, tu
 
