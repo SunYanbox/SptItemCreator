@@ -4,11 +4,15 @@
 >
 > Missing links indicate that it inherits the mod version adapted for the previous Wiki version
 
-## Wiki_26_03_29_23_59
+## Wiki_26_04_04_22_00
 
 Corresponding Mod Version: [v0.1.1](Mod%20Update%20Log.md#v011)
 
 **Document Updates**:
+* Updated BaseInfo documentation, corrected HandbookParentId field description, clarified behavior and classification impact when missing
+* Updated handbookParentId optional Id documentation, added warning notes
+* Fixed mod configuration documentation link error
+* Synchronously updated English version documentation
 * Updated Data File Type documentation, removed `$type` field explanation, added type mechanism clarification
 * Updated BaseInfo documentation, clarified the purpose of the `type` field
 * Updated Mod Update Log and Technical Update Log, added v0.1.1 version records

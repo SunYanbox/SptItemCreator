@@ -1,5 +1,19 @@
 ## v0.1.1
 
+**Bug Fixes**
+* Fixed missing FleaPriceRoubles, HandbookPriceRoubles, HandbookParentId field mappings during NewItem initialization (#9)
+* Fixed CreateItemFromClone method validation logic, removed incorrect HandbookParentId required check (#10)
+* Fixed HandbookParentId validation logic defects in CreateItemFromClone and CreateNewItem (#11, #12)
+* Fixed redundant parameters in AddItemToAssort method call
+
+**Code Refactoring**
+* Removed legacy AbstractNewItem abstract base class and its subclass implementations (NewItemCommon, NewItemAmmo, NewItemDrinkOrFood, NewItemMedical)
+* Added NewItemExtensions extension class with ToStringWithStatus() and ToIdNameString() methods
+* Marked AmmoInfo class as [Obsolete], planned for refactoring in future versions
+* Marked BaseInfo.IsHadInit property as [Obsolete], will be removed after version 0.2.0
+* Cleaned up unused dependency injections in DataLoader constructor (ISptLogger<DataLoader>, DatabaseService)
+* Added [UsedImplicitly] attribute to INewItem.PropertyOverride property to suppress warnings
+
 **Architecture Refactoring**
 * Refactored item loading and validation architecture, implementing a unified validator system
 * **Unified NewItem class**: All item types share the `NewItem` class, with property application determined by assigned AbstractInfo instances
