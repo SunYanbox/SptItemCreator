@@ -164,6 +164,7 @@ public sealed record BaseInfo: AbstractInfo
     /// <summary>
     /// 是否已进行过初始化与参数验证
     /// </summary>
+    [Obsolete("将在0.2.0版本后移除")]
     [JsonIgnore] public bool IsHadInit { get; set; }
 
     protected override void UpdateProperties(TemplateItemProperties properties)

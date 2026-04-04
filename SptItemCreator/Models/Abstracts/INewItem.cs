@@ -24,6 +24,7 @@ public interface INewItem
     /// 属性覆盖（相对于被克隆物品的修改项）
     /// </summary>
     [JsonPropertyName("propertyOverride")]
+    [UsedImplicitly]
     public TemplateItemProperties? PropertyOverride { get; set; }
     
     /// <summary>

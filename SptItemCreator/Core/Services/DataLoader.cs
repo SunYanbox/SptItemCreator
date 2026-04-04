@@ -5,7 +5,6 @@ using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Utils;
-using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils;
 using SptItemCreator.Models.Abstracts;
 
@@ -17,8 +16,7 @@ public sealed class DataLoader(
         JsonUtil jsonUtil,
         ItemHelper itemHelper,
         ConfigService configService,
-        ISptLogger<DataLoader> sptLogger,
-        DatabaseService databaseService
+        ISptLogger<DataLoader> sptLogger
     ): IOnLoad
 {
     private static string? _modName;
