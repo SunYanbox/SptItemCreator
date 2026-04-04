@@ -1,6 +1,7 @@
 本模组开发目的是通过封装物品创建接口，简化物品创建流程，同时提供详细的文档，说明不同属性与字段的作用
 
-
+![GitHub License](https://img.shields.io/github/license/SunYanbox/SptItemCreator)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/SunYanbox/SptItemCreator/total)
 
 ## WiKi
 
