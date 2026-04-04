@@ -6,7 +6,20 @@
 
 ## v0.1.1
 
-Minimum Wiki Version: [Wiki_26_03_29_23_59](Wiki%20Update%20Log.md#wiki_26_03_29_23_59)
+Minimum Wiki Version: [Wiki_26_04_04_22_00](Wiki%20Update%20Log.md#wiki_26_04_04_22_00)
+
+**Bug Fixes**
+* Fixed missing FleaPriceRoubles, HandbookPriceRoubles, HandbookParentId field mappings during item creation (#9)
+* Fixed item clone creation validation logic, removed incorrect HandbookParentId required check (#10)
+* Fixed HandbookParentId validation logic defects in CreateItemFromClone and CreateNewItem (#11, #12)
+* Fixed redundant parameters in AddItemToAssort method call
+
+**Refactoring**
+* Removed legacy AbstractNewItem abstract base class and its subclass implementations (NewItemCommon, NewItemAmmo, NewItemDrinkOrFood, NewItemMedical)
+* Marked AmmoInfo class as [Obsolete], planned for refactoring in future versions
+* Marked BaseInfo.IsHadInit property as [Obsolete], will be removed after version 0.2.0
+* Added NewItemExtensions extension class with ToStringWithStatus() and ToIdNameString() methods for unified item log formatting
+* Cleaned up unused dependency injections in DataLoader constructor (ISptLogger, DatabaseService)
 
 **Data Format Changes**
 * Removed the `$type` field from item templates (backward compatible reading preserved)
