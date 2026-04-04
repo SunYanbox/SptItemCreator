@@ -7,6 +7,7 @@ using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Utils;
 using SptItemCreator.Models.Abstracts;
+using SptItemCreator.Models.Abstracts.Extensions;
 
 namespace SptItemCreator.Core.Services;
 
@@ -72,15 +73,18 @@ public sealed class DataLoader(
             {
                 var newItemBase = _jsonUtil.Deserialize<NewItem>(StripJsoncComments(File.ReadAllText(file)));
                 if (newItemBase == null) throw new Exception("反序列化的结果为null");
-                if (newItemBase.BaseInfo == null) throw new Exception("反序列化后获取不到baseInfo字段");
-                newItemBase.BaseInfo.ItemPath = file;
                 foreach (AbstractInfo info in newItemBase.NeedValidator)
                 {
                     info.ItemPath = file;
                 }
+                if (newItemBase.BaseInfo == null) throw new Exception("反序列化后获取不到baseInfo字段");
+                if (newItemBase.BaseInfo.HandbookParentId is null)
+                {
+                    LocalLog.Logger.Warn($"{newItemBase.ToStringWithStatus()}的`BaseInfo`没有赋值`HandbookParentId`, 会影响物品在跳蚤市场与手册的分类");
+                }
                 newItemBase.ItemPath = file;
                 (bool _, IErrorCollector errors) = newItemBase.Verify();
-                LocalLog.Logger.Debug($"已加载新物品({(newItemBase.Enable ?? false ? "已" : "未")}启用) Id{newItemBase.BaseInfo.Id}({newItemBase.BaseInfo.Name}, @{newItemBase.BaseInfo.Author}) \t License = {newItemBase.BaseInfo.License} \t Path = {file}");
+                LocalLog.Logger.Debug($"已加载: {newItemBase.ToStringWithStatus()}");
                 if (!errors.IsEmpty())
                 {
                     var warnMsg = $"加载物品时出现问题: {errors.ErrorsToString()}";

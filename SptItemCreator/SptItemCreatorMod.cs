@@ -8,6 +8,7 @@ using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Services.Mod;
 using SptItemCreator.Models.Abstracts;
 using SptItemCreator.Core.Services;
+using SptItemCreator.Models.Abstracts.Extensions;
 using SptItemCreator.Models.Items;
 
 namespace SptItemCreator;
@@ -75,7 +76,7 @@ public class SptItemCreatorMod(
                     }
 
                     CreateItemResult result = customItemService.CreateItemFromClone(details);
-                    LocalLog.Logger.Info($"创建新物品结果: {LocalLog.ToStringExcludeNulls(result)}\n\t> id: {newItemBase.BaseInfo.Id}\n\t> name: {newItemBase.BaseInfo.Name}");
+                    LocalLog.Logger.Info($"创建新物品结果: {LocalLog.ToStringExcludeNulls(result)}\n\t> {newItemBase.ToIdNameString()}");
                 }
                 else
                 {
@@ -87,7 +88,7 @@ public class SptItemCreatorMod(
                     }
 
                     CreateItemResult result = customItemService.CreateItem(details);
-                    LocalLog.Logger.Info($"创建新物品结果: {LocalLog.ToStringExcludeNulls(result)}\n\t> id: {newItemBase.BaseInfo.Id}\n\t> name: {newItemBase.BaseInfo.Name}");
+                    LocalLog.Logger.Info($"创建新物品结果: {LocalLog.ToStringExcludeNulls(result)}\n\t> {newItemBase.ToIdNameString()}");
                 }
 
                 AutoAddItemToTraderAssort(newItemBase);
@@ -124,7 +125,7 @@ public class SptItemCreatorMod(
                 }
             };
             AddItemToAssort(assort, item, newItem.BaseInfo.HandbookPrice);
-            LocalLog.Logger.Info($"添加物品给商人售卖: \n\t> trader: {trader.Base.Surname}\n\t> id: {newItem.BaseInfo.Id}\n\t> name: {newItem.BaseInfo.Name}");
+            LocalLog.Logger.Info($"添加物品给商人售卖: \n\t> trader: {trader.Base.Surname}\n\t> {newItem.ToIdNameString()}");
         }
         else
         {
